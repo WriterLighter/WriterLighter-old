@@ -1,0 +1,11 @@
+{
+  "name": "WriterLighter",
+  "version": "0.0.1",
+  "description": "Editor for novels.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "AI",
+  "license": "MIT"
+}

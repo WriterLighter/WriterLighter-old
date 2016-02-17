@@ -1,0 +1,117 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    transition: 0.2s
+}
+
+a:hover {
+    cursor: pointer
+}
+
+ul li {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+header,
+footer {
+    position: fixed;
+    height: 21px;
+    width: 100%;
+    z-index: 2;
+    margin: 0;
+    padding: 2px 0;
+    background-color: #333;
+    color: #fff;
+}
+
+footer {
+    bottom: 0px;
+    font-size: 14px;
+}
+
+#input_txt {
+    resize: none;
+    /*
+    width: 84em;
+    height: 51em;
+    */
+    height: 100%;
+    line-height: 1.5em;
+    font-family: serif;
+    letter-spacing: 0.2em;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    float: left;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: auto;
+}
+
+.menubutton {
+    display: inline-block;
+    height: 20px;
+    background: #999;
+    border-radius: 5px;
+}
+
+.menubutton:hover {
+    opacity: 0.5
+}
+
+#container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 25px 0 25px 0;
+    box-sizing: border-box;
+}
+
+#path {
+}
+
+#line,
+#wc,
+#byte {
+}
+
+#left-component {
+    min-width: 200px;
+    right: 200px;
+    margin-right: 5px;
+}
+
+#my-divider {
+    right: 200px;
+    width: 5px;
+    box-sizing: border-box;
+    border: solid #999;
+}
+
+#right-component {
+    min-width: 200px;
+    width: 200px;
+}
+
+.write-vertical{
+    -webkit-writing-mode: vertical-rl;
+}
+
+.semitransparent,
+.disabled{
+    opacity: .5;
+}
