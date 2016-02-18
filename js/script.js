@@ -56,19 +56,16 @@ function toggleWritingMode(){
 function findAllInText(Str,Keyword){
     var KeywordNum = Keyword.length;
     var start = 0;
-
     var res = [];
     while(true){
         var i = Str.indexOf(Keyword,start);
-
         if(i >= 0){
             res.push(i);
+            start = i + KeywordNum;
         }else{
+            return res;
             break;
         }
-
-        return res;
-
     }
-
 }
+
