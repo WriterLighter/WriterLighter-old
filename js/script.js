@@ -51,5 +51,24 @@ $(function () {
 
 function toggleWritingMode(){
     $("#input_txt").toggleClass("write-vertical");
+}
+
+function findAllInText(Str,Keyword){
+    var KeywordNum = Keyword.length;
+    var start = 0;
+
+    var res = [];
+    while(true){
+        var i = Str.indexOf(Keyword,start);
+
+        if(i >= 0){
+            res.push(i);
+        }else{
+            break;
+        }
+
+        return res;
+
+    }
 
 }
