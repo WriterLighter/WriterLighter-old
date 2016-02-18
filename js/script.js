@@ -64,8 +64,11 @@ function findAllInText(Str,Keyword){
             start = i + KeywordNum;
         }else{
             return res;
-            break;
         }
     }
 }
 
+
+function SearchAndHighlight(Element,Keyword) {
+
+}
