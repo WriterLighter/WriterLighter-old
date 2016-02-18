@@ -10,7 +10,7 @@
 
     var currentPath = "";
 
-function footer(){
+function FileName(filename){
     var value = inputTxt.innerText;
     var NoC = value.length;
     var BoC = encodeURI(value).replace(/%[0-9A-F]{2}/g, '*').length;
@@ -19,6 +19,8 @@ function footer(){
     $("#wc").html(NoC + "文字");
     $("#byte").html(BoC + "バイト");
     $("#line").html(line + "行");
+
+    document.title=currentPath + " - WriterLighter";
 }
 
     /**
@@ -96,7 +98,7 @@ $(function () {
             //console.log(text.toString());
             // TODO
             inputTxt.innerText=(text.toString());
-            footer();
+            FileName();
         });
     }
 
