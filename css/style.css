@@ -115,3 +115,7 @@ footer {
 .disabled{
     opacity: .5;
 }
+
+.highlighted{
+    background-color: #ffaa00;
+}

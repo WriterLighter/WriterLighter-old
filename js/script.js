@@ -68,7 +68,19 @@ function findAllInText(Str,Keyword){
     }
 }
 
+function insert(Str,insPos,insStr){
+    return Str.slice(0,insPos) + insStr + Str.slice(insPos);
+}
 
-function SearchAndHighlight(Element,Keyword) {
-
+function SearchAndHighlight(Str,Keyword) {
+    var res=Str;
+    var KeywordNum = Keyword.length;
+    var sres = findAllInText(Str,Keyword);
+    for(var i = sres.length-1 ; i >= 0 ; --i){
+        var start=sres[i];
+        var end=start+KeywordNum;
+        res = insert(res,end,"</span>");
+        res = insert(res,start,"<span class='highlighted'>");
+    }
+    return res;
 }
