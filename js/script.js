@@ -86,3 +86,11 @@ function SearchAndHighlight(Str, Keyword) {
     }
     return res;
 }
+
+function Search(){
+    var Keyword = $("#keyword").val();
+    var el = $("#input_txt");
+    var before=el.html();
+    var after=SearchAndHighlight(before,Keyword);
+    el.html(after);
+}

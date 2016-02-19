@@ -171,7 +171,7 @@ $(function () {
             // セーブ用ダイアログが閉じられた後のコールバック関数
             function (fileName) {
                 if (fileName) {
-                    var data = inputTxt.value;
+                    var data = inputTxt.val();
                     currentPath = fileName;
                     writeFile(currentPath, data);
                     footerArea.innerHTML = currentPath;
