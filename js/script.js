@@ -94,3 +94,10 @@ function Search(){
     var after=SearchAndHighlight(before,Keyword);
     el.html(after);
 }
+
+//enterキーでの検索実行関数
+function SearchKey(key){
+    if(key==13){
+        Search();
+    }
+}
