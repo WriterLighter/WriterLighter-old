@@ -41,27 +41,28 @@
             <li><a class="menubutton save" onclick="saveFile();">Save</a></li>
             <li><a class="menubutton" onclick="toggleWritingMode();">WM</a></li>
             <li>
-            <input type="text" id="keyword" onkeydown="if(event.keyCode == 13){Search();}">
-            <input type="button" id="searchButton" onclick="Search();"></li>
+                <input type="text" id="keyword" onkeydown="if(event.keyCode == 13){Search();}">
+                <input type="button" id="searchButton" value="Search" onclick="Search();">
+            </li>
         </ul>
     </header>
 
     <div id="container">
-       <div class="split-pane fixed-right">
-        <div class="split-pane-component" id="left-component">
-            <div id="input_txt" wrap="hard" contenteditable="true"></div>
-        </div>
-        <div class="split-pane-divider" id="my-divider">
-            <div class="split-pane-divider-inner"></div>
-        </div>
-        <div class="split-pane-component" id="right-component">
-        かくちょうとかいれちゃうよ
-        <ul id="tablist">
-            <li id="wwwbrowser" class="tab"></li>
-            <li id="dic-weblio" class="tab"></li>
-        </ul>
+        <div class="split-pane fixed-right">
+            <div class="split-pane-component" id="left-component">
+                <div id="input_txt" wrap="hard" contenteditable="true"></div>
+            </div>
+            <div class="split-pane-divider" id="my-divider">
+                <div class="split-pane-divider-inner"></div>
+            </div>
+            <div class="split-pane-component" id="right-component">
+                かくちょうとかいれちゃうよ
+                <ul id="tablist">
+                    <li id="wwwbrowser" class="tab"></li>
+                    <li id="dic-weblio" class="tab"></li>
+                </ul>
 
-        </div>
+            </div>
         </div>
     </div>
 
