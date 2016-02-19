@@ -92,7 +92,7 @@ footer {
 #left-component {
     min-width: 200px;
     right: 200px;
-    margin-right: 5px;
+    margin: 5px;
 }
 
 #my-divider {
