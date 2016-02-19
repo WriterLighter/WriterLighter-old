@@ -90,21 +90,21 @@ footer {
 }
 
 #left-component {
-    min-width: 200px;
-    right: 200px;
+    min-width: 260px;
+    right: 260px;
     margin-right: 5px;
 }
 
 #my-divider {
-    right: 200px;
+    right: 260px;
     width: 5px;
     box-sizing: border-box;
     border: solid #999;
 }
 
 #right-component {
-    min-width: 200px;
-    width: 200px;
+    min-width: 260px;
+    width: 260px;
 }
 
 .write-vertical{
@@ -118,4 +118,53 @@ footer {
 
 .highlighted{
     background-color: #ffaa00;
+}
+
+/*
+* Extension
+*/
+#right-component{
+    display: -webkit-box;
+    overflow-x: hidden;
+}
+
+/*Main*/
+#ext-main{
+    display:-webkit-box;
+    -webkit-box-flex:1.0;
+    height: 100%;
+    position: relative;
+}
+
+#ext-main mainWebview{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+/*Tab*/
+ul#ext-tab{
+    display: block;
+    height: 100%;
+    width: 60px;
+    background: #111;
+}
+
+input[name="tab"]{
+    -webkit-appearance: none;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 57px;
+    height: 57px;
+    background: #555;
+    margin: 0 10px 0 0;
+}
+
+input[name="tab"]:checked,
+input[name="tab"]:hover{
+    background: #777;
 }

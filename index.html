@@ -55,12 +55,15 @@
             <div class="split-pane-divider-inner"></div>
         </div>
         <div class="split-pane-component" id="right-component">
-        かくちょうとかいれちゃうよ
-        <ul id="tablist">
-            <li id="wwwbrowser" class="tab"></li>
-            <li id="dic-weblio" class="tab"></li>
+        <div id="ext-main">
+            <webview id="mainWebview" src="extensions/home/" autosize="on"></webview>
+        </div>
+        <ul id="ext-tab">
+            <li><input type="radio" name="tab" title="ホーム" ext-id="home" checked></li>
+            <li><input type="radio" name="tab" title="設定" ext-id="setting"></li>
+            <li><input type="radio" name="tab" title="登場人物" ext-id="profile"></li>
+            <li><input type="radio" name="tab" title="出力" ext-id="export"></li>
         </ul>
-
         </div>
         </div>
     </div>
