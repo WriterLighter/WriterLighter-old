@@ -41,10 +41,10 @@
         <ul>
             <li><a class="menubutton open" onclick="openLoadFile();">Open</a></li>
             <li><a class="menubutton save" onclick="saveFile();">Save</a></li>
-            <li><a class="menubutton" onclick="toggleWritingMode();">WM</a></li>
+            <li><a class="menubutton writingMode" onclick="toggleWritingMode();"></a></li>
             <li>
                 <input type="text" id="keyword" onkeydown="if(event.keyCode == 13){Search();}">
-                <input type="button" id="searchButton" value="Search" onclick="Search();">
+                <input type="button" id="searchButton" value="Search" onclick="Search();" class="menubutton">
             </li>
         </ul>
     </header>
@@ -63,16 +63,16 @@
                 </div>
                 <ul id="ext-tab">
                     <li>
-                        <input type="radio" name="tab" title="ホーム" ext-id="home" checked>
+                        <input type="radio" name="tab" title="ホーム" value="home" checked>
                     </li>
                     <li>
-                        <input type="radio" name="tab" title="設定" ext-id="setting">
+                        <input type="radio" name="tab" title="設定" value="setting">
                     </li>
                     <li>
-                        <input type="radio" name="tab" title="登場人物" ext-id="profile">
+                        <input type="radio" name="tab" title="登場人物" value="profile">
                     </li>
                     <li>
-                        <input type="radio" name="tab" title="出力" ext-id="export">
+                        <input type="radio" name="tab" title="出力" value="export">
                     </li>
                 </ul>
             </div>

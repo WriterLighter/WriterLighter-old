@@ -63,10 +63,14 @@ footer {
 }
 
 .menubutton {
+    -webkit-appearance: none;
     display: inline-block;
     height: 20px;
     background: #999;
     border-radius: 5px;
+    min-width: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 .menubutton:hover {
@@ -171,4 +175,8 @@ input[name="tab"] {
 input[name="tab"]:checked,
 input[name="tab"]:hover {
     background: #777;
+}
+
+#writingMode{
+    -webkit-appearance: none;
 }

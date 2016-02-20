@@ -9,6 +9,8 @@ $(function () {
     });
 
     $('div.split-pane').splitPane();
+
+
 });
 
 function toggleWritingMode() {
