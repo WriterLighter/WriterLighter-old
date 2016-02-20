@@ -102,5 +102,3 @@ function Search() {
         el.html(after);
     }
 }
-
-//enterキーでの検索実行関数←いらなかった　次回コミット時にはこのコメントも消します
