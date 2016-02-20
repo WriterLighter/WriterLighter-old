@@ -81,8 +81,8 @@ function SearchAndHighlight(Str, Keyword) {
     for (var i = sres.length - 1; i >= 0; --i) {
         var start = sres[i];
         var end = start + KeywordNum;
-        res = insert(res, end, "</span>");
-        res = insert(res, start, "<span class='highlighted'>");
+        res = insert(res, end, "</mark>");
+        res = insert(res, start, "<mark class='highlighted'>");
     }
     return res;
 }
