@@ -41,8 +41,9 @@
             <li><a class="menubutton save" onclick="saveFile();">Save</a></li>
             <li><a class="menubutton" onclick="toggleWritingMode();">WM</a></li>
             <li>
-            <input type="text" id="keyword">
-            <input type="button" id="searchButton" onclick="Search();"></li>
+                <input type="text" id="keyword" onkeydown="if(event.keyCode == 13){Search();}">
+                <input type="button" id="searchButton" value="Search" onclick="Search();">
+            </li>
         </ul>
     </header>
 
