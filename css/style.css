@@ -81,13 +81,11 @@ footer {
     box-sizing: border-box;
 }
 
-#path {
-}
+#path {}
 
 #line,
 #wc,
-#byte {
-}
+#byte {}
 
 #left-component {
     min-width: 200px;
@@ -107,36 +105,40 @@ footer {
     width: 260px;
 }
 
-.write-vertical{
+.write-vertical {
     -webkit-writing-mode: vertical-rl;
 }
 
 .semitransparent,
-.disabled{
+.disabled {
     opacity: .5;
 }
 
-.highlighted{
+.highlighted {
     background-color: #ffaa00;
 }
+
 
 /*
 * Extension
 */
-#right-component{
+
+#right-component {
     display: -webkit-box;
     overflow-x: hidden;
 }
 
+
 /*Main*/
-#ext-main{
-    display:-webkit-box;
-    -webkit-box-flex:1.0;
+
+#ext-main {
+    display: -webkit-box;
+    -webkit-box-flex: 1.0;
     height: 100%;
     position: relative;
 }
 
-#ext-main mainWebview{
+#ext-main mainWebview {
     position: absolute;
     top: 0;
     right: 0;
@@ -144,15 +146,17 @@ footer {
     left: 0;
 }
 
+
 /*Tab*/
-ul#ext-tab{
+
+ul#ext-tab {
     display: block;
     height: 100%;
     width: 60px;
     background: #111;
 }
 
-input[name="tab"]{
+input[name="tab"] {
     -webkit-appearance: none;
     border-radius: 0 10px 10px 0;
     cursor: pointer;
@@ -165,6 +169,6 @@ input[name="tab"]{
 }
 
 input[name="tab"]:checked,
-input[name="tab"]:hover{
+input[name="tab"]:hover {
     background: #777;
 }

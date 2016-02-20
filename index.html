@@ -48,24 +48,32 @@
     </header>
 
     <div id="container">
-       <div class="split-pane fixed-right">
-        <div class="split-pane-component" id="left-component">
-            <div id="input_txt" wrap="hard" contenteditable="true"></div>
-        </div>
-        <div class="split-pane-divider" id="my-divider">
-            <div class="split-pane-divider-inner"></div>
-        </div>
-        <div class="split-pane-component" id="right-component">
-        <div id="ext-main">
-            <webview id="mainWebview" src="extensions/home/" autosize="on"></webview>
-        </div>
-        <ul id="ext-tab">
-            <li><input type="radio" name="tab" title="ホーム" ext-id="home" checked></li>
-            <li><input type="radio" name="tab" title="設定" ext-id="setting"></li>
-            <li><input type="radio" name="tab" title="登場人物" ext-id="profile"></li>
-            <li><input type="radio" name="tab" title="出力" ext-id="export"></li>
-        </ul>
-        </div>
+        <div class="split-pane fixed-right">
+            <div class="split-pane-component" id="left-component">
+                <div id="input_txt" wrap="hard" contenteditable="true"></div>
+            </div>
+            <div class="split-pane-divider" id="my-divider">
+                <div class="split-pane-divider-inner"></div>
+            </div>
+            <div class="split-pane-component" id="right-component">
+                <div id="ext-main">
+                    <webview id="mainWebview" src="extensions/home/" autosize="on"></webview>
+                </div>
+                <ul id="ext-tab">
+                    <li>
+                        <input type="radio" name="tab" title="ホーム" ext-id="home" checked>
+                    </li>
+                    <li>
+                        <input type="radio" name="tab" title="設定" ext-id="setting">
+                    </li>
+                    <li>
+                        <input type="radio" name="tab" title="登場人物" ext-id="profile">
+                    </li>
+                    <li>
+                        <input type="radio" name="tab" title="出力" ext-id="export">
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
