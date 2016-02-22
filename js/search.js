@@ -33,6 +33,7 @@ function SearchAndHighlight(Str, Keyword) {
 var before = "";
 
 function Search() {
+    RemoveHighlight();
     var Keyword = $("#keyword").val();
     if (!(Keyword == "")) { //検索窓になにも入力されていない時の誤動作を防ぐ !Keywordとかでifできないかと思ったけど無理だった
 
@@ -44,5 +45,5 @@ function Search() {
 }
 
 function RemoveHighlight(){
-    $("#input_txt").html(before);
+    $("mark").before();
 }

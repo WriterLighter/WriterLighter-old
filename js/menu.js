@@ -51,6 +51,13 @@ var template = [
                 click: function () {
                     saveNewFile();
                 }
+            },
+            {
+                label: 'indensiveMode',
+                accelerator: 'F11',
+                click: function () {
+                    IntensiveMode();
+                }
             }
      ]
  },
