@@ -1,7 +1,10 @@
+
+
 $(function () {
-    /*
-     * 何か入力された時のイベント
-     */
+    var webview = $("#mainWebview");
+
+     // 何か入力された時のイベント
+
 
     $("#input_txt").keyup(function(){
         count();
