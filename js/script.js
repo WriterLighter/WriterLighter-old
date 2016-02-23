@@ -6,7 +6,7 @@ $(function () {
      // 何か入力された時のイベント
 
 
-    $("#input_txt").keyup(function(){
+    $("#input_txt").keyup(function () {
         count();
 
     });
@@ -32,4 +32,15 @@ function toggleWebviewDevTools(){
     }else{
         webview.openDevTools();
     }
+}
+
+function IntensiveMode() {
+    $("#right-component").toggle();
+    $("#my-divider").toggle();
+    if ($("#left-component").css("right") == "260px") {
+        $("#left-component").css("right", "0px");
+    } else {
+        $("#left-component").css("right", "260px");
+    }
+
 }

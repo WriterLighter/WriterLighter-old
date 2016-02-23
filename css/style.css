@@ -109,6 +109,12 @@ footer {
     width: 260px;
 }
 
+.left-component-hide {
+    right: 0px;
+}
+
+
+
 .write-vertical {
     -webkit-writing-mode: vertical-rl;
 }
@@ -177,6 +183,6 @@ input[name="tab"]:hover {
     background: #777;
 }
 
-#writingMode{
+#writingMode {
     -webkit-appearance: none;
 }
