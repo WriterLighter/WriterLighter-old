@@ -87,6 +87,8 @@ footer {
     height: 100%;
     padding: 25px 0 25px 0;
     box-sizing: border-box;
+    display: block;
+    overflow: hidden;
 }
 
 #path {}
