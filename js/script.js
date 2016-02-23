@@ -37,10 +37,17 @@ function toggleWebviewDevTools(){
 function IntensiveMode() {
     $("#right-component").toggle();
     $("#my-divider").toggle();
+    $("header").toggle();
+    $("footer").toggle();   
     if ($("#left-component").css("right") == "260px") {
         $("#left-component").css("right", "0px");
+        $("#container").css("padding", "0");
     } else {
         $("#left-component").css("right", "260px");
+        $("#container").css("padding", "25px 0 25px 0");
     }
+    
+    
+    
 
 }
