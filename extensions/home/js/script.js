@@ -1,3 +1,5 @@
+console.log("start");
+
 var ipc = require('ipc');
 
 var dirPath = "";
@@ -10,14 +12,13 @@ ipc.on('dirPath', function (path) {
     console.log(path);
     if (dirPath !== path) {
         dirPath = path;
-
-        var index = require(path + '/index.json');
-        for (var i = 0; i < index["chapter"].length; i++) {
-            $("#cahpter-list").append("<li class=\"chapter\">" + index["chapter"][i] + "</li>");
-        }
+        //var index = require(path + '/index.json');
+        //for (var i = 0; i < index["chapter"].length; i++) {
+        //    $("#cahpter-list").append("<li class=\"chapter\">" + index["chapter"][i] + "</li>");
+      //  }
     }
 });
-console.log("wwwwww");
+console.log("second");
 
 $("#cahpter-list > li").on("click", function () {
     var chaptername = this.html();
