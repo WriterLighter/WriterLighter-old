@@ -12,7 +12,7 @@ function count() {
     $("#wc").html(NoC + "文字");
     $("#line").html(line + "行");
     if (BoC >= 1024) {
-        $("#byte").html(((Math.floor(BoC / 1024 * 10)) * 10) + "キロバイト");
+        $("#byte").html(((Math.floor(BoC / 1024 * 10)) / 10) + "キロバイト");
     } else {
         $("#byte").html(BoC + "バイト");
     }
