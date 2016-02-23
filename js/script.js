@@ -17,7 +17,12 @@ $(function () {
 });
 
 function toggleWritingMode() {
-    $("#input_txt").toggleClass("write-vertical");
+    console.log(document.getElementById("writingMode").checked);
+if(document.getElementById("writingMode").checked){
+    $("#input_txt").addClass("write-vertical");
+}else{
+    $("#input_txt").removeClass("write-vertical");
+}
 }
 
 function toggleWebviewDevTools(){
