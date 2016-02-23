@@ -1,8 +1,13 @@
+//var webview = document.getElementById('mainWebview');
+
+webview.send("dirPath",dirPath);
+
 webview.addEventListener('ipc-message', function (event) {
     switch (event.channel) {
     case "chapterOpen":
         var chaptername = event.args[0];
-            readFile(dirPath + "本文/" + chaptername + ".txt");
+            console.log(chaptername);
+            readFile(dirPath + "/本文/" + chaptername + ".txt");
         break;
     }
 });

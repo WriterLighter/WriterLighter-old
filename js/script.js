@@ -1,7 +1,7 @@
-
+var webview;
 
 $(function () {
-    var webview = $("#mainWebview");
+    webview = document.getElementById('mainWebview');
 
      // 何か入力された時のイベント
 
@@ -18,4 +18,13 @@ $(function () {
 
 function toggleWritingMode() {
     $("#input_txt").toggleClass("write-vertical");
+}
+
+function toggleWebviewDevTools(){
+    var webview = $("#mainWebview");
+    if(webview.isDevToolsOpened()){
+        webview.closeDevTools();
+    }else{
+        webview.openDevTools();
+    }
 }

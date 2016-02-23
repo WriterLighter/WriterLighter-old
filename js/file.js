@@ -1,3 +1,5 @@
+
+
 var fs = require('fs');
 var remote = require('remote');
 var dialog = remote.require('dialog');
@@ -23,7 +25,7 @@ function getFileName(fullpath){
  * フルパスから小説名を取得
  */
 function setNovelName(fullpath){
-    var i = fullpath.split("/").length -2;
+    var i = fullpath.split("/").length -1;
     novelName = fullpath.split("/")[i];
     setWindowName();
 }
@@ -108,9 +110,9 @@ function openLoadFile() {
  * ディレクトリを読み込む関数
  */
 function readDir(path) {
+    console.log(path);
     dirPath = path;
     setNovelName(path);
-    webview.send("openNovel",path);
 }
 
 /**
