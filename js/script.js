@@ -1,5 +1,7 @@
 var webview;
 
+var dirPath = "";
+
 $(function () {
     webview = document.getElementById('mainWebview');
 
@@ -44,3 +46,8 @@ function IntensiveMode() {
     }
 
 }
+
+
+var sendDirPath = setInterval(function(){
+    webview.send("dirPath",dirPath);
+},1000);

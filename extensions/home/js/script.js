@@ -1,6 +1,6 @@
-console.log("start");
+var ipc = require("electron").ipcRenderer;
+//var ipc = require('ipc');
 
-var ipc = require('ipc');
 
 var dirPath = "";
 var filePath = "";
@@ -8,19 +8,28 @@ var novelName = "";
 var chapterName = "";
 
 
-ipc.on('dirPath', function (path) {
+console.log(dirPath);
+ipc.on('dirPath', function (event,path) {
+    console.log(dirPath);
     console.log(path);
-    if (dirPath !== path) {
+    console.log(path !== "" || path != dirPath);
+    if(path !== "" || path != dirPath){
         dirPath = path;
-        //var index = require(path + '/index.json');
-        //for (var i = 0; i < index["chapter"].length; i++) {
-        //    $("#cahpter-list").append("<li class=\"chapter\">" + index["chapter"][i] + "</li>");
-      //  }
+        console.log(dirPath);
+        /*
+        var index = require(path + '/index.json');
+        console.log(index);
+        for (var i = 0; i < index["chapter"].length; i++) {
+            console.log(document.getElementById("chapter-list"));
+        }
+        */
     }
 });
-console.log("second");
 
+console.log(dirPath);
+/*
 $("#cahpter-list > li").on("click", function () {
     var chaptername = this.html();
     ipc.sendToHost('chapterOpen', chaptername);
 });
+*/

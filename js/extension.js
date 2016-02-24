@@ -1,6 +1,6 @@
 //var webview = document.getElementById('mainWebview');
 
-webview.send("dirPath",dirPath);
+
 
 webview.addEventListener('ipc-message', function (event) {
     switch (event.channel) {
