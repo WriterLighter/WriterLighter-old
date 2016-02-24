@@ -113,6 +113,7 @@ function readDir(path) {
     console.log(path);
     dirPath = path;
     setNovelName(path);
+    //webview.send("dirPath",path);
 }
 
 /**

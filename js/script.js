@@ -1,5 +1,7 @@
 var webview;
 
+var dirPath = "";
+
 $(function () {
     webview = document.getElementById('mainWebview');
 
@@ -67,6 +69,7 @@ function IntensiveMode() {
 
 }
 
+<<<<<<< HEAD
 function toggleFullScreen(elem) {
     elem = elem[0];
     if( isFullScreen ){
@@ -93,3 +96,9 @@ function toggleFullScreen(elem) {
         }
     }
 }
+=======
+
+var sendDirPath = setInterval(function(){
+    webview.send("dirPath",dirPath);
+},1000);
+>>>>>>> master
