@@ -1,6 +1,6 @@
 var ipc = require("electron").ipcRenderer;
-//var ipc = require('ipc');
-
+var fs = require('fs');
+var $ = require('./../../js/jquery-1.12.0.min.js');
 
 var dirPath = "";
 var filePath = "";
@@ -9,27 +9,36 @@ var chapterName = "";
 
 
 console.log(dirPath);
-ipc.on('dirPath', function (event,path) {
-    console.log(dirPath);
-    console.log(path);
-    console.log(path !== "" || path != dirPath);
-    if(path !== "" || path != dirPath){
+ipc.on('dirPath', function (event, path) {
+    if (path !== "" && path != dirPath) {
         dirPath = path;
-        console.log(dirPath);
-        /*
-        var index = require(path + '/index.json');
-        console.log(index);
-        for (var i = 0; i < index["chapter"].length; i++) {
-            console.log(document.getElementById("chapter-list"));
+        var index = validateJSON(fs.readFileSync(path + '/index.json', 'utf8'));
+        for (var i = 0; i < index.chapter.length; i++) {
+            $("#cahpter-list").append("<li class=\"chapter\"><a>" + index.chapter[i] + "</a></li>");
         }
-        */
     }
 });
 
-console.log(dirPath);
-/*
-$("#cahpter-list > li").on("click", function () {
+function validateJSON(text) {
+    var obj = null;
+    try {
+        obj = JSON.parse(text);
+        return obj;
+    } catch (O_o) {;
+    }
+    // try eval(text)
+    try {
+        obj = eval("(" + text + ")");
+    } catch (o_O) {
+        console.log("ERROR. JSON.parse failed");
+        return null;
+    }
+    console.log("WARN. As a result of JSON.parse, a trivial problem has occurred");
+    return obj; // repaired
+}
+
+$("#cahpter-list > li.chapter > a").on("click", function () {
     var chaptername = this.html();
+    console.log(chaptername);
     ipc.sendToHost('chapterOpen', chaptername);
 });
-*/

@@ -1,26 +1,26 @@
 [
 
     {
-        label: 'File',
-        submenu: [
+        "label": "File",
+        "submenu": [
             {
-                label: 'Open',
-                accelerator: 'CmdOrCtrl+O',
-                click: function () {
+                "label": "Open",
+                "accelerator": "CmdOrCtrl+O",
+                "click": function () {
                     openLoadFile();
                 }
             },
             {
-                label: 'Save',
-                accelerator: 'CmdOrCtrl+S',
-                click: function () {
+                "label": "Save",
+                "accelerator": "CmdOrCtrl+S",
+                "click": function () {
                     saveFile();
                 }
             },
             {
-                label: 'Save as New File',
-                accelerator: 'CmdOrCtrl+Shift+S',
-                click: function () {
+                "label": "Save as New File",
+                "accelerator": "CmdOrCtrl+Shift+S",
+                "click": function () {
                     saveNewFile();
                 }
             }
@@ -28,19 +28,19 @@
  },
 
     {
-        label: 'Development Menu',
-        submenu: [
+        "label": "Development Menu",
+        "submenu": [
             {
-                label: 'Reload',
-                accelerator: 'CmdOrCtrl+R',
-                click: function () {
+                "label": "Reload",
+                "accelerator": "CmdOrCtrl+R",
+                "click": function () {
                     remote.getCurrentWindow().reload();
                 }
             },
             {
-                label: 'Toggle DevTools',
-                accelerator: 'Alt+CmdOrCtrl+I',
-                click: function () {
+                "label": "Toggle DevTools",
+                "accelerator": "Alt+CmdOrCtrl+I",
+                "click": function () {
                     remote.getCurrentWindow().toggleDevTools();
                 }
             }
