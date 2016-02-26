@@ -119,7 +119,3 @@ function toggleFullScreen(elem) {
         }
     }
 }
-
-var sendDirPath = setInterval(function () {
-    webview.send("dirPath", dirPath);
-}, 1000);
