@@ -58,7 +58,14 @@ var template = [
                 click: function () {
                     IntensiveMode();
                 }
-            }
+            }/*,
+            {
+                label: 'HyperIntensiveMode(カンヅメモード)',
+                accelerator: 'Alt+F11',
+                click: function(){
+                    HyperIntensiveMode();
+                }
+            }*/
      ]
  },
 
