@@ -76,7 +76,7 @@ function IntensiveMode() {
 
 }
 
-<<<<<<< HEAD
+
 function HyperIntensiveMode() {
     if (EditorMode == 0) {
         $("#right-component").toggle();
@@ -89,12 +89,10 @@ function HyperIntensiveMode() {
 
 }
 
-=======
-
 var sendDirPath = setInterval(function(){
     webview.send("dirPath",dirPath);
 },1000);
->>>>>>> master
+
 function toggleFullScreen(elem) {
     elem = elem[0];
     if (isFullScreen) {
@@ -121,10 +119,7 @@ function toggleFullScreen(elem) {
         }
     }
 }
-<<<<<<< HEAD
 
 var sendDirPath = setInterval(function () {
     webview.send("dirPath", dirPath);
 }, 1000);
-=======
->>>>>>> master
