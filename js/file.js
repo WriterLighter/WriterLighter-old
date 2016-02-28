@@ -1,20 +1,4 @@
 
-
-var fs = require('fs');
-var remote = require('remote');
-var dialog = remote.require('dialog');
-var browserWindow = remote.require('browser-window');
-
-var inputArea = null;
-var inputTxt = null;
-
-var dirPath = "";
-var filePath = "";
-var novelName = "";
-var chapterName = "";
-var novelInfo = "";
-
-
 /*
  * ウィンドウ名セット
  */
@@ -49,9 +33,6 @@ function getIndex(path){
  * Webページ読み込み時の処理
  */
 $(function () {
-    // 入力領域
-    inputTxt = document.getElementById("input_txt");
-    inputArea = inputTxt;
 
     // ドラッグ&ドロップ関連処理
     // documentにドラッグされた場合 / ドロップされた場合

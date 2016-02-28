@@ -1,9 +1,3 @@
-var webview;
-
-var confDir = remote.require("electron").app.getPath('userData');
-
-var dirPath = "";
-
 $(function () {
     webview = document.getElementById('mainWebview');
 

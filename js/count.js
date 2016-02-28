@@ -1,12 +1,3 @@
-var maxLetter = 36;
-var maxLine = 46;
-var apparentLine = 1;
-var page = 1;
-var letter = 0;
-var byte = 0;
-var line = 1;
-var value = "";
-
 function count() {
 
     value = inputTxt.innerText;

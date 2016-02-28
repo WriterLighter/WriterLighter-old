@@ -1,6 +1,3 @@
-var remote = require('remote');
-var Menu = remote.require('menu');
-var MenuItem = remote.require('menu-item');
 
 /*
  * コンテキストメニュー
