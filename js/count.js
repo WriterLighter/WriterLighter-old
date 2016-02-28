@@ -1,19 +1,30 @@
+var maxLetter = 36;
+var maxLine = 46;
+var apparentLine = 1;
+var page = 1;
+var letter = 0;
+var byte = 0;
+var line = 1;
+var value = "";
+
 function count() {
 
-    var txtvalue = $("#input_txt").text();
+    value = inputTxt.innerText;
 
-    var NoC = txtvalue.length;
-    var BoC = encodeURI(txtvalue).replace(/%[0-9A-F]{2}/g, '*').length;
-    var line = $("#input_txt").html().split("<br>").length　 - 1;
-    line = line + ($("#input_txt").html().split("<div>").length - 1);
-    line = line - ($("#input_txt").html().split("<div><br></div>").length - 1);
-    line = ++line;
+    letter = value.length;
+    byte = encodeURI(value).replace(/%[0-9A-F]{2}/g, '*').length;
+    line = value.split("\n").length;
+    for (var i = 0; i < line; i++) {
+        apparentLine = apparentLine + Math.ceil((value.split("\n")[i].length) / maxLetter);
+    }
+    apparentLine = --apparentLine;
+    page = Math.ceil( apparentLine / maxLine );
 
-    $("#wc").html(NoC + "文字");
+    $("#wc").html(letter + "文字");
     $("#line").html(line + "行");
-    if (BoC >= 1024) {
-        $("#byte").html(((Math.floor(BoC / 1024 * 10)) / 10) + "キロバイト");
+    if (byte >= 1024) {
+        $("#byte").html(((Math.floor(byte / 1024 * 10)) / 10) + "キロバイト");
     } else {
-        $("#byte").html(BoC + "バイト");
+        $("#byte").html(byte + "バイト");
     }
 }
