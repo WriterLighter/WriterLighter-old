@@ -1,5 +1,4 @@
-$(function () {
-    webview = document.getElementById('mainWebview');
+$(function ()
 
     // 何か入力された時のイベント
 

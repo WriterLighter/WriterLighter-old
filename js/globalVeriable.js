@@ -59,14 +59,17 @@ var value = "";
 // 入力する場所
 var inputArea = null;
 var inputTxt = null;
-$(function(){
-    inputTxt = document.getElementById("input_txt");
-    inputArea = inputTxt;
-});
-
 
 // webview要素
 var webview;
+
+// 読み込みが終わったら設定
+$(function(){
+    inputTxt = document.getElementById("input_txt");
+    inputArea = inputTxt;
+    webview = document.getElementById('mainWebview');
+});
+
 
 
 /*
