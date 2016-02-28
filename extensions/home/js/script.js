@@ -6,39 +6,25 @@ var dirPath = "";
 var filePath = "";
 var novelName = "";
 var chapterName = "";
-
+var novelInfo = "";
 
 console.log(dirPath);
-ipc.on('dirPath', function (event, path) {
-    if (path !== "" && path != dirPath) {
-        dirPath = path;
-        var index = validateJSON(fs.readFileSync(path + '/index.json', 'utf8'));
-        for (var i = 0; i < index.chapter.length; i++) {
-            $("#cahpter-list").append("<li class=\"chapter\"><a>" + index.chapter[i] + "</a></li>");
+ipc.on('novelInfo', function (event, novelinfo) { // 小説の情報を取得
+    if (novelinfo !== "" && novelinfo.toString() != novelInfo.toString() ) {
+            // ▲小説情報が空じゃない且つ小説情報が変更されている
+
+        novelInfo = novelinfo; // グローバル変数に代入
+        for (var i = 0; i < novelinfo.index.chapter.length; i++) {
+            $("#cahpter-list").append("<li class=\"chapter\"><a onclick=\"sendFileName('"
+                                      + novelinfo.index.chapter[i] + "')\">"
+                                      + novelinfo.index.chapter[i] +
+                                      "</a></li>");
+                // <li>タグにして追加
         }
     }
 });
 
-function validateJSON(text) {
-    var obj = null;
-    try {
-        obj = JSON.parse(text);
-        return obj;
-    } catch (O_o) {;
-    }
-    // try eval(text)
-    try {
-        obj = eval("(" + text + ")");
-    } catch (o_O) {
-        console.log("ERROR. JSON.parse failed");
-        return null;
-    }
-    console.log("WARN. As a result of JSON.parse, a trivial problem has occurred");
-    return obj; // repaired
+function sendFileName(chapter){
+    console.log(chapter);
+    ipc.sendSync("chapterName",chapter);
 }
-
-$("#cahpter-list > li.chapter > a").on("click", function () {
-    var chaptername = this.html();
-    console.log(chaptername);
-    ipc.sendToHost('chapterOpen', chaptername);
-});

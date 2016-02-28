@@ -1,12 +1,14 @@
 var webview;
 
+var confDir = remote.require("electron").app.getPath('userData');
+
 var dirPath = "";
 
 $(function () {
     webview = document.getElementById('mainWebview');
 
     // 何か入力された時のイベント
-    
+
 
     $("#input_txt").keyup(function () {
         count();
@@ -60,10 +62,10 @@ function IntensiveMode() {
     } else {
         $("#left-component").css("right", "260px");
         $("#container").css("padding", "25px 0 25px 0");
-        isIntensiveMode = false; 
+        isIntensiveMode = false;
     }
     /*toggleFullScreen($("#left-component"));*/
-    
+
 
 
 
@@ -71,30 +73,31 @@ function IntensiveMode() {
 
 
 var sendDirPath = setInterval(function(){
-    webview.send("dirPath",dirPath);
+    webview.send("novelInfo",novelInfo);
 },1000);
+
 function toggleFullScreen(elem) {
     elem = elem[0];
     if( isFullScreen ){
         if( document.fullScreen || document.mozFullScreen ||  document.webkitIsFullScreen || document.msFullScreen ) {
             if (document.cancelFullscreen) {
-                document.cancelFullscreen(); 
+                document.cancelFullscreen();
             } else if (document.webkitCancelFullScreen) {
                 document.webkitCancelFullScreen();
             } else if (document.mozCancelFullScreen) {
                 document.mozCancelFullScreen();
             } else if (document.msCancelFullscreen) {
-                document.msCancelFullscreen(); 
+                document.msCancelFullscreen();
             }
         } else {
             if (elem.requestFullscreen) {
-                elem.requestFullscreen(); 
+                elem.requestFullscreen();
             } else if (elem.webkitRequestFullscreen) {
                 elem.webkitRequestFullscreen();
             } else if (elem.mozRequestFullScreen) {
                 elem.mozRequestFullScreen();
             } else if (elem.msRequestFullscreen) {
-                elem.msRequestFullscreen(); 
+                elem.msRequestFullscreen();
             }
         }
     }

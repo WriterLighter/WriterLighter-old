@@ -12,35 +12,7 @@ var dirPath = "";
 var filePath = "";
 var novelName = "";
 var chapterName = "";
-
-/**
- * フルパスからファイル名を取得
- */
-function getFileName(fullpath){
-    var i = fullpath.split("/").length -1;
-    return fullpath.split("/")[i];
-}
-
-/**
- * フルパスから小説名を取得
- */
-function setNovelName(fullpath){
-    var i = fullpath.split("/").length -1;
-    novelName = fullpath.split("/")[i];
-    setWindowName();
-}
-
-/*
- * フルパスから章名を取得
-*/
-function setChapterName(fullpath){
-    setNovelName(fullpath);
-    var filename = getFileName(fullpath);
-    var arry = filename.split(".");
-    arry.pop();
-    chapterName = arry.join(".");
-    setWindowName();
-}
+var novelInfo = "";
 
 
 /*
@@ -56,6 +28,21 @@ function setWindowName(){
             document.title = chapterName + " (" + novelName + ") - WriterLighter";
         }
     }
+}
+
+/**
+ * index情報を読み込み
+ */
+
+function getIndex(path){
+    var index = validateJSON(fs.readFileSync(path + '/index.json', 'utf8'));
+    novelInfo = {
+        "path" : path,
+        "index" : index
+    };
+
+    dirPath = path;
+    novelName = index.name;
 }
 
 /**
@@ -112,8 +99,7 @@ function openLoadFile() {
 function readDir(path) {
     console.log(path);
     dirPath = path;
-    setNovelName(path);
-    //webview.send("dirPath",path);
+    getIndex(path);
 }
 
 /**
@@ -126,9 +112,8 @@ function readFile(path) {
             alert('error : ' + error);
             return ;
         }
-        setChapterName(path);
         // テキスト入力エリアに設定する
-        inputTxt.txt(text.toString());
+        inputTxt.innerText = text.toString();
     });
 }
 
@@ -201,7 +186,7 @@ function saveNewFile() {
         // セーブ用ダイアログが閉じられた後のコールバック関数
         function (fileName) {
             if (fileName) {
-                var data = inputTxt.val();
+                var data = inputTxt.innerText;
                 filePath = fileName;
                 writeFile(filePath, data);
             }
