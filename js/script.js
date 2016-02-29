@@ -53,7 +53,8 @@ function IntensiveMode() {
     $("header").toggle();
     $("footer").toggle();
     if (EditorMode == 0) {
-        $("#left-component").css("right", "0px");
+        $("#left-component").css("right", "0px")
+                            .css("margin","0px");
         $("#container").css("padding", "0");
         EditorMode = 1;
         browserWindow.getFocusedWindow().setFullScreen(true);
@@ -61,7 +62,8 @@ function IntensiveMode() {
             "message": "超集中モード起動\n解除はF11キー"
         });
     } else {
-        $("#left-component").css("right", "260px");
+        $("#left-component").css("right", "260px")
+                            .css("margin-right","5px");
         $("#container").css("padding", "25px 0 25px 0");
         EditorMode = 0;
         browserWindow.getFocusedWindow().setFullScreen(false);
