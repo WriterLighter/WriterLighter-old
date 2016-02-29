@@ -33,7 +33,6 @@ function toggleWritingMode() {
 }
 
 function toggleWebviewDevTools() {
-    var webview = $("#mainWebview");
     if (webview.isDevToolsOpened()) {
         webview.closeDevTools();
     } else {
