@@ -1,24 +1,24 @@
 [
 
     {
-        'label': 'File',
+        'label': 'ファイル',
         'submenu': [
             {
-                'label': 'Open',
+                'label': '開く',
                 'accelerator': 'CmdOrCtrl+O',
                 'click': function () {
                     openLoadFile();
                 }
             },
             {
-                'label': 'Save',
+                'label': '保存',
                 'accelerator': 'CmdOrCtrl+S',
                 'click': function () {
                     saveFile();
                 }
             },
             {
-                'label': 'Save as New File',
+                'label': '名前をつけて保存',
                 'accelerator': 'CmdOrCtrl+Shift+S',
                 'click': function () {
                     saveNewFile();
@@ -27,10 +27,10 @@
      ]
  },
     {
-        'label':'View',
+        'label':'表示',
         'submenu':[
             {
-                'label': 'indensiveMode',
+                'label': '超集中モード',
                 'accelerator': 'F11',
                 'click': function () {
                     IntensiveMode();
@@ -40,17 +40,17 @@
     },
 
     {
-        'label': 'Development Menu',
+        'label': '開発者メニュー',
         'submenu': [
             {
-                'label': 'Reload',
+                'label': 'リロード',
                 'accelerator': 'CmdOrCtrl+R',
                 'click': function () {
                     remote.getCurrentWindow().reload();
                 }
             },
             {
-                'label': 'Toggle DevTools',
+                'label': '開発者ツール',
                 'accelerator': 'Alt+CmdOrCtrl+I',
                 'click': function () {
                     remote.getCurrentWindow().toggleDevTools();
