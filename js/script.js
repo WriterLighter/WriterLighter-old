@@ -57,10 +57,6 @@ function IntensiveMode() {
         $("#container").css("padding", "25px 0 25px 0");
         isIntensiveMode = false;
     }
-    /*toggleFullScreen($("#left-component"));*/
-
-
-
 
 }
 

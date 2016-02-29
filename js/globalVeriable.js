@@ -63,6 +63,12 @@ var inputTxt = null;
 // webview要素
 var webview;
 
+// 拡張機能のタブ
+var ext_tabs = document.getElementsByName("tabs");
+
+// 開かれたタブのID
+var openedExt = "home";
+
 // 読み込みが終わったら設定
 $(function(){
     inputTxt = document.getElementById("input_txt");
