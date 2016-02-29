@@ -19,7 +19,7 @@ function setWindowName(){
  */
 
 function getIndex(path){
-    var index = validateJSON(fs.readFileSync(path + '/index.json', 'utf8'));
+    index = validateJSON(fs.readFileSync(path + '/index.json', 'utf8'));
     novelInfo = {
         "path" : path,
         "index" : index
@@ -95,7 +95,9 @@ function readFile(path) {
         }
         // テキスト入力エリアに設定する
         inputTxt.innerText = text.toString();
+        setWindowName();
     });
+
 }
 
 
@@ -104,34 +106,17 @@ function readFile(path) {
  */
 function saveFile() {
     $(".menubutton.save").addClass("semitransparent");
+    $("#status").html(filePath + "を保存しています…。");
 
     //　初期の入力エリアに設定されたテキストを保存しようとしたときは新規ファイルを作成する
     if (filePath == "") {
         saveNewFile();
         return;
     }
-/*
-    var win = browserWindow.getFocusedWindow();
-
-            dialog.showMessageBox(win, {
-                    title: 'ファイルの上書き保存を行います。',
-                    type: 'info',
-                    buttons: ['OK', 'Cancel'],
-                    detail: '本当に保存しますか？'
-                },
-                // メッセージボックスが閉じられた後のコールバック関数
-                function (respnse) {
-                    // OKボタン(ボタン配列の0番目がOK)
-                    if (respnse == 0) {
-                        var data = inputTxt.innerText;
-                        writeFile(currentPath, data);
-                    }
-                }
-            );
-            */
     var data = inputTxt.innerText;
     writeFile(filePath, data);
     $(".menubutton.save").removeClass("semitransparent");
+    statusMsg(filePath + "を保存しました。",1000);
 }
 
 /**

@@ -99,3 +99,7 @@ var novelInfo = "";
 
 // 設定ファイルディレクトリ
 var confDir = remote.require("electron").app.getPath('userData');
+
+
+// index.json
+var index = {};

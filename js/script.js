@@ -87,3 +87,9 @@ var sendDirPath = setInterval(function(){
     webview.send("novelInfo",novelInfo);
 },1000);
 
+function statusMsg(msg,time){
+     $("#status").html(msg);
+    if(time !== undefined){
+        var statusMsg = setTimeout(function(){$("#status").html("");},time);
+        }
+}

@@ -26,5 +26,5 @@ ipc.on('novelInfo', function (event, novelinfo) { // 小説の情報を取得
 
 function sendFileName(chapter){
     console.log(chapter);
-    ipc.sendSync("chapterName",chapter);
+    ipc.sendToHost("OpenChapter",chapter);
 }
