@@ -50,7 +50,15 @@
 </head>
 
 <body>
-
+    <div id="Hyper-iMode">
+        <h1 id="Warning">カンヅメモード設定</h1>
+        <p id="Hyper-iMode-txt">カンヅメモードを起動します。パスワードを設定し、OKをクリックしてください。</p>
+        <input type="text" id="passTxt" placeholder="パスワード"><br>
+        <input type="text" id="passTxt" placeholder="もう一度打ち込んでください">
+        <div class="formbutton" id="button-ok">OK</div>
+        <div class="formbutton" id="button-cancel">Cancel</div>
+    </div>
+    <div id="modal-overlay"></div>
     <header>
         <ul>
             <li><a class="menubutton open" onclick="openLoadFile();">Open</a></li>
