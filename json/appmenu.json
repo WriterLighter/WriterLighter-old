@@ -55,6 +55,12 @@
                 'click': function () {
                     remote.getCurrentWindow().toggleDevTools();
                 }
+            },
+            {
+                'label': '拡張機能の開発者ツール',
+                'click':function () {
+                    toggleWebviewDevTools()
+                }
             }
                 ]
 }
