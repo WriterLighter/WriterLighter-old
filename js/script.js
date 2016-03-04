@@ -18,7 +18,7 @@ $(function () {
                     type: 'question',
                     buttons: ['Yes', 'No'],
                     title: '確認',
-                    message: novelName + "はまだ保存されていません。\n閉じてもいいですか？"
+                    message: novelName + "はまだ保存されていません。\n閉じてもよろしいですか？"
                 });
 
             return choice === 0;
