@@ -70,7 +70,7 @@ var inputTxt = null;
 var webview;
 
 // 拡張機能のタブ
-var ext_tabs = document.getElementsByName("tabs");
+var ext_tabs = document.getElementsByName("tab");
 
 // 開かれたタブのID
 var openedExt = "home";
