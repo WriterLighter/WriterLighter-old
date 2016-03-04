@@ -15,7 +15,7 @@ function OpenExt() {
 }
 
 $(function () {
-    for (var i = 0; 1 < ext_tabs.length; i++) {
+    for (var i = 0; i < ext_tabs.length; i++) {
         ext_tabs[i].onchange = function () {
             console.log("changed");
             OpenExt();
