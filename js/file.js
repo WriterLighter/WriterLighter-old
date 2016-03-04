@@ -3,10 +3,10 @@
  * ウィンドウ名セット
  */
 function setWindowName(){
-    if(novelName == ""){
+    if(novelName === ""){
         document.title = "WriterLighter";
     } else {
-        if(chapterName == ""){
+        if(chapterName === ""){
             document.title = novelName + " - WriterLighter";
         } else {
             document.title = chapterName + " (" + novelName + ") - WriterLighter";
@@ -81,6 +81,7 @@ function readDir(path) {
     console.log(path);
     dirPath = path;
     getIndex(path);
+    setWindowName();
 }
 
 /**
@@ -89,13 +90,15 @@ function readDir(path) {
 function readFile(path) {
     filePath = path;
     fs.readFile(path, function (error, text) {
-        if (error != null) {
+        if (error !== null) {
             alert('error : ' + error);
             return ;
         }
         // テキスト入力エリアに設定する
         inputTxt.innerText = text.toString();
+        formerFile = text.toString();
         setWindowName();
+        Edited = false;
     });
 
 }
@@ -109,7 +112,7 @@ function saveFile() {
     $("#status").html(filePath + "を保存しています…。");
 
     //　初期の入力エリアに設定されたテキストを保存しようとしたときは新規ファイルを作成する
-    if (filePath == "") {
+    if (filePath === "") {
         saveNewFile();
         return;
     }
@@ -117,6 +120,7 @@ function saveFile() {
     writeFile(filePath, data);
     $(".menubutton.save").removeClass("semitransparent");
     statusMsg(filePath + "を保存しました。",1000);
+    setWindowName();
 }
 
 /**
@@ -127,6 +131,8 @@ function writeFile(path, data) {
         if (error !== null) {
             alert('error : ' + error);
             return;
+            setWindowName();
+            Edited = false;
         }
     });
 }

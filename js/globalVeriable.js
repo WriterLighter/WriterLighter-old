@@ -52,6 +52,12 @@ var line = 1;
 // 入力された文字
 var value = "";
 
+// 元のファイル
+var formerFile = "";
+
+// 変更されたかどうか(boolean)
+var Edited = false;
+
 
 /*
  * 要素
@@ -70,11 +76,16 @@ var ext_tabs = document.getElementsByName("tabs");
 var openedExt = "home";
 
 // 読み込みが終わったら設定
-$(function(){
+$(function () {
     inputTxt = document.getElementById("input_txt");
     inputArea = inputTxt;
     webview = document.getElementById('mainWebview');
 });
+
+//  0:通常モード
+//  1:超集中モード
+//  2:カンヅメモード
+var EditorMode = 0;
 
 
 
