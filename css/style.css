@@ -14,13 +14,16 @@ a:hover {
     cursor: pointer
 }
 
-ul li {
+header ul li,
+footer ul li{
+    vertical-align: middle;
     display: inline-block;
     padding: 0;
     margin: 0;
 }
 
-ul {
+header ul,
+footer ul{
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -45,6 +48,18 @@ footer {
 footer {
     bottom: 0px;
     font-size: 14px;
+}
+
+#ext-tab{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+#ext-tab li {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
 }
 
 #input_txt {
@@ -75,6 +90,7 @@ footer {
     min-width: 20px;
     margin: 0;
     padding: 0;
+    border: none;
 }
 
 .menubutton:hover {
@@ -222,5 +238,5 @@ input[name="tab"]:hover {
 #button-ok{
     background-color: rgba(178, 231, 253, 0.37);
     border-color: #3abaed;
-    
+
 }
