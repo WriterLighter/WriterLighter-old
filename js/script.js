@@ -53,11 +53,11 @@ function toggleWebviewDevTools() {
 }
 
 function IntensiveMode() {
-    $("#right-component").toggle();
-    $("#my-divider").toggle();
-    $("header").toggle();
-    $("footer").toggle();
     if (EditorMode == 0) {
+         $("#right-component").toggle(false);
+        $("#my-divider").toggle(false);
+        $("header").toggle(false);
+        $("footer").toggle(false);
         $("#left-component").css("right", "0px")
             .css("margin", "0px");
         $("#container").css("padding", "0");
@@ -67,6 +67,10 @@ function IntensiveMode() {
             "message": "超集中モード起動\n解除はF11キー"
         });
     } else {
+         $("#right-component").toggle(true);
+        $("#my-divider").toggle(true);
+        $("header").toggle(true);
+        $("footer").toggle(true);
         $("#left-component").css("right", "260px")
             .css("margin-right", "5px");
         $("#container").css("padding", "25px 0 25px 0");

@@ -193,6 +193,10 @@ input[name="tab"]:hover {
     -webkit-appearance: none;
 }
 
+/*
+    window
+*/
+
 #Hyper-iMode{
     width: 50%;
     max-width: 600px;
