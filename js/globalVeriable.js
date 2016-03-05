@@ -87,6 +87,9 @@ $(function () {
 //  2:カンヅメモード
 var EditorMode = 0;
 
+//カンヅメモード時パスワード
+var IntensivePasswd = "";
+
 
 
 /*

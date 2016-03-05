@@ -54,7 +54,7 @@ function toggleWebviewDevTools() {
 
 function IntensiveMode() {
     if (EditorMode == 0) {
-         $("#right-component").toggle(false);
+        $("#right-component").toggle(false);
         $("#my-divider").toggle(false);
         $("header").toggle(false);
         $("footer").toggle(false);
@@ -67,7 +67,7 @@ function IntensiveMode() {
             "message": "超集中モード起動\n解除はF11キー"
         });
     } else {
-         $("#right-component").toggle(true);
+        $("#right-component").toggle(true);
         $("#my-divider").toggle(true);
         $("header").toggle(true);
         $("footer").toggle(true);
@@ -80,15 +80,41 @@ function IntensiveMode() {
 }
 
 function HyperIntensiveMode() {
-    if (EditorMode == 0) {
-        $("#right-component").toggle();
-        $("#my-divider").toggle();
-        $("header").toggle();
-        $("footer").toggle();
-        $("#left-component").css("right", "0px");
-        $("#container").css("padding", "0");
-        browserWindow.getFocusedWindow().setFullScreen(true);
-    }
+    //window.promptが使えないんだとさ。やっぱりモーダルウィンドウ使うほかないのか
+    /*if (EditorMode == 0 || EditorMode == 1) {
+        IntensivePasswd = window.prompt("カンヅメモード用のパスワードを設定してください", "パスワード:");
+        if (window.confirm("カンヅメモードを開始します。\n解除するには、パスワードを入力する必要があります")) {
+            $("#right-component").toggle(false);
+            $("#my-divider").toggle(false);
+            $("header").toggle(false);
+            $("footer").toggle(false);
+            $("#left-component").css("right", "0px");
+            $("#container").css("padding", "0");
+            browserWindow.getFocusedWindow().setFullScreen(true);
+            $.amaran({
+            "message": "カンヅメモード起動\n解除はF11キー"
+        });
+        }
+
+    } else {
+        if (window.prompt("カンヅメモードを解除します。\nパスワードを入力してください", "パスワード:") == IntensivePasswd) {
+            $("#right-component").toggle(true);
+            $("#my-divider").toggle(true);
+            $("header").toggle(true);
+            $("footer").toggle(true);
+            $("#left-component").css("right", "260px")
+                .css("margin-right", "5px");
+            $("#container").css("padding", "25px 0 25px 0");
+            EditorMode = 0;
+            browserWindow.getFocusedWindow().setFullScreen(false);
+            $.amaran({
+            "message": "カンヅメモードを解除しました。"
+        });
+        }else{
+            window.alert("パスワードが違います");
+        }
+
+    }*/
 
 }
 
