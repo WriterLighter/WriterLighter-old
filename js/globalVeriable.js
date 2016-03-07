@@ -114,3 +114,6 @@ var confDir = remote.require("electron").app.getPath('userData');
 
 // index.json
 var index = {};
+
+// 登場人物リスト
+var charaList = {};

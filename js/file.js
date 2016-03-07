@@ -30,6 +30,14 @@ function getIndex(path){
 }
 
 /**
+ * 登場人物情報を読み込み
+ */
+
+function getCharacter(path){
+    charaList = validateJSON(fs.readFileSync(path + '/登場人物.json', 'utf8'));
+}
+
+/**
  * Webページ読み込み時の処理
  */
 $(function () {
@@ -81,6 +89,7 @@ function readDir(path) {
     console.log(path);
     dirPath = path;
     getIndex(path);
+    getCharacter(path);
     setWindowName();
 }
 
