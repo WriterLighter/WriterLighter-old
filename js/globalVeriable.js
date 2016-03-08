@@ -118,5 +118,8 @@ var index = {};
 // 登場人物リスト
 var charaList = {};
 
-// 拡張機能に送る変数
-var sendParam = [];
+// 拡張機能に送る変数を入れた連想配列
+var sendVar = {};
+
+// 拡張機能に送るInterval
+var sendParamInterval;

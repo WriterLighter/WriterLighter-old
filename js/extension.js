@@ -1,4 +1,3 @@
-
 function OpenExt() {
     for (var i = 0; i < ext_tabs.length; i++) {
         if (ext_tabs[i].checked) {
@@ -15,6 +14,18 @@ function OpenExt() {
     }
 }
 
+sendParamInterval = setInterval(function () {
+    var newVar = {};
+    for (var i in sendVar) {
+        newVar[i] = eval(i);
+    }
+    if (JSON.stringify(sendVar) !== JSON.stringify(newVar)) {
+        console.log(newVar);
+        sendVar = newVar;
+        webview.send("RequestedVariable", sendVar);
+    }
+}, 500);
+
 $(function () {
     for (var i = 0; i < ext_tabs.length; i++) {
         ext_tabs[i].onchange = function () {
@@ -24,24 +35,27 @@ $(function () {
     }
 })
 
+$(function () {
+    webview.addEventListener('ipc-message', function (event) {
+        switch (event.channel) {
+        case "OpenChapter":
+            var chaptername = event.args[0];
+            console.log(chaptername);
+            chapterName = chaptername;
+            readFile(dirPath + "/本文/" + chaptername + ".txt");
+            break;
 
-$(function(){
-webview.addEventListener('ipc-message', function (event) {
-    switch (event.channel) {
-    case "OpenChapter":
-        var chaptername = event.args[0];
-        console.log(chaptername);
-        chapterName = chaptername;
-        readFile(dirPath + "/本文/" + chaptername + ".txt");
-        break;
+        case "getVariable":
+            sendVar = {};
+            for (var i = 0; i < event.args[0].length; i++) {
+                console.log(event.args[0]);
+                sendVar[event.args[i]] = eval(event.args[0][i]);
+            }
+            break;
 
-    case "getParam":
-        sendParam = event.args[0];
-        break;
-
-    case "saveCharacter":
-    console.log(event.args[0]);
-    break;
-    }
-});
+        case "saveCharacter":
+            console.log(event.args[0]);
+            break;
+        }
+    });
 });
