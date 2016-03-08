@@ -117,3 +117,6 @@ var index = {};
 
 // 登場人物リスト
 var charaList = {};
+
+// 拡張機能に送る変数
+var sendParam = [];
