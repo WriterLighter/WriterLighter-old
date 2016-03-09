@@ -44,5 +44,5 @@ function Search() {
 }
 
 function RemoveHighlight(){
-    $("mark").before();
+    inputTxt.innerHTML = before;
 }

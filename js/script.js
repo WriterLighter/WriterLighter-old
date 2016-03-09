@@ -118,11 +118,6 @@ function HyperIntensiveMode() {
 
 }
 
-
-var sendDirPath = setInterval(function () {
-    webview.send("novelInfo", novelInfo);
-}, 1000);
-
 function statusMsg(msg, time) {
     $("#status").html(msg);
     if (time !== undefined) {
