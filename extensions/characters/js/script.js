@@ -12,16 +12,20 @@ var getUrlVars = function () {
         if (key != '') vars[key] = decodeURI(val);
     }
     return vars;
-}
+};
 
-$(window).load(function () {
+$(function () {
     id = parseInt(getUrlVars().id);
-})
+});
 
 var id;
 var charaList = [];
 
-ipc.on('charaList', function (event, charalist) { // キャラ設定を取得
+ipc.sendToHost("getVariable",["charaList"]);
+
+ipc.on("RequestedVariable", function (event, res) { // キャラ設定を取得
+    console.log(res);
+    var charalist = res.charaList;
     if (charalist !== "" && JSON.stringify(charalist) != JSON.stringify(charaList)) {
         // ▲情報が空じゃない且つキャラ設定が変更されている
 

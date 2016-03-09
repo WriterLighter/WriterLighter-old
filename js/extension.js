@@ -14,17 +14,17 @@ function OpenExt() {
     }
 }
 
-sendParamInterval = setInterval(function () {
-    var newVar = {};
-    for (var i in sendVar) {
-        newVar[i] = eval(i);
-    }
-    if (JSON.stringify(sendVar) !== JSON.stringify(newVar)) {
-        console.log(newVar);
-        sendVar = newVar;
-        webview.send("RequestedVariable", sendVar);
-    }
-}, 500);
+var sendParamInterval = setInterval(function () {
+     var newVar = {};
+     for (var i in sendVar) {
+         newVar[i] = eval(i);
+     }
+     if (JSON.stringify(sendVar) !== JSON.stringify(newVar)) {
+         console.log(newVar);
+         sendVar = newVar;
+         webview.send("RequestedVariable", sendVar);
+     }
+ }, 500);
 
 $(function () {
     for (var i = 0; i < ext_tabs.length; i++) {
@@ -48,8 +48,7 @@ $(function () {
         case "getVariable":
             sendVar = {};
             for (var i = 0; i < event.args[0].length; i++) {
-                console.log(event.args[0]);
-                sendVar[event.args[i]] = eval(event.args[0][i]);
+                sendVar[event.args[i]] = null;
             }
             break;
 
