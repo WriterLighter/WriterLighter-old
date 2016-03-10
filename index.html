@@ -2,8 +2,12 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="./mCSB/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/split-pane.css">
+    <link rel="stylesheet" href="css/amaran.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+
 
     <script>
         // for electron
@@ -21,55 +25,96 @@
             delete window.__tempModuleExports__;
         }
     </script>
-    <script src="./js/script.js"></script>
-    <script src="js/split-pane.min.js"></script>
-    <script src="./js/file.js"></script>
 
+    <script src="js/jquery.amaran.min.js"></script>
+    <script src="./mCSB/jquery.mCustomScrollbar.js"></script>
+
+
+    <script src="js/split-pane.min.js"></script>
+    <script src="js/json.js"></script>
+    <script src="js/globalVeriable.js"></script>
+    <script src="./js/file.js"></script>
+    <script src="js/count.js"></script>
+
+    <script src="./js/search.js"></script>
     <script src="js/menu.js"></script>
+    <script src="js/extension.js"></script>
+    <!-- <script src="./mCSB/jquery.mCustomScrollbar.concat.min.js"></script>-->
+
+    <script src="./js/script.js"></script>
 
 
 
     <meta charset="UTF-8">
-    <title>Nobel Editer</title>
+    <title>WriterLighter</title>
 </head>
 
 <body>
-
+    <div id="Hyper-iMode">
+        <h1 id="Warning">カンヅメモード設定</h1>
+        <p id="Hyper-iMode-txt">カンヅメモードを起動します。パスワードを設定し、OKをクリックしてください。</p>
+        <input type="text" id="passTxt" placeholder="パスワード">
+        <br>
+        <input type="text" id="passTxt" placeholder="もう一度打ち込んでください">
+        <div class="formbutton" id="button-ok">OK</div>
+        <div class="formbutton" id="button-cancel">Cancel</div>
+    </div>
+    <div id="modal-overlay"></div>
     <header>
         <ul>
             <li><a class="menubutton open" onclick="openLoadFile();">Open</a></li>
             <li><a class="menubutton save" onclick="saveFile();">Save</a></li>
-            <li><a class="menubutton" onclick="toggleWritingMode();">WM</a></li>
+            <li>
+                <input type="checkbox" id="writingMode" onchange="toggleWritingMode()" class="menubutton"> </li>
+            <li>
+                <input type="text" id="keyword" onkeydown="if(event.keyCode == 13){Search();}">
+                <input type="button" id="searchButton" value="Search" onclick="Search();" class="menubutton">
+                <input type="button" id="clearButton" value="Clear" onclick="RemoveHighlight()" class="menubutton">
+            </li>
         </ul>
     </header>
 
-    <div id="container">
-       <div class="split-pane fixed-right">
-        <div class="split-pane-component" id="left-component">
-            <div id="input_txt" wrap="hard" contenteditable="true"></div>
-        </div>
-        <div class="split-pane-divider" id="my-divider">
-            <div class="split-pane-divider-inner"></div>
-        </div>
-        <div class="split-pane-component" id="right-component">
-        かくちょうとかいれちゃうよ
-        <ul id="tablist">
-            <li id="wwwbrowser" class="tab"></li>
-            <li id="dic-weblio" class="tab"></li>
-        </ul>
-
-        </div>
+    <div id="container" class="container">
+        <div class="split-pane fixed-right">
+            <div class="split-pane-component" id="left-component">
+                <div id="input_txt" wrap="hard" contenteditable="true"></div>
+            </div>
+            <div class="split-pane-divider" id="my-divider">
+                <div class="split-pane-divider-inner"></div>
+            </div>
+            <div class="split-pane-component" id="right-component">
+                <div id="ext-main">
+                    <webview id="mainWebview" src="./extensions/home/index.html" autosize="on" nodeintegration></webview>
+                </div>
+                <ul id="ext-tab">
+                    <li>
+                        <input type="radio" name="tab" title="ホーム" value="home" checked>
+                    </li>
+                    <li>
+                        <input type="radio" name="tab" title="設定" value="setting">
+                    </li>
+                    <li>
+                        <input type="radio" name="tab" title="登場人物" value="characters">
+                    </li>
+                    <li>
+                        <input type="radio" name="tab" title="出力" value="export">
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
     <footer>
         <ul>
-            <li id="path">No file was opened.</li>
+            <li id="status"></li>
             <li id="line">1行</li>
             <li id="wc">0文字</li>
             <li id="byte">0文字</li>
         </ul>
     </footer>
+
 </body>
+
+
 
 </html>

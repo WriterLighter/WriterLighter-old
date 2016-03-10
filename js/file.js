@@ -1,35 +1,46 @@
 
-    var fs = require('fs');
-    var remote = require('remote');
-    var dialog = remote.require('dialog');
-    var browserWindow = remote.require('browser-window');
-
-    var inputArea = null;
-    var inputTxt = null;
-    var footerArea = null;
-
-    var currentPath = "";
-
-function footer(){
-    var value = inputTxt.innerText;
-    var NoC = value.length;
-    var BoC = encodeURI(value).replace(/%[0-9A-F]{2}/g, '*').length;
-    var line = value.split("\n").length;
-
-    $("#wc").html(NoC + "文字");
-    $("#byte").html(BoC + "バイト");
-    $("#line").html(line + "行");
+/*
+ * ウィンドウ名セット
+ */
+function setWindowName(){
+    if(novelName === ""){
+        document.title = "WriterLighter";
+    } else {
+        if(chapterName === ""){
+            document.title = novelName + " - WriterLighter";
+        } else {
+            document.title = chapterName + " (" + novelName + ") - WriterLighter";
+        }
+    }
 }
 
-    /**
-     * Webページ読み込み時の処理
-     */
+/**
+ * index情報を読み込み
+ */
+
+function getIndex(path){
+    index = validateJSON(fs.readFileSync(path + '/index.json', 'utf8'));
+    novelInfo = {
+        "path" : path,
+        "index" : index
+    };
+
+    dirPath = path;
+    novelName = index.name;
+}
+
+/**
+ * 登場人物情報を読み込み
+ */
+
+function getCharacter(path){
+    charaList = validateJSON(fs.readFileSync(path + '/登場人物.json', 'utf8'));
+}
+
+/**
+ * Webページ読み込み時の処理
+ */
 $(function () {
-    // 入力領域
-    inputTxt = document.getElementById("input_txt");
-    inputArea = inputTxt;
-    // フッター領域
-    footerArea = document.getElementById("path");
 
     // ドラッグ&ドロップ関連処理
     // documentにドラッグされた場合 / ドロップされた場合
@@ -46,136 +57,120 @@ $(function () {
     };
     inputArea.ondrop = function (e) {
         e.preventDefault();
-        var file = e.dataTransfer.files[0];
-        readFile(file.path);
         return false;
     };
 
 });
 
-    /**
-     * 読み込みするためのファイルを開く
-     */
-    function openLoadFile() {
-        var win = browserWindow.getFocusedWindow();
+/**
+ * 読み込みするためのファイルを開く
+ */
+function openLoadFile() {
+    var win = browserWindow.getFocusedWindow();
 
-        dialog.showOpenDialog(
-            win,
-            // どんなダイアログを出すかを指定するプロパティ
-            {
-                properties: ['openFile'],
-                filters: [
-                    {
-                        name: 'Documents',
-                        extensions: ['txt', 'text', 'html', 'js']
-                 }
-             ]
-            },
-            // [ファイル選択]ダイアログが閉じられた後のコールバック関数
-            function (filenames) {
-                if (filenames) {
-                    readFile(filenames[0]);
-                }
-            });
-    }
-
-    /**
-     * テキストを読み込み、テキストを入力エリアに設定する
-     */
-    function readFile(path) {
-        currentPath = path;
-        fs.readFile(path, function (error, text) {
-            if (error != null) {
-                alert('error : ' + error);
-                return;
+    dialog.showOpenDialog(
+        win,
+        // どんなダイアログを出すかを指定するプロパティ
+        {
+            properties: ['openDirectory']
+        },
+        // [ファイル選択]ダイアログが閉じられた後のコールバック関数
+        function (directory) {
+            if (directory) {
+                readDir(directory[0]);
             }
-            // フッター部分に読み込み先のパスを設定する
-            footerArea.innerHTML = path;
-            $("title").innerText= path + " - NovelEditor";
-            // テキスト入力エリアに設定する
-            //console.log(text.toString());
-            // TODO
-            inputTxt.innerText=(text.toString());
-            footer();
         });
-    }
+}
 
+/**
+ * ディレクトリを読み込む関数
+ */
+function readDir(path) {
+    console.log(path);
+    dirPath = path;
+    getIndex(path);
+    getCharacter(path);
+    setWindowName();
+}
 
-    /**
-     * ファイルを保存する
-     */
-    function saveFile() {
-        $(".menubutton.save").addClass("semitransparent");
-
-        //　初期の入力エリアに設定されたテキストを保存しようとしたときは新規ファイルを作成する
-        if (currentPath == "") {
-            saveNewFile();
-            return;
+/**
+ * テキストを読み込み、テキストを入力エリアに設定する
+ */
+function readFile(path) {
+    filePath = path;
+    fs.readFile(path, function (error, text) {
+        if (error !== null) {
+            alert('error : ' + error);
+            return ;
         }
+        // テキスト入力エリアに設定する
+        inputTxt.innerText = text.toString();
+        formerFile = text.toString();
+        setWindowName();
+        Edited = false;
+    });
 
-        var win = browserWindow.getFocusedWindow();
-/*
-        dialog.showMessageBox(win, {
-                title: 'ファイルの上書き保存を行います。',
-                type: 'info',
-                buttons: ['OK', 'Cancel'],
-                detail: '本当に保存しますか？'
-            },
-            // メッセージボックスが閉じられた後のコールバック関数
-            function (respnse) {
-                // OKボタン(ボタン配列の0番目がOK)
-                if (respnse == 0) {
-                    var data = inputTxt.innerText;
-                    writeFile(currentPath, data);
-                }
-            }
-        );
-        */
-        var data = inputTxt.innerText;
-        writeFile(currentPath, data);
-        $(".menubutton.save").removeClass("semitransparent");
+}
+
+
+/**
+ * ファイルを保存する
+ */
+function saveFile() {
+    $(".menubutton.save").addClass("semitransparent");
+    $("#status").html(filePath + "を保存しています…。");
+
+    //　初期の入力エリアに設定されたテキストを保存しようとしたときは新規ファイルを作成する
+    if (filePath === "") {
+        saveNewFile();
+        return;
     }
+    var data = inputTxt.innerText;
+    writeFile(filePath, data);
+    $(".menubutton.save").removeClass("semitransparent");
+    statusMsg(filePath + "を保存しました。",1000);
+    setWindowName();
+}
 
-    /**
-     * ファイルを書き込む
-     */
-    function writeFile(path, data) {
-        fs.writeFile(path, data, function (error) {
-            if (error !== null) {
-                alert('error : ' + error);
-                return;
-            }
-        });
-    }
+/**
+ * ファイルを書き込む
+ */
+function writeFile(path, data) {
+    fs.writeFile(path, data, function (error) {
+        if (error !== null) {
+            alert('error : ' + error);
+            return;
+            setWindowName();
+            Edited = false;
+        }
+    });
+}
 
-    /**
-     * 新規ファイルを保存する
-     */
-    function saveNewFile() {
+/**
+ * 新規ファイルを保存する
+ */
+function saveNewFile() {
 
-        var win = browserWindow.getFocusedWindow();
-        dialog.showSaveDialog(
-            win,
-            // どんなダイアログを出すかを指定するプロパティ
-            {
-                properties: ['openFile'],
-                filters: [
-                    {
-                        name: 'Documents',
-                        extensions: ['txt', 'text', 'html', 'js']
+    var win = browserWindow.getFocusedWindow();
+    dialog.showSaveDialog(
+        win,
+        // どんなダイアログを出すかを指定するプロパティ
+        {
+            properties: ['openFile'],
+            filters: [
+                {
+                    name: 'Documents',
+                    extensions: ['txt', 'text']
                 }
             ]
-            },
-            // セーブ用ダイアログが閉じられた後のコールバック関数
-            function (fileName) {
-                if (fileName) {
-                    var data = inputTxt.value;
-                    currentPath = fileName;
-                    writeFile(currentPath, data);
-                    footerArea.innerHTML = currentPath;
-                    $("title").innerText= fileName + " - NovelEditor";
-                }
+        },
+        // セーブ用ダイアログが閉じられた後のコールバック関数
+        function (fileName) {
+            if (fileName) {
+                var data = inputTxt.innerText;
+                filePath = fileName;
+                writeFile(filePath, data);
             }
-        );
-    }
-
+        }
+    );
+}

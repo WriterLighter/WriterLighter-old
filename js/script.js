@@ -1,55 +1,98 @@
-function wc () {
-
-    var txtvalue = $("#input_txt").text();
-
-        var NoC = txtvalue.length;
-        var BoC = encodeURI(txtvalue).replace(/%[0-9A-F]{2}/g, '*').length;
-        //var line = value.split("\n").length;
-        var line = $("#input_txt").html().split("<br>").length -1 ;
-        line = line + $("#input_txt").html().split("<div>").length -1;
-        line = ++line;
-
-        $("#wc").html(NoC + "文字");
-        $("#line").html(line + "行");
-        if( BoC >= 1024 ){
-            $("#byte").html( Math.floor( BoC / 1024) + "キロバイト");
-        }else{
-            $("#byte").html(BoC + "バイト");
-        }}
-
 $(function () {
 
-    /*
-    * 何か入力された時のイベント
-    */
-
-
+    // 何か入力された時のイベント
     $("#input_txt").keyup(function () {
-
-    var txtvalue = $("#input_txt").text();
-
-        var NoC = txtvalue.length;
-        var BoC = encodeURI(txtvalue).replace(/%[0-9A-F]{2}/g, '*').length;
-        //var line = value.split("\n").length;
-        var line = $("#input_txt").html().split("<br>").length　-1;
-        line = line + ($("#input_txt").html().split("<div>").length -1);
-        line = line - ($("#input_txt").html().split("<div><br></div>").length -1);
-        line = ++line;
-        //if(line = 0){line = ++line;}
-
-        $("#wc").html(NoC + "文字");
-        $("#line").html(line + "行");
-        if( BoC >= 1024 ){
-            $("#byte").html( Math.floor( BoC / 1024) + "キロバイト");
-        }else{
-            $("#byte").html(BoC + "バイト");
-        }});
-
-
-    $('div.split-pane').splitPane();
+        count();
+        if (inputTxt.innerText !== formerFile && Edited !== true) {
+            Edited = true;
+            document.title = "*" + document.title;
+        }
     });
 
-function toggleWritingMode(){
-    $("#input_txt").toggleClass("write-vertical");
+    $('div.split-pane').splitPane();
 
+    window.onbeforeunload = function (e) {
+        if (Edited) {
+            var choice = dialog.showMessageBox(
+                remote.getCurrentWindow(), {
+                    type: 'question',
+                    buttons: ['Yes', 'No'],
+                    title: '確認',
+                    message: novelName + "はまだ保存されていません。\n閉じてもよろしいですか？"
+                });
+
+            return choice === 0;
+        };
+    }
+
+
+});
+
+var csObj = new Object();
+csObj.theme = "dark";
+
+$(window).load(function () {
+    $("#container").mCustomScrollbar(csObj);
+});
+
+function toggleWritingMode() {
+    console.log(document.getElementById("writingMode").checked);
+    if (document.getElementById("writingMode").checked) {
+        $("#input_txt").addClass("write-vertical");
+    } else {
+        $("#input_txt").removeClass("write-vertical");
+    }
+}
+
+function toggleWebviewDevTools() {
+    if (webview.isDevToolsOpened()) {
+        webview.closeDevTools();
+    } else {
+        webview.openDevTools();
+    }
+}
+
+function IntensiveMode() {
+    $("#right-component").toggle();
+    $("#my-divider").toggle();
+    $("header").toggle();
+    $("footer").toggle();
+    if (EditorMode == 0) {
+        $("#left-component").css("right", "0px")
+            .css("margin", "0px");
+        $("#container").css("padding", "0");
+        EditorMode = 1;
+        browserWindow.getFocusedWindow().setFullScreen(true);
+        $.amaran({
+            "message": "超集中モード起動\n解除はF11キー"
+        });
+    } else {
+        $("#left-component").css("right", "260px")
+            .css("margin-right", "5px");
+        $("#container").css("padding", "25px 0 25px 0");
+        EditorMode = 0;
+        browserWindow.getFocusedWindow().setFullScreen(false);
+    }
+}
+
+function HyperIntensiveMode() {
+    if (EditorMode == 0) {
+        $("#right-component").toggle();
+        $("#my-divider").toggle();
+        $("header").toggle();
+        $("footer").toggle();
+        $("#left-component").css("right", "0px");
+        $("#container").css("padding", "0");
+        browserWindow.getFocusedWindow().setFullScreen(true);
+    }
+
+}
+
+function statusMsg(msg, time) {
+    $("#status").html(msg);
+    if (time !== undefined) {
+        var statusMsg = setTimeout(function () {
+            $("#status").html("");
+        }, time);
+    }
 }
