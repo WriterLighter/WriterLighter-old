@@ -19,37 +19,39 @@ $(function () {
 });
 
 var id;
-var charaList = [];
+var writerlighter = {};
 
-ipc.sendToHost("getVariable",["charaList"]);
+ipc.sendToHost("getVariable", ["charaList"]);
 
 ipc.on("RequestedVariable", function (event, res) { // キャラ設定を取得
-    console.log(res);
-    var charalist = res.charaList;
-    if (charalist !== "" && JSON.stringify(charalist) != JSON.stringify(charaList)) {
-        // ▲情報が空じゃない且つキャラ設定が変更されている
 
-        charaList = charalist; // グローバル変数に代入
+    //writerlighter.charaList = res.charaList; // グローバル変数に代入
+    $.extend(writerlighter, res);
 
-        if (current == "profile") {
-            showProfile(id);
-        } else {
-            for (var i = 0; i < charalist.length; i++) {
-                var name = [];
-                for (var ii = 0; ii < charalist[i].name.length; ii++) {
-                    name.push(charalist[i].name[ii]);
 
-                }
-                $("#chara-list").append("<li class=\"chapter\"><a href='profile.html?id=" + i + "'>" +
-                    "<h3>" + name.join("") + "<h3>" + "</a></li>\n");
-                // <li>タグにして追加
+    switch (current) {
+    case "profile":
+        showProfile();
+        break;
+
+    case "index":
+        for (var i = 0; i < writerlighter.charaList.length; i++) {
+            var name = [];
+            for (var ii = 0; ii < writerlighter.charaList[i].name.length; ii++) {
+                name.push(writerlighter.charaList[i].name[ii]);
+
             }
+            $("#chara-list").append("<li class=\"chapter\"><a href='profile.html?id=" + i + "'>" +
+                "<h3>" + name.join("") + "<h3>" + "</a></li>\n");
+            // <li>タグにして追加
         }
+        break;
+
     }
 });
 
-function showProfile(id) {
-    var person = charaList[id];
+function showProfile() {
+    var person = writerlighter.charaList[id];
     var fullname = person.name;
     var pronunciation = person.pronunciation;
 
@@ -61,10 +63,18 @@ function showProfile(id) {
     $("[name=\"pron-middlename\"]").val(pronunciation[2]);
     $("[name=\"personality\"]").val(person.personality);
     $("[name=\"age\"]").val(person.age);
+
+    for (var key in writerlighter.charaList[id].detail) {
+        console.log(key + " : " + writerlighter.charaList[id].detail[key]);
+        $("#detail").append("<li><label>" + key +
+                            "<input type=\"text\" name=\"" + key + "\" value=\""
+                            + writerlighter.charaList[id].detail[key] + "\">"
+                            +  "</label></li>");
+    }
 }
 
-function saveProfile(id) {
-    var person = charaList[id];
+function saveProfile() {
+    var person = writerlighter.charaList[id];
     var fullname = person.name;
     var pronunciation = person.pronunciation;
 
@@ -75,7 +85,12 @@ function saveProfile(id) {
     pronunciation[1] = $("[name=\"pron-firstname\"]").val();
     pronunciation[2] = $("[name=\"pron-middlename\"]").val();
     person.personality = $("[name=\"personality\"]").val();
-    person.age = $("[name=\"age\"]").val(person.age);
-    ipc.sendToHost("saveCharacter", charaList);
-    console.log(charaList);
+    person.age = $("[name=\"age\"]").val();
+
+    for (var key in writerlighter.charaList[id].detail) {
+        person.detail[key] = $("[name=\"" + key + "\"]").val();
+    }
+
+    ipc.sendToHost("saveCharacter", writerlighter.charaList);
+    console.log(writerlighter.charaList);
 }
