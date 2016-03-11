@@ -1,0 +1,12 @@
+{
+  "name": "webbrowser",
+  "version": "1.0.0",
+  "description": "side webbrowser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "happa8",
+  "license": "ISC",
+  "tab": "false"
+}
