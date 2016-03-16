@@ -6,7 +6,7 @@ function OpenExt() {
             var Extdir = __dirname + "/extensions/";
             var view = "index.html";
             var url = "file://" + Extdir + openedExt + "/" + view;
-            webview.setAttribute("src", url);
+            writerlighter.webview.setAttribute("src", url);
 
             console.log("tab changed");
             console.log(openedExt);
@@ -14,21 +14,21 @@ function OpenExt() {
     }
 }
 
-var sendParamInterval = setInterval(function () {
+writerlighter.sendParamInterval = setInterval(function () {
      var newVar = {};
-     for (var i in sendVar) {
-         newVar[i] = eval(i);
+     for (var i in writerlighter.sendVer) {
+         newVar[i] = eval("writerlighter." + i);
      }
-     if (JSON.stringify(sendVar) !== JSON.stringify(newVar)) {
+     if (JSON.stringify(writerlighter.sendVer) !== JSON.stringify(newVar)) {
          console.log(newVar);
-         sendVar = newVar;
-         webview.send("RequestedVariable", sendVar);
+         writerlighter.sendVer = newVar;
+         writerlighter.webview.send("RequestedVariable", writerlighter.sendVer);
      }
  }, 500);
 
 $(function () {
-    for (var i = 0; i < ext_tabs.length; i++) {
-        ext_tabs[i].onchange = function () {
+    for (var i = 0; i < writerlighter.ext_tabs.length; i++) {
+        writerlighter.ext_tabs[i].onchange = function () {
             console.log("changed");
             OpenExt();
         };
@@ -36,19 +36,18 @@ $(function () {
 })
 
 $(function () {
-    webview.addEventListener('ipc-message', function (event) {
+    writerlighter.webview.addEventListener('ipc-message', function (event) {
         switch (event.channel) {
         case "OpenChapter":
-            var chaptername = event.args[0];
-            console.log(chaptername);
-            chapterName = chaptername;
-            readFile(dirPath + "/本文/" + chaptername + ".txt");
+            writerlighter.chapterName = event.args[0];
+            console.log(writerlighter.chapterName);
+            readFile(writerlighter.dirPath + "/本文/" + writerlighter.chapterName + ".txt");
             break;
 
         case "getVariable":
-            sendVar = {};
+            writerlighter.sendVer = {};
             for (var i = 0; i < event.args[0].length; i++) {
-                sendVar[event.args[i]] = null;
+                writerlighter.sendVer[event.args[i]] = null;
             }
             break;
 

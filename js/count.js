@@ -1,21 +1,21 @@
 function count() {
 
-    value = inputTxt.innerText;
+    writerlighter.value = writerlighter.inputTxt.innerText;
 
-    letter = value.length;
-    byte = encodeURI(value).replace(/%[0-9A-F]{2}/g, '*').length;
-    line = value.split("\n").length;
-    for (var i = 0; i < line; i++) {
-        apparentLine = apparentLine + Math.ceil((value.split("\n")[i].length) / maxLetter);
+    writerlighter.letter = writerlighter.value.length;
+    writerlighter.byte = encodeURI(writerlighter.value).replace(/%[0-9A-F]{2}/g, '*').length;
+    writerlighter.line = writerlighter.value.split("\n").length;
+    for (var i = 0; i < writerlighter.line; i++) {
+        writerlighter.apparentLine = writerlighter.apparentLine + Math.ceil((writerlighter.value.split("\n")[i].length) / writerlighter.maxLetter);
     }
-    apparentLine = --apparentLine;
-    page = Math.ceil( apparentLine / maxLine );
+    writerlighter.apparentLine = --writerlighter.apparentLine;
+    writerlighter.page = Math.ceil( writerlighter.apparentLine / writerlighter.maxLine );
 
-    $("#wc").html(letter + "文字");
-    $("#line").html(line + "行");
-    if (byte >= 1024) {
-        $("#byte").html(((Math.floor(byte / 1024 * 10)) / 10) + "キロバイト");
+    $("#wc").html(writerlighter.letter + "文字");
+    $("#line").html(writerlighter.line + "行");
+    if (writerlighter.byte >= 1024) {
+        $("#byte").html(((Math.floor(writerlighter.byte / 1024 * 10)) / 10) + "キロバイト");
     } else {
-        $("#byte").html(byte + "バイト");
+        $("#byte").html(writerlighter.byte + "バイト");
     }
 }

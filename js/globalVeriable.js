@@ -3,6 +3,8 @@
  * コメントは必ず書くこと!
  */
 
+var writerlighter = writerlighter || {};
+
 /*
  * 外部ライブラリ等
  */
@@ -29,66 +31,66 @@ var MenuItem = remote.require('menu-item');
  * 文字関係
  */
 // 一行あたりの最高文字数
-var maxLetter = 36;
+writerlighter.maxLetter = 36;
 
 // 一ページあたりの最高字数
-var maxLine = 46;
+writerlighter.maxLine = 46;
 
 // 見かけ上の行
-var apparentLine = 1;
+writerlighter.apparentLine = 1;
 
 // ページ数
-var page = 1;
+writerlighter.page = 1;
 
 // 文字数
-var letter = 0;
+writerlighter.letter = 0;
 
 // 文字バイト数
-var byte = 0;
+writerlighter.byte = 0;
 
 // 実際の行数
-var line = 1;
+writerlighter.line = 1;
 
 // 入力された文字
-var value = "";
+writerlighter.value = "";
 
 // 元のファイル
-var formerFile = "";
+writerlighter.formerFile = "";
 
 // 変更されたかどうか(boolean)
-var Edited = false;
+writerlighter.Edited = false;
 
 
 /*
  * 要素
  */
 // 入力する場所
-var inputArea = null;
-var inputTxt = null;
+writerlighter.inputArea = null;
+writerlighter.inputTxt = null;
 
 // webview要素
-var webview;
+writerlighter.webview;
 
 // 拡張機能のタブ
-var ext_tabs = document.getElementsByName("tab");
+writerlighter.ext_tabs = document.getElementsByName("tab");
 
 // 開かれたタブのID
-var openedExt = "home";
+writerlighter.openedExt = "home";
 
 // 読み込みが終わったら設定
 $(function () {
-    inputTxt = document.getElementById("input_txt");
-    inputArea = inputTxt;
-    webview = document.getElementById('mainWebview');
+    writerlighter.inputTxt = document.getElementById("input_txt");
+    writerlighter.inputArea = writerlighter.inputTxt;
+    writerlighter.webview = document.getElementById('mainWebview');
 });
 
 //  0:通常モード
 //  1:超集中モード
 //  2:カンヅメモード
-var EditorMode = 0;
+writerlighter.EditorMode = 0;
 
 //カンヅメモード時パスワード
-var IntensivePasswd = "";
+writerlighter.IntensivePasswd = "";
 
 
 
@@ -97,32 +99,32 @@ var IntensivePasswd = "";
  */
 
 // ディレクトリのフルパス
-var dirPath = "";
+writerlighter.dirPath = "";
 
 // ファイルのフルパス
-var filePath = "";
+writerlighter.filePath = "";
 
 // 小説名
-var novelName = "";
+writerlighter.novelName = "";
 
 // 章名
-var chapterName = "";
+writerlighter.chapterName = "";
 
 // いろんなデータ
-var novelInfo = "";
+writerlighter.novelInfo = "";
 
 // 設定ファイルディレクトリ
-var confDir = remote.require("electron").app.getPath('userData');
+writerlighter.confDir = remote.require("electron").app.getPath('userData');
 
 
 // index.json
-var index = {};
+writerlighter.index = {};
 
 // 登場人物リスト
-var charaList = {};
+writerlighter.charaList = {};
 
 // 拡張機能に送る変数を入れた連想配列
-var sendVar = {};
+writerlighter.sendVar = {};
 
 // 拡張機能に送るInterval
-var sendParamInterval;
+writerlighter.sendParamInterval;

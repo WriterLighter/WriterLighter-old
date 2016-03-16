@@ -3,8 +3,8 @@ $(function () {
     // 何か入力された時のイベント
     $("#input_txt").keyup(function () {
         count();
-        if (inputTxt.innerText !== formerFile && Edited !== true) {
-            Edited = true;
+        if (writerlighter.inputTxt.innerText !== writerlighter.formerFile && writerlighter.Edited !== true) {
+            writerlighter.Edited = true;
             document.title = "*" + document.title;
         }
     });
@@ -12,13 +12,13 @@ $(function () {
     $('div.split-pane').splitPane();
 
     window.onbeforeunload = function (e) {
-        if (Edited) {
+        if (writerlighter.Edited) {
             var choice = dialog.showMessageBox(
                 remote.getCurrentWindow(), {
                     type: 'question',
                     buttons: ['Yes', 'No'],
                     title: '確認',
-                    message: novelName + "はまだ保存されていません。\n閉じてもよろしいですか？"
+                    message: writerlighter.novelName + "はまだ保存されていません。\n閉じてもよろしいですか？"
                 });
 
             return choice === 0;
@@ -45,15 +45,15 @@ function toggleWritingMode() {
 }
 
 function toggleWebviewDevTools() {
-    if (webview.isDevToolsOpened()) {
-        webview.closeDevTools();
+    if (writerlighter.webview.isDevToolsOpened()) {
+        writerlighter.webview.closeDevTools();
     } else {
-        webview.openDevTools();
+        writerlighter.webview.openDevTools();
     }
 }
 
 function IntensiveMode() {
-    if (EditorMode == 0) {
+    if (writerlighter.EditorMode == 0) {
         $("#right-component").toggle(false);
         $("#my-divider").toggle(false);
         $("header").toggle(false);
@@ -61,7 +61,7 @@ function IntensiveMode() {
         $("#left-component").css("right", "0px")
             .css("margin", "0px");
         $("#container").css("padding", "0");
-        EditorMode = 1;
+        writerlighter.EditorMode = 1;
         browserWindow.getFocusedWindow().setFullScreen(true);
         $.amaran({
             "message": "超集中モード起動\n解除はF11キー"
@@ -74,15 +74,15 @@ function IntensiveMode() {
         $("#left-component").css("right", "260px")
             .css("margin-right", "5px");
         $("#container").css("padding", "25px 0 25px 0");
-        EditorMode = 0;
+        writerlighter.EditorMode = 0;
         browserWindow.getFocusedWindow().setFullScreen(false);
     }
 }
 
 function HyperIntensiveMode() {
     //window.promptが使えないんだとさ。やっぱりモーダルウィンドウ使うほかないのか
-    /*if (EditorMode == 0 || EditorMode == 1) {
-        IntensivePasswd = window.prompt("カンヅメモード用のパスワードを設定してください", "パスワード:");
+    /*if (writerlighter.EditorMode == 0 || writerlighter.EditorMode == 1) {
+        writerlighter.intensivePasswd = window.prompt("カンヅメモード用のパスワードを設定してください", "パスワード:");
         if (window.confirm("カンヅメモードを開始します。\n解除するには、パスワードを入力する必要があります")) {
             $("#right-component").toggle(false);
             $("#my-divider").toggle(false);
@@ -97,7 +97,7 @@ function HyperIntensiveMode() {
         }
 
     } else {
-        if (window.prompt("カンヅメモードを解除します。\nパスワードを入力してください", "パスワード:") == IntensivePasswd) {
+        if (window.prompt("カンヅメモードを解除します。\nパスワードを入力してください", "パスワード:") == writerlighter.intensivePasswd) {
             $("#right-component").toggle(true);
             $("#my-divider").toggle(true);
             $("header").toggle(true);
@@ -105,7 +105,7 @@ function HyperIntensiveMode() {
             $("#left-component").css("right", "260px")
                 .css("margin-right", "5px");
             $("#container").css("padding", "25px 0 25px 0");
-            EditorMode = 0;
+            writerlighter.EditorMode = 0;
             browserWindow.getFocusedWindow().setFullScreen(false);
             $.amaran({
             "message": "カンヅメモードを解除しました。"

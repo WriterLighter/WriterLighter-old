@@ -3,13 +3,13 @@
  * ウィンドウ名セット
  */
 function setWindowName(){
-    if(novelName === ""){
+    if(writerlighter.novelName === ""){
         document.title = "WriterLighter";
     } else {
-        if(chapterName === ""){
-            document.title = novelName + " - WriterLighter";
+        if(writerlighter.chapterName === ""){
+            document.title = writerlighter.novelName + " - WriterLighter";
         } else {
-            document.title = chapterName + " (" + novelName + ") - WriterLighter";
+            document.title = writerlighter.chapterName + " (" + writerlighter.novelName + ") - WriterLighter";
         }
     }
 }
@@ -19,14 +19,14 @@ function setWindowName(){
  */
 
 function getIndex(path){
-    index = validateJSON(fs.readFileSync(path + '/index.json', 'utf8'));
-    novelInfo = {
+    writerlighter.index = validateJSON(fs.readFileSync(path + '/index.json', 'utf8'));
+    writerlighter.novelInfo = {
         "path" : path,
-        "index" : index
+        "index" : writerlighter.index
     };
 
-    dirPath = path;
-    novelName = index.name;
+    writerlighter.dirPath = path;
+    writerlighter.novelName = writerlighter.index.name;
 }
 
 /**
@@ -34,7 +34,7 @@ function getIndex(path){
  */
 
 function getCharacter(path){
-    charaList = validateJSON(fs.readFileSync(path + '/登場人物.json', 'utf8'));
+    writerlighter.charaList = validateJSON(fs.readFileSync(path + '/登場人物.json', 'utf8'));
 }
 
 /**
@@ -49,13 +49,13 @@ $(function () {
         return false;
     };
 
-    inputArea.ondragover = function () {
+    writerlighter.inputArea.ondragover = function () {
         return false;
     };
-    inputArea.ondragleave = inputArea.ondragend = function () {
+    writerlighter.inputArea.ondragleave = writerlighter.inputArea.ondragend = function () {
         return false;
     };
-    inputArea.ondrop = function (e) {
+    writerlighter.inputArea.ondrop = function (e) {
         e.preventDefault();
         return false;
     };
@@ -87,7 +87,7 @@ function openLoadFile() {
  */
 function readDir(path) {
     console.log(path);
-    dirPath = path;
+    writerlighter.dirPath = path;
     getIndex(path);
     getCharacter(path);
     setWindowName();
@@ -97,17 +97,17 @@ function readDir(path) {
  * テキストを読み込み、テキストを入力エリアに設定する
  */
 function readFile(path) {
-    filePath = path;
+    writerlighter.filePath = path;
     fs.readFile(path, function (error, text) {
         if (error !== null) {
             alert('error : ' + error);
             return ;
         }
         // テキスト入力エリアに設定する
-        inputTxt.innerText = text.toString();
-        formerFile = text.toString();
+        writerlighter.inputTxt.innerText = text.toString();
+        writerlighter.formerFile = text.toString();
         setWindowName();
-        Edited = false;
+        writerlighter.Edited = false;
     });
 
 }
@@ -118,17 +118,17 @@ function readFile(path) {
  */
 function saveFile() {
     $(".menubutton.save").addClass("semitransparent");
-    $("#status").html(filePath + "を保存しています…。");
+    $("#status").html(writerlighter.filePath + "を保存しています…。");
 
     //　初期の入力エリアに設定されたテキストを保存しようとしたときは新規ファイルを作成する
-    if (filePath === "") {
+    if (writerlighter.filePath === "") {
         saveNewFile();
         return;
     }
-    var data = inputTxt.innerText;
-    writeFile(filePath, data);
+    var data = writerlighter.inputTxt.innerText;
+    writeFile(writerlighter.filePath, data);
     $(".menubutton.save").removeClass("semitransparent");
-    statusMsg(filePath + "を保存しました。",1000);
+    statusMsg(writerlighter.filePath + "を保存しました。",1000);
     setWindowName();
 }
 
@@ -141,7 +141,7 @@ function writeFile(path, data) {
             alert('error : ' + error);
             return;
             setWindowName();
-            Edited = false;
+            writerlighter.Edited = false;
         }
     });
 }
@@ -167,9 +167,9 @@ function saveNewFile() {
         // セーブ用ダイアログが閉じられた後のコールバック関数
         function (fileName) {
             if (fileName) {
-                var data = inputTxt.innerText;
-                filePath = fileName;
-                writeFile(filePath, data);
+                var data = writerlighter.inputTxt.innerText;
+                writerlighter.filePath = fileName;
+                writeFile(writerlighter.filePath, data);
             }
         }
     );

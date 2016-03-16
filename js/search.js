@@ -44,5 +44,5 @@ function Search() {
 }
 
 function RemoveHighlight(){
-    inputTxt.innerHTML = before;
+    writerlighter.inputTxt.innerHTML = before;
 }
