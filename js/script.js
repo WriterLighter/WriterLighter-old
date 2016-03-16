@@ -126,3 +126,8 @@ function statusMsg(msg, time) {
         }, time);
     }
 }
+
+function changeFonts(fontFamily, fontSize){
+    $('@font-face').css('font-family',fontFamily);
+    $('@font-face').css('font-size',fontSize);
+}
