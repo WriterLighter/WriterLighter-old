@@ -172,6 +172,8 @@ footer {
     -webkit-box-flex: 1.0;
     height: 100%;
     position: relative;
+    z-index: 1;
+    box-shadow: 0 0 20px #000;
 }
 
 #ext-main mainWebview {
@@ -202,11 +204,14 @@ input[name="tab"] {
     height: 57px;
     background: #555;
     margin: 0 10px 0 0;
+    position: relative;
 }
 
 input[name="tab"]:checked,
 input[name="tab"]:hover {
     background: #777;
+    z-index: 2;
+    box-shadow: 5px 0 10px #000;
 }
 
 #writingMode {
