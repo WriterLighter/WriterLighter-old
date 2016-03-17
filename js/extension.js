@@ -1,7 +1,7 @@
 function OpenExt() {
-    for (var i = 0; i < ext_tabs.length; i++) {
-        if (ext_tabs[i].checked) {
-            openedExt = ext_tabs[i].value;
+    for (var i = 0; i < writerlighter.ext_tabs.length; i++) {
+        if (writerlighter.ext_tabs[i].checked) {
+            openedExt = writerlighter.ext_tabs[i].value;
             // TODO: グローバル拡張機能かユーザー拡張機能かで条件分け
             var Extdir = __dirname + "/extensions/";
             var view = "index.html";
