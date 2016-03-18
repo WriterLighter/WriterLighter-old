@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./css/split-pane.css">
     <link rel="stylesheet" href="css/amaran.min.css">
     <link rel="stylesheet" href="css/animate.min.css">
-
+    <link rel="stylesheet" href="css/icon.css">
 
     <script>
         // for electron
@@ -62,14 +62,13 @@
     <div id="modal-overlay"></div>
     <header>
         <ul>
-            <li><a class="menubutton open" onclick="openLoadFile();">Open</a></li>
-            <li><a class="menubutton save" onclick="saveFile();">Save</a></li>
+            <li><a class="menubutton open" onclick="openLoadFile();"><i class="icon-open"></i></a></li>
+            <li><a class="menubutton save" onclick="saveFile();"><i class="icon-save"></i> </a></li>
             <li>
-                <input type="checkbox" id="writingMode" onchange="toggleWritingMode()" class="menubutton"> </li>
+                <label><input type="checkbox" id="writingMode" onchange="toggleWritingMode()" class="menubutton icon-wm"><i ></i></label> </li>
             <li>
                 <input type="text" id="keyword" onkeydown="if(event.keyCode == 13){Search();}">
-                <input type="button" id="searchButton" value="Search" onclick="Search();" class="menubutton">
-                <input type="button" id="clearButton" value="Clear" onclick="RemoveHighlight()" class="menubutton">
+                <label><input type="button" id="searchButton" onclick="Search();" class="menubutton icon-search"><i class="icon-search"></i></label>
             </li>
         </ul>
     </header>

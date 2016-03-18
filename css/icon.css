@@ -18,7 +18,7 @@
     font-variant: normal;
     text-transform: none;
     line-height: 1;
-    
+
     /* Enable Ligatures ================ */
     letter-spacing: 0;
     -webkit-font-feature-settings: "liga";
@@ -39,10 +39,10 @@
 .icon-save:before {
     content: "\e901";
 }
-.icon-wm-hrizonal:before {
+.icon-wm:before {
     content: "\e902";
 }
-.icon-wm-vertical:before {
+.icon-wm:checked:before {
     content: "\e903";
 }
 .icon-replace:before {
