@@ -30,21 +30,16 @@ function SearchAndHighlight(Str, Keyword) {
     return res;
 }
 
-var before = "";
-
 function Search() {
     var Keyword = $("#keyword").val();
-    if (!(Keyword == "")) { //検索窓になにも入力されていない時の誤動作を防ぐ !Keywordとかでifできないかと思ったけど無理だった
+    if (!(Keyword == "")) {
+        writerlighter.inputTxt.innerHTML = SearchAndHighlight(writerlighter.value, Keyword);
 
-        var el = $("#input_txt");
-        before = el.html();
-        var after = SearchAndHighlight(before, Keyword);
-        el.html(after);
     }
 }
 
 function RemoveHighlight(){
-    writerlighter.inputTxt.innerHTML = before;
+    writerlighter.inputTxt.innerHTML = writerlighter.value;
 }
 
 $(function(){

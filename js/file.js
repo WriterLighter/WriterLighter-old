@@ -106,6 +106,7 @@ function readFile(path) {
         // テキスト入力エリアに設定する
         writerlighter.inputTxt.innerText = text.toString();
         writerlighter.formerFile = text.toString();
+        writerlighter.value = text.toString();
         setWindowName();
         writerlighter.Edited = false;
     });
