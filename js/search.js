@@ -46,3 +46,9 @@ function Search() {
 function RemoveHighlight(){
     writerlighter.inputTxt.innerHTML = before;
 }
+
+$(function(){
+   writerlighter.inputTxt.onfocus = function(){
+      RemoveHighlight();
+   } ;
+});

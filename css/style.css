@@ -21,39 +21,70 @@ a:hover {
     cursor: pointer
 }
 
-header ul li,
-footer ul li {
+header > ul > li,
+footer > ul > li {
     vertical-align: middle;
     display: inline-block;
-    padding: 0;
-    margin: 0;
 }
 
-header ul,
-footer ul {
-    margin: 0;
-    padding: 0;
+footer > ul > li {
+    padding: 3px;
+}
+
+header > ul > li {
+    margin: 0 .5em;
+    font-size: 24px;
+}
+
+header > ul > li input {
+    font-size: 24px;
+}
+
+header > ul,
+footer > ul {
+    margin: auto;
+    padding: 0 5px;
     list-style-type: none;
+    display: flex;
+    top: 0;
+    bottom: 0;
+}
+
+header ul {
+    margin: auto 0;
 }
 
 header,
 footer {
     position: fixed;
-    height: 21px;
     width: 100%;
     z-index: 2;
     margin: 0;
-    padding: 2px 0;
     background-color: #333;
     color: #fff;
 }
 
 
-/*header{
-    height: auto;
-}*/
+header{
+    height: 45px;
+    display: flex;
+}
+
+.search {
+    border-bottom: 2px solid #fff;
+}
+
+.search input[type="text"] {
+     -webkit-apprearance:none;
+    background: none;
+    border: none;
+    color: #fff;
+    padding: 0;
+    width: 8em;
+}
 
 footer {
+    height: 20px;
     bottom: 0px;
     font-size: 14px;
 }
@@ -105,17 +136,22 @@ footer {
     position: relative;
     width: 100%;
     height: 100%;
-    padding: 25px 0 25px 0;
+    padding: 45px 0 20px 0;
     box-sizing: border-box;
     display: block;
     overflow: hidden;
 }
 
-#path {}
+#status {
+    flex-grow: 1;
+}
 
 #line,
 #wc,
-#byte {}
+#byte {
+    height: 1em;
+    min-width: 1em;
+}
 
 #left-component {
     min-width: 200px;
