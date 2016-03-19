@@ -5,6 +5,10 @@
     font-style: normal;
 }
 
+:focus {
+    outline: none;
+}
+
 html,
 body {
     width: 100%;
