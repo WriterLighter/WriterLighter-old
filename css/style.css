@@ -64,14 +64,15 @@ footer {
     width: 100%;
     z-index: 2;
     margin: 0;
-    background-color: #333;
     color: #fff;
+    box-shadow: 0 0 10px #000;
 }
 
 
 header{
     height: 45px;
     display: flex;
+    background: #3f51b5;
 }
 
 .search {
@@ -93,6 +94,7 @@ footer {
     height: 20px;
     bottom: 0px;
     font-size: 14px;
+    background: #303f9f;
 }
 
 #ext-tab {
