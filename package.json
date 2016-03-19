@@ -9,6 +9,7 @@
   "author": "AI",
   "license": "MIT",
   "dependencies": {
-    "glob": "^7.0.0"
+    "glob": "^7.0.0",
+    "cheerio-httpcli": "~0.6.5"
   }
 }
