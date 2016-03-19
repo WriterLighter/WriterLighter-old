@@ -72,6 +72,8 @@ header{
 
 .search {
     border-bottom: 2px solid #fff;
+    position: absolute;
+    right: 0;
 }
 
 .search input[type="text"] {
