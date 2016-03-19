@@ -9,6 +9,7 @@
   "author": "AI",
   "license": "MIT",
   "dependencies": {
-    "glob": "^7.0.0"
+    "glob": "^7.0.0",
+    "node-waves": "^0.7.5"
   }
 }
