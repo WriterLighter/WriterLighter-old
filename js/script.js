@@ -11,6 +11,8 @@ $(function () {
 
     $('div.split-pane').splitPane();
 
+    Waves.displayEffect();
+
     window.onbeforeunload = function (e) {
         if (writerlighter.Edited) {
             var choice = dialog.showMessageBox(

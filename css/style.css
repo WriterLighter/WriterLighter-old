@@ -29,33 +29,34 @@ header > ul > li,
 footer > ul > li {
     vertical-align: middle;
     display: inline-block;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 footer > ul > li {
     padding: 3px;
+    height: 20px;
+    box-sizing: border-box;
 }
 
 header > ul > li {
-    margin: 0 .5em;
-    font-size: 24px;
-}
-
-header > ul > li input {
     font-size: 24px;
 }
 
 header > ul,
 footer > ul {
-    margin: auto;
+    margin: 0;
     padding: 0;
     list-style-type: none;
-    display: flex;
-    top: 0;
-    bottom: 0;
+    height: 100%
 }
 
 header ul {
     margin: auto 0;
+}
+
+footer ul {
+    display: flex;
 }
 
 header,
@@ -76,9 +77,19 @@ header{
 }
 
 .search {
-    border-bottom: 2px solid #fff;
     position: absolute;
-    right: 0;
+    right: 1em;
+    top: 0;
+    font-size: 18px;
+}
+
+.search:before {
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    position: absolute;
+    bottom: .5em;
 }
 
 .search input[type="text"] {
@@ -292,4 +303,14 @@ input[name="tab"]:hover {
 #button-ok {
     background-color: rgba(178, 231, 253, 0.37);
     border-color: #3abaed;
+}
+
+/*
+ waves
+*/
+
+header .waves-button {
+    padding: .5em;
+    height: 100%;
+    box-sizing: border-box;
 }
