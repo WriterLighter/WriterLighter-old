@@ -33,13 +33,13 @@ function SearchAndHighlight(Str, Keyword) {
 function Search() {
     var Keyword = $("#keyword").val();
     if (!(Keyword == "")) {
-        writerlighter.inputTxt.innerHTML = SearchAndHighlight(writerlighter.value, Keyword);
+        writerlighter.inputTxt.innerHTML = SearchAndHighlight(writerlighter.valuehtml, Keyword);
 
     }
 }
 
 function RemoveHighlight(){
-    writerlighter.inputTxt.innerHTML = writerlighter.value;
+    writerlighter.inputTxt.innerHTML = writerlighter.valuehtml;
 }
 
 $(function(){

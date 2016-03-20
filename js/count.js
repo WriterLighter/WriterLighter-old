@@ -1,6 +1,7 @@
 function count() {
 
     writerlighter.value = writerlighter.inputTxt.innerText;
+    writerlighter.valuehtml = writerlighter.inputTxt.innerHTML;
 
     writerlighter.letter = writerlighter.value.length;
     writerlighter.byte = encodeURI(writerlighter.value).replace(/%[0-9A-F]{2}/g, '*').length;
