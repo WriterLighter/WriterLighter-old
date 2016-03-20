@@ -107,6 +107,7 @@ function readFile(path) {
         writerlighter.inputTxt.innerText = text.toString();
         writerlighter.formerFile = text.toString();
         writerlighter.value = text.toString();
+        writerlighter.valuehtml = text.toString().replace("\n","<br>");
         setWindowName();
         writerlighter.Edited = false;
     });

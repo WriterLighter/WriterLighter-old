@@ -1,11 +1,17 @@
 $(function () {
 
     // 何か入力された時のイベント
-    $("#input_txt").keyup(function () {
+    $("#input_txt").keyup(function (e) {
+    var value = writerlighter.inputTxt.innerText;
+    var valuehtml = writerlighter.inputTxt.innerHTML;
+
         count();
         if (writerlighter.inputTxt.innerText !== writerlighter.formerFile && writerlighter.Edited !== true) {
             writerlighter.Edited = true;
             document.title = "*" + document.title;
+        }
+        if (writerlighter.value.split("\n").length < value.split("\n").length &&  e.keyCode === 13){
+            document.execCommand('insertHTML', false, '　');
         }
     });
 

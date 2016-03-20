@@ -54,6 +54,9 @@ writerlighter.line = 1;
 // 入力された文字
 writerlighter.value = "";
 
+// valueのhtml
+writerlighter.valuehtml = "";
+
 // 元のファイル
 writerlighter.formerFile = "";
 

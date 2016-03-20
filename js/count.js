@@ -1,13 +1,10 @@
 function count() {
-
-    writerlighter.value = writerlighter.inputTxt.innerText;
-    writerlighter.valuehtml = writerlighter.inputTxt.innerHTML;
-
-    writerlighter.letter = writerlighter.value.length;
-    writerlighter.byte = encodeURI(writerlighter.value).replace(/%[0-9A-F]{2}/g, '*').length;
-    writerlighter.line = writerlighter.value.split("\n").length;
+    var value = writerlighter.inputTxt.innerText;
+    writerlighter.letter = value.length;
+    writerlighter.byte = encodeURI(value).replace(/%[0-9A-F]{2}/g, '*').length;
+    writerlighter.line = value.split("\n").length;
     for (var i = 0; i < writerlighter.line; i++) {
-        writerlighter.apparentLine = writerlighter.apparentLine + Math.ceil((writerlighter.value.split("\n")[i].length) / writerlighter.maxLetter);
+        writerlighter.apparentLine = writerlighter.apparentLine + Math.ceil((value.split("\n")[i].length) / writerlighter.maxLetter);
     }
     writerlighter.apparentLine = --writerlighter.apparentLine;
     writerlighter.page = Math.ceil( writerlighter.apparentLine / writerlighter.maxLine );
