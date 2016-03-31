@@ -10,7 +10,8 @@ function count() {
     }
     apparentLine = --apparentLine;
     page = Math.ceil( apparentLine / maxLine );
-
+    
+    
     $("#wc").html(letter + "文字");
     $("#line").html(line + "行");
     if (byte >= 1024) {
