@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "glob": "^7.0.0",
-    "node-waves": "^0.7.5"
+    "node-waves": "^0.7.5",
+    "cheerio-httpcli": "~0.6.5"
   }
 }
