@@ -1,6 +1,0 @@
-{
-    'label': 'Search on Google',
-    'click': function () {
-        alert("Sorry,this function is still developing...");
-    }
-}
