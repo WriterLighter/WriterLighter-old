@@ -1,0 +1,7 @@
+*~
+node_modules/
+main.js
+tmp/
+dist/
+bower_components/
+npm-debug.log

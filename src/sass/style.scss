@@ -1,0 +1,21 @@
+$footer-height: 30px;
+
+html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
+}
+
+#container{
+    bottom: $footer-height;
+    height: 100%;
+    width: 100%;
+}
+
+footer{
+    height: $footer-height;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

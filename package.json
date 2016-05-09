@@ -1,0 +1,53 @@
+{
+  "name": "writerlighter",
+  "version": "0.0.0",
+  "description": "小説を書くためのテキストエディタ",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AI-create-team/WriterLighter.git"
+  },
+  "keywords": [
+    "小説",
+    "テキストエディタ"
+  ],
+  "author": "ygkn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AI-create-team/WriterLighter/issues"
+  },
+  "homepage": "https://github.com/AI-create-team/WriterLighter#readme",
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "browserify": "^13.0.0",
+    "coffee-script": "^1.10.0",
+    "coffeeify": "^2.0.1",
+    "debowerify": "^1.4.1",
+    "electron-connect": "^0.3.7",
+    "gulp": "^3.9.0",
+    "gulp-bower-files": "^0.2.7",
+    "gulp-clean-css": "^2.0.7",
+    "gulp-coffee": "^2.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-eco": "0.0.2",
+    "gulp-filter": "^4.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^2.1.1",
+    "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
+    "main-bower-files": "^2.13.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "browserify": {
+    "transform": [
+        "coffeeify",
+        "debowerify"
+    ]
+  }
+}
