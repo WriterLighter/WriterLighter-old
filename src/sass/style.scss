@@ -1,5 +1,10 @@
 $footer-height: 30px;
 
+:focus{
+    outline:none;
+    box-shadow: 0 0 10px #00f;
+}
+
 html,body{
     margin:0;
     padding:0;
@@ -8,7 +13,6 @@ html,body{
 }
 
 #container{
-    bottom: $footer-height;
     height: 100%;
     width: 100%;
 }
@@ -18,4 +22,32 @@ footer{
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+#popup{
+    margin: auto;
+    left: 40px;
+    right: 40px;
+    position: fixed;
+    padding: 10px;
+    top: -100%;
+    transition: 1s;
+    background: #555;
+    color: #fff;
+    
+    &.show{
+    top: 0;
+    z-index: 3;
+    border-radius: 0 0 10px 10px;
+    }
+    
+    input {
+        background: transparent;
+        width: 100%;
+        border: solid 1px #fff;
+        border-radius: 5px;
+        padding: 5px;
+        box-sizing: border-box;
+        color: #fff;
+    }
 }

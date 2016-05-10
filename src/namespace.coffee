@@ -15,7 +15,6 @@ require 'jquery.layout'
 window.WriterLighter = window.wl = {}
 
 $ ->
-  console.log 'jQuery is work!'
   wl.layout = $('#container').layout
     south__resizable:     false
     south__spacing_open:    0

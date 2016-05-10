@@ -1,24 +1,35 @@
 wl.popup = class popup
-  @content = ""
-  @timeout = "1000"
+  
+  hide: ->
+    $("#popup").removeClass("show")
+  
+  _show= (html)->
+    $("#popup")
+      .html html
+      .addClass "show"
+  
+  constructor: (@type = "toast", @messeage = "", @callback = ((m)-> console.log(m)), @timeout = 3000)->
 
-  constructor: (@type = "toast")->
-
-  show: ->
+  show: =>
     switch @type
       when "toast"
-        messeagehtml = @content
-        setTimeout( ->
-          $("#popup").removeClass "show"
-          @content
+        _show.call @, @messeage
+        setTimeout( =>
+          @hide()
+          @callback(@messeage)
         , @timeout)
-      when "prompt"
-        messeagehtml = "<input type='text'>"
-        $("#popup>input").on("keydown", ->
-          if window.event.keyCode==13
-            $(@).val()
-        )
 
-    $("#popup")
-      .html messeagehtml
-      .addClass "show"
+      when "prompt"
+        _show.call @,  "<input type='text' placeholder='#{@messeage}'>"
+        $("#popup>input[type='text']")
+          .focus()
+          .on("blur",=>
+            @hide()
+          )
+          .on("keydown", (e)=>
+            if e.keyCode==13
+              @hide()
+              @callback($("#popup>input").val())
+          )
+
+
