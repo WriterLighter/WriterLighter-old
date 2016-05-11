@@ -51,3 +51,18 @@ footer{
         color: #fff;
     }
 }
+
+#input-text {
+    resize: none;
+    height: 100%;
+    line-height: 2em;
+    margin: 0;
+    padding: 0;
+    float: left;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: auto;
+    &:focus{
+        box-shadow: none;
+    }
+}
