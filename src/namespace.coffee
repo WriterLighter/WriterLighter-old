@@ -1,7 +1,9 @@
 # Electron Native
-dialog = window.require('remote').dialog
-fs = window.require 'fs'
-path = window.require 'path'
+window.remote = window.require 'remote'
+window.dialog = window.require('remote').dialog
+window.fs = window.require 'fs'
+window.path = window.require 'path'
+window.app = remote.require 'app'
 
 # Outer Liblary
 window.jQuery = window.$ = require 'jquery'
