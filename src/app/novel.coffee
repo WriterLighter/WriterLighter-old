@@ -1,5 +1,16 @@
 wl.novel =
-  chapter: {}
+  chapter:
+    open: (number) ->
+      fs.readFile(path.join(wl.novel.path,"/本文/",wl.novel.chapter.list[number] + ".txt"), 'utf8', (e, t)->
+        unless e?
+          wl.novel.chapter.path = path.join(wl.novel.path,"/本文/",wl.novel.chapter.list[number] + ".txt")
+          $("#input-text").text(t)
+          wl.novel.chapter.opened = number
+        else
+          err = new wl.popup()
+          err.messeage = e
+          err.show()
+      )
   description:{}
   afterword:{}
   open: (name)->
@@ -13,7 +24,7 @@ wl.novel =
       wl.novel.afterword.path = index.afterword
       wl.novel.author = index.author
       wl.novel.chapter.list.forEach (item,index)->
-        $("#chapter-list").append "<li oncick='wl.novel.chapter.open(#{item})'>#{item}</li>"
+        $("#chapter-list").append "<li oncick='wl.novel.chapter.open(#{index})'>#{item}</li>"
 
     unless name?
       getNovelName = new wl.popup("prompt")
@@ -22,6 +33,5 @@ wl.novel =
         _open(name)
       getNovelName.show()
     else _open(name)
-
 
 
