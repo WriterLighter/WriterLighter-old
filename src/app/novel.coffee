@@ -36,7 +36,7 @@ wl.novel =
       wl.novel.afterword.path = index.afterword
       wl.novel.author = index.author
       wl.novel.chapter.list.forEach (item,index)->
-        $("#chapter-list").append "<li oncick='wl.novel.chapter.open(#{index})'>#{item}</li>"
+        $("#chapter-list").append "<li onclick='wl.novel.chapter.open(#{index})'>#{item}</li>"
 
     unless name?
       getNovelName = new wl.popup("prompt")
