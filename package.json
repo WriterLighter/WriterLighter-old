@@ -44,7 +44,7 @@
     "gulp-watch": "^4.3.5",
     "main-bower-files": "^2.13.0",
     "vinyl-source-stream": "^1.1.0",
-    "electron-prebuilt": "~1.0.2"
+    "electron-prebuilt": "0.37.8"
   },
   "browserify": {
     "transform": [
