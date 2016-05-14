@@ -34,13 +34,12 @@ footer{
     transition: 1s;
     background: #555;
     color: #fff;
-    
-    &.show{
-    top: 0;
     z-index: 3;
     border-radius: 0 0 10px 10px;
-    }
     
+    &.show, &:hover{
+        top: 0;
+    }
     input {
         background: transparent;
         width: 100%;
