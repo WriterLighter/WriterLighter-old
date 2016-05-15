@@ -4,6 +4,7 @@ window.dialog = window.require('remote').dialog
 window.fs = window.require 'fs'
 window.path = window.require 'path'
 window.app = remote.require 'app'
+window.browserWindow = remote.require 'browser-window'
 
 # Outer Liblary
 window.jQuery = window.$ = require 'jquery'
