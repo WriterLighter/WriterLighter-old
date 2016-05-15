@@ -53,7 +53,7 @@
     ]
   },
   "dependencies": {
-    "js-yaml": "^3.6.1"
+    "js-yaml": "^3.6.1",
     "cheerio-httpcli": "^0.6.8"
   }
 }
