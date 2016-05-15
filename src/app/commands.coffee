@@ -5,4 +5,5 @@ wl.commands =
     wl.command.palette()
   add_chapter: ->
     wl.novel.chapter.add()
+  
 

@@ -82,6 +82,10 @@ gulp.task 'html', ->
   gulp.src 'src/index.html'
     .pipe(gulp.dest('dist'))
     .pipe notify 'index.html done!!!', {onLast: true}
+ gulp.task 'json', ->
+  gulp.src 'src/*.json'
+    .pipe(gulp.dest('dist'))
+    .pipe notify '*.json done!!!', {onLast: true}
  
 gulp.task 'watch', ['default'], ->
   electron.start()

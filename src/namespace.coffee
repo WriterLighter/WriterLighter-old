@@ -1,11 +1,13 @@
-# Electron Native
+# Electron or Node.js Native
 window.remote = window.require 'remote'
 window.dialog = window.require('remote').dialog
+window.Menu = remote.require 'menu'
 window.fs = window.require 'fs'
 window.path = window.require 'path'
 window.app = remote.require 'app'
 
 # Outer Liblary
+window.YAML = require "js-yaml"
 window.jQuery = window.$ = require 'jquery'
 require 'jquery-ui/ui/core'
 require 'jquery-ui/ui/widget'

@@ -1,0 +1,39 @@
+appmenu:
+  - label: "ファイル"
+    submenu:
+
+      - label: "小説を開く"
+        accelerator: "CmdOrCtrl+O"
+        command: "open_novel"
+
+      - label: "章を開く"
+        accelerator: "CmdOrCtrl+Shift+O"
+        command: "open_chapter"
+
+  - label: "編集"
+    submenu:
+      - label: "コピー"
+        accelerator: "CmdOrCtrl+C"
+        role: "copy"
+
+      - label: "切り取り"
+        accelerator: "CmdOrCtrl+X"
+        role: "cut"
+
+      - label: "貼り付け"
+        accelerator: "CmdOrCtrl+V"
+        role: "paste"
+
+      - label: "全て選択"
+        accelerator: "CmdOrCtrl+A"
+        role: "selectall"
+
+      - type: "separator"
+
+      - label: "取り消し"
+        accelerator: "CmdOrCtrl+Z"
+        role: "undo"
+
+      - label: "やり直し"
+        accelerator: "CmdOrCtrl+Shift+Z"
+        role: "redo"
