@@ -11,4 +11,7 @@ wl.commands =
     wl.editormode.IntensiveMode()
   toggle_editmode: ->
     wl.editormode.toggleIntensiveMode()
-
+  toggle_devtools: ->
+    browserWindow.getFocusedWindow().toggleDevTools()
+  reload_window: ->
+    browserWindow.getFocusedWindow().reload()

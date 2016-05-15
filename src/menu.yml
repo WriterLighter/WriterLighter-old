@@ -37,3 +37,13 @@ appmenu:
       - label: "やり直し"
         accelerator: "CmdOrCtrl+Shift+Z"
         role: "redo"
+
+  - label: "開発者メニュー"
+    submenu:
+      - label: "開発者ツール"
+        command: "toggle_devtools"
+        accelerator: "F12"
+
+      - label: "リロード"
+        accelerator: "CmdOrCtrl+R"
+        command: "reload_window"
