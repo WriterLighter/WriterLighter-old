@@ -51,5 +51,8 @@
       "coffeeify",
       "debowerify"
     ]
+  },
+  "dependencies": {
+    "cheerio-httpcli": "^0.6.8"
   }
 }
