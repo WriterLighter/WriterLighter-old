@@ -10,6 +10,8 @@ wl.editormode = class editormode
         wl.layout.open("south");
         window.browserWindow.getFocusedWindow().setFullScreen(false);
         @editorMode = 0;
+        p = new wl.popup('toast', "モード:標準")
+        p.show()
         return
     
     @IntensiveMode = ->
@@ -17,6 +19,8 @@ wl.editormode = class editormode
         wl.layout.hide("south");
         window.browserWindow.getFocusedWindow().setFullScreen(true);
         @editorMode = 1;
+        p = new wl.popup('toast', "モード:超集中モード")
+        p.show()
         return
     
     @toggleIntensiveMode = ->
