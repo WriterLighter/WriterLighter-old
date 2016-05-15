@@ -5,6 +5,7 @@ window.Menu = remote.require 'menu'
 window.fs = window.require 'fs'
 window.path = window.require 'path'
 window.app = remote.require 'app'
+window.browserWindow = remote.require 'browser-window'
 
 # Outer Liblary
 window.YAML = require "js-yaml"

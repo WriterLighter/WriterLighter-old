@@ -43,7 +43,8 @@
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
     "main-bower-files": "^2.13.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "electron-prebuilt": "0.37.8"
   },
   "browserify": {
     "transform": [
@@ -53,5 +54,6 @@
   },
   "dependencies": {
     "js-yaml": "^3.6.1"
+    "cheerio-httpcli": "^0.6.8"
   }
 }
