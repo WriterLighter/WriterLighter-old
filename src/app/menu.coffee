@@ -10,7 +10,6 @@ wl.menu =
       if item.submenu?
         data[index].submenu = wl.menu.buildTemplate(item.submenu)
       else if item.command?
-        console.log(item.command)
         data[index].click = ->
           wl.command.execute(data[index].command)
     data
