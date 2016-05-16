@@ -21,7 +21,7 @@ createWindow = () ->
   main_window.loadURL('file://' + __dirname + '/dist/index.html')
   main_window.on 'closed', ->
     main_window = null
-  main_window.webContents.openDevTools()
+  # main_window.webContents.openDevTools()
   main_window.on 'close', ->
       fs.writeFileSync(info_path, JSON.stringify(main_window.getBounds()))
 
