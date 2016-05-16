@@ -2,7 +2,7 @@ $footer-height: 30px;
 
 :focus{
     outline:none;
-    box-shadow: 0 0 10px #00f;
+    box-shadow: 0 0 7px 3px #55aaee;
 }
 
 html,body{
@@ -36,19 +36,32 @@ footer{
     color: #fff;
     z-index: 3;
     border-radius: 0 0 10px 10px;
-    
+    input[type="text"]{
+      width: 100%;
+    }
+    input {
+      color: #fff;
+      margin: 2px;
+    }
     &.show, &:hover{
         top: 0;
     }
-    input {
-        background: transparent;
-        width: 100%;
-        border: solid 1px #fff;
-        border-radius: 5px;
-        padding: 5px;
-        box-sizing: border-box;
-        color: #fff;
-    }
+}
+
+input[type="text"] {
+    background: rgba(256, 256, 256, .1);
+    border: solid 1px #000;
+    border-radius: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  background: transparent;
+  border-radius: 2px;
+  border: solid 1px #000;
 }
 
 #input-text {
