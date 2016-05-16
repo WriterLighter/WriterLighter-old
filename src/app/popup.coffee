@@ -20,16 +20,32 @@ wl.popup = class popup
         , @timeout)
 
       when "prompt"
-        _show.call @,  "<input type='text' placeholder='#{@messeage}'>"
-        $("#popup>input[type='text']")
-          .focus()
-          .on("blur",=>
-            @hide()
-          )
-          .on("keydown", (e)=>
-            if e.keyCode==13
+        if typeof @messeage is "string"
+          html = "<input type='text' placeholder='#{@messeage}'>"
+        else
+          html = "<form>"
+          @messeage.forEach (item, index)->
+            html += "<div><input type='text' placeholder='#{item}'></div>"
+          html += "<input type='reset'><input type='submit' value='完了'><form>"
+        
+        _show.call @, html
+
+        if $("#popup>input[type='text']").length is 1
+          $("#popup>input[type='text']")
+            .focus()
+            .on("blur",=>
               @hide()
-              @callback($("#popup>input").val())
-          )
-
-
+            )
+            .on("keydown", (e)=>
+              if e.keyCode==13
+                @hide()
+                @callback($("#popup>input").val())
+            )
+        else
+          $("#popup>form").on "submit", =>
+            @hide()
+            value = []
+            $("#popup input[type='text']").each ->
+              value.push $(@).val()
+            @callback value
+            false
