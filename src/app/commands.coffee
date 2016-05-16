@@ -1,6 +1,8 @@
 wl.commands =
   open_novel: ->
     wl.novel.open()
+  open_chapter: ->
+    wl.novel.chapter.open()
   command_palette: ->
     wl.command.palette()
   add_chapter: ->
