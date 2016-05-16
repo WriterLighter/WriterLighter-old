@@ -2,7 +2,7 @@
 window.remote = window.require 'remote'
 window.dialog = window.require('remote').dialog
 window.Menu = remote.require 'menu'
-window.fs = window.require 'fs'
+window.fs = window.require 'fs-extra'
 window.path = window.require 'path'
 window.app = remote.require 'app'
 window.browserWindow = remote.require 'browser-window'
