@@ -8,11 +8,11 @@ wl.commands =
   add_chapter: ->
     wl.novel.chapter.add()
   editmode_def: ->
-    wl.editormode.defaultMode()
+    wl.editor.mode.defaultMode()
   editmode_int: ->
-    wl.editormode.IntensiveMode()
+    wl.editor.mode.IntensiveMode()
   toggle_editmode: ->
-    wl.editormode.toggleIntensiveMode()
+    wl.editor.mode.toggleIntensiveMode()
   toggle_devtools: ->
     browserWindow.getFocusedWindow().toggleDevTools()
   reload_window: ->

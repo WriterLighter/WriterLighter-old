@@ -1,4 +1,4 @@
-wl.editormode = class editormode
+wl.editor.mode = class editormode
     
     #editorMode
     #0:標準モード
@@ -31,4 +31,4 @@ wl.editormode = class editormode
                 @defaultMode()
             else
                 @defaultMode()
-    
+ 
