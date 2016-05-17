@@ -17,3 +17,5 @@ wl.commands =
     browserWindow.getFocusedWindow().toggleDevTools()
   reload_window: ->
     browserWindow.getFocusedWindow().reload()
+  toggle_direction: ->
+    wl.editor.direction.toggle()
