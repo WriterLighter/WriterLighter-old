@@ -14,7 +14,7 @@ wl.novel =
             err.show()
 
       unless isNaN(number - 0)
-          _open(path.join(wl.novel.path,"/本文/",wl.novel.chapter.list[number-1] + ".txt"))
+          _open(path.join(wl.novel.path,"/本文/",wl.novel.chapter.list[number] + ".txt"))
         else if number?
           _open(path.join(wl.novel.path,wl.novel[number].path))
         else
