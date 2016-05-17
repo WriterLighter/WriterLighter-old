@@ -1,3 +1,4 @@
+wl.editor = {}
 wl.editor.mode = class editormode
     
     #editorMode
@@ -32,3 +33,19 @@ wl.editor.mode = class editormode
             else
                 @defaultMode()
  
+  wl.editor.direction =
+    set: (direction)->
+      switch direction
+        when "vertical"
+          $("#input-text").addClass("vertical")
+        when "horizontal"
+          $("#input-text").removeClass("vertical")
+        else
+          wl.editor.direction.set("horizontal")
+      wl.editor.direction.is = direction
+
+    toggle: ->
+      if wl.editor.direction.is is "vertical"
+        wl.editor.direction.set("horizontal")
+      else
+        wl.editor.direction.set("vertical")

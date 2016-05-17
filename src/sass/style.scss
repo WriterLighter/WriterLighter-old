@@ -77,4 +77,7 @@ input[type="reset"] {
     &:focus{
         box-shadow: none;
     }
+    &.vertical{
+      writing-mode: vertical-rl;
+    }
 }
