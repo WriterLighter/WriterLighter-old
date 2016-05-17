@@ -7,6 +7,7 @@ wl.novel =
             wl.novel.chapter.path = path
             $("#input-text").text(t)
             wl.novel.chapter.opened = number
+            wl.lastedit.save()
           else
             err = new wl.popup()
             err.messeage = e
