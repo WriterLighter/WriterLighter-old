@@ -3,11 +3,11 @@ appmenu:
     submenu:
 
       - label: "小説を開く"
-        accelerator: "CmdOrCtrl+O"
+        accelerator: "CmdOrCtrl+Shift+O"
         command: "open_novel"
 
       - label: "章を開く"
-        accelerator: "CmdOrCtrl+Shift+O"
+        accelerator: "CmdOrCtrl+O"
         command: "open_chapter"
 
   - label: "編集"
