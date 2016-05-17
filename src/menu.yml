@@ -38,6 +38,24 @@ appmenu:
         accelerator: "CmdOrCtrl+Shift+Z"
         role: "redo"
 
+      - type: "separator"
+
+      - label: "文字の方向切り替え"
+        accelerator: "CmdOrCtrl+Shift+D"
+        command: "toggle_direction"
+
+  - label: "表示"
+    submenu:
+      - label: "超集中モード切り替え"
+        accelerator: "F11"
+        command: "toggle_editmode"
+
+  - label: "コマンド"
+    submenu:
+      - label: "コマンドパレット"
+        accelerator: "CmdOrCtrl+Shift+P"
+        command: "command_palette"
+
   - label: "開発者メニュー"
     submenu:
       - label: "開発者ツール"
