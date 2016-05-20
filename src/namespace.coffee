@@ -15,6 +15,9 @@ require 'jquery-ui/ui/widget'
 require 'jquery-ui/ui/mouse'
 require 'jquery-ui/ui/draggable'
 require 'jquery-ui/ui/effect'
+require 'jquery-ui/ui/position'
+require 'jquery-ui/ui/menu'
+require 'jquery-ui/ui/autocomplete'
 require 'jquery.layout'
 
 window.WriterLighter = window.wl = {}
