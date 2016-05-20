@@ -38,6 +38,7 @@ wl.novel =
       wl.novel.author = index.author
       wl.novel.chapter.list.forEach (item,index)->
         $("#chapter-list").append "<li onclick='wl.novel.chapter.open(#{index})'>#{item}</li>"
+      wl.novel.chapter.open(0)
 
     unless name?
       getNovelName = new wl.popup("prompt")
