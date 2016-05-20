@@ -36,8 +36,10 @@ wl.novel =
       wl.novel.description.path = index.description
       wl.novel.afterword.path = index.afterword
       wl.novel.author = index.author
+      list = ""
       wl.novel.chapter.list.forEach (item,index)->
-        $("#chapter-list").append "<li onclick='wl.novel.chapter.open(#{index})'>#{item}</li>"
+        list +=  "<li onclick='wl.novel.chapter.open(#{index})'>#{item}</li>"
+      $("#chapter-list").html(list)
       wl.novel.chapter.open(0)
 
     unless name?
