@@ -12,6 +12,8 @@ $ ->
       lastedit = JSON.parse data
       wl.novel.open lastedit.novel
       wl.novel.chapter.open lastedit.chapter
+    else
+      wl.novel.open "はじめよう"
 
 $(window).on "beforeunload", ->
   wl.lastedit.save()
