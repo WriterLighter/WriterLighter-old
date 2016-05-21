@@ -40,7 +40,7 @@ wl.novel =
       wl.novel.chapter.list.forEach (item,index)->
         list +=  "<li onclick='wl.novel.chapter.open(#{index})'>#{item}</li>"
       $("#chapter-list").html(list)
-      wl.novel.chapter.open(0)
+      if index.chapter.length is 0 then wl.novel.chapter.new() else wl.novel.chapter.open(0)
 
     if name? and name isnt ""
       _open name
@@ -51,4 +51,22 @@ wl.novel =
         wl.novel.open name
       getNovelName.show()
 
+  new: (name)->
+    if name? and name isnt ""
+      index =
+        name: name
+        author: wl.config.user.name
+        description: "説明.txt"
+        afterword: "あとがき.txt"
+        chapter: []
 
+      fs.mkdirs path.join(wl.config.bookshalf, name), (e)->
+        unless e?
+          fs.write path.join(wl.config.bookshalf, name, "index.json"), JSON.stringify(index), (e)->
+            unless e?
+              wl.novel.open name
+    else
+      p = new wl.popup("prompt", "小説名を入力…")
+      p.callback = (name)->
+        wl.novel.new name
+      p.show()
