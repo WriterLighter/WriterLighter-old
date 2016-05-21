@@ -49,3 +49,6 @@ wl.editor.mode = class editormode
         wl.editor.direction.set("horizontal")
       else
         wl.editor.direction.set("vertical")
+
+$ ->
+  wl.editor.input = document.getElementById("input-text")

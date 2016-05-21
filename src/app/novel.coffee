@@ -15,7 +15,7 @@ wl.novel =
 
       unless isNaN(number - 0)
           _open(path.join(wl.novel.path,"/本文/",wl.novel.chapter.list[number] + ".txt"))
-        else if number?
+        else if number? and name isnt ""
           _open(path.join(wl.novel.path,wl.novel[number].path))
         else
           getChapter = new wl.popup("prompt")
@@ -42,12 +42,13 @@ wl.novel =
       $("#chapter-list").html(list)
       wl.novel.chapter.open(0)
 
-    unless name?
+    if name? and name isnt ""
+      _open name
+    else
       getNovelName = new wl.popup("prompt")
       getNovelName.messeage = "小説名を入力…"
       getNovelName.callback = (name)->
-        _open(name)
+        wl.novel.open name
       getNovelName.show()
-    else _open(name)
 
 
