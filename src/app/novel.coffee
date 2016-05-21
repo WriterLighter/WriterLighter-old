@@ -24,6 +24,25 @@ wl.novel =
             wl.novel.chapter.open(chapter)
           getChapter.show()
 
+    new: (name)->
+      if name? and name isnt ""
+        newchapter = wl.novel.chapter.list.push name
+        $("#input-text").text("")
+        wl.novel.chapter.opened = newchapter - 1
+        wl.novel.chapter.reload()
+        wl.lastedit.save()
+      else
+        getNewChapterName = new wl.popup("prompt", "追加する章名を入力…")
+        getNewChapterName.callback = (name)->
+          wl.novel.chapter.new(name)
+        getNewChapterName.show()
+
+    reload: ->
+      list = ""
+      wl.novel.chapter.list.forEach (item,index)->
+        list +=  "<li onclick='wl.novel.chapter.open(#{index})'>#{item}</li>"
+      $("#chapter-list").html(list)
+
   description:{}
   afterword:{}
   open: (name)->
@@ -36,10 +55,7 @@ wl.novel =
       wl.novel.description.path = index.description
       wl.novel.afterword.path = index.afterword
       wl.novel.author = index.author
-      list = ""
-      wl.novel.chapter.list.forEach (item,index)->
-        list +=  "<li onclick='wl.novel.chapter.open(#{index})'>#{item}</li>"
-      $("#chapter-list").html(list)
+      wl.novel.chapter.reload()
       if index.chapter.length is 0 then wl.novel.chapter.new() else wl.novel.chapter.open(0)
 
     if name? and name isnt ""
@@ -60,9 +76,9 @@ wl.novel =
         afterword: "あとがき.txt"
         chapter: []
 
-      fs.mkdirs path.join(wl.config.bookshalf, name), (e)->
+      fs.mkdirs path.join(wl.config.user.bookshalf, name), (e)->
         unless e?
-          fs.write path.join(wl.config.bookshalf, name, "index.json"), JSON.stringify(index), (e)->
+          fs.writeFile path.join(wl.config.user.bookshalf, name, "index.json"), JSON.stringify(index), (e)->
             unless e?
               wl.novel.open name
     else
