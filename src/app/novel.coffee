@@ -37,6 +37,12 @@ wl.novel =
           wl.novel.chapter.new(name)
         getNewChapterName.show()
 
+    save: ->
+      fs.writeFile w.novel.chapter.path, document.getElementById("input-text").innerText, (e)->
+        if e?
+          errp = new wl.popup("toast", e)
+          errp.show()
+
     reload: ->
       list = ""
       wl.novel.chapter.list.forEach (item,index)->
