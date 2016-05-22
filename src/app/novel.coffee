@@ -31,6 +31,7 @@ wl.novel =
         wl.novel.chapter.opened = newchapter - 1
         wl.novel.chapter.reload()
         wl.novel.chapter.path = path.join(wl.novel.path,"本文",name+".txt")
+        wl.novel.saveIndex()
         wl.lastedit.save()
       else
         getNewChapterName = new wl.popup("prompt", "追加する章名を入力…")
@@ -74,6 +75,19 @@ wl.novel =
       getNovelName.callback = (name)->
         wl.novel.open name
       getNovelName.show()
+
+  saveIndex: ->
+    index =
+      name: wl.novel.name
+      chapter: wl.novel.chapter.list
+      description: wl.novel.description.path
+      afterword: wl.novel.afterword.path
+      author: wl.novel.author
+      plot: wl.novel.plot
+    console.log index
+    
+    fs.writeFile path.join(wl.novel.path, "index.json"), JSON.stringify(index), (e)->
+      if e? then console.error e
 
   new: (name)->
     if name? and name isnt ""
