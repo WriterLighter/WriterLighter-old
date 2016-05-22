@@ -5,7 +5,7 @@ wl.novel =
       _open = (path) ->
         fs.readFile path, 'utf8', (e, t)->
           wl.novel.chapter.path = path
-          wl.novel.previousFile = if t? then t else ""
+          wl.editor.previousInput = wl.novel.previousFile = if t? then t else ""
           $("#input-text").text(wl.novel.previousFile)
           wl.editor.edited = false
           wl.novel.chapter.opened = number
@@ -26,7 +26,7 @@ wl.novel =
       if name? and name isnt ""
         newchapter = wl.novel.chapter.list.push name
         $("#input-text").text("")
-        wl.novel.previousFile = ""
+        wl.editor.previousInput = wl.novel.previousFile = ""
         wl.novel.chapter.opened = newchapter - 1
         wl.editor.edited = false
         wl.novel.chapter.reload()

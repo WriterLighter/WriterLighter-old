@@ -56,6 +56,13 @@ $ ->
   $("#input-text").on "keydown", (e)->
     if wl.editor.input.innerText isnt wl.novel.previousFile and wl.editor.edited is false
       wl.editor.edited = true
+    if wl.editor.input.innerText isnt wl.editor.previousInput
+      clearTimeout wl.editor.saveTimeout
+      wl.editor.previousInput = wl.editor.input.innerText
+      wl.editor.saveTimeout = setTimeout ()->
+        console.log "おーとせーぶ！"
+        wl.novel.chapter.save()
+      , if typeof wl.config.user.saveTimeout is "number" then wl.config.user.saveTimeout else 1000
     if wl.novel.previousFile.split("\n").length < wl.editor.input.innerText.split("\n").length and e.keyCode is 13
       document.execCommand('insertHTML', false, '　')
 
