@@ -30,6 +30,7 @@ wl.novel =
         $("#input-text").text("")
         wl.novel.chapter.opened = newchapter - 1
         wl.novel.chapter.reload()
+        wl.novel.chapter.path = path.join(wl.novel.path,"本文",name+".txt")
         wl.lastedit.save()
       else
         getNewChapterName = new wl.popup("prompt", "追加する章名を入力…")
@@ -38,7 +39,7 @@ wl.novel =
         getNewChapterName.show()
 
     save: ->
-      fs.writeFile w.novel.chapter.path, document.getElementById("input-text").innerText, (e)->
+      fs.writeFile wl.novel.chapter.path, document.getElementById("input-text").innerText, (e)->
         if e?
           errp = new wl.popup("toast", e)
           errp.show()
@@ -82,7 +83,7 @@ wl.novel =
         afterword: "あとがき.txt"
         chapter: []
 
-      fs.mkdirs path.join(wl.config.user.bookshalf, name), (e)->
+      fs.mkdirs path.join(wl.config.user.bookshalf, name, "本文"), (e)->
         unless e?
           fs.writeFile path.join(wl.config.user.bookshalf, name, "index.json"), JSON.stringify(index), (e)->
             unless e?
