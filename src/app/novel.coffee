@@ -63,7 +63,7 @@ wl.novel =
       wl.novel.description.path = index.description
       wl.novel.afterword.path = index.afterword
       wl.novel.author = index.author
-      wl.novel.plot = index.plot
+      wl.novel.plot.path = index.plot
       wl.novel.chapter.reload()
       if index.chapter.length is 0 then wl.novel.chapter.new() else wl.novel.chapter.open(0)
 
@@ -83,7 +83,7 @@ wl.novel =
       description: wl.novel.description.path
       afterword: wl.novel.afterword.path
       author: wl.novel.author
-      plot: wl.novel.plot
+      plot: wl.novel.plot.path
     console.log index
     
     fs.writeFile path.join(wl.novel.path, "index.json"), JSON.stringify(index), (e)->
