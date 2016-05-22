@@ -62,6 +62,7 @@ wl.novel =
       wl.novel.description.path = index.description
       wl.novel.afterword.path = index.afterword
       wl.novel.author = index.author
+      wl.novel.plot = index.plot
       wl.novel.chapter.reload()
       if index.chapter.length is 0 then wl.novel.chapter.new() else wl.novel.chapter.open(0)
 
@@ -82,6 +83,7 @@ wl.novel =
         description: "説明.txt"
         afterword: "あとがき.txt"
         chapter: []
+        plot: "プロット.txt"
 
       fs.mkdirs path.join(wl.config.user.bookshalf, name, "本文"), (e)->
         unless e?
