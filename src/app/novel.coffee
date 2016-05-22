@@ -10,6 +10,7 @@ wl.novel =
           wl.editor.edited = false
           wl.novel.chapter.opened = number
           wl.lastedit.save()
+          wl.editor.clearWindowName()
 
       unless isNaN(number - 0)
           _open(path.join(wl.novel.path,"/本文/",wl.novel.chapter.list[number] + ".txt"))
@@ -47,6 +48,7 @@ wl.novel =
         else
           wl.novel.previousFile = wl.editor.input.innerText
           wl.editor.edited = false
+          wl.editor.clearWindowName()
 
     reload: ->
       list = ""

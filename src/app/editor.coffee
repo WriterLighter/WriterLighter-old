@@ -50,17 +50,24 @@ wl.editor.mode = class editormode
       else
         wl.editor.direction.set("vertical")
 
+  wl.editor.clearWindowName = ()->
+    if typeof wl.novel.chapter.opened is "number"
+      chaptername = wl.novel.chapter.list[wl.novel.chapter.opened]
+    else
+      chaptername = wl.novel[wl.novel.chapter.opened].path
+    document.title = "#{chaptername} - #{wl.novel.name} | WriterLighter"
+
 $ ->
   wl.editor.input = document.getElementById("input-text")
 
   $("#input-text").on "keydown", (e)->
     if wl.editor.input.innerText isnt wl.novel.previousFile and wl.editor.edited is false
       wl.editor.edited = true
+      document.title = "* " + document.title
     if wl.editor.input.innerText isnt wl.editor.previousInput
       clearTimeout wl.editor.saveTimeout
       wl.editor.previousInput = wl.editor.input.innerText
       wl.editor.saveTimeout = setTimeout ()->
-        console.log "おーとせーぶ！"
         wl.novel.chapter.save()
       , if typeof wl.config.user.saveTimeout is "number" then wl.config.user.saveTimeout else 1000
     if wl.novel.previousFile.split("\n").length < wl.editor.input.innerText.split("\n").length and e.keyCode is 13
