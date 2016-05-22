@@ -73,3 +73,5 @@ $ ->
     if wl.novel.previousFile.split("\n").length < wl.editor.input.innerText.split("\n").length and e.keyCode is 13
       document.execCommand('insertHTML', false, '　')
 
+  $(window).on "beforeunload" , ()->
+    if wl.editor.edited then wl.novel.chapter.save()
