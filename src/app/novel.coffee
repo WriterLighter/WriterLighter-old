@@ -3,15 +3,10 @@ wl.novel =
     open: (number) ->
       _open = (path) ->
         fs.readFile path, 'utf8', (e, t)->
-          unless e?
-            wl.novel.chapter.path = path
-            $("#input-text").text(t)
-            wl.novel.chapter.opened = number
-            wl.lastedit.save()
-          else
-            err = new wl.popup()
-            err.messeage = e
-            err.show()
+          wl.novel.chapter.path = path
+          $("#input-text").text(if t? then t else "")
+          wl.novel.chapter.opened = number
+          wl.lastedit.save()
 
       unless isNaN(number - 0)
           _open(path.join(wl.novel.path,"/本文/",wl.novel.chapter.list[number] + ".txt"))

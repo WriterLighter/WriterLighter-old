@@ -24,7 +24,7 @@ appmenu:
 
       - label: "保存"
         accelerator: "CmdOrCtrl+S"
-        command: "save_chapter"
+        command: "save"
 
   - label: "編集"
     submenu:
