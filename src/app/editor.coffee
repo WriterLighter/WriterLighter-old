@@ -52,3 +52,10 @@ wl.editor.mode = class editormode
 
 $ ->
   wl.editor.input = document.getElementById("input-text")
+
+  $("#input-text").on "keydown", (e)->
+    if wl.editor.input.innerText isnt wl.novel.previousFile and wl.editor.edited is false
+      wl.editor.edited = true
+    if wl.novel.previousFile.split("\n").length < wl.editor.input.innerText.split("\n").length and e.keyCode is 13
+      document.execCommand('insertHTML', false, '　')
+

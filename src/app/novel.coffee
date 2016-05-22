@@ -1,10 +1,13 @@
 wl.novel =
   chapter:
     open: (number) ->
+      if wl.editor.edited then wl.novel.chapter.save()
       _open = (path) ->
         fs.readFile path, 'utf8', (e, t)->
           wl.novel.chapter.path = path
-          $("#input-text").text(if t? then t else "")
+          wl.novel.previousFile = if t? then t else ""
+          $("#input-text").text(wl.novel.previousFile)
+          wl.editor.edited = false
           wl.novel.chapter.opened = number
           wl.lastedit.save()
 
@@ -23,7 +26,9 @@ wl.novel =
       if name? and name isnt ""
         newchapter = wl.novel.chapter.list.push name
         $("#input-text").text("")
+        wl.novel.previousFile = ""
         wl.novel.chapter.opened = newchapter - 1
+        wl.editor.edited = false
         wl.novel.chapter.reload()
         wl.novel.chapter.path = path.join(wl.novel.path,"本文",name+".txt")
         wl.novel.saveIndex()
@@ -35,10 +40,13 @@ wl.novel =
         getNewChapterName.show()
 
     save: ->
-      fs.writeFile wl.novel.chapter.path, document.getElementById("input-text").innerText, (e)->
+      fs.writeFile wl.novel.chapter.path, wl.editor.input.innerText, (e)->
         if e?
           errp = new wl.popup("toast", e)
           errp.show()
+        else
+          wl.novel.previousFile = wl.editor.input.innerText
+          wl.editor.edited = false
 
     reload: ->
       list = ""
