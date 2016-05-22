@@ -10,6 +10,22 @@ appmenu:
         accelerator: "CmdOrCtrl+O"
         command: "open_chapter"
 
+      - type: "separator"
+
+      - label: "新規小説作成"
+        accelerator: "CmdOrCtrl+Shift+N"
+        command: "new_novel"
+
+      - label: "新規章作成"
+        accelerator: "CmdOrCtrl+N"
+        command: "new_chapter"
+
+      - type: "separator"
+
+      - label: "保存"
+        accelerator: "CmdOrCtrl+S"
+        command: "save_chapter"
+
   - label: "編集"
     submenu:
       - label: "コピー"

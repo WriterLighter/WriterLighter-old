@@ -53,6 +53,7 @@ wl.novel =
 
   description:{}
   afterword:{}
+  plot:{}
   open: (name)->
 
     _open =  (novelname)->

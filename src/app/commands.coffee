@@ -19,3 +19,9 @@ wl.commands =
     browserWindow.getFocusedWindow().reload()
   toggle_direction: ->
     wl.editor.direction.toggle()
+  new_novel: ->
+    wl.novel.new()
+  new_chapter: ->
+    wl.novel.chapter.new()
+  save: ->
+    wl.novel.chapter.save()
