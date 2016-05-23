@@ -39,18 +39,21 @@ wl.popup = class popup
           $("#popup>input[type='text']")
             .focus()
             .on("blur",=>
-              @hide()
+              unless @forcing
+                @hide()
             )
             .on("keydown", (e)=>
               if e.keyCode==13
+                if $("#popup>input").val() == "" then return false
                 @hide()
                 @callback($("#popup>input").val())
             )
         else
           $("#popup>form").on "submit", =>
-            @hide()
             value = []
             $("#popup input[type='text']").each ->
+              if $(@).val() == "" then return false
               value.push $(@).val()
+            @hide()
             @callback value
             false
