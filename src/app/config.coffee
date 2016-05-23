@@ -19,7 +19,7 @@ wl.config = class config
       "あなたのペンネームを入力してください。"
       "小説の保存するフォルダを入力してください。"
     ]
-    # p.force = true
+    p.forcing = true
     p.callback = (res)->
         wl.config.user =
           name: res[0]
@@ -28,11 +28,10 @@ wl.config = class config
 
 $ ->
   fs.readFile wl.config.path, (err,data)->
-    unless err?
+    if data? and Object.keys(data).length isnt 0
       wl.config.user = JSON.parse data
     else
       wl.config.init()
-#TODO: config.json を取得、なかったらinit
 
 $(window).on "beforeunload", ->
   wl.config.save()
