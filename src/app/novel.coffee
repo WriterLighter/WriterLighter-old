@@ -14,7 +14,7 @@ wl.novel =
 
       unless isNaN(number - 0)
           _open(path.join(wl.novel.path,"/本文/",wl.novel.chapter.list[number] + ".txt"))
-        else if number? and name isnt ""
+        else if number? and number isnt ""
           _open(path.join(wl.novel.path,wl.novel[number].path))
         else
           getChapter = new wl.popup("prompt")
