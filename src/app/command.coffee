@@ -12,6 +12,7 @@ wl.command =
   palette: ->
     palette = new wl.popup("prompt")
     palette.messeage = "コマンドを入力…"
+    palette.complete = Object.keys(wl.commands)
     palette.callback = (command)->
       wl.command.execute command
     palette.show()

@@ -8,7 +8,7 @@ wl.popup = class popup
       .html html
       .addClass "show"
   
-  constructor: (@type = "toast", @messeage = "", @callback = ((m)-> console.log(m)), @timeout = 3000, @complete = Object.keys(wl.commands))->
+  constructor: (@type = "toast", @messeage = "", @callback = ((m)-> console.log(m)), @timeout = 3000, @complete = [])->
 
   show: =>
     switch @type
@@ -31,7 +31,7 @@ wl.popup = class popup
         _show.call @, html
         
         $("#popup>input[type='text']")
-          .autocomplete 
+          .autocomplete
             "source": @complete
             
 
