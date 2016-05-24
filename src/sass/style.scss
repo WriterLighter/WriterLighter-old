@@ -81,3 +81,35 @@ input[type="reset"] {
       writing-mode: vertical-rl;
     }
 }
+
+ul,
+ol {
+  -webkit-padding-start: 1em;
+  &.nonestyle {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.ui-layout-pane {
+  padding: 0;
+}
+
+#statusbar{
+  display: flex;
+  background: #4a4a4a;
+  color: #e0e0e0;
+  font-weight: bold;
+  li{
+    height: 1em;
+    padding: .25em;
+    border-left: solid 1px #e0e0e0;
+    flex-direction: row;
+    justify-content: flex-end;
+    overflow: hidden;
+    &.offset{
+      flex-grow: 1;
+    }
+  }
+}
