@@ -66,6 +66,7 @@ $ ->
       document.title = "* " + document.title
     if wl.editor.input.innerText isnt wl.editor.previousInput
       clearTimeout wl.editor.saveTimeout
+      wl.statusbar.reload()
       wl.editor.previousInput = wl.editor.input.innerText
       wl.editor.saveTimeout = setTimeout ()->
         wl.novel.chapter.save()

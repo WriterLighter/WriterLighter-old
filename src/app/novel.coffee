@@ -11,6 +11,7 @@ wl.novel =
           wl.novel.chapter.opened = number
           wl.lastedit.save()
           wl.editor.clearWindowName()
+          wl.statusbar.reload()
 
       unless isNaN(number - 0)
           _open(path.join(wl.novel.path,"/本文/",wl.novel.chapter.list[number] + ".txt"))
