@@ -16,12 +16,12 @@
 
     <!-- Chapter List Pane -->
     <div class="ui-layout-west">
-      <ul>
+      <ul class="nonestyle">
         <li><ol id="chapter-list"></ol></li>
         <li onclick="wl.novel.chapter.open('plot')">プロット</li>
         <li onclick="wl.novel.chapter.open('description')">説明</li>
         <li onclick="wl.novel.chapter.open('afterword')">あとがき</li>
-       </ul>
+      </ul>
     </div>
 
     <!-- Extesion Pane--> <!--
@@ -30,9 +30,14 @@
     </div>
     -->
 
-    <footer class="ui-layout-south">
-
-    </footer>
+  <footer class="ui-layout-south">
+    <ul id="statusbar" class="nonestyle">
+      <li class="offset"></li>
+      <li class="letter"></li>
+      <li class="line"></li>
+      <li class="byte"></li>
+    </ul>
+  </footer>
     </div>
 </body>
 
