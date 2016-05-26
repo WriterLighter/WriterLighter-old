@@ -24,3 +24,11 @@ wl.search =
     wl.editor.input.innerHTML = res
     sres
 
+  search:(keyword)->
+    unless keyword?
+      $(wl.search.searchBox).addClass("show")
+      # TODO: 検索用の入力欄作る
+    else
+      wl.search.highlight(keyword, "searched")
+      # TODO: ハイライトフォーカス用関数作る
+      # wl.search.focus()
