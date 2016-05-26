@@ -22,4 +22,5 @@ wl.search =
       res = insert(res, end, "</mark>")
       res = insert(res, start, "<mark class='#{className}'>")
     wl.editor.input.innerHTML = res
+    sres
 
