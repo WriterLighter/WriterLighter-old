@@ -17,12 +17,32 @@ wl.search =
 
     res = wl.editor.input.innerText
     sres = findAllInText res, Keyword
-    sres.forEach (start ,index)->
+    rres = sres
+    rres.reverse()
+    rres.forEach (start ,index)->
       end = start + Keyword.length
       res = insert(res, end, "</mark>")
       res = insert(res, start, "<mark class='#{className}'>")
     wl.editor.input.innerHTML = res
     sres
+
+  focus:(index = 0)->
+    res = $("mark.searched").length
+    switch typeof index
+      when "number"
+        wl.search.forcusing = index
+        pos = $("mark.searched").eq(index%res).addClass("forcusing").position()
+        if wl.editor.direction.is is "vertical"
+          $("#input-text").scrollTop(pos.top + $("#input-text").scrollTop() - ($("#input-text").height() / 2))
+        else
+          $("#input-text").scrollLeft(pos.left + $("#input-text").scrollLeft() - ($("#input-text").width() / 2))
+
+      when "string"
+        switch index
+          when "next"
+            wl.search.focus(wl.search.forcusing + 1)
+          when "back"
+            wl.search.focus(wl.search.forcusing - 1)
 
   search:(keyword)->
     unless keyword?
