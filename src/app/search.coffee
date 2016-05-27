@@ -26,8 +26,7 @@ wl.search =
 
   search:(keyword)->
     unless keyword?
-      $(wl.search.searchBox).addClass("show")
-      # TODO: 検索用の入力欄作る
+      $("#search").addClass("show")
     else
       wl.search.highlight(keyword, "searched")
       # TODO: ハイライトフォーカス用関数作る
