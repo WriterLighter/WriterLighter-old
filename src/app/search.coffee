@@ -49,5 +49,4 @@ wl.search =
       $("#search").addClass("show")
     else
       wl.search.highlight(keyword, "searched")
-      # TODO: ハイライトフォーカス用関数作る
-      # wl.search.focus()
+      wl.search.focus()
