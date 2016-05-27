@@ -101,6 +101,9 @@ input[type="reset"] {
     &.vertical{
       writing-mode: vertical-rl;
     }
+    mark.searched.forcused{
+      background: red;
+    }
 }
 
 ul,

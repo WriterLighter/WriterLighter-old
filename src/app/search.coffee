@@ -31,7 +31,7 @@ wl.search =
     switch typeof index
       when "number"
         wl.search.forcusing = index
-        pos = $("mark.searched").eq(index%res).addClass("forcusing").position()
+        pos = $("mark.searched").eq(index%res).addClass("focused").position()
         if wl.editor.direction.is is "vertical"
           $("#input-text").scrollTop(pos.top + $("#input-text").scrollTop() - ($("#input-text").height() / 2))
         else
