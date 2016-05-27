@@ -94,6 +94,7 @@ input[type="reset"] {
     box-sizing: border-box;
     width: 100%;
     overflow: auto;
+    white-space: pre-line;
     &:focus{
         box-shadow: none;
     }
