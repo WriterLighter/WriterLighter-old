@@ -10,7 +10,7 @@
 <body>
     <div id="search">
       <div>
-        <input type="search" onkeyup="event.keyCode==13&&wl.search.search(this.value)">
+        <input type="search" oninput="wl.search.search(this.value)">
       </div>
       <div>
         <span class="focused">0</span>/<span class="all">0</span>
