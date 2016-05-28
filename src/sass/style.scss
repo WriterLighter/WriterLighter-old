@@ -1,5 +1,7 @@
 $footer-height: 30px;
 
+a:hover{cursor:pointer}
+
 :focus{
     outline:none;
     box-shadow: 0 0 7px 3px #55aaee;
@@ -62,6 +64,49 @@ footer{
       color: #fff;
       margin: 2px;
     }
+    a{
+      margin: .2em;
+      display: inline-block;
+      width: 1em;
+      height:1em;
+      position: relative;
+      &:before{
+        content: "";
+        position: relative;
+        width: 50%;
+        display: inline-block;
+        border-bottom: solid 2px;
+        border-right: solid 2px;
+        height: 50%;
+      }
+      &.next:before{
+        transform: rotate(45deg);
+      }
+      &.back:before{
+        transform: rotate(-135deg) ;
+      }
+      &.close{
+        float: right;
+
+        &:before,
+        &:after{
+          width: 100%;
+          height: 2px;
+          border: none;
+          content: "";
+          background: #fff;
+          display: inline-block;
+          position: absolute;
+          top: 50%;
+        }
+        &:before{
+          transform: rotate(45deg);
+        }
+        &:after{
+          transform: rotate(135deg)
+        }
+      }
+    }
     &.show{
       top: 0;
     }
@@ -95,7 +140,7 @@ input[type="reset"] {
     width: 100%;
     overflow: auto;
     white-space: pre-wrap;
-    &:focus{
+    &:focrus{
         box-shadow: none;
     }
     &.vertical{

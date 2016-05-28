@@ -14,9 +14,9 @@
       </div>
       <div>
         <span class="focused">0</span>/<span class="all">0</span>
-        <input type="button" onclick="wl.search.focus('next')">
-        <input type="button" onclick="wl.search.focus('back')">
-        <input class="close" type="button" onclick="$('#search').removeClass('show')">
+        <a onclick="wl.search.focus('next')" class="next"></a>
+        <a onclick="wl.search.focus('back')" class="back"></a>
+        <a class="close" onclick="$('#search').removeClass('show')"></a>
       </div>
     </div>
 
