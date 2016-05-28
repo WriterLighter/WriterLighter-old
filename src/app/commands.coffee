@@ -25,3 +25,5 @@ wl.commands =
     wl.novel.chapter.new()
   save: ->
     wl.novel.chapter.save()
+  search: ->
+    wl.search.search()
