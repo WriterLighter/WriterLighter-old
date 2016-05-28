@@ -51,3 +51,10 @@ wl.search =
     else
       wl.search.highlight(keyword, "searched")
       wl.search.focus()
+
+  nohighlight: ()->
+    $("#input-text").html $("#input-text").text()
+
+$ ->
+  $("#input-text").on "focus", ()->
+    wl.search.nohighlight()
