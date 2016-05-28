@@ -49,6 +49,7 @@ wl.search =
   search:(keyword)->
     unless keyword?
       $("#search").addClass("show")
+      $("#search input[type='search']").focus()
     else
       sres = wl.search.highlight(keyword, "searched")
       unless sres.length is 0
