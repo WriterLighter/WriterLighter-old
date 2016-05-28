@@ -30,7 +30,8 @@ wl.search =
     res = $("mark.searched").length
     switch typeof index
       when "number"
-        wl.search.forcusing = index
+        wl.search.forcusing = index % res
+        $("#search .focused").html(wl.search.forcusing + 1)
         $("mark.focused").removeClass("focused")
         pos = $("mark.searched").eq(index%res).addClass("focused").position()
         if wl.editor.direction.is is "vertical"
@@ -49,8 +50,10 @@ wl.search =
     unless keyword?
       $("#search").addClass("show")
     else
-      wl.search.highlight(keyword, "searched")
-      wl.search.focus()
+      sres = wl.search.highlight(keyword, "searched")
+      unless sres.length is 0
+        $("#search .all").html sres.length
+        wl.search.focus()
 
   nohighlight: ()->
     $("#input-text").html $("#input-text").text()
