@@ -57,7 +57,9 @@ wl.search =
         wl.search.focus()
 
   nohighlight: ()->
+    $('#search').removeClass('show')
     $("#input-text").html $("#input-text").text()
+      .focus()
 
 $ ->
   $("#input-text").on "focus", ()->

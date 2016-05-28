@@ -10,13 +10,13 @@
 <body>
     <div id="search">
       <div>
-        <input type="search" oninput="wl.search.search(this.value)">
+        <input type="search" oninput="wl.search.search(this.value)" onkeyup="event.keyCode===13&&wl.search.search(this.value)">
       </div>
       <div>
         <span class="focused">0</span>/<span class="all">0</span>
         <a onclick="wl.search.focus('next')" class="next"></a>
         <a onclick="wl.search.focus('back')" class="back"></a>
-        <a class="close" onclick="$('#search').removeClass('show')"></a>
+        <a class="close" onclick="wl.search.nohighlight()"></a>
       </div>
     </div>
 
