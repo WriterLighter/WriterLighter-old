@@ -65,6 +65,13 @@ appmenu:
       - label: "超集中モード切り替え"
         accelerator: "F11"
         command: "toggle_editmode"
+          
+
+  - label: "検索"
+    submenu:
+      - label: "検索"
+        accelerator: "CmdOrCtrl+F"
+        command: "search"
 
   - label: "コマンド"
     submenu:
