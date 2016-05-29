@@ -41,6 +41,28 @@ wl.novel =
           wl.novel.chapter.new(name)
         getNewChapterName.show()
 
+    delete: (number) ->
+      unless isNaN(number - 0)
+        confirm = new wl.popup "prompt"
+        confirm.messeage = "確認のため、章名をご入力ください…"
+        confirm.callback = (name) ->
+          if name is wl.novel.chapter.list[number]
+            wl.novel.chapter.list.splice number, 1
+            fs.unlink path.join(wl.novel.path, "本文", name + ".txt")
+            wl.novel.saveIndex()
+            wl.novel.chapter.reload()
+            if wl.novel.chapter.opened is number
+              wl.chapter.open 1
+          else
+            wl.novel.chapter.delete number
+        confirm.show()
+      else
+        getChapter = new wl.popup("prompt")
+        getChapter.messeage = "章名またはタイプ(afterwordなど)を入力…"
+        getChapter.callback = (chapter)->
+          wl.novel.chapter.delete(chapter)
+        getChapter.show()
+
     save: ->
       fs.writeFile wl.novel.chapter.path, wl.editor.input.innerText, (e)->
         if e?
