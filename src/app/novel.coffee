@@ -41,6 +41,27 @@ wl.novel =
           wl.novel.chapter.new(name)
         getNewChapterName.show()
 
+    rename: (number) ->
+      unless isNaN(number - 0)
+        confirm = new wl.popup "prompt"
+        confirm.messeage = "新しい章名を入力してください…"
+        confirm.callback = (name) ->
+          oldname = wl.novel.chapter.list[number]
+          newpath = wl.novel.chapter.path =  path.join(wl.novel.path, "本文", name + ".txt")
+          fs.renameSync path.join(wl.novel.path, "本文", oldname + ".txt"), newpath
+          wl.novel.chapter.list[number] = name
+          wl.novel.saveIndex()
+          wl.novel.chapter.reload()
+          if wl.novel.chapter.opened is number
+            wl.chapter.open number
+        confirm.show()
+      else
+        getChapter = new wl.popup("prompt")
+        getChapter.messeage = "章名またはタイプ(afterwordなど)を入力…"
+        getChapter.callback = (chapter)->
+          wl.novel.chapter.rename(chapter)
+        getChapter.show()
+
     delete: (number) ->
       unless isNaN(number - 0)
         confirm = new wl.popup "prompt"
