@@ -1,6 +1,5 @@
-$footer-height: 30px;
-
-a:hover{cursor:pointer}
+a:hover,
+[onclick] {cursor:pointer}
 
 :focus{
     outline:none;
@@ -20,7 +19,7 @@ html,body{
 }
 
 footer{
-    height: $footer-height;
+    height: 30px;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -151,6 +150,17 @@ input[type="reset"] {
     }
 }
 
+#chapter {
+  background: #4a4a4a;
+  color: #e0e0e0;
+  height: 100%;
+  padding: .25em;
+  box-sizing: border-box;
+  li {
+  margin: .25em
+  }
+}
+
 ul,
 ol {
   -webkit-padding-start: 1em;
@@ -163,6 +173,24 @@ ol {
 
 .ui-layout-pane {
   padding: 0;
+  border-color: transparent;
+}
+
+.ui-layout-toggler {
+  border: 1px solid #e0e0e0;
+  background: none;
+}
+
+.ui-layout-toggler-west, .ui-layout-toggler-east {
+  border-width: 0 2px;
+}
+
+.ui-layout-toggler-north, .ui-layout-toggler-south {
+  border-width: 2px 0;
+}
+
+.ui-layout-resizer {
+  background: none;
 }
 
 #statusbar{
