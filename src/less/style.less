@@ -1,3 +1,6 @@
+@color-main: #4a4a4a;
+@color-letter: #e0e0e0;
+
 a:hover,
 [onclick] {cursor:pointer}
 
@@ -34,14 +37,14 @@ footer{
     top: -100%;
     transition: 1s;
     background: #555;
-    color: #fff;
+    color: @color-letter;
     z-index: 3;
     border-radius: 0 0 10px 10px;
     input[type="text"]{
       width: 100%;
     }
     input {
-      color: #fff;
+      color: @color-letter;
       margin: 2px;
     }
     &.show, &:hover{
@@ -50,7 +53,7 @@ footer{
 }
 
 #search {
-  color: #fff;
+  color: @color-letter;
   background: #555;
   top: -100%;
   position: fixed;
@@ -60,7 +63,7 @@ footer{
   padding: 10px;
   right: 10px;
     input {
-      color: #fff;
+      color: @color-letter;
       margin: 2px;
     }
     a{
@@ -93,7 +96,7 @@ footer{
           height: 2px;
           border: none;
           content: "";
-          background: #fff;
+          background: @color-letter;
           display: inline-block;
           position: absolute;
           top: 50%;
@@ -151,8 +154,8 @@ input[type="reset"] {
 }
 
 #chapter {
-  background: #4a4a4a;
-  color: #e0e0e0;
+  background: @color-main;
+  color: @color-letter;
   height: 100%;
   padding: .25em;
   box-sizing: border-box;
@@ -173,11 +176,11 @@ ol {
 
 .ui-layout-pane {
   padding: 0;
-  border-color: transparent;
+  border-color: @color-main;
 }
 
 .ui-layout-toggler {
-  border: 1px solid #e0e0e0;
+  border: 1px solid @color-letter;
   background: none;
 }
 
@@ -190,18 +193,18 @@ ol {
 }
 
 .ui-layout-resizer {
-  background: none;
+  background: @color-main;
 }
 
 #statusbar{
   display: flex;
-  background: #4a4a4a;
-  color: #e0e0e0;
+  background: @color-main;
+  color: @color-letter;
   font-weight: bold;
   li{
     height: 1em;
     padding: .25em;
-    border-left: solid 1px #e0e0e0;
+    border-left: solid 1px @color-letter;
     flex-direction: row;
     justify-content: flex-end;
     overflow: hidden;
