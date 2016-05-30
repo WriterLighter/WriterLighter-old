@@ -3,7 +3,7 @@ coffee     = require 'gulp-coffee'
 plumber    = require 'gulp-plumber'
 concat     = require 'gulp-concat'
 gutil      = require 'gulp-util'
-sass       = require 'gulp-sass'
+less       = require 'gulp-less'
 watch      = require 'gulp-watch'
 notify     = require 'gulp-notify'
 browserify = require 'browserify'
@@ -38,7 +38,7 @@ gulp.task 'vendorCSS', ->
 		.pipe cssFilter.restore
 
 # パッケージのCSSを1つに結合してmin化するタスク
-gulp.task 'css', ['vendorCSS','sass'] ,->
+gulp.task 'css', ['vendorCSS','less'] ,->
   gulp.src 'tmp/css/*.css'
 		.pipe concat('style.css')
 		# CSSを1つにしたものを出力
@@ -70,11 +70,11 @@ gulp.task 'main', ->
     .pipe(gulp.dest(''))
     .pipe notify 'main.js done!!!', {onLast: true}
  
-gulp.task 'sass', ->
+gulp.task 'less', ->
   gulp.src 'src/fonts/*.*'
     .pipe(gulp.dest('dist/fonts'))
-  gulp.src 'src/sass/*.scss'
-    .pipe(sass())
+  gulp.src 'src/less/*.less'
+    .pipe(less())
     .pipe(gulp.dest('tmp/css'))
     .pipe notify 'index.css done!!!', {onLast: true}
  
@@ -89,7 +89,7 @@ gulp.task 'html', ->
  
 gulp.task 'watch', ['default'], ->
   electron.start()
-  watch('src/sass/*.scss', (e)-> gulp.start 'css')
+  watch('src/less/*.less', (e)-> gulp.start 'css')
   watch('src/index.html', (e)-> gulp.start 'html')
   watch('src/main.coffee', (e)-> gulp.start 'main')
   watch(['src/app/**/*.coffee', 'src/namespace.coffee'], (e)-> gulp.start 'concat')
