@@ -185,11 +185,11 @@ ol {
 }
 
 .ui-layout-toggler-west, .ui-layout-toggler-east {
-  border-width: 0 2px;
+  border-width: 0 1px;
 }
 
 .ui-layout-toggler-north, .ui-layout-toggler-south {
-  border-width: 2px 0;
+  border-width: 1px 0;
 }
 
 .ui-layout-resizer {
@@ -208,6 +208,9 @@ ol {
     flex-direction: row;
     justify-content: flex-end;
     overflow: hidden;
+    &:first-child {
+      border: none;
+    }
     &.offset{
       flex-grow: 1;
     }
