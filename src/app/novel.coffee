@@ -4,12 +4,14 @@ wl.novel =
       if wl.editor.edited then wl.novel.chapter.save()
       _open = (path) ->
         fs.readFile path, 'utf8', (e, t)->
+          $("#chapter .opened").removeClass "opened"
           wl.novel.chapter.path = path
           wl.editor.previousInput = wl.novel.previousFile = if t? then t else ""
           $("#input-text").text(wl.novel.previousFile)
           wl.editor.edited = false
           wl.novel.chapter.opened = number
           wl.lastedit.save()
+          $("#chapter [data-chapter='#{number}']").addClass("opened")
           wl.editor.clearWindowName()
           wl.statusbar.reload()
 

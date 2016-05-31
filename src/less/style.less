@@ -1,12 +1,13 @@
 @color-main: #4a4a4a;
 @color-letter: #e0e0e0;
+@color-highlight-lightblue: #55aaee;
 
 a:hover,
 [onclick] {cursor:pointer}
 
 :focus{
     outline:none;
-    box-shadow: 0 0 7px 3px #55aaee;
+    box-shadow: 0 0 7px 3px @color-highlight-lightblue;
 }
 
 html,body{
@@ -159,14 +160,23 @@ input[type="reset"] {
   height: 100%;
   padding: .25em;
   box-sizing: border-box;
+  #chapter-list {
+    padding:0;
+  }
   li {
-  margin: .25em
+    &.opened {
+    background: rgba(0,0,0,.1);
+    color: @color-highlight-lightblue;
+    }
+  margin: .25em 0;
+  list-style-position: inside;
+  width: 100%;
+  white-space: nowrap;
   }
 }
 
 ul,
 ol {
-  -webkit-padding-start: 1em;
   &.nonestyle {
     list-style: none;
     padding: 0;
