@@ -51,8 +51,8 @@ wl.editor.mode = class editormode
         wl.editor.direction.set("vertical")
 
   wl.editor.clearWindowName = ()->
-    if typeof wl.novel.chapter.opened is "number"
-      chaptername = wl.novel.chapter.list[wl.novel.chapter.opened]
+    unless isNaN(wl.novel.chapter.opened - 0)
+      chaptername = wl.novel.chapter.list[wl.novel.chapter.opened - 0]
     else
       chaptername = wl.novel[wl.novel.chapter.opened].path
     document.title = "#{chaptername} - #{wl.novel.name} | WriterLighter"

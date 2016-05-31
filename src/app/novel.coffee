@@ -97,8 +97,10 @@ wl.novel =
     reload: ->
       list = ""
       wl.novel.chapter.list.forEach (item,index)->
-        list +=  "<li onclick='wl.novel.chapter.open(#{index})'>#{item}</li>"
+        list +=  "<li data-chapter='#{index}'>#{item}</li>"
       $("#chapter-list").html(list)
+      $("[data-chapter]").on "click", (e)->
+        wl.novel.chapter.open this.dataset.chapter
 
   description:{}
   afterword:{}
