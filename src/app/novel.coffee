@@ -128,6 +128,7 @@ wl.novel =
       getNovelName.messeage = "小説名を入力…"
       getNovelName.callback = (name)->
         wl.novel.open name
+      getNovelName.complete = wl.novel.list
       getNovelName.show()
 
   saveIndex: ->
