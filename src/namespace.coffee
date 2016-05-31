@@ -6,6 +6,7 @@ window.fs = window.require 'fs-extra'
 window.path = window.require 'path'
 window.app = remote.require 'app'
 window.browserWindow = remote.require 'browser-window'
+window.glob = window.require 'glob'
 
 # Outer Liblary
 window.YAML = require "js-yaml"

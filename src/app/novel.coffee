@@ -111,7 +111,7 @@ wl.novel =
 
     _open =  (novelname)->
       wl.novel.name = novelname
-      wl.novel.path = novelpath =path.join(wl.bookshalf.path,novelname)
+      wl.novel.path = novelpath =path.join(wl.config.user.bookshalf,novelname)
       index = JSON.parse(fs.readFileSync(path.join(novelpath,"index.json"),"utf-8"))
       wl.novel.chapter.list = index.chapter
       wl.novel.description.path = index.description
