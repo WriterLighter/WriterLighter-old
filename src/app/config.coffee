@@ -34,7 +34,7 @@ $ ->
         list = []
         d.forEach (item,index)->
           list.push item.split("/").reverse()[1]
-        wl.bookshalf.list = list
+        wl.novel.list = list
     else
       wl.config.init()
 
