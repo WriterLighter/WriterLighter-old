@@ -71,9 +71,9 @@ $ ->
       wl.novel.chapter.save()
     , if typeof wl.config.user.saveTimeout is "number" then wl.config.user.saveTimeout else 1000
 
-  $("#input-text").on "keypress", (e)->
-    console.log "br"
-    document.execCommand('insertHTML', false, '　')
+  $("#input-text").on "keyup", (e)->
+    if e.keyCode is 13 and wl.editor.input.innerText.split("\n").length = wl.editor.previousInput.split("\n").length
+      document.execCommand('insertHTML', false, '　')
 
   $(window).on "beforeunload" , ()->
     if wl.editor.edited then wl.novel.chapter.save()
