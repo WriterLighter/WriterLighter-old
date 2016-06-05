@@ -3,8 +3,14 @@ $ ->
   wl.menu.appmenu = Menu.buildFromTemplate wl.menu.buildTemplate(template.appmenu)
   Menu.setApplicationMenu wl.menu.appmenu
 
+  for k, v of template.context
+    console.log k
+    wl.menu.context[k] = Menu.buildFromTemplate wl.menu.buildTemplate(v)
+
 
 wl.menu =
+  appmenu: {}
+  context: {}
   buildTemplate: (data)->
     data.forEach (item, index)->
       if item.submenu?
@@ -13,3 +19,7 @@ wl.menu =
         data[index].click = ->
           wl.command.execute(data[index].command)
     data
+
+$(window).on "contextmenu", (e)->
+  wl.menu.context.main.popup()
+  e.preventDefault()
