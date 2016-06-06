@@ -88,3 +88,37 @@ appmenu:
       - label: "リロード"
         accelerator: "CmdOrCtrl+R"
         command: "reload_window"
+
+context:
+  main:
+    - label: "コピー"
+      accelerator: "CmdOrCtrl+C"
+      role: "copy"
+
+    - label: "切り取り"
+      accelerator: "CmdOrCtrl+X"
+      role: "cut"
+
+    - label: "貼り付け"
+      accelerator: "CmdOrCtrl+V"
+      role: "paste"
+
+    - label: "全て選択"
+      accelerator: "CmdOrCtrl+A"
+      role: "selectall"
+
+    - type: "separator"
+
+    - label: "取り消し"
+      accelerator: "CmdOrCtrl+Z"
+      role: "undo"
+
+    - label: "やり直し"
+      accelerator: "CmdOrCtrl+Shift+Z"
+      role: "redo"
+
+    - type: "separator"
+
+    - label: "文字の方向切り替え"
+      accelerator: "CmdOrCtrl+Shift+D"
+      command: "toggle_direction"
