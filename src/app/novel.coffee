@@ -16,6 +16,8 @@ wl.novel =
           wl.statusbar.reload()
 
       unless isNaN(number - 0)
+        number = number % wl.novel.chapter.list.length
+        number = if number < 0 then -number else number
         _open(path.join(wl.novel.path,"/本文/",wl.novel.chapter.list[number] + ".txt"))
       else if number? and number isnt ""
         switch number
