@@ -16,24 +16,24 @@ wl.novel =
           wl.statusbar.reload()
 
       unless isNaN(number - 0)
-          _open(path.join(wl.novel.path,"/本文/",wl.novel.chapter.list[number] + ".txt"))
-        else if number? and number isnt ""
-          switch number
-            when "next"
-              unless isNaN(wl.novel.chapter.opened)
-                wl.novel.chapter.open(wl.novel.chapter.opened - 0 + 1)
-            when "back"
-              unless isNaN(wl.novel.chapter.opened)
-                wl.novel.chapter.open(wl.novel.chapter.opened - 1)
-            else
-              _open(path.join(wl.novel.path,wl.novel[number].path))
+        _open(path.join(wl.novel.path,"/本文/",wl.novel.chapter.list[number] + ".txt"))
+      else if number? and number isnt ""
+        switch number
+          when "next"
+            unless isNaN(wl.novel.chapter.opened)
+              wl.novel.chapter.open(wl.novel.chapter.opened - 0 + 1)
+          when "back"
+            unless isNaN(wl.novel.chapter.opened)
+              wl.novel.chapter.open(wl.novel.chapter.opened - 1)
+          else
+            _open(path.join(wl.novel.path,wl.novel[number].path))
 
-        else
-          getChapter = new wl.popup("prompt")
-          getChapter.messeage = "章名またはタイプ(afterwordなど)を入力…"
-          getChapter.callback = (chapter)->
-            wl.novel.chapter.open(chapter)
-          getChapter.show()
+      else
+        getChapter = new wl.popup("prompt")
+        getChapter.messeage = "章名またはタイプ(afterwordなど)を入力…"
+        getChapter.callback = (chapter)->
+          wl.novel.chapter.open(chapter)
+        getChapter.show()
 
     new: (name)->
       if name? and name isnt ""
