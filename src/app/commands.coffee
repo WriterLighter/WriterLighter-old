@@ -27,3 +27,7 @@ wl.commands =
     wl.novel.chapter.save()
   search: ->
     wl.search.search()
+  next_chapter: ->
+    wl.novel.chapter.open("next")
+  back_chapter: ->
+    wl.novel.chapter.open("back")
