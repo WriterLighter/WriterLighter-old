@@ -3,11 +3,6 @@ $ ->
   wl.menu.appmenu = Menu.buildFromTemplate wl.menu.buildTemplate(wl.menu.template.appmenu)
   Menu.setApplicationMenu wl.menu.appmenu
 
-  for k, v of wl.menu.template.context
-    console.log k
-    wl.menu.context[k] = Menu.buildFromTemplate wl.menu.buildTemplate(v)
-
-
 wl.menu =
   appmenu: {}
   context: {}
@@ -21,5 +16,5 @@ wl.menu =
     data
 
 $(window).on "contextmenu", (e)->
-  wl.menu.context.main.popup()
-  e.preventDefault()
+  cmenu = wl.menu.template.context.main
+  Menu.buildFromTemplate(cmenu).popup()
