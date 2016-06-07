@@ -1,9 +1,9 @@
 $ ->
-  template = YAML.safeLoad fs.readFileSync("src/menu.yml")
-  wl.menu.appmenu = Menu.buildFromTemplate wl.menu.buildTemplate(template.appmenu)
+  wl.menu.template = YAML.safeLoad fs.readFileSync("src/menu.yml")
+  wl.menu.appmenu = Menu.buildFromTemplate wl.menu.buildTemplate(wl.menu.template.appmenu)
   Menu.setApplicationMenu wl.menu.appmenu
 
-  for k, v of template.context
+  for k, v of wl.menu.template.context
     console.log k
     wl.menu.context[k] = Menu.buildFromTemplate wl.menu.buildTemplate(v)
 
