@@ -28,4 +28,5 @@ $ ->
     south__resizable:     false
     south__spacing_open:    0
     south__spacing_closed:    20
+    enableCursorHotkey: false
 
