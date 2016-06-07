@@ -10,6 +10,14 @@ appmenu:
         accelerator: "CmdOrCtrl+O"
         command: "open_chapter"
 
+      - label: "次の章を開く"
+        accelerator: "CmdOrCtrl+J"
+        command: "next_chapter"
+
+      - label: "前の章を開く"
+        accelerator: "CmdOrCtrl+K"
+        command: "back_chapter"
+
       - type: "separator"
 
       - label: "新規小説作成"
