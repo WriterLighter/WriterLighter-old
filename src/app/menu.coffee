@@ -16,5 +16,11 @@ wl.menu =
     data
 
 $(window).on "contextmenu", (e)->
-  cmenu = wl.menu.template.context.main
+  addtionalMenu = e.target.dataset.context
+  cmenu = wl.menu.template.context.main.concat()
+  if addtionalMenu?
+    addtionalMenu.split(" ").forEach (item, index)->
+      cmenu.push
+        type: "separator"
+      cmenu = cmenu.concat wl.menu.template.context[item]
   Menu.buildFromTemplate(cmenu).popup()
