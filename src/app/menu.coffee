@@ -23,4 +23,4 @@ $(window).on "contextmenu", (e)->
       cmenu.push
         type: "separator"
       cmenu = cmenu.concat wl.menu.template.context[item]
-  Menu.buildFromTemplate(cmenu).popup()
+  Menu.buildFromTemplate(wl.menu.buildTemplate(cmenu)).popup()
