@@ -6,16 +6,17 @@ $ ->
 wl.menu =
   appmenu: {}
   context: {}
-  buildTemplate: (data)->
+  buildTemplate: (data, type="app")->
     data.forEach (item, index)->
       if item.submenu?
         data[index].submenu = wl.menu.buildTemplate(item.submenu)
       else if item.command?
         data[index].click = ->
           wl.command.execute(data[index].command)
+          wl.menu.contextmenuEvent = undefined
     data
 
-$(window).on "contextmenu", (e)->
+window.addEventListener "contextmenu", (e)->
   addtionalMenu = e.target.dataset.context
   cmenu = wl.menu.template.context.main.concat()
   if addtionalMenu?
@@ -23,4 +24,5 @@ $(window).on "contextmenu", (e)->
       cmenu.push
         type: "separator"
       cmenu = cmenu.concat wl.menu.template.context[item]
+  wl.menu.contextmenuEvent = e
   Menu.buildFromTemplate(wl.menu.buildTemplate(cmenu)).popup()
