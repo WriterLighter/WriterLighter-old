@@ -31,3 +31,5 @@ wl.commands =
     wl.novel.chapter.open("next")
   back_chapter: ->
     wl.novel.chapter.open("back")
+  inspect_element: ->
+    remote.getCurrentWindow().inspectElement(wl.menu.contextmenuEvent.x,wl.menu.contextmenuEvent.y)
