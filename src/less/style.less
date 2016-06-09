@@ -2,9 +2,11 @@
 @color-letter: #e0e0e0;
 @color-highlight-lightblue: #55aaee;
 
-a:hover,
+a,
 [data-chapter],
-[onclick] {cursor:pointer}
+[onclick] {
+  &:hover{cursor:pointer}
+}
 
 :focus{
     outline:none;
