@@ -1,6 +1,8 @@
 wl.novel =
   chapter:
     open: (number) ->
+      if wl.menu.contextmenuEvent?
+        number = wl.menu.contextmenuEvent.target.dataset.chapter
       if wl.editor.edited then wl.novel.chapter.save()
       _open = (path) ->
         fs.readFile path, 'utf8', (e, t)->
