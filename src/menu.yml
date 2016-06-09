@@ -129,3 +129,7 @@ context:
 
     - label: "要素の検証"
       command: "inspect_element"
+
+  chapter_list:
+    - label: "開く"
+      command: "open_chapter"

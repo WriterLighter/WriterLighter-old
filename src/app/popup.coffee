@@ -3,17 +3,20 @@ wl.popup = class popup
   hide: ->
     $("#popup").removeClass("show")
   
-  _show= (html)->
+  _show= (html, type)->
     $("#popup")
       .html html
       .addClass "show"
+      .addClass type
   
   constructor: (@type = "toast", @messeage = "", @callback = ((m)-> console.log(m)), @timeout = 3000, @complete = [])->
 
   show: =>
+    $("#popup.toast").removeClass "toast"
+    $("#popup.prompt").removeClass "prompt"
     switch @type
       when "toast"
-        _show.call @, @messeage
+        _show.call @, @messeage, @type
         setTimeout( =>
           @hide()
           @callback(@messeage)
@@ -28,7 +31,7 @@ wl.popup = class popup
             html += "<div><input type='text' placeholder='#{item}'></div>"
           html += "<input type='reset'><input type='submit' value='完了'><form>"
         
-        _show.call @, html
+        _show.call @, html, @type
         
         $("#popup>input[type='text']")
           .autocomplete
