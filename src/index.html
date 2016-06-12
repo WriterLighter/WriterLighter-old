@@ -21,10 +21,22 @@
     </div>
 
     <div id="popup"></div>
+
+
+    <div id="modal-window">
+      <header>
+        <h3 class="title"></h3>
+        <button class="close" onclick="$('#modal-window').removeClass('show')"></button>
+      </header>
+      <div class="content"></div>
+    </div>
+    <div id="modal-overray"></div>
+
     <div id="container">
     <div class="ui-layout-center">
         <pre id="input-text" contenteditable></pre>
     </div>
+    
 
     <!-- Chapter List Pane -->
     <div class="ui-layout-west">

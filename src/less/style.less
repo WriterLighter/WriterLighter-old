@@ -42,7 +42,7 @@ footer{
     transition: 1s;
     background: #555;
     color: @color-letter;
-    z-index: 3;
+    z-index: 4;
     border-radius: 0 0 10px 10px;
     input[type="text"]{
       width: 100%;
@@ -54,6 +54,69 @@ footer{
     &.show, &.toast:hover{
         top: 0;
     }
+}
+
+#modal-window {
+  color: @color-letter;
+  padding: 7.5px;
+  border-radius: 3px;
+  display: none;
+  z-index: 4;
+  background: @color-main;
+  position: fixed;
+  &.forcing header .close{
+    display: none;
+  }
+  &.show {
+    display: block;
+    + #modal-overray {
+      display: block;
+    }
+  }
+  > header{
+    .title{
+      font-size: 1rem;
+      display: inline-block;
+      margin: 0;
+    }
+    .close{
+      margin: .2em;
+      display: inline-block;
+      width: 1em;
+      height:1em;
+      position: relative;
+      float: right;
+      border: none;
+      background: transparent;
+      &:before,
+      &:after{
+        width: 100%;
+        height: 2px;
+        border: none;
+        content: "";
+        background: @color-letter;
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: -25%;
+      }
+      &:before{
+        transform: rotate(45deg);
+      }
+      &:after{
+        transform: rotate(135deg)
+      }
+    }
+  }
+}
+
+#modal-overray {
+  background: rgba(0,0,0,.5);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display:none;
+  z-index: 3;
 }
 
 #search {
