@@ -1,0 +1,23 @@
+<style>
+form#welcome label{
+  display:block;
+  margin: 5px;
+}
+form#welcome input[type="text"]{
+  display: block;
+  width:360px;
+}
+
+form#welcome [name="browse"]{
+  font-size: .75em;
+  float: right;
+}
+
+</style>
+
+<form id="welcome">
+  <label for=""><small>お名前（ペンネームなど）を入力してください</small><input type="text" name="name"></label>
+  <label for=""><small>小説を保存するフォルダを入力してください</small><input type="text" name="bookshalf">
+    <button name="browse" type="button">参照…</button></label>
+  <input type="submit" value="はじめる">
+</form>

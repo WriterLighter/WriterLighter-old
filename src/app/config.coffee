@@ -9,22 +9,23 @@ wl.config = class config
     fs.copySync path.join(__dirname, "はじめまして"), wl.bookshalf.path
     wl.novel.open("はじめまして")
     ###
-    switch process.platform
-      when "darwin" and "win32"
-        bspath = path.join app.getPath("home"),"/Documents/Novels"
-      else
-        bspath = path.join app.getPath("documents"),"/Novels"
-    p = new wl.popup("prompt")
-    p.messeage = [
-      "あなたのペンネームを入力してください。"
-      "小説の保存するフォルダを入力してください。"
-    ]
-    p.forcing = true
-    p.callback = (res)->
-        wl.config.user =
-          name: res[0]
-          bookshalf: if res[1] isnt "" then res[1] else bspath
-    p.show()
+    bspath = path.join app.getPath("documents"), "Novels"
+    modal = new wl.modalwindow("ようこそ！")
+    modal.content = fs.readFileSync("src/welcome.html").toString()
+    modal.forcing = true
+    modal.show()
+    $("form#welcome [name='bookshalf']").val bspath
+    $("form#welcome [name='browse']").on "click", ->
+      selectedpath = dialog.showOpenDialog
+        properties: ['oepnDirectory','createDirectory']
+        defaultPath: $("form#welcome [name='bookshalf']").val()
+      if selectedpath?
+        $("form#welcome [name=bookshalf]").val selectedpath
+    $("form#welcome").on "submit", ->
+      wl.config.user.name = $("form#welcome [name='name']").val()
+      wl.config.user.bookshalf = $("form#welcome [name='bookshalf']").val()
+      $("#modal-window").removeClass "show"
+      return false
 
 $ ->
   fs.readFile wl.config.path, (err,data)->
