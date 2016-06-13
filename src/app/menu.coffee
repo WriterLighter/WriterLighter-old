@@ -12,6 +12,7 @@ wl.menu =
         data[index].submenu = wl.menu.buildTemplate(item.submenu)
       else if item.command?
         data[index].click = ->
+          wl.menu.contextmenuEvent = window._tmpcontextmenu
           wl.command.execute(data[index].command)
           wl.menu.contextmenuEvent = undefined
     data
@@ -24,5 +25,5 @@ window.addEventListener "contextmenu", (e)->
       cmenu.push
         type: "separator"
       cmenu = cmenu.concat wl.menu.template.context[item]
-  wl.menu.contextmenuEvent = e
+  window._tmpcontextmenu = e
   Menu.buildFromTemplate(wl.menu.buildTemplate(cmenu)).popup()
