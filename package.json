@@ -27,7 +27,7 @@
     "coffeeify": "^2.0.1",
     "debowerify": "^1.4.1",
     "electron-connect": "^0.3.7",
-    "electron-prebuilt": "0.37.8",
+    "electron-prebuilt": "^1.2.2",
     "gulp": "^3.9.0",
     "gulp-bower-files": "^0.2.7",
     "gulp-clean-css": "^2.0.7",

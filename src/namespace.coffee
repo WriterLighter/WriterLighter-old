@@ -1,11 +1,11 @@
 # Electron or Node.js Native
-window.remote = window.require 'remote'
-window.dialog = window.require('remote').dialog
-window.Menu = remote.require 'menu'
+window.remote = window.require('electron').remote
+window.dialog = remote.dialog
+window.Menu = remote.Menu
 window.fs = window.require 'fs-extra'
 window.path = window.require 'path'
-window.app = remote.require 'app'
-window.browserWindow = remote.require 'browser-window'
+window.app = remote.app
+window.browserWindow = remote.BrowserWindow
 window.glob = window.require 'glob'
 
 # Outer Liblary
