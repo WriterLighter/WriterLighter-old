@@ -31,10 +31,10 @@ $ ->
   fs.readFile wl.config.path, (err,data)->
     if data? and Object.keys(data).length isnt 0
       wl.config.user = JSON.parse data
-      glob path.join(wl.config.user.bookshalf,"*/"), (e,d)->
+      glob path.join(wl.config.user.bookshalf,"*","index.json"), (e,d)->
         list = []
         d.forEach (item,index)->
-          list.push item.split("/").reverse()[1]
+          list.push path.basename(path.dirname(item))
         wl.novel.list = list
     else
       wl.config.init()
