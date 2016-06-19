@@ -5,7 +5,7 @@ wl.modalwindow = class modalwindow
     $modal = $("#modal-window")
     unless $modal.hasClass "show"
       $modal.removeClass "forcing"
-      $("#modal-overray").unbind()
+      $("#modal-overray").off()
       if @forcing
         $modal.addClass "forcing"
       $("#modal-window .content").html @content
