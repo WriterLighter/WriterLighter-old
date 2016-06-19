@@ -1,4 +1,5 @@
 # Electron or Node.js Native
+window.require "coffee-script/register"
 window.remote = window.require('electron').remote
 window.dialog = remote.dialog
 window.Menu = remote.Menu
