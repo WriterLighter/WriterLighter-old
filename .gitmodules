@@ -1,0 +1,3 @@
+[submodule "extensions/plotview"]
+	path = extensions/plotview
+	url = git@github.com:AI-create-team/plotview.git
