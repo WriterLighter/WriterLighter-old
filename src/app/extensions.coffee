@@ -21,11 +21,14 @@ wl.extensions =
     $("#ext-tab").html tabs
     viewext = ->
       name = $("[name='ext-tabs']:checked").data "name"
-      html = fs.readFileSync(path.join(wl.extensions[name].path, wl.extensions[name].view)).toString()
-      $("#ext-content").html html
+      wl.extensions.open name
     $("[name='ext-tabs']").on "change", viewext
     $("[name='ext-tabs']").first().prop "checked", true
     viewext()
+  open: (name)->
+    $("[name='ext-tabs'][data-name='#{name}']").prop "checked", true
+    html = fs.readFileSync(path.join(wl.extensions[name].path, wl.extensions[name].view)).toString()
+    $("#ext-content").html html
 
 $ ->
   wl.extensions.load()
