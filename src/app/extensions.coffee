@@ -16,7 +16,7 @@ wl.extensions =
         wl.extensions[data.name].path = extdirpath
         if wl.extensions[data.name].view?
           tabs += "<li><input type='radio' name='ext-tabs' \
-          style='background-image:url(#{path.join extdirpath, data.icon})' \
+          style='background-image:url(#{if data.icon? then path.join(extdirpath, data.icon) else ""})' \
           data-name='#{data.name}' ></li>"
     $("#ext-tab").html tabs
     viewext = ->
@@ -29,6 +29,7 @@ wl.extensions =
     $("[name='ext-tabs'][data-name='#{name}']").prop "checked", true
     html = fs.readFileSync(path.join(wl.extensions[name].path, wl.extensions[name].view)).toString()
     $("#ext-content").html html
+    wl.extensions[name].onview && wl.extensions[name].onview()
 
-$ ->
-  wl.extensions.load()
+$(window).on "load", ->
+ wl.extensions.load()
