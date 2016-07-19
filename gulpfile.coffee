@@ -56,11 +56,11 @@ gulp.task 'clean:dist', -> del ['dist/**/*', 'dist']
 gulp.task 'clean:packages', -> del ['packages/**/*', 'packages']
 gulp.task 'clean:releases', -> del ['releases/**/*', 'releases']
 
-gulp.task 'compile', ['compile:coffee', 'compile:sass']
-gulp.task 'compile:production', ['compile:coffee:production', 'compile:sass:production']
+gulp.task 'compile', ['compile:coffee', 'compile:less']
+gulp.task 'compile:production', ['compile:coffee:production', 'compile:less:production']
 
 gulp.task 'compile:coffee', ->
-  gulp.src 'coffee/**/*.coffee'
+  gulp.src 'src/coffee/**/*.coffee'
     .pipe $.plumber()
     .pipe $.sourcemaps.init()
     .pipe $.coffee
@@ -69,24 +69,24 @@ gulp.task 'compile:coffee', ->
     .pipe $.sourcemaps.write()
     .pipe gulp.dest('js')
 
-gulp.task 'compile:sass', ->
-  gulp.src ['sass/**/*.scss', 'sass/**/*.sass']
+gulp.task 'compile:less', ->
+  gulp.src 'src/less/**/*.less'
     .pipe $.plumber()
     .pipe $.sourcemaps.init()
-    .pipe $.sass()
+    .pipe $.less()
     .pipe $.sourcemaps.write()
     .pipe gulp.dest('css')
 
 gulp.task 'compile:coffee:production', ['clean:js'], ->
-  gulp.src 'coffee/**/*.coffee'
+  gulp.src 'src/coffee/**/*.coffee'
     .pipe $.coffee
       bare: true
     .pipe $.uglify()
     .pipe gulp.dest('js')
 
-gulp.task 'compile:sass:production', ['clean:css'], ->
-  gulp.src ['sass/**/*.scss', 'sass/**/*.sass']
-    .pipe $.sass()
+gulp.task 'compile:less:production', ['clean:css'], ->
+  gulp.src 'src/less/**/*.less'
+    .pipe $.less()
     .pipe $.cssnano
       zindex: false
     .pipe gulp.dest('css')
@@ -131,9 +131,9 @@ gulp.task 'package:darwin', (done) ->
       .pipe $.plist
         CFBundleDocumentTypes: [
           {
-            CFBundleTypeExtensions: ['md', 'mdown']
+            CFBundleTypeExtensions: ''
             CFBundleTypeIconFile: ''
-            CFBundleTypeName: 'Markdown file'
+            CFBundleTypeName: ''
             CFBundleTypeRole: 'Editor'
             LSHandlerRank: 'Owner'
           }
