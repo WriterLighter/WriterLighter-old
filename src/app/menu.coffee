@@ -1,5 +1,5 @@
 $ ->
-  wl.menu.template = YAML.safeLoad fs.readFileSync("src/menu.yml")
+  wl.menu.template = YAML.safeLoad fs.readFileSync("menu.yml")
   wl.menu.appmenu = Menu.buildFromTemplate wl.menu.buildTemplate(wl.menu.template.appmenu)
   Menu.setApplicationMenu wl.menu.appmenu
 

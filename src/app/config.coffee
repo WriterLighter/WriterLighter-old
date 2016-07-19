@@ -11,7 +11,7 @@ wl.config = class config
     ###
     bspath = path.join app.getPath("documents"), "Novels"
     modal = new wl.modalwindow("ようこそ！")
-    modal.content = fs.readFileSync("src/welcome.html").toString()
+    modal.content = fs.readFileSync("welcome.html").toString()
     modal.forcing = true
     modal.show()
     $("form#welcome [name='bookshalf']").val bspath
