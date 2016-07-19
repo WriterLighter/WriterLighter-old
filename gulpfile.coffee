@@ -78,4 +78,4 @@ gulp.task 'watch', ['default'], ->
   watch 'dist/main.js', electron.restart
   watch ['index.html', 'dist/index.js', 'dist/css/*.css'], electron.reload
  
-gulp.task 'default', ['concat', 'main', 'css', 'html']
+gulp.task 'default', ['concat', 'main', 'css']
