@@ -5,7 +5,6 @@ concat     = require 'gulp-concat'
 gutil      = require 'gulp-util'
 less       = require 'gulp-less'
 watch      = require 'gulp-watch'
-notify     = require 'gulp-notify'
 browserify = require 'browserify'
 source     = require 'vinyl-source-stream'
 electron   = require('electron-connect').server.create()
@@ -22,7 +21,6 @@ gulp.task 'vendorJS', ->
   .bundle()
   .pipe source 'vendor.js'
   .pipe gulp.dest 'tmp'
-  .pipe notify 'vendor.js done!!!', {onLast: true}
 
 # bowerで導入したパッケージのCSSを取ってくるタスク
 gulp.task 'vendorCSS', ->
@@ -55,20 +53,17 @@ gulp.task 'app', ->
     .pipe(coffee())
     .pipe(concat('app.js'))
     .pipe(gulp.dest('tmp'))
-    .pipe notify 'app.js done!!!', {onLast: true}
  
 gulp.task 'concat',['vendorJS', 'app'],  ->
   gulp.src ['tmp/vendor.js', 'tmp/app.js' ]
     .pipe(concat('index.js'))
     .pipe(gulp.dest('dist'))
-    .pipe notify 'index.js done!!!', {onLast: true}
  
 gulp.task 'main', ->
   gulp.src 'src/main.coffee'
     .pipe(plumber())
     .pipe(coffee())
     .pipe(gulp.dest(''))
-    .pipe notify 'main.js done!!!', {onLast: true}
  
 gulp.task 'less', ->
   gulp.src 'src/fonts/*.*'
@@ -76,24 +71,13 @@ gulp.task 'less', ->
   gulp.src 'src/less/*.less'
     .pipe(less())
     .pipe(gulp.dest('tmp/css'))
-    .pipe notify 'index.css done!!!', {onLast: true}
- 
-gulp.task 'html', ->
-  gulp.src 'src/index.html'
-    .pipe(gulp.dest('dist'))
-    .pipe notify 'index.html done!!!', {onLast: true}
- gulp.task 'json', ->
-  gulp.src 'src/*.json'
-    .pipe(gulp.dest('dist'))
-    .pipe notify '*.json done!!!', {onLast: true}
  
 gulp.task 'watch', ['default'], ->
   electron.start()
   watch('src/less/*.less', (e)-> gulp.start 'css')
-  watch('src/index.html', (e)-> gulp.start 'html')
   watch('src/main.coffee', (e)-> gulp.start 'main')
   watch(['src/app/**/*.coffee', 'src/namespace.coffee'], (e)-> gulp.start 'concat')
   watch 'dist/main.js', electron.restart
-  watch ['dist/index.html', 'dist/index.js', 'dist/css/*.css'], electron.reload
+  watch ['index.html', 'dist/index.js', 'dist/css/*.css'], electron.reload
  
 gulp.task 'default', ['concat', 'main', 'css', 'html']
