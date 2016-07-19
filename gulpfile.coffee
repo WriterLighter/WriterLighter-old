@@ -114,7 +114,7 @@ gulp.task 'package:win32', (done) ->
   packageElectron {
     platform: 'win32'
     arch: 'ia32,x64'
-    icon: Path.join(__dirname, 'resources/windows/marp.ico')
+    icon: Path.join(__dirname, '')
   }, done
 gulp.task 'package:linux', (done) ->
   packageElectron {
@@ -125,7 +125,7 @@ gulp.task 'package:darwin', (done) ->
   packageElectron {
     platform: 'darwin'
     arch: 'x64'
-    icon: Path.join(__dirname, 'resources/darwin/marp.icns')
+    icon: Path.join(__dirname, '')
   }, ->
     gulp.src ["packages/*-darwin-*/#{config.name}.app/Contents/Info.plist"], { base: '.' }
       .pipe $.plist
