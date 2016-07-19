@@ -66,8 +66,6 @@ gulp.task 'main', ->
     .pipe(gulp.dest(''))
  
 gulp.task 'less', ->
-  gulp.src 'src/fonts/*.*'
-    .pipe(gulp.dest('dist/fonts'))
   gulp.src 'src/less/*.less'
     .pipe(less())
     .pipe(gulp.dest('tmp/css'))
