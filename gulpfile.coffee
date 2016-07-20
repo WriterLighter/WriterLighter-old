@@ -98,7 +98,7 @@ gulp.task 'bower:css', ->
   cssFilter = $.filter '**/*.css', restore: true
   gulp.src bower paths: bowerJson: 'bower.json'
 	  .pipe cssFilter
-    .pipe $.concat 'bower_bundle.css'
+    .pipe $.concat 'bower_components.css'
     .pipe gulp.dest 'css'
 	  .pipe cssFilter.restore
 
@@ -106,7 +106,7 @@ gulp.task 'bower:js', ->
   jsFilter = $.filter '**/*.js', restore: true
   gulp.src bower paths: bowerJson: 'bower.json'
     .pipe jsFilter
-    .pipe $.concat 'bower_bundle.js'
+    .pipe $.concat 'bower_components.js'
     .pipe gulp.dest 'js'
     .pipe jsFilter.restore
 
