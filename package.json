@@ -22,7 +22,6 @@
   "homepage": "https://github.com/AI-create-team/WriterLighter#readme",
   "devDependencies": {
     "bower": "^1.7.9",
-    "coffee-script": "^1.10.0",
     "del": "^2.2.1",
     "electron-packager": "7.3.0",
     "electron-prebuilt": "1.2.7",
@@ -51,6 +50,7 @@
   },
   "dependencies": {
     "cheerio-httpcli": "^0.6.8",
+    "coffee-script": "^1.10.0",
     "fs-extra": "^0.30.0",
     "glob": "^7.0.3",
     "js-yaml": "^3.6.1"
