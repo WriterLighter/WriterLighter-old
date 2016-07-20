@@ -1,7 +1,26 @@
-*~
-node_modules/
-main.js
-tmp/
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directory
+node_modules
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Build with gulp
+js/
+css/
 dist/
-bower_components/
-npm-debug.log
+packages/
+releases/
