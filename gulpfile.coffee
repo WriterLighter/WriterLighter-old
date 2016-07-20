@@ -1,13 +1,13 @@
-module.exports = gulp = require('gulp')
+module.exports = gulp = require 'gulp'
 
-$           = do require('gulp-load-plugins')
-config      = require('./package.json')
-del         = require('del')
-#packager    = require('electron-packager')
-runSequence = require('run-sequence')
-Path        = require('path')
-extend      = require('extend')
-mkdirp      = require('mkdirp')
+$           = do require 'gulp-load-plugins'
+config      = require './package.json'
+del         = require 'del'
+#packager    = require 'electron-packager'
+runSequence = require 'run-sequence'
+Path        = require 'path'
+extend      = require 'extend'
+mkdirp      = require 'mkdirp'
 bower       = require 'main-bower-files'
 
 packageOpts =
