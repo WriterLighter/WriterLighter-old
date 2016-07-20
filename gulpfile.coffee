@@ -91,6 +91,8 @@ gulp.task 'compile:less:production', ['clean:css'], ->
       zindex: false
     .pipe gulp.dest('css')
 
+gulp.task 'bower', ['bower:css', 'bower:js']
+
 gulp.task 'dist', ['clean:dist'], ->
   gulp.src([
     'js/**/*'
