@@ -8,6 +8,7 @@ runSequence = require('run-sequence')
 Path        = require('path')
 extend      = require('extend')
 mkdirp      = require('mkdirp')
+bower       = require 'main-bower-files'
 
 packageOpts =
   asar: true
