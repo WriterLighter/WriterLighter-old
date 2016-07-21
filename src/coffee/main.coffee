@@ -18,7 +18,7 @@ app.on 'window-all-closed', ->
 
 createWindow = () ->
   main_window = new browser_window bounds_info
-  main_window.loadURL('file://' + __dirname + '/index.html')
+  main_window.loadURL('file://' + __dirname + '/../index.html')
   main_window.on 'closed', ->
     main_window = null
   # main_window.webContents.openDevTools()
