@@ -46,8 +46,7 @@
     "gulp-zip": "^3.1.0",
     "main-bower-files": "^2.13.0",
     "mkdirp": "^0.5.1",
-    "run-sequence": "^1.1.5",
-    "vinyl-source-stream": "^1.1.0"
+    "run-sequence": "^1.1.5"
   },
   "dependencies": {
     "cheerio-httpcli": "^0.6.8",
