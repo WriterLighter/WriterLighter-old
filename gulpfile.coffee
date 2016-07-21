@@ -160,10 +160,10 @@ gulp.task 'package:darwin', (done) ->
       .pipe gulp.dest('.')
       .on 'end', done
 
-gulp.task 'build',        (done) -> runSequence 'compile:production', 'package', done
-gulp.task 'build:win32',  (done) -> runSequence 'compile:production', 'dist', 'package:win32', done
-gulp.task 'build:linux',  (done) -> runSequence 'compile:production', 'dist', 'package:linux', done
-gulp.task 'build:darwin', (done) -> runSequence 'compile:production', 'dist', 'package:darwin', done
+gulp.task 'build',        (done) -> runSequence 'compile:production', 'bower', 'package', done
+gulp.task 'build:win32',  (done) -> runSequence 'compile:production', 'bower', 'dist', 'package:win32', done
+gulp.task 'build:linux',  (done) -> runSequence 'compile:production', 'bower', 'dist', 'package:linux', done
+gulp.task 'build:darwin', (done) -> runSequence 'compile:production', 'bower' , 'dist', 'package:darwin', done
 
 gulp.task 'archive', ['archive:win32', 'archive:darwin', 'archive:linux']
 
@@ -222,6 +222,6 @@ gulp.task 'archive:linux', (done) ->
 
 gulp.task 'release', (done) -> runSequence 'build', 'archive', 'clean', done
 
-gulp.task 'run', ['compile'], ->
+gulp.task 'run', ['compile', 'bower'], ->
   gulp.src '.'
     .pipe $.runElectron(['--development'])
