@@ -1,4 +1,4 @@
-wl.statusbar =
+modules.exports =
   reload: ()->
     setTimeout ->
       val = wl.editor.input.innerText

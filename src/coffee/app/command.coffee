@@ -1,4 +1,4 @@
-wl.command =
+modules.exports =
   execute: (command)->
     c = command.split(":")
     switch c.length

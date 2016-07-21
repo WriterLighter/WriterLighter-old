@@ -1,4 +1,4 @@
-wl.lastedit =
+modules.exports =
   path : path.join(app.getPath("userData"), "lastedit.json")
   save: ->
     savedata = {}

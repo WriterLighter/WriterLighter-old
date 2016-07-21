@@ -1,4 +1,4 @@
-wl.novel =
+modules.exports =
   chapter:
     open: (number) ->
       if wl.menu.contextmenuEvent?

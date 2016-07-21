@@ -1,4 +1,4 @@
-wl.modalwindow = class modalwindow
+modules.exports =
   constructor: (@title = "", @content = "", @style={}, @forcing = false)->
 
   show: ()->

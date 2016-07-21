@@ -1,5 +1,5 @@
-wl.editor = {}
-wl.editor.mode = class editormode
+modules.exports = editor
+editor.mode = class editormode
     
     #editorMode
     #0:標準モード
@@ -33,7 +33,7 @@ wl.editor.mode = class editormode
             else
                 @defaultMode()
  
-  wl.editor.direction =
+  editor.direction =
     set: (direction)->
       switch direction
         when "vertical"
@@ -50,7 +50,7 @@ wl.editor.mode = class editormode
       else
         wl.editor.direction.set("vertical")
 
-  wl.editor.clearWindowName = ()->
+  editor.clearWindowName = ()->
     unless isNaN(wl.novel.chapter.opened - 0)
       chaptername = wl.novel.chapter.list[wl.novel.chapter.opened - 0]
     else

@@ -1,4 +1,4 @@
-wl.popup = class popup
+modules.exports =
   
   hide: ->
     $("#popup").removeClass("show")

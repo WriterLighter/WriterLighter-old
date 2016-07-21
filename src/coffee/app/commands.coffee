@@ -1,4 +1,4 @@
-wl.commands =
+modules.exports =
   open_novel: ->
     wl.novel.open()
   open_chapter: ->

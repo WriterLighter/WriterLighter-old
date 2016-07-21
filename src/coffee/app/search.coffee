@@ -1,4 +1,4 @@
-wl.search =
+modules.exports =
   highlight: (Keyword, className = "")	->
 
     findAllInText = (text, keyword) ->
