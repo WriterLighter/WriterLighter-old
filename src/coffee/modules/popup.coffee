@@ -1,7 +1,8 @@
-modules.exports =
-  
-  hide: ->
-    $("#popup").removeClass("show")
+module.exports = class popup
+  @hide: ->
+    $("#popup").removeClass "show"
+    $("#popup.toast").removeClass "toast"
+    $("#popup.prompt").removeClass "prompt"
   
   _show= (html, type)->
     $("#popup")
@@ -12,15 +13,14 @@ modules.exports =
   constructor: (@type = "toast", @messeage = "", @callback = ((m)-> console.log(m)), @timeout = 3000, @complete = [])->
 
   show: =>
-    $("#popup.toast").removeClass "toast"
-    $("#popup.prompt").removeClass "prompt"
+    @hide
     switch @type
       when "toast"
         _show.call @, @messeage, @type
-        setTimeout( =>
-          @hide()
-          @callback(@messeage)
-        , @timeout)
+        setTimeout =>
+          do @hide
+          @callback @messeage
+        , @timeout
 
       when "prompt"
         if typeof @messeage is "string"
@@ -41,16 +41,14 @@ modules.exports =
         if $("#popup>input[type='text']").length is 1
           $("#popup>input[type='text']")
             .focus()
-            .on("blur",=>
+            .on "blur",=>
               unless @forcing
-                @hide()
-            )
-            .on("keydown", (e)=>
+                do @hide
+            .on "keydown", (e)=>
               if e.keyCode is 13
                 if $("#popup>input").val() is "" then return false
-                @hide()
-                @callback($("#popup>input").val())
-            )
+                do @hide
+                @callback $("#popup>input").val()
         else
           $("#popup>form").on "submit", =>
             value = []
@@ -58,9 +56,7 @@ modules.exports =
             $("#popup input[type='text']").each ->
               if $(@).val() is "" then uninput = true
               value.push $(@).val()
-              console.log $(@).val()
-              console.log uninput
             unless uninput
-              @hide()
+              do @hide
               @callback value
             false

@@ -1,4 +1,5 @@
-modules.exports =
+path = require 'path'
+module.exports = class config
   @path = path.join app.getPath("userData"), "config.json"
   @save = ->
     fs.writeFile wl.config.path, JSON.stringify(wl.config.user)

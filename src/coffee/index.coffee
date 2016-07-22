@@ -1,16 +1,16 @@
 window.WriterLighter = window.wl = class WriterLighter
-  @command     = require './modules/command'
-  @config      = require './modules/config'
-  @counter     = require './modules/counter'
-  @editor      = require './modules/editor'
-  @extension   = require './modules/extension'
-  @lastedit    = require './modules/lastedit'
-  @menu        = require './modules/menu'
-  @ModalWindow = require './modules/modalwindow'
-  @novel       = require './modules/novel'
-  @Popup       = require './modules/popup'
-  @search      = require './modules/search'
-  @statusBar   = require './modules/statusbar'
+  @command     = require './js/modules/command'
+  @config      = require './js/modules/config'
+  @counter     = require './js/modules/counter'
+  @editor      = require './js/modules/editor'
+  @extension   = require './js/modules/extension'
+  @lastedit    = require './js/modules/lastedit'
+  @menu        = require './js/modules/menu'
+  @ModalWindow = require './js/modules/modalwindow'
+  @novel       = require './js/modules/novel'
+  @Popup       = require './js/modules/popup'
+  @search      = require './js/modules/search'
+  @statusBar   = require './js/modules/statusbar'
 
 wl.layout = $('#container').layout
   south__resizable:      false

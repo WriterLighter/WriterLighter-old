@@ -1,4 +1,4 @@
-modules.exports =
+module.exports =
   highlight: (Keyword, className = "")	->
 
     findAllInText = (text, keyword) ->

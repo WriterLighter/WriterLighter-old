@@ -1,4 +1,4 @@
-modules.exports =
+module.exports =
   path : path.join(app.getPath("userData"), "lastedit.json")
   save: ->
     savedata = {}

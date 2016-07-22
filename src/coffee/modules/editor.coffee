@@ -1,4 +1,4 @@
-modules.exports = editor
+module.exports = editor
 editor.mode = class editormode
     
     #editorMode

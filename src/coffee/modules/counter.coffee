@@ -1,4 +1,4 @@
-modules.exports =
+module.exports =
   count:->
     val = wl.editor.input.innerText
     wl.counter.letter = val.length

@@ -1,4 +1,4 @@
-modules.exports =
+module.exports =
   list: [
     path.join ".", "extensions"
     path.join app.getPath("userData"), "extensions"

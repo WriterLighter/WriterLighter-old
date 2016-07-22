@@ -1,4 +1,4 @@
-modules.exports =
+module.exports =
   chapter:
     open: (number) ->
       if wl.menu.contextmenuEvent?

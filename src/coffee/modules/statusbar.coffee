@@ -1,4 +1,4 @@
-modules.exports =
+module.exports =
   reload: ()->
     setTimeout ->
       val = wl.editor.input.innerText
