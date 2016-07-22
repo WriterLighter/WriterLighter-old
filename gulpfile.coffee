@@ -98,9 +98,7 @@ gulp.task 'bower:css', ->
   cssFilter = $.filter '**/*.css', restore: true
   gulp.src bower paths: bowerJson: 'bower.json'
     .pipe cssFilter
-    .pipe $.sourcemaps.init()
     .pipe $.concat 'bower_components.css'
-    .pipe $.sourcemaps.write()
     .pipe gulp.dest 'css'
     .pipe cssFilter.restore
 
@@ -108,9 +106,12 @@ gulp.task 'bower:js', ->
   jsFilter = $.filter '**/*.js', restore: true
   gulp.src bower paths: bowerJson: 'bower.json'
     .pipe jsFilter
-    .pipe $.sourcemaps.init()
+    .pipe $.uglify()
+    .pipe $.rename
+      prefix: 'bower_'
+      extname: '.min.js'
+    .pipe gulp.dest 'js'
     .pipe $.concat 'bower_components.js'
-    .pipe $.sourcemaps.write()
     .pipe gulp.dest 'js'
     .pipe jsFilter.restore
 
