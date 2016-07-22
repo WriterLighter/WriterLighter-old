@@ -9,6 +9,7 @@ Path        = require 'path'
 extend      = require 'extend'
 mkdirp      = require 'mkdirp'
 bower       = require 'main-bower-files'
+electron    = require('electron-connect').server.create()
 
 packageOpts =
   asar: true
@@ -115,21 +116,28 @@ gulp.task 'bower:js', ->
     .pipe gulp.dest 'js'
     .pipe jsFilter.restore
 
-gulp.task 'dist', ['clean:dist'], ->
+gulp.task 'dist', ['clean:dist', 'html'], ->
   gulp.src([
     'js/**/*'
     'css/**/*'
     'images/**/*'
     'examples/**/*'
+    'extensions/**/*'
+    '*.html'
+    '!index.html'
     '*.js'
     '!gulpfile.js'
-    '*.html'
     'package.json'
     'example.md'
   ], { base: '.' })
     .pipe gulp.dest('dist')
     .pipe $.install
       production: true
+
+gulp.task 'html', ->
+  gulp.src 'index.html'
+    .pipe $.removeHtml()
+    .pipe gulp.dest 'dist'
 
 gulp.task 'package', ['clean:packages', 'dist'], (done) ->
   runSequence 'package:win32', 'package:darwin', 'package:linux', done
@@ -227,6 +235,12 @@ gulp.task 'archive:linux', (done) ->
 
 gulp.task 'release', (done) -> runSequence 'build', 'archive', 'clean', done
 
-gulp.task 'run', ['compile', 'bower'], ->
-  gulp.src '.'
-    .pipe $.runElectron(['--development'])
+gulp.task 'watch', ['compile', 'bower'], ->
+  electron.start()
+  $.watch 'src/less/**/*.less', -> gulp.start 'compile:less'
+  $.watch 'src/coffee/**/*.coffee', -> gulp.start 'compile:coffee'
+  $.watch 'js/main.js', electron.restert
+  $.watch ['js/index.js', 'js/modules/**/*.js',
+    'index.html', 'menu.yml', 'js/bower_*.js'], electron.relod
+
+gulp.task 'default', ['compile', 'bower']
