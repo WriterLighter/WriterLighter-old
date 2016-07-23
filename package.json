@@ -23,7 +23,6 @@
   "devDependencies": {
     "bower": "^1.7.9",
     "del": "^2.2.1",
-    "electron-connect": "^0.4.2",
     "electron-packager": "7.3.0",
     "electron-prebuilt": "1.2.7",
     "extend": "^3.0.0",
@@ -45,7 +44,6 @@
     "gulp-tar": "^1.8.0",
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
-    "gulp-watch": "^4.3.8",
     "gulp-zip": "^3.1.0",
     "main-bower-files": "^2.13.0",
     "mkdirp": "^0.5.1",

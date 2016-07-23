@@ -9,7 +9,6 @@ Path        = require 'path'
 extend      = require 'extend'
 mkdirp      = require 'mkdirp'
 bower       = require 'main-bower-files'
-electron    = require('electron-connect').server.create()
 
 packageOpts =
   asar: true
@@ -235,12 +234,6 @@ gulp.task 'archive:linux', (done) ->
 
 gulp.task 'release', (done) -> runSequence 'build', 'archive', 'clean', done
 
-gulp.task 'watch', ['compile', 'bower'], ->
-  electron.start()
-  $.watch 'src/less/**/*.less', -> gulp.start 'compile:less'
-  $.watch 'src/coffee/**/*.coffee', -> gulp.start 'compile:coffee'
-  $.watch 'js/main.js', electron.restert
-  $.watch ['js/index.js', 'js/modules/**/*.js',
-    'index.html', 'menu.yml', 'js/bower_*.js'], electron.relod
-
-gulp.task 'default', ['compile', 'bower']
+gulp.task 'default', ['compile', 'bower'], ->
+  gulp.src '.'
+    .pipe $.runElectron ['--development']
