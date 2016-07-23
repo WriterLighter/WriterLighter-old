@@ -1,4 +1,4 @@
-module.exports = class popup
+module.exports = class Popup
   @hide: ->
     $("#popup").removeClass "show"
     $("#popup.toast").removeClass "toast"
@@ -13,12 +13,12 @@ module.exports = class popup
   constructor: (@type = "toast", @messeage = "", @callback = ((m)-> console.log(m)), @timeout = 3000, @complete = [])->
 
   show: =>
-    @hide
+    Popup.hide
     switch @type
       when "toast"
         _show.call @, @messeage, @type
         setTimeout =>
-          do @hide
+          do Popup.hide
           @callback @messeage
         , @timeout
 
@@ -43,11 +43,11 @@ module.exports = class popup
             .focus()
             .on "blur",=>
               unless @forcing
-                do @hide
+                do Popup.hide
             .on "keydown", (e)=>
               if e.keyCode is 13
                 if $("#popup>input").val() is "" then return false
-                do @hide
+                do Popup.hide
                 @callback $("#popup>input").val()
         else
           $("#popup>form").on "submit", =>
@@ -57,6 +57,6 @@ module.exports = class popup
               if $(@).val() is "" then uninput = true
               value.push $(@).val()
             unless uninput
-              do @hide
+              do Popup.hide
               @callback value
             false
