@@ -107,7 +107,7 @@ gulp.task 'bower:js', ->
   jsFilter = $.filter '**/*.js', restore: true
   gulp.src bower paths: bowerJson: 'bower.json'
     .pipe jsFilter
-    .pipe $.uglify()
+    .pipe $.uglify preserveComments: 'some'
     .pipe $.rename
       prefix: 'bower_'
       extname: '.min.js'
