@@ -16,7 +16,7 @@ module.exports = class ModalWindow
       $("#modal-window:not(.forcing)+#modal-overray").on "click", ->
         $("#modal-window").removeClass "show"
 
-  centering: ()->
+  @centering: ()->
     $window = $ window
     $modal = $("#modal-window")
     top = (($window.height() - $modal.height()) / 2)
@@ -25,6 +25,6 @@ module.exports = class ModalWindow
       top: top
       left: left
 
-  $ ->
-    $(window).on "resize", ->
-      wl.modalwindow.prototype.centering()
+$ ->
+  $(window).on "resize", ->
+    ModalWindow.centering()
