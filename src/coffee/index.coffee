@@ -1,6 +1,6 @@
 window.WriterLighter = window.wl = class WriterLighter
   #@command     = require './js/modules/command'
-  #@config      = require './js/modules/config'
+  @config      = require './js/modules/config'
   #@counter     = require './js/modules/counter'
   #@editor      = require './js/modules/editor'
   #@extension   = require './js/modules/extension'
