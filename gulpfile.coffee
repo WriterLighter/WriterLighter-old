@@ -115,7 +115,7 @@ gulp.task 'bower:js', ->
     .pipe gulp.dest 'js'
     .pipe jsFilter.restore
 
-gulp.task 'dist', ['clean:dist', 'html'], ->
+gulp.task 'dist', ['clean:dist'], ->
   gulp.src([
     'js/**/*'
     'css/**/*'
@@ -123,7 +123,6 @@ gulp.task 'dist', ['clean:dist', 'html'], ->
     'examples/**/*'
     'extensions/**/*'
     '*.html'
-    '!index.html'
     '*.js'
     '!gulpfile.js'
     'package.json'
@@ -132,11 +131,6 @@ gulp.task 'dist', ['clean:dist', 'html'], ->
     .pipe gulp.dest('dist')
     .pipe $.install
       production: true
-
-gulp.task 'html', ->
-  gulp.src 'index.html'
-    .pipe $.removeHtml()
-    .pipe gulp.dest 'dist'
 
 gulp.task 'package', ['clean:packages', 'dist'], (done) ->
   runSequence 'package:win32', 'package:darwin', 'package:linux', done
