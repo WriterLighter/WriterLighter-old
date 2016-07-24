@@ -1,179 +1,175 @@
-module.exports =
-  chapter:
-    open: (number) ->
-      if wl.menu.contextmenuEvent?
-        number = wl.menu.contextmenuEvent.target.dataset.chapter
-      if wl.editor.edited then wl.novel.chapter.save()
-      _open = (path) ->
-        fs.readFile path, 'utf8', (e, t)->
-          $("#chapter .opened").removeClass "opened"
-          wl.novel.chapter.path = path
-          wl.editor.previousInput = wl.novel.previousFile = if t? then t else ""
-          $("#input-text").text(wl.novel.previousFile)
-          wl.editor.edited = false
-          wl.novel.chapter.opened = number
-          wl.lastedit.save()
-          $("#chapter [data-chapter='#{number}']").addClass("opened")
-          wl.editor.clearWindowName()
-          wl.statusbar.reload()
+path     = require 'path'
+glob     = require 'glob'
+Popup    = require 'popup'
+menu     = require 'menu'
+editor   = require 'editor'
+fs       = require 'fs'
+lastedit = require 'lastedit'
+config   = require 'config'
 
-      unless isNaN(number - 0)
-        number = number % wl.novel.chapter.list.length
-        number = if number < 0 then -number else number
-        _open(path.join(wl.novel.path,"/本文/",wl.novel.chapter.list[number] + ".txt"))
-      else if number? and number isnt ""
-        switch number
-          when "next"
-            unless isNaN(wl.novel.chapter.opened)
-              wl.novel.chapter.open(wl.novel.chapter.opened - 0 + 1)
-          when "back"
-            unless isNaN(wl.novel.chapter.opened)
-              wl.novel.chapter.open(wl.novel.chapter.opened - 1)
-          else
-            _open(path.join(wl.novel.path,wl.novel[number].path))
+module.exports = class novel
+  novelPath = ""
+  novelName = ""
+  chapterPath = ""
+  chapterNumber = 0
+  novelIndex = {}
+  originalFile = ""
 
-      else
-        getChapter = new wl.popup("prompt")
-        getChapter.messeage = "章名またはタイプ(afterwordなど)を入力…"
-        getChapter.callback = (chapter)->
-          wl.novel.chapter.open(chapter)
-        getChapter.show()
+  @openChapter = (number) ->
+    if menu.contextmenuEvent()?
+      number = menu.contextmenuEvent().target.dataset.chapter
+    if editor.isEdited() then novel.save()
 
-    new: (name)->
-      if name? and name isnt ""
-        newchapter = wl.novel.chapter.list.push name
-        $("#input-text").text("")
-        wl.editor.previousInput = wl.novel.previousFile = ""
-        wl.novel.chapter.opened = newchapter - 1
-        wl.editor.edited = false
-        wl.novel.chapter.reload()
-        wl.novel.chapter.path = path.join(wl.novel.path,"本文",name+".txt")
-        wl.novel.saveIndex()
-        wl.lastedit.save()
-      else
-        getNewChapterName = new wl.popup("prompt", "追加する章名を入力…")
-        getNewChapterName.callback = (name)->
-          wl.novel.chapter.new(name)
-        getNewChapterName.show()
+    _open = (cpath) ->
+      fs.readFile cpath, 'utf8', (e, t)->
+        do (new Popup "toast", "ERORR!: " + e).show if e?
+        $("#chapter .opened").removeClass "opened"
+        chapterPath = cpath
+        text = if t? then t else ""
+        editor.setText text
+        chapterNumber = number
+        lastedit.save()
+        $("#chapter [data-chapter='#{number}']").addClass "opened"
+        editor.clearWindowName()
 
-    rename: (number) ->
-      unless isNaN(number - 0)
-        confirm = new wl.popup "prompt"
-        confirm.messeage = "新しい章名を入力してください…"
-        confirm.callback = (name) ->
-          oldname = wl.novel.chapter.list[number]
-          newpath = wl.novel.chapter.path =  path.join(wl.novel.path, "本文", name + ".txt")
-          fs.renameSync path.join(wl.novel.path, "本文", oldname + ".txt"), newpath
-          wl.novel.chapter.list[number] = name
-          wl.novel.saveIndex()
-          wl.novel.chapter.reload()
-          if wl.novel.chapter.opened is number
-            wl.chapter.open number
-        confirm.show()
-      else
-        getChapter = new wl.popup("prompt")
-        getChapter.messeage = "章名またはタイプ(afterwordなど)を入力…"
-        getChapter.callback = (chapter)->
-          wl.novel.chapter.rename(chapter)
-        getChapter.show()
-
-    delete: (number) ->
-      unless isNaN(number - 0)
-        confirm = new wl.popup "prompt"
-        confirm.messeage = "確認のため、章名をご入力ください…"
-        confirm.callback = (name) ->
-          if name is wl.novel.chapter.list[number]
-            wl.novel.chapter.list.splice number, 1
-            fs.unlink path.join(wl.novel.path, "本文", name + ".txt")
-            wl.novel.saveIndex()
-            wl.novel.chapter.reload()
-            if wl.novel.chapter.opened is number
-              wl.chapter.open 1
-          else
-            wl.novel.chapter.delete number
-        confirm.show()
-      else
-        getChapter = new wl.popup("prompt")
-        getChapter.messeage = "章名またはタイプ(afterwordなど)を入力…"
-        getChapter.callback = (chapter)->
-          wl.novel.chapter.delete(chapter)
-        getChapter.show()
-
-    save: ->
-      fs.writeFile wl.novel.chapter.path, wl.editor.input.innerText, (e)->
-        if e?
-          errp = new wl.popup("toast", e)
-          errp.show()
+    unless isNaN(number)
+      number = novelIndex.chapter.length % number
+      _open(path.join(novelPath, "本文", novelIndex.chapter[number] + ".txt"))
+    else if number? and number isnt ""
+      switch number
+        when "next"
+          unless isNaN chapterNumber
+            novel.openChapter chapterNumber - 0 + 1
+        when "back"
+          unless isNaN chapterNumber
+            novel.openChapter chapterNumber - 1
         else
-          wl.novel.previousFile = wl.editor.input.innerText
-          wl.editor.edited = false
-          wl.editor.clearWindowName()
+          _open(path.join(novelPath, novelIndex[number].path))
 
-    reload: ->
-      list = ""
-      wl.novel.chapter.list.forEach (item,index)->
-        list +=  "<li data-chapter='#{index}' data-context='chapter_list'>#{item}</li>"
-      $("#chapter-list").html(list)
-      $("[data-chapter]").on "click", (e)->
-        wl.novel.chapter.open this.dataset.chapter
+    else
+      getChapter = new Popup("prompt")
+      getChapter.messeage = "章名またはタイプ(afterwordなど)を入力…"
+      getChapter.callback = novel.openChapter
+      getChapter.show()
 
-  description:{}
-  afterword:{}
-  plot:{}
-  open: (name)->
+  @newChapter: (name)->
+    if name? and name isnt ""
+      newchapter = novelIndex.chapter.push name
+      editor.setHTML ""
+      originalFile = ""
+      chapterNumber = newchapter - 1
+      do novel.reloadChapterList
+      chapterPath = path.join(novelPath,"本文",name+".txt")
+      novel.saveIndex()
+      lastedit.save()
+    else
+      getNewChapterName = new Popup("prompt", "追加する章名を入力…")
+      getNewChapterName.callback = novel.newChapter
+      getNewChapterName.show()
 
+  @renameChapter: (number) ->
+    unless isNaN(number - 0)
+      confirm = new Popup "prompt"
+      confirm.messeage = "新しい章名を入力してください…"
+      confirm.callback = (name) ->
+        oldFile = chapterPath
+        chapterPath =  path.join(novelPath, "本文", name + ".txt")
+        fs.renameSync oldFile, chapterPath
+        novelIndex.chapter[number] = name
+        novel.saveIndex()
+        novel.reloadChapterList()
+        if chapterNumber is number
+          novel.openChapter number
+      confirm.show()
+    else
+      getChapter = new Popup("prompt")
+      getChapter.messeage = "章番号を入力…"
+      getChapter.callback = novel.renameChapter
+      getChapter.show()
+
+  @deleteChapter: (number) ->
+    unless isNaN numbe
+      confirm = new Popup "prompt"
+      confirm.messeage = "確認のため、章名を入力ください…"
+      confirm.callback = (name) ->
+        if name is novelIndex.chapter[number]
+          novelIndex.chapter.splice number, 1
+          fs.unlink path.join novelPath, "本文", name + ".txt"
+          novel.saveIndex()
+          novel.reloadChapterList()
+          if chapterNumber is number
+            novel.openChapter 1
+        else
+          novel.deleteChapter number
+      confirm.show()
+    else
+      getChapter = new Popup("prompt")
+      getChapter.messeage = "章番号を入力…"
+      getChapter.callback = novel.deleteChapter
+      getChapter.show()
+
+  @save: ->
+    fs.writeFile chapterPath, editor.getText(), (e)->
+      if e?
+        errp = new Popup("toast", e)
+        errp.show()
+      else
+        editor.clearWindowName()
+
+  @reloadChapterList: ->
+    list = ""
+    novelIndex.chapter.forEach (item,index)->
+      list +=  "<li data-chapter='#{index}' data-context='chapter_list'>#{item}</li>"
+    $("#chapter-list").html(list)
+    $("[data-chapter]").on "click", (e)->
+      wl.novel.chapter.open this.dataset.chapter
+
+  @openNovel = ->
     _open =  (novelname)->
-      wl.novel.name = novelname
-      wl.novel.path = novelpath =path.join(wl.config.user.bookshalf,novelname)
-      index = JSON.parse(fs.readFileSync(path.join(novelpath,"index.json"),"utf-8"))
-      wl.novel.chapter.list = index.chapter
-      wl.novel.description.path = index.description
-      wl.novel.afterword.path = index.afterword
-      wl.novel.author = index.author
-      wl.novel.plot.path = index.plot
-      wl.novel.chapter.reload()
-      if index.chapter.length is 0 then wl.novel.chapter.new() else wl.novel.chapter.open(0)
+      novelName = novelname
+      novelPath = path.join config.get("bookshalf"), novelname
+      novelIndex = JSON.parse(fs.readFileSync(path.join(novelPath,"index.json"),"utf-8"))
+      novel.reloadChapterList()
+      if novelIndex.chapter.length is 0 then novel.newChapter() else novel.openChapter 0
 
     if name? and name isnt ""
       _open name
     else
-      getNovelName = new wl.popup("prompt")
+      getNovelName = new Popup("prompt")
       getNovelName.messeage = "小説名を入力…"
-      getNovelName.callback = (name)->
-        wl.novel.open name
-      getNovelName.complete = wl.novel.list
+      getNovelName.callback = novel.openNovel
+      getNovelName.complete = novel.getNovelList()
       getNovelName.show()
 
-  saveIndex: ->
-    index =
-      name: wl.novel.name
-      chapter: wl.novel.chapter.list
-      description: wl.novel.description.path
-      afterword: wl.novel.afterword.path
-      author: wl.novel.author
-      plot: wl.novel.plot.path
-    console.log index
-    
-    fs.writeFile path.join(wl.novel.path, "index.json"), JSON.stringify(index), (e)->
-      if e? then console.error e
+  @getNovelList = ->
+    glob path.join(config.get("bookshalf"),"*","index.json"), (e,d)->
+      list = []
+      d.forEach (item,index)->
+        list.push path.basename(path.dirname(item))
+      list
 
-  new: (name)->
+  @saveIndex: ->
+    fs.writeFile path.join(novelPath, "index.json"), JSON.stringify(novelIndex), (e)->
+      if e? then (new Popup "toast", e).show()
+
+  @newNovel: (name)->
     if name? and name isnt ""
       index =
         name: name
-        author: wl.config.user.name
+        author: config.get "name"
         description: "説明.txt"
         afterword: "あとがき.txt"
         chapter: []
         plot: "プロット.txt"
+      novelpath = path.join config.get("bookshalf"), name
 
-      fs.mkdirs path.join(wl.config.user.bookshalf, name, "本文"), (e)->
+      fs.mkdirs path.join(novelpath, "本文"), (e)->
         unless e?
-          fs.writeFile path.join(wl.config.user.bookshalf, name, "index.json"), JSON.stringify(index), (e)->
+          fs.writeFile path.join(novelpath, "index.json"), JSON.stringify(index), (e)->
             unless e?
-              wl.novel.open name
+              novelPath = novelpath
+              novel.open name
     else
-      p = new wl.popup("prompt", "小説名を入力…")
-      p.callback = (name)->
-        wl.novel.new name
+      p = new Popup("prompt", "小説名を入力…")
+      p.callback = novel.newNovel
       p.show()
