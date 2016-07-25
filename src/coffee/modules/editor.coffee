@@ -61,6 +61,20 @@ module.exports = class editor
     opened = do novel.getOpened
     document.title = "#{opened.chapter.name} - #{opened.novel.name} | WriterLighter"
 
+  @setText = (text) ->
+    $input[0].innerText = text
+    do _onchange
+
+  @setHTML = (html)->
+    $input[0].innerHTML = html
+    do _onchange
+
+  @getText = ->
+    $input[0].innerText
+
+  @getHTML = ->
+    $input[0].innerHTML
+
 $("#input-text").on "input", (e)->
   if wl.editor.edited is false
     wl.editor.edited = true
