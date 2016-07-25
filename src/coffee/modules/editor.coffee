@@ -1,5 +1,6 @@
 BrowserWindow = require("electron").remote.BrowserWindow
 Popup         = require "./popup"
+novel         = require "./novel"
 
 $input = $ "#input-text"
 
@@ -56,12 +57,9 @@ module.exports = class editor
     else
       editor.setDirection "vertical"
 
-editor.clearWindowName = ()->
-  unless isNaN(wl.novel.chapter.opened - 0)
-    chaptername = wl.novel.chapter.list[wl.novel.chapter.opened - 0]
-  else
-    chaptername = wl.novel[wl.novel.chapter.opened].path
-  document.title = "#{chaptername} - #{wl.novel.name} | WriterLighter"
+  @clearWindowName = ->
+    opened = do novel.getOpened
+    document.title = "#{opened.chapter.name} - #{opened.novel.name} | WriterLighter"
 
 $("#input-text").on "input", (e)->
   if wl.editor.edited is false
