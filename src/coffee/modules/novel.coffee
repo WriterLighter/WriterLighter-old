@@ -148,6 +148,14 @@ module.exports = class novel
         list.push path.basename(path.dirname(item))
       list
 
+  @getOpened = ->
+    novel:
+      path: novelPath
+      name: novelName
+    chapter:
+      index: chapterNumber
+      name: if isNaN chapterNumber then novelIndex[chapterNumber] else novelIndex.chapter[chapterNumber]
+
   @saveIndex: ->
     fs.writeFile path.join(novelPath, "index.json"), JSON.stringify(novelIndex), (e)->
       if e? then (new Popup "toast", e).show()
