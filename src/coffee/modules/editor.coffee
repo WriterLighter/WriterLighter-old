@@ -1,6 +1,8 @@
 BrowserWindow = require("electron").remote.BrowserWindow
 Popup         = require "./popup"
 novel         = require "./novel"
+counter       = require "./counter"
+config        = require "./config"
 
 $input = $ "#input-text"
 
@@ -10,6 +12,21 @@ module.exports = class editor
   #0:標準モード
   #1:超集中モード
   editorMode = ""
+  edited = false
+  saveTimeout = null
+  previousInput = ""
+  _onchange = ->
+    text = do editor.getText
+    if text isnt previousInput
+      if edited is false
+        edited = true
+        document.title = "* " + document.title
+      saveTimeout? and clearTimeout saveTimeout
+      do counter.count
+      previousInput = text
+      wl.editor.saveTimeout = setTimeout ()->
+        wl.novel.save()
+      , unless isNaN config.get("saveTimeout") then config.get "saveTimeout" else 1000
 
   @setMode = (mode) ->
     switch mode
@@ -75,20 +92,14 @@ module.exports = class editor
   @getHTML = ->
     $input[0].innerHTML
 
-$("#input-text").on "input", (e)->
-  if wl.editor.edited is false
-    wl.editor.edited = true
-    document.title = "* " + document.title
-  clearTimeout wl.editor.saveTimeout
-  wl.statusbar.reload()
-  wl.editor.previousInput = wl.editor.input.innerText
-  wl.editor.saveTimeout = setTimeout ()->
-    wl.novel.chapter.save()
-  , if typeof wl.config.user.saveTimeout is "number" then wl.config.user.saveTimeout else 1000
+  @isEdited = ->
+    edited
 
-$("#input-text").on "keyup", (e)->
-  if e.keyCode is 13 and wl.editor.input.innerText.split("\n").length = wl.editor.previousInput.split("\n").length
-    document.execCommand('insertHTML', false, '　')
+  $("#input-text").on "input", _onchange
+
+  $("#input-text").on "keydown", (e)->
+    if e.keyCode is 13 and editor.getText().split("\n").length > previousInput.split("\n").length
+      document.execCommand('insertHTML', false, '　')
 
 $(window).on "beforeunload" , ()->
-  if wl.editor.edited then wl.novel.chapter.save()
+  if editor.isEdited() then novel.save()
