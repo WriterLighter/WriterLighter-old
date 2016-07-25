@@ -154,7 +154,7 @@ module.exports = class novel
       name: novelName
     chapter:
       index: chapterNumber
-      name: if isNaN chapterNumber then novelIndex[chapterNumber] else novelIndex.chapter[chapterNumber]
+      name : path.parse(chapterPath).name
 
   @saveIndex: ->
     fs.writeFile path.join(novelPath, "index.json"), JSON.stringify(novelIndex), (e)->
