@@ -32,4 +32,4 @@ module.exports =
   back_chapter: ->
     wl.novel.chapter.open("back")
   inspect_element: ->
-    remote.getCurrentWindow().inspectElement(wl.menu.contextmenuEvent.x,wl.menu.contextmenuEvent.y)
+    remote.getCurrentWindow().inspectElement(contextmenuEvent.x,contextmenuEvent.y)
