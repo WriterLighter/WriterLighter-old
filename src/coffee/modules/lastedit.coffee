@@ -1,20 +1,28 @@
-module.exports =
-  path : path.join(app.getPath("userData"), "lastedit.json")
-  save: ->
-    savedata = {}
-    savedata.novel = wl.novel.name
-    savedata.chapter = wl.novel.chapter.opened
-    fs.writeFileSync wl.lastedit.path, JSON.stringify(savedata)
+app    = require("electron").app
+fs     = reqiure "fs"
+novel  = require "./novel"
+editor = require "./editor"
+
+module.exports = class lastEdit
+  lastEditPath= path.join(app.getPath("userData"), "lastedit.json")
+  @save: ->
+    savedata =
+      opened: do novel.getOpened
+      status:
+        mode: do editor.getMode
+        direction: do editor.getDirection
+    fs.writeFileSync lastEditPath, JSON.stringify(savedata)
+
+  @restore: ->
+    fs.readFile lastEditPath, (err, text) ->
+      unless err?
+        data = JSON.parse text
+        novel.openNovel data.opened.novel.name
+        novel.openChapter data.opened.chapter.name
+      else novel.openNovel "はじめよう"
 
 $ ->
-  fs.readFile wl.lastedit.path, (err, data)->
-    unless err?
-      lastedit = JSON.parse data
-      wl.novel.open lastedit.novel
-      wl.novel.chapter.open lastedit.chapter
-    else
-      wl.novel.open "はじめよう"
-
+  do lastEdit.restore
 $(window).on "beforeunload", ->
   wl.lastedit.save()
 
