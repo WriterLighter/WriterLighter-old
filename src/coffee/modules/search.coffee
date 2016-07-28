@@ -1,5 +1,7 @@
-module.exports =
-  highlight: (Keyword, className = "")	->
+module.exports = class search
+  focusing = 0
+
+  @highlight: (keyword, className = "")	->
 
     findAllInText = (text, keyword) ->
       start = 0
@@ -10,57 +12,61 @@ module.exports =
           _res.push i
           start = i + keyword.length
         else
-          return _res
+          _res
 
     insert= (str, insPos, insStr)->
       str.slice(0, insPos) + insStr + str.slice(insPos)
 
-    res = wl.editor.input.innerText
-    sres = findAllInText res, Keyword
-    rres = sres
-    rres.reverse()
-    rres.forEach (start ,index)->
-      end = start + Keyword.length
-      res = insert(res, end, "</mark>")
-      res = insert(res, start, "<mark class='#{className}'>")
-    wl.editor.input.innerHTML = res
-    sres
+    html = editor.getText()
+    res = findAllInText html, keyword
+    res.concat()
+      .reverse()
+      .forEach (start ,index)->
+      end = start + keyword.length
+      res = insert(html, end, "</mark>")
+      res = insert(html, start, "<mark class='#{className}'>")
+    editor.setHTML html
+    res
 
-  focus:(index = 0)->
+  @focus:(index = 0)->
     res = $("mark.searched").length
     switch typeof index
       when "number"
-        wl.search.forcusing = index % res
-        $("#search .focused").html(wl.search.forcusing + 1)
+        focusing = index % res
+        $("#search-focusing").html(focusing + 1)
         $("mark.focused").removeClass("focused")
-        pos = $("mark.searched").eq(index%res).addClass("focused").position()
-        if wl.editor.direction.is is "vertical"
-          $("#input-text").scrollTop(pos.top + $("#input-text").scrollTop() - ($("#input-text").height() / 2))
+        pos = $("mark.searched").eq(focusing).addClass("focused").position()
+        if editor.direction.is is "vertical"
+          $("#input-text").scrollTop(pos.top - ($("#input-text").height() / 2))
         else
-          $("#input-text").scrollLeft(pos.left + $("#input-text").scrollLeft() - ($("#input-text").width() / 2))
+          $("#input-text").scrollLeft(pos.left - ($("#input-text").width() / 2))
 
       when "string"
         switch index
           when "next"
-            wl.search.focus(wl.search.forcusing + 1)
+            search.focus(focusing + 1)
           when "back"
-            wl.search.focus(wl.search.forcusing - 1)
+            search.focus(focusing - 1)
+    focusing
 
-  search:(keyword)->
-    unless keyword?
-      $("#search").addClass("show")
-      $("#search input[type='search']").focus()
-    else
-      sres = wl.search.highlight(keyword, "searched")
+  @search:(keyword)->
+    $("#search").addClass("show")
+    $("#search input[type='search']")
+      .val keyword
+      .focus()
+    if keyword? and keyword isnt ""
+      sres = search.highlight(keyword, "searched")
       unless sres.length is 0
-        $("#search .all").html sres.length
-        wl.search.focus()
+        $("#search-result-all").html sres.length
+        search.focus()
+      else
+        $("#search-result-all, #search-focusing").html 0
+        $("#search-result").css color: "#f00"
 
   nohighlight: ()->
     $('#search').removeClass('show')
     $("#input-text").html $("#input-text").text()
       .focus()
 
-$ ->
   $("#input-text").on "focus", ()->
-    wl.search.nohighlight()
+    search.nohighlight()
