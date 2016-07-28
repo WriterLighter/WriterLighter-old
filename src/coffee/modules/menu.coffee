@@ -1,5 +1,4 @@
 YAML     = require "js-yaml"
-command  = require "./command"
 electron = require "electron"
 Menu     = electron.remote.Menu
 fs       = require 'fs'
@@ -39,3 +38,5 @@ module.exports = class menu
     Menu.buildFromTemplate(menu.buildTemplate(cmenu)).popup()
 
 window.addEventListener "contextmenu", menu.showContextMenu
+
+command  = require "./command"

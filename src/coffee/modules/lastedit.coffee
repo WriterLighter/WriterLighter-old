@@ -1,7 +1,5 @@
 app    = require("electron").remote.app
 fs     = require "fs"
-novel  = require "./novel"
-editor = require "./editor"
 path   = require 'path'
 
 module.exports = class lastEdit
@@ -24,8 +22,5 @@ module.exports = class lastEdit
         editor.setDirection data.status.direction
       else novel.openNovel "はじめよう"
 
-$ ->
-  do lastEdit.restore
-$(window).on "beforeunload", ->
-  wl.lastedit.save()
-
+novel  = require "./novel"
+editor = require "./editor"

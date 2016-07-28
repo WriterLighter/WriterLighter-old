@@ -1,11 +1,6 @@
 path     = require 'path'
 glob     = require 'glob'
-Popup    = require './popup'
-menu     = require './menu'
-editor   = require './editor'
 fs       = require 'fs'
-lastedit = require './lastedit'
-config   = require './config'
 
 module.exports = class novel
   novelPath = ""
@@ -18,8 +13,7 @@ module.exports = class novel
   @openChapter = (number) ->
     if contextmenuEvent?
       number = menu.contextmenuEvent().target.dataset.chapter
-    console.log editor.isEdited
-    if editor.isEdited?() then novel.save()
+    if editor.isEdited() then novel.save()
 
     _open = (cpath) ->
       fs.readFile cpath, 'utf8', (e, t)->
@@ -182,3 +176,9 @@ module.exports = class novel
       p = new Popup("prompt", "小説名を入力…")
       p.callback = novel.newNovel
       p.show()
+
+Popup    = require './popup'
+menu     = require './menu'
+editor   = require './editor'
+lastedit = require './lastedit'
+config   = require './config'

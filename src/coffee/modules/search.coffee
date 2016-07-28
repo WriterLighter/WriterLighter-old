@@ -1,5 +1,3 @@
-editor = require './editor'
-
 module.exports = class search
   focusing  = 0
   $search   = $ "#search"
@@ -75,3 +73,5 @@ module.exports = class search
 
   $("#input-text").on "focus", ()->
     search.nohighlight()
+
+editor = require './editor'

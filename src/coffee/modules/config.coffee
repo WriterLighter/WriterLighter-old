@@ -2,7 +2,6 @@ path = require 'path'
 app  = require('electron').remote.app
 dialog = require('electron').dialog
 fs   = require 'fs'
-ModalWindow = require "./modalwindow"
 
 module.exports = class config
   configs = {}
@@ -70,3 +69,5 @@ module.exports = class config
       $("#modal-window").removeClass "show"
       do config.save
       return false
+
+ModalWindow = require "./modalwindow"

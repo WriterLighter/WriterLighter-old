@@ -1,6 +1,3 @@
-editor    = require "./editor"
-statusBar = require "./statusbar"
-
 module.exports = class counter
   @get = (type)->
     val = do editor.getText
@@ -36,3 +33,6 @@ module.exports = class counter
     statusBar.register "byte",
       (unless byte < 1024 then Math.floor(byte / 1024 * 100) + "キロ" /100 else byte)
       + "バイト"
+
+editor    = require "./editor"
+statusBar = require "./statusbar"

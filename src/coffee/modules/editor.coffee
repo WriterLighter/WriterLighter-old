@@ -1,8 +1,4 @@
 BrowserWindow = require("electron").remote.BrowserWindow
-Popup         = require "./popup"
-novel         = require "./novel"
-counter       = require "./counter"
-config        = require "./config"
 
 $input = $ "#input-text"
 
@@ -100,3 +96,9 @@ module.exports = class editor
   $("#input-text").on "keydown", (e)->
     if e.keyCode is 13 and editor.getText().split("\n").length > previousInput.split("\n").length
       document.execCommand('insertHTML', false, '　')
+
+Popup         = require "./popup"
+novel         = require "./novel"
+counter       = require "./counter"
+config        = require "./config"
+
