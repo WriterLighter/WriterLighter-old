@@ -1,5 +1,5 @@
 editor    = require "./editor"
-statusBar = require "./statusBar"
+statusBar = require "./statusbar"
 
 module.exports = class counter
   @get = (type)->

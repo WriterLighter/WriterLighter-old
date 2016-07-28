@@ -1,7 +1,7 @@
-Popup = require "popup"
+Popup = require "./popup"
 
 module.exports = class command
-  commands = require "commands"
+  commands = require "./commands"
   @execute: (command)->
     c = command.split(":")
     switch c.length

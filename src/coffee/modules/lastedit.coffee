@@ -1,7 +1,8 @@
-app    = require("electron").app
-fs     = reqiure "fs"
+app    = require("electron").remote.app
+fs     = require "fs"
 novel  = require "./novel"
 editor = require "./editor"
+path   = require 'path'
 
 module.exports = class lastEdit
   lastEditPath= path.join(app.getPath("userData"), "lastedit.json")
@@ -18,7 +19,9 @@ module.exports = class lastEdit
       unless err?
         data = JSON.parse text
         novel.openNovel data.opened.novel.name
-        novel.openChapter data.opened.chapter.name
+        novel.openChapter data.opened.chapter.index
+        editor.setMode data.status.mode
+        editor.setDirection data.status.direction
       else novel.openNovel "はじめよう"
 
 $ ->

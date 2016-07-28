@@ -1,11 +1,11 @@
 path     = require 'path'
 glob     = require 'glob'
-Popup    = require 'popup'
-menu     = require 'menu'
-editor   = require 'editor'
+Popup    = require './popup'
+menu     = require './menu'
+editor   = require './editor'
 fs       = require 'fs'
-lastedit = require 'lastedit'
-config   = require 'config'
+lastedit = require './lastedit'
+config   = require './config'
 
 module.exports = class novel
   novelPath = ""
@@ -16,9 +16,10 @@ module.exports = class novel
   originalFile = ""
 
   @openChapter = (number) ->
-    if menu.contextmenuEvent()?
+    if contextmenuEvent?
       number = menu.contextmenuEvent().target.dataset.chapter
-    if editor.isEdited() then novel.save()
+    console.log editor.isEdited
+    if editor.isEdited?() then novel.save()
 
     _open = (cpath) ->
       fs.readFile cpath, 'utf8', (e, t)->
@@ -124,7 +125,7 @@ module.exports = class novel
     $("[data-chapter]").on "click", (e)->
       wl.novel.chapter.open this.dataset.chapter
 
-  @openNovel = ->
+  @openNovel: (name) ->
     _open =  (novelname)->
       novelName = novelname
       novelPath = path.join config.get("bookshalf"), novelname
@@ -176,7 +177,7 @@ module.exports = class novel
           fs.writeFile path.join(novelpath, "index.json"), JSON.stringify(index), (e)->
             unless e?
               novelPath = novelpath
-              novel.open name
+              novel.openNovel name
     else
       p = new Popup("prompt", "小説名を入力…")
       p.callback = novel.newNovel

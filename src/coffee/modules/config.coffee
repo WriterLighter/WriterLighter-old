@@ -11,11 +11,12 @@ module.exports = class config
     if override then $.extend(configs, object) else $.extend(true, configs, object)
 
   @save = ->
-    try
-      fs.writeFileSync configFile, JSON.stringify(configs)
-      return configs
-    catch
-      return {}
+    unless Object.keys(configs).length
+      try
+        fs.writeFileSync configFile, JSON.stringify(configs)
+        return configs
+      catch
+        return {}
 
   @load = ->
     fs.readFile configFile, (err,data)->
@@ -70,6 +71,8 @@ module.exports = class config
       do config.save
       return false
 
-$(window).on "beforeunload", ->
-  do config.save
+$ ->
+  do config.load
 
+$(window).on "beforeunload", ->
+  config.save()
