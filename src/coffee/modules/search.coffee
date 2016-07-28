@@ -1,5 +1,8 @@
 module.exports = class search
-  focusing = 0
+  focusing  = 0
+  $search   = $ "#search"
+  $all      = $ "#search-result-all"
+  $focusing = $ "#search-focusing"
 
   @highlight: (keyword, className = "")	->
 
@@ -33,7 +36,7 @@ module.exports = class search
     switch typeof index
       when "number"
         focusing = index % res
-        $("#search-focusing").html(focusing + 1)
+        $focusing.html(focusing + 1)
         $("mark.focused").removeClass("focused")
         pos = $("mark.searched").eq(focusing).addClass("focused").position()
         if editor.direction.is is "vertical"
@@ -50,14 +53,14 @@ module.exports = class search
     focusing
 
   @search:(keyword)->
-    $("#search").addClass("show")
+    $search.addClass("show")
     $("#search input[type='search']")
       .val keyword
       .focus()
     if keyword? and keyword isnt ""
       sres = search.highlight(keyword, "searched")
       unless sres.length is 0
-        $("#search-result-all").html sres.length
+        $all.html sres.length
         search.focus()
       else
         $("#search-result-all, #search-focusing").html 0
