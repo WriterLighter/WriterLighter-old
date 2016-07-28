@@ -9,8 +9,6 @@ module.exports = class menu
   context  = {}
   template = {}
   appmenu  = {}
-
-  _TMP_CONTEXT_MENU_EVENT = null
   
   @buildTemplate: (data, type="app")->
     data.forEach (item, index)->
