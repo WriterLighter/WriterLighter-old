@@ -1,7 +1,8 @@
 YAML     = require "js-yaml"
 command  = require "./command"
 electron = require "electron"
-Menu     = electron.Menu
+Menu     = electron.remote.Menu
+fs       = require 'fs'
 
 module.exports = class menu
   _TMP_CONTEXT_MENU_EVENT = null
@@ -13,7 +14,7 @@ module.exports = class menu
   @buildTemplate: (data, type="app")->
     data.forEach (item, index)->
       if item.submenu?
-        data[index].submenu = wl.menu.buildTemplate(item.submenu)
+        data[index].submenu = menu.buildTemplate(item.submenu)
       else if item.command?
         data[index].click = ->
           contextMenuEvent = _TMP_CONTEXT_MENU_EVENT
@@ -23,7 +24,7 @@ module.exports = class menu
 
   @load: ->
     template = YAML.safeLoad fs.readFileSync("menu.yml")
-    appmenu = Menu.buildFromTemplate buildTemplate(template.appmenu)
+    appmenu = Menu.buildFromTemplate menu.buildTemplate(template.appmenu)
     Menu.setApplicationMenu appmenu
 
   @showContextMenu:(event) ->
@@ -33,8 +34,8 @@ module.exports = class menu
       addtionalMenu.split(" ").forEach (item, index)->
         cmenu.push
           type: "separator"
-        cmenu = cmenu.concat wl.menu.template.context[item]
+        cmenu = cmenu.concat menu.template.context[item]
     _TMP_CONTEXT_MENU_EVENT = event
-    Menu.buildFromTemplate(wl.menu.buildTemplate(cmenu)).popup()
+    Menu.buildFromTemplate(menu.buildTemplate(cmenu)).popup()
 
 window.addEventListener "contextmenu", menu.showContextMenu
