@@ -46,6 +46,3 @@ module.exports = class extensions
     html = fs.readFileSync(path.join(extensionPaths[name], extensions[name].view)).toString()
     $("#ext-content").html html
     extensions[name].onview?()
-
-$(window).on "load", ->
- extensions.load()

@@ -100,6 +100,3 @@ module.exports = class editor
   $("#input-text").on "keydown", (e)->
     if e.keyCode is 13 and editor.getText().split("\n").length > previousInput.split("\n").length
       document.execCommand('insertHTML', false, '　')
-
-$(window).on "beforeunload" , ()->
-  if editor.isEdited() then novel.save()

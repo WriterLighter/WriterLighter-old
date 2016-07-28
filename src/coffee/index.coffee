@@ -18,3 +18,15 @@ window.WriterLighter = window.wl = class WriterLighter
   @search      = require './js/modules/search'
   @statusBar   = require './js/modules/statusbar'
   @layout      = layout
+
+  @startup = ->
+    do wl.config.load
+    do wl.menu.load
+    do wl.lastedit.restore
+    do wl.counter.count
+    do wl.extension.load
+
+  @quiting = ->
+    if do wl.editor.isEdited then do wl.novel.save
+    do wl.lastedit.save
+    do wl.config.save

@@ -70,9 +70,3 @@ module.exports = class config
       $("#modal-window").removeClass "show"
       do config.save
       return false
-
-$ ->
-  do config.load
-
-$(window).on "beforeunload", ->
-  config.save()
