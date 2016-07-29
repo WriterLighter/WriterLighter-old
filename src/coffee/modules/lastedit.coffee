@@ -17,7 +17,7 @@ module.exports = class lastEdit
       unless err?
         data = JSON.parse text
         novel.openNovel data.opened.novel.name
-        novel.openChapter data.opened.chapter.index - 1
+        novel.openChapter data.opened.chapter.index + 1
         editor.setMode data.status.mode
         editor.setDirection data.status.direction
       else novel.openNovel "はじめよう"

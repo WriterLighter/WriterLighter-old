@@ -30,7 +30,7 @@ module.exports = class novel
         editor.clearWindowName()
 
     unless isNaN(number)
-      number = number % novelIndex.chapter.length
+      number = number - 1 % novelIndex.chapter.length
       _open(path.join(novelPath, "本文", novelIndex.chapter[number] + ".txt"))
     else if number? and number isnt ""
       switch number
@@ -65,7 +65,8 @@ module.exports = class novel
       getNewChapterName.show()
 
   @renameChapter: (number) ->
-    unless isNaN(number - 0)
+    unless isNaN(number)
+      number--
       confirm = new Popup "prompt"
       confirm.messeage = "新しい章名を入力してください…"
       confirm.callback = (name) ->
@@ -85,7 +86,8 @@ module.exports = class novel
       getChapter.show()
 
   @deleteChapter: (number) ->
-    unless isNaN numbe
+    unless isNaN number
+      number--
       confirm = new Popup "prompt"
       confirm.messeage = "確認のため、章名を入力ください…"
       confirm.callback = (name) ->
