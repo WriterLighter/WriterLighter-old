@@ -1,35 +1,39 @@
+electron      = require "electron"
+remote        = electron.remote
+browserWindow = remote.browserWindow
+
 module.exports =
   open_novel: ->
-    wl.novel.open()
+    wl.novel.openNovel()
   open_chapter: ->
-    wl.novel.chapter.open()
+    wl.novel.openChapter()
   command_palette: ->
     wl.command.palette()
   add_chapter: ->
-    wl.novel.chapter.add()
+    wl.novel.addChapter()
   editmode_def: ->
-    wl.editor.mode.defaultMode()
+    wl.editor.setMode("default")
   editmode_int: ->
-    wl.editor.mode.IntensiveMode()
+    wl.editor.setMode("Intensive")
   toggle_editmode: ->
-    wl.editor.mode.toggleIntensiveMode()
+    wl.editor.toggleMode()
   toggle_devtools: ->
     browserWindow.getFocusedWindow().toggleDevTools()
   reload_window: ->
     browserWindow.getFocusedWindow().reload()
   toggle_direction: ->
-    wl.editor.direction.toggle()
+    wl.editor.toggleDirection()
   new_novel: ->
-    wl.novel.new()
+    wl.novel.newNovel()
   new_chapter: ->
-    wl.novel.chapter.new()
+    wl.novel.newChapter()
   save: ->
-    wl.novel.chapter.save()
+    wl.novel.save()
   search: ->
     wl.search.search()
   next_chapter: ->
-    wl.novel.chapter.open("next")
+    wl.novel.openChapter("next")
   back_chapter: ->
-    wl.novel.chapter.open("back")
+    wl.novel.openChapter("back")
   inspect_element: ->
     remote.getCurrentWindow().inspectElement(contextmenuEvent.x,contextmenuEvent.y)
