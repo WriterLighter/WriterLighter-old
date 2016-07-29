@@ -1,3 +1,4 @@
+require('coffee-script').register()
 glob = require 'glob'
 path = require 'path'
 app  = require("electron").remote.app
