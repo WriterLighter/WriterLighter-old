@@ -30,3 +30,7 @@ window.WriterLighter = window.wl = class WriterLighter
     if do wl.editor.isEdited then do wl.novel.save
     do wl.lastedit.save
     do wl.config.save
+
+do wl.startup
+
+$(window).on "beforeunload", wl.quiting
