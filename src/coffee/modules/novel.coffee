@@ -10,6 +10,8 @@ module.exports = class novel
   novelIndex = {}
   originalFile = ""
 
+  @getIndex = ->
+    novelIndex
   @openChapter = (number) ->
     if contextmenuEvent?
       number = menu.contextmenuEvent().target.dataset.chapter
@@ -28,8 +30,8 @@ module.exports = class novel
         editor.clearWindowName()
 
     unless isNaN(number)
-      number = novelIndex.chapter.length % number
-      _open(path.join(novelPath, "本文", novelIndex.chapter[number] + ".txt"))
+      number = number % novelIndex.chapter.length
+      _open(path.join(novelPath, "本文", novelIndex.chapter[number - 1] + ".txt"))
     else if number? and number isnt ""
       switch number
         when "next"
@@ -52,7 +54,7 @@ module.exports = class novel
       newchapter = novelIndex.chapter.push name
       editor.setHTML ""
       originalFile = ""
-      chapterNumber = newchapter - 1
+      chapterNumber = newchapter
       do novel.reloadChapterList
       chapterPath = path.join(novelPath,"本文",name+".txt")
       novel.saveIndex()
@@ -70,7 +72,7 @@ module.exports = class novel
         oldFile = chapterPath
         chapterPath =  path.join(novelPath, "本文", name + ".txt")
         fs.renameSync oldFile, chapterPath
-        novelIndex.chapter[number] = name
+        novelIndex.chapter[number - 1] = name
         novel.saveIndex()
         novel.reloadChapterList()
         if chapterNumber is number
@@ -87,7 +89,7 @@ module.exports = class novel
       confirm = new Popup "prompt"
       confirm.messeage = "確認のため、章名を入力ください…"
       confirm.callback = (name) ->
-        if name is novelIndex.chapter[number]
+        if name is novelIndex.chapter[number - 1]
           novelIndex.chapter.splice number, 1
           fs.unlink path.join novelPath, "本文", name + ".txt"
           novel.saveIndex()
@@ -114,7 +116,7 @@ module.exports = class novel
   @reloadChapterList: ->
     list = ""
     novelIndex.chapter.forEach (item,index)->
-      list +=  "<li data-chapter='#{index}' data-context='chapter_list'>#{item}</li>"
+      list +=  "<li data-chapter='#{index + 1}' data-context='chapter_list'>#{item}</li>"
     $("#chapter-list").html(list)
     $("[data-chapter]").on "click", (e)->
       wl.novel.chapter.open this.dataset.chapter
