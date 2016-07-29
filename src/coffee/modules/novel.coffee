@@ -19,7 +19,7 @@ module.exports = class novel
 
     _open = (cpath) ->
       fs.readFile cpath, 'utf8', (e, t)->
-        do (new Popup "toast", "ERORR!: " + e).show if e?
+        do (new Popup "toast",e).show if e?
         $("#chapter .opened").removeClass "opened"
         chapterPath = cpath
         text = if t? then t else ""
