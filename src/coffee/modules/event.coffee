@@ -1,7 +1,7 @@
 module.exports = class event
   events = {}
 
-  @on: (event)->
+  @on: (event, func)->
     event.split(" ").forEach (item,index) ->
       eventname = item.split(".")[0]
       namespace = item.split(".")[1]
