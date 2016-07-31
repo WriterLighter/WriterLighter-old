@@ -28,3 +28,13 @@ module.exports = class event
       param = item.apply(@, argments) and param
 
     param
+
+  @off (event) ->
+    event.split(" ").foreach (item,index) ->
+      eventname = item.split(".")[0]
+      namespace = item.split(".")[1]
+      
+    if namespace
+      events[eventname] = {}
+    else
+      events[eventname][namespace] = []
