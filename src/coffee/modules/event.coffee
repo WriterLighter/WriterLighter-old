@@ -15,17 +15,18 @@ module.exports = class event
   @fire: (event, argments...) ->
     eventname = item.split(".")[0]
     namespace = item.split(".")[1]
-    
-    if namespace
-      fireQueue = events[eventname][namespace]
-    else
-      fireQueue = []
-      for key, value of events[eventname]
-        fireQueue.push value
-
     param = true
-    fireQueue.forEach (item, index) ->
-      param = item.apply(@, argments) and param
+    
+    if events[eventname]?
+      fireQueue = []
+      if namespace
+        fireQueue = events[eventname][namespace]
+      else
+        for key, value of events[eventname]
+          fireQueue.push value
+
+      fireQueue.forEach (item, index) ->
+        param = item.apply(@, argments) and param
 
     param
 
