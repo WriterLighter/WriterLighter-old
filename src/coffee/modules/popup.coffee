@@ -9,6 +9,9 @@ module.exports = class Popup
       .html html
       .addClass "show"
       .addClass type
+
+  @isShowing:->
+    $("#popup").hasClass "show" or not $("#popup:hover").length
   
   constructor: (@type = "toast", @messeage = "", @callback = ((m)-> console.log(m)), @timeout = 3000, @complete = [])->
 
