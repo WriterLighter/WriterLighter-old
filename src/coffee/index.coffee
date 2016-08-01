@@ -12,6 +12,7 @@ window.WriterLighter = window.wl = class WriterLighter
   @counter     = require './js/modules/counter'
   @editor      = require './js/modules/editor'
   @extension   = require './js/modules/extension'
+  @event       = require './js/modules/event'
   @lastedit    = require './js/modules/lastedit'
   @menu        = require './js/modules/menu'
   @ModalWindow = require './js/modules/modalwindow'
