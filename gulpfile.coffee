@@ -103,17 +103,19 @@ gulp.task 'bower:css', ->
     .pipe cssFilter.restore
 
 gulp.task 'bower:js', ->
-  jsFilter = $.filter '**/*.js', restore: true
+  jsFilter     = $.filter ['**/*.js', "!**/jquery.js"], restore: true
+  jQueryFilter = $.filter '**/jquery.js', restore: true
   gulp.src bower paths: bowerJson: 'bower.json'
     .pipe jsFilter
     .pipe $.uglify preserveComments: 'some'
-    .pipe $.rename
-      prefix: 'bower_'
-      extname: '.min.js'
-    .pipe gulp.dest 'js'
     .pipe $.concat 'bower_components.js'
     .pipe gulp.dest 'js'
     .pipe jsFilter.restore
+    .pipe jQueryFilter
+    #.pipe $.uglify preserveComments: 'some'
+    .pipe $.rename extname: ".min.js"
+    .pipe gulp.dest 'js'
+    .pipe jQueryFilter.restore
 
 gulp.task 'dist', ['clean:dist'], ->
   gulp.src([
