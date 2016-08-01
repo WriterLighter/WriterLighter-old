@@ -30,7 +30,7 @@ module.exports = class event
 
     param
 
-  @off (event) ->
+  @off: (event) ->
     event.split(" ").foreach (item,index) ->
       eventname = item.split(".")[0]
       namespace = item.split(".")[1]
