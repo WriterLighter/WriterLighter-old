@@ -24,6 +24,10 @@ window.WriterLighter = window.wl = class WriterLighter
 
   @layout      = layout
 
+
+  # alias
+  @on = wl.event.on
+
   @startup = ->
     do wl.config.load
     do wl.menu.load
