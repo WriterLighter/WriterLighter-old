@@ -5,6 +5,8 @@ layout = $('#container').layout
   enableCursorHotkey:   false
 
 window.WriterLighter = window.wl = class WriterLighter
+
+  # WriterLighter modules (alphabetical order).
   @command     = require './js/modules/command'
   @config      = require './js/modules/config'
   @counter     = require './js/modules/counter'
@@ -17,6 +19,8 @@ window.WriterLighter = window.wl = class WriterLighter
   @Popup       = require './js/modules/popup'
   @search      = require './js/modules/search'
   @statusBar   = require './js/modules/statusbar'
+
+
   @layout      = layout
 
   @startup = ->
