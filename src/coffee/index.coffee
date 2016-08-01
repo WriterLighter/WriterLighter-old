@@ -26,7 +26,7 @@ window.WriterLighter = window.wl = class WriterLighter
 
 
   # alias
-  @on = wl.event.on
+  @on = WriterLighter.event.on
 
   @startup = ->
     do wl.config.load
