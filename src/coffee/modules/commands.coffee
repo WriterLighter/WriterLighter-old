@@ -1,6 +1,6 @@
 electron      = require "electron"
 remote        = electron.remote
-browserWindow = remote.browserWindow
+BrowserWindow = remote.BrowserWindow
 
 module.exports =
   open_novel: ->
@@ -18,9 +18,9 @@ module.exports =
   toggle_editmode: ->
     wl.editor.toggleMode()
   toggle_devtools: ->
-    browserWindow.getFocusedWindow().toggleDevTools()
+    BrowserWindow.getFocusedWindow().toggleDevTools()
   reload_window: ->
-    browserWindow.getFocusedWindow().reload()
+    BrowserWindow.getFocusedWindow().reload()
   toggle_direction: ->
     wl.editor.toggleDirection()
   new_novel: ->
@@ -36,4 +36,7 @@ module.exports =
   back_chapter: ->
     wl.novel.openChapter("back")
   inspect_element: ->
-    remote.getCurrentWindow().inspectElement(contextmenuEvent.x,contextmenuEvent.y)
+    if __menu? and __menu.contextMenuEvent?
+      __menu.browserWindow.inspectElement __menu.contextMenuEvent.x, __menu.contextMenuEvent.y
+    else
+      (new wl.Popup("toast", "コンテキストメニューから実行してください。")).show()

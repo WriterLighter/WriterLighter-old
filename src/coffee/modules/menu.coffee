@@ -16,7 +16,7 @@ module.exports = class menu
         data[index].submenu = menu.buildTemplate(item.submenu)
       else if item.command?
         data[index].click = (menuItem, browserWindow, event)->
-          __menu =
+          window.__menu =
             menuItem: menuItem
             browserWindow: browserWindow
             event: event
@@ -24,7 +24,7 @@ module.exports = class menu
 
           command.execute(data[index].command)
 
-          __menu = undefined
+          window.__menu = undefined
     data
 
   @load: ->
