@@ -26,7 +26,7 @@ module.exports = class novel
         editor.setText text
         chapterNumber = number
         lastedit.save()
-        $("#chapter [data-chapter='#{(number + 1)}']").addClass "opened"
+        $("#chapter [data-chapter='#{(if isNaN number then number else number + 1)}']").addClass "opened"
         editor.clearWindowName()
 
     unless isNaN(number)
