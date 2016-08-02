@@ -13,8 +13,8 @@ module.exports = class novel
   @getIndex = ->
     novelIndex
   @openChapter = (number) ->
-    if contextmenuEvent?
-      number = menu.contextmenuEvent().target.dataset.chapter
+    if __menu? and __menu.contextMenuEvent?
+      number = __menu.contextMenuEvent.target.dataset.chapter
     if editor.isEdited() then novel.save()
 
     _open = (cpath) ->
@@ -41,7 +41,7 @@ module.exports = class novel
           unless isNaN chapterNumber
             novel.openChapter chapterNumber - 1
         else
-          _open(path.join(novelPath, novelIndex[number].path))
+          _open(path.join(novelPath, novelIndex[number]))
 
     else
       getChapter = new Popup("prompt")
