@@ -26,7 +26,7 @@ module.exports = class novel
         editor.setText text
         chapterNumber = number
         lastedit.save()
-        $("#chapter [data-chapter='#{number}']").addClass "opened"
+        $("#chapter [data-chapter='#{(number + 1)}']").addClass "opened"
         editor.clearWindowName()
 
     unless isNaN(number)
@@ -118,7 +118,7 @@ module.exports = class novel
   @reloadChapterList: ->
     list = ""
     novelIndex.chapter.forEach (item,index)->
-      list +=  "<li data-chapter='#{index}' data-context='chapter_list'>#{item}</li>"
+      list +=  "<li data-chapter='#{(index + 1)}' data-context='chapter_list'>#{item}</li>"
     $("#chapter-list").html(list)
     $("[data-chapter]").on "click", (e)->
       novel.openChapter this.dataset.chapter
