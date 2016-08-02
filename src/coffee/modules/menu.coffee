@@ -39,7 +39,7 @@ module.exports = class menu
       addtionalMenu.split(" ").forEach (item, index)->
         cmenu.push
           type: "separator"
-        cmenu = cmenu.concat menu.template.context[item]
+        cmenu = cmenu.concat template.context[item]
     _TMP_CONTEXT_MENU_EVENT = event
     Menu.buildFromTemplate(menu.buildTemplate(cmenu)).popup()
 
