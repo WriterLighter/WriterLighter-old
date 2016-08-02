@@ -38,9 +38,9 @@ module.exports = class extensions
           style='background-image:url(#{if data.icon? then path.join(extdirpath, data.icon) else ""})' \
           data-name='#{data.name}' ></li>"
     $tabs.html tabs
-    $("[name='ext-tabs']").on "change", viewext
+    $("[name='ext-tabs']").on "change", viewExtension
     $("[name='ext-tabs']").first().prop "checked", true
-    do viewext
+    do viewExtension
 
   @open: (name)->
     $("[name='ext-tabs'][data-name='#{name}']").prop "checked", true
