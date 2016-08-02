@@ -15,7 +15,7 @@ module.exports = class command
   @palette: ->
     palette = new Popup("prompt")
     palette.messeage = "コマンドを入力…"
-    palette.complete = do menu.getList
+    palette.complete = do command.getList
     palette.callback = command.execute
     palette.show()
 
