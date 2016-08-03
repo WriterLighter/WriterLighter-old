@@ -27,6 +27,10 @@ module.exports =
     wl.novel.newNovel()
   new_chapter: ->
     wl.novel.newChapter()
+  rename_chapter: ->
+    do wl.novel.renameChapter
+  delete_chapter: ->
+    do wl.deleteChapter
   save: ->
     wl.novel.save()
   search: ->
