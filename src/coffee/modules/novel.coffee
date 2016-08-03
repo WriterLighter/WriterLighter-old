@@ -71,14 +71,17 @@ module.exports = class novel
       confirm = new Popup "prompt"
       confirm.messeage = "新しい章名を入力してください…"
       confirm.callback = (name) ->
-        oldFile = chapterPath
-        chapterPath =  path.join(novelPath, "本文", name + ".txt")
+        oldFile = if number is chapterNumber
+          chapterPath
+        else
+          path.join novelPath, "本文", novelIndex.chapter[number] + ".txt"
+        chapterPath =  path.join novelPath, "本文", name + ".txt"
         fs.renameSync oldFile, chapterPath
         novelIndex.chapter[number] = name
         novel.saveIndex()
         novel.reloadChapterList()
         if chapterNumber is number
-          novel.openChapter number
+          novel.openChapter number + 1
       confirm.show()
     else
       getChapter = new Popup("prompt")
