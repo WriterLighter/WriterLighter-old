@@ -31,8 +31,7 @@ module.exports = class counter
         .length
 
     statusBar.register "byte",
-      (unless byte < 1024 then Math.floor(byte / 1024 * 100) + "キロ" /100 else byte)
-      + "バイト"
+      (unless byte < 1024 then Math.floor( byte / 1024 * 100 )/100 + "キロ" else byte) + "バイト"
 
 editor    = require "./editor"
 statusBar = require "./statusbar"
