@@ -94,6 +94,12 @@ module.exports = class editor
   @getDOMObject = ->
     $input[0]
 
+  @undo = ->
+    document.execCommand "undo"
+
+  @redo = ->
+    document.execCommand "redo"
+
 $input.on "input", _onchange
 
 $input.on "keydown", (e)->
