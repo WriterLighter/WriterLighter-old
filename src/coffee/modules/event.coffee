@@ -2,7 +2,7 @@ module.exports = class event
   events = {}
 
   @on: (event, func)->
-    event.split(" ").foreach (item,index) ->
+    event.split(" ").forEach (item,index) ->
       eventname = item.split(".")[0]
       namespace = item.split(".")[1]
       
@@ -13,8 +13,8 @@ module.exports = class event
       events[eventname][namespace].push func
 
   @fire: (event, argments...) ->
-    eventname = item.split(".")[0]
-    namespace = item.split(".")[1]
+    eventname = event.split(".")[0]
+    namespace = event.split(".")[1]
     param = true
     
     if events[eventname]?
