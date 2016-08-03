@@ -114,7 +114,7 @@ module.exports = class novel
         errp = new Popup("toast", e)
         errp.show()
       else
-        event.fire "sevedChapter"
+        event.fire "savedChapter"
         editor.clearWindowName()
 
   @reloadChapterList: ->
