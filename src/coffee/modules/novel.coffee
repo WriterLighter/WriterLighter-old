@@ -27,6 +27,7 @@ module.exports = class novel
         chapterNumber = number
         lastedit.save()
         $("#chapter [data-chapter='#{(if isNaN number then number else number + 1)}']").addClass "opened"
+        event.fire "openedChapter"
         editor.clearWindowName()
 
     unless isNaN(number)
@@ -113,6 +114,7 @@ module.exports = class novel
         errp = new Popup("toast", e)
         errp.show()
       else
+        event.fire "sevedChapter"
         editor.clearWindowName()
 
   @reloadChapterList: ->
@@ -129,6 +131,7 @@ module.exports = class novel
       novelPath = path.join config.get("bookshalf"), novelname
       novelIndex = JSON.parse(fs.readFileSync(path.join(novelPath,"index.json"),"utf-8"))
       novel.reloadChapterList()
+      event.fire "openedNovel"
       if novelIndex.chapter.length is 0 then novel.newChapter() else novel.openChapter 0
 
     if name? and name isnt ""
@@ -186,3 +189,4 @@ menu     = require './menu'
 editor   = require './editor'
 lastedit = require './lastedit'
 config   = require './config'
+event    = require './event'
