@@ -14,7 +14,7 @@ module.exports =
   editmode_def: ->
     wl.editor.setMode("default")
   editmode_int: ->
-    wl.editor.setMode("Intensive")
+    wl.editor.setMode("intensive")
   toggle_editmode: ->
     wl.editor.toggleMode()
   toggle_devtools: ->
