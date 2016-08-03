@@ -20,10 +20,10 @@ module.exports = class event
     if events[eventname]?
       fireQueue = []
       if namespace
-        fireQueue = events[eventname][namespace]
+        fireQueue = fireQueu.concat events[eventname][namespace]
       else
         for key, value of events[eventname]
-          fireQueue.push value
+          fireQueue = fireQueue.concat value
 
       fireQueue.forEach (item, index) ->
         param = item.apply(@, argments) and param
