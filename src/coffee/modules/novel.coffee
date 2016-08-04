@@ -66,6 +66,8 @@ module.exports = class novel
       getNewChapterName.show()
 
   @renameChapter: (number) ->
+    if __menu? and __menu.contextMenuEvent?
+      number = __menu.contextMenuEvent.target.dataset.chapter
     unless isNaN(number)
       number--
       confirm = new Popup "prompt"
@@ -90,6 +92,8 @@ module.exports = class novel
       getChapter.show()
 
   @deleteChapter: (number) ->
+    if __menu? and __menu.contextMenuEvent?
+      number = __menu.contextMenuEvent.target.dataset.chapter
     unless isNaN number
       number--
       confirm = new Popup "prompt"
