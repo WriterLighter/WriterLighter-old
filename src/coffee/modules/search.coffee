@@ -1,4 +1,5 @@
 $input = $ "#input-text"
+isSearching = false
 
 module.exports = class search
   focusing  = 0
@@ -55,6 +56,7 @@ module.exports = class search
     focusing
 
   @search:(keyword)->
+    isSearching = true
     $search.addClass("show")
     $("#search input[type='search']")
       .val keyword
@@ -69,11 +71,12 @@ module.exports = class search
         $("#search-result").css color: "#f00"
 
   @nohighlight: (focus = true)->
+    isSearching = false
     $('#search').removeClass('show')
     editor.setHTML do editor.getText
     if focus then do $input.focus
 
   $input.on "focus", ()->
-    search.nohighlight false
+    if isSearching then search.nohighlight false
 
 editor = require './editor'
