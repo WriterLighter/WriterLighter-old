@@ -133,3 +133,9 @@ context:
   chapter_list:
     - label: "開く"
       command: "open_chapter"
+
+    - label: "名前の変更"
+      command: "rename_chapter"
+
+    - label: "削除"
+      command: "delete_chapter"
