@@ -68,11 +68,12 @@ module.exports = class search
         $("#search-result-all, #search-focusing").html 0
         $("#search-result").css color: "#f00"
 
-  @nohighlight: ()->
+  @nohighlight: (focus = true)->
     $('#search').removeClass('show')
     editor.setHTML do editor.getText
+    if focus then do $input.focus
 
-  $("#input-text").on "focus", ()->
-    do search.nohighlight
+  $input.on "focus", ()->
+    search.nohighlight false
 
 editor = require './editor'
