@@ -20,9 +20,11 @@ appmenu:
 
       - label: "章名の変更"
         command: "rename_chapter"
+        accelerator: "CmdOrCtrl+Shift+R"
 
       - label: "章を削除"
         command: "delete_chapter"
+        accelerator: "CmdOrCtrl+Shift+D"
 
       - type: "separator"
 
