@@ -18,11 +18,16 @@ module.exports = class config
         return {}
 
   @load = ->
-    fs.readFile configFile, (err,data)->
-      if not err? and data? and Object.keys(data).length isnt 0
-        configs = JSON.parse data
-      else
-        do config.init
+    res = true
+    try
+      configs = JSON.parse fs.readFileSync(configFile, 'utf8')
+      if Object.keys(configs).length
+        throw 'No Configs.'
+    catch e
+      do config.init
+      res = false
+
+    return res
 
   @get = (name)->
     names = name.split '.'
