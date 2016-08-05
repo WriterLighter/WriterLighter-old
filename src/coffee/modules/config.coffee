@@ -68,6 +68,7 @@ module.exports = class config
       configs.bookshalf = $("form#welcome [name='bookshalf']").val()
       $("#modal-window").removeClass "show"
       do config.save
+      do wl.startup
       return false
 
 ModalWindow = require "./modalwindow"
