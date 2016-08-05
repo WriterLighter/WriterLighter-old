@@ -21,7 +21,7 @@ module.exports = class config
     res = true
     try
       configs = JSON.parse fs.readFileSync(configFile, 'utf8')
-      if Object.keys(configs).length
+      unless Object.keys(configs).length
         throw 'No Configs.'
     catch e
       do config.init
