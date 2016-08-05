@@ -32,7 +32,6 @@ window.WriterLighter = window.wl = class WriterLighter
     do wl.menu.load
     do wl.config.load
     do wl.lastedit.restore
-    do wl.counter.count
     do wl.extension.load
 
   @quiting = ->

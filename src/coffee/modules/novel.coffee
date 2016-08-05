@@ -28,7 +28,8 @@ module.exports = class novel
         lastedit.save()
         $("#chapter [data-chapter='#{(if isNaN number then number else number + 1)}']").addClass "opened"
         event.fire "openedChapter"
-        editor.clearWindowName()
+        do editor.clearWindowName
+        do counter.count
 
     unless isNaN(number)
       number = number - 1 % novelIndex.chapter.length
@@ -196,4 +197,5 @@ menu     = require './menu'
 editor   = require './editor'
 lastedit = require './lastedit'
 config   = require './config'
+counter  = require './counter'
 event    = require './event'
