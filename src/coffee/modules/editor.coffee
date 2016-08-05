@@ -102,7 +102,7 @@ module.exports = class editor
 
 $input.on "input", _onchange
 
-$input.on "keydown", (e)->
+$input.on "keyup", (e)->
   if e.keyCode is 13 and editor.getText().split("\n").length > previousInput.split("\n").length
     document.execCommand('insertHTML', false, '　')
 
