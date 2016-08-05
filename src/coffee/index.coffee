@@ -29,8 +29,8 @@ window.WriterLighter = window.wl = class WriterLighter
   @on = WriterLighter.event.on
 
   @startup = ->
-    do wl.config.load
     do wl.menu.load
+    do wl.config.load
     do wl.lastedit.restore
     do wl.counter.count
     do wl.extension.load
