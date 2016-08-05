@@ -6,14 +6,18 @@ $input = $ "#input-text"
 edited = false
 previousInput = ""
 saveTimeout = null
+pressedKey = 0
 _onchange = ->
-  if editor.getText() isnt previousInput
+  text = do editor.getText
+  if text isnt previousInput
     if edited is false
       edited = true
       document.title = "* " + document.title
     saveTimeout? and clearTimeout saveTimeout
+    if pressedKey is 13 and text.split("\n").length > previousInput.split("\n").length
+      document.execCommand 'insertHTML', false, '　'
     do counter.count
-    previousInput = do editor.getText
+    previousInput = text
     wl.editor.saveTimeout = setTimeout wl.novel.save
     , unless isNaN config.get("saveTimeout") then config.get "saveTimeout" else 3000
 
@@ -102,9 +106,8 @@ module.exports = class editor
 
 $input.on "input", _onchange
 
-$input.on "keyup", (e)->
-  if e.keyCode is 13 and editor.getText().split("\n").length > previousInput.split("\n").length
-    document.execCommand('insertHTML', false, '　')
+$input.on "keydown", (e)->
+  pressedKey = e.keyCode
 
 event.on "savedChapter openedChapter", ->
   edited = false
