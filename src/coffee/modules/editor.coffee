@@ -14,8 +14,24 @@ _onchange = ->
       edited = true
       document.title = "* " + document.title
     saveTimeout? and clearTimeout saveTimeout
-    if pressedKey is 13 and text.split("\n").length > previousInput.split("\n").length
-      document.execCommand 'insertHTML', false, '　'
+
+    lines = text.split '\n'
+    preLines = previousInput.split "\n"
+    if pressedKey is 13 and lines.length > preLines.length
+      range = null
+      range = document.createRange()
+      range.setStart $input[0], 0
+      range.setEnd getSelection().anchorNode, 0
+      beforeCaret = range.toString().length
+      charaNum = 0
+      for line, idx in preLines
+        charaNum += line.length
+        if charaNum >= beforeCaret
+          match = preLines[idx - 1].match /^([\s　]+).+$/
+          break
+      if match?
+        document.execCommand 'insertHTML', false, do match.pop
+
     do counter.count
     previousInput = text
     wl.editor.saveTimeout = setTimeout wl.novel.save
