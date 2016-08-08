@@ -1,4 +1,4 @@
-path = require 'path'
+mkdirp = require 'mkdirp'
 app  = require('electron').remote.app
 dialog = require('electron').dialog
 fs   = require 'fs'
@@ -69,11 +69,28 @@ module.exports = class config
       if selectedpath?
         $("form#welcome [name=bookshalf]").val selectedpath
     $("form#welcome").on "submit", ->
-      configs.name = $("form#welcome [name='name']").val()
-      configs.bookshalf = $("form#welcome [name='bookshalf']").val()
-      $("#modal-window").removeClass "show"
-      do config.save
-      do wl.startup
+      bookshalf = do $("form#welcome [name='bookshalf']").val
+      name = do $("form#welcome [name='name']").val()
+      try
+        stat = fs.statSync(bookshalf)
+        exists = do stat.isDirectory
+      catch e
+        if e.code is "ENOENT"
+          try
+            mkdirp.sync bookshalf
+            exists = true
+          catch er
+            exists = flase
+
+      if exists
+        do (new Popup("toast", "ディレクトリ名を入力してください。")).show
+      else
+        configs.name = name
+        configs.bookshalf = bookshalf
+        $("#modal-window").removeClass "show"
+        do config.save
+        do wl.startup
       return false
 
 ModalWindow = require "./modalwindow"
+Popup       = require './popup'
