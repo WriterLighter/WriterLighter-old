@@ -230,6 +230,6 @@ gulp.task 'archive:linux', (done) ->
 
 gulp.task 'release', (done) -> runSequence 'build', 'archive', 'clean', done
 
-gulp.task 'default', ['compile', 'bower'], ->
+gulp.task 'run', ['compile', 'bower'], ->
   gulp.src '.'
     .pipe $.runElectron ['--development']
