@@ -48,6 +48,7 @@ module.exports = class editor
     switch mode
       when "default"
         wl.layout.open("west")
+        wl.layout.open("east")
         wl.layout.open("south")
         BrowserWindow.getFocusedWindow().setFullScreen(false)
         editorMode = mode
@@ -55,6 +56,7 @@ module.exports = class editor
   
       when "intensive"
         wl.layout.hide("west")
+        wl.layout.hide("east")
         wl.layout.hide("south")
         BrowserWindow.getFocusedWindow().setFullScreen(true)
         editorMode = mode
