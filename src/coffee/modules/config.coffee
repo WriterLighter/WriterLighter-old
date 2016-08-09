@@ -1,7 +1,8 @@
 mkdirp = require 'mkdirp'
-app  = require('electron').remote.app
+path   = require 'path'
+app    = require('electron').remote.app
 dialog = require('electron').dialog
-fs   = require 'fs'
+fs     = require 'fs'
 
 module.exports = class config
   configs = {}
