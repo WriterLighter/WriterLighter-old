@@ -2,7 +2,7 @@
 最高の、執筆環境を。  
 小説のためのテキストエディタ。  
 
-Offical Site: [writerlighter.github.io](//writerlighter.github.io/)  
+Offcial Site: [writerlighter.github.io](//writerlighter.github.io/)  
 Facebook Page: [@writerlighter](//www.facebook.com/writerlighter)  
 
 ## Run
