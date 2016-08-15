@@ -71,7 +71,7 @@ module.exports = class config
         $("form#welcome [name=bookshalf]").val selectedpath
     $("form#welcome").on "submit", ->
       bookshalf = do $("form#welcome [name='bookshalf']").val
-      name = do $("form#welcome [name='name']").val()
+      name = do $("form#welcome [name='name']").val
       try
         stat = fs.statSync(bookshalf)
         exists = do stat.isDirectory
@@ -83,7 +83,7 @@ module.exports = class config
           catch er
             exists = flase
 
-      if exists
+      unless exists
         do (new Popup("toast", "ディレクトリ名を入力してください。")).show
       else
         configs.name = name
