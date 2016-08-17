@@ -11,12 +11,11 @@ module.exports = class config
     if override then $.extend(configs, object) else $.extend(true, configs, object)
 
   @save = ->
-    unless Object.keys(configs).length
-      try
-        fs.writeFileSync configFile, JSON.stringify(configs)
-        return configs
-      catch
-        return {}
+    try
+      fs.writeFileSync configFile, JSON.stringify(configs)
+      return configs
+    catch
+      return {}
 
   @load = ->
     res = true
@@ -89,7 +88,8 @@ module.exports = class config
         configs.name = name
         configs.bookshalf = bookshalf
         $("#modal-window").removeClass "show"
-        do config.save
+        novel.open "はじめまして"
+        do wl.quiting
         do wl.startup
       return false
 
