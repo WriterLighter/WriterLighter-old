@@ -1,5 +1,5 @@
 {
-  "name": "WriterLighter",
+  "name": "writerlighter",
   "version": "0.0.0",
   "description": "小説を書くためのテキストエディタ",
   "main": "main.js",
