@@ -1,23 +1,62 @@
-<style>
-form#welcome label{
-  display:block;
-  margin: 5px;
-}
-form#welcome input[type="text"]{
-  display: block;
-  width:360px;
-}
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <meta charset="UTF-8">
+  <title>ようこそ - WriterLighter</title>
+  <link rel="stylesheet" href="./css/welcome.css">
+</head>
+<body>
+  <header>
+    <h1>
+      WriterLighterへようこそ
+    </h1>
+    <p>
+      あなた好みの設定にしますので、少しの間お付き合い下さい。
+    </p>
+    <p>また、この設定は後でいつでも変更できます</p>
+    <button id="start-setting">設定をはじめる</button>
+    <button id="import">前の設定を読み込む</button>
+  </header>
+  <form action="">
+    <div id="move">
+      <button name="back">Back</button>
+      <button name="next">Next</button>
+    </div>
+    <section>
+      <p>お名前（ペンネーム）と小説を保存するフォルダを入力してください</p>
+      <label>お名前<input type="text" name="user-name"></label>
+      <label>フォルダ<input type="text" name="bookshalf"></label>
+    </section>
 
-form#welcome [name="browse"]{
-  font-size: .75em;
-  float: right;
-}
+    <section>
+      <p>テーマを選択してください</p>
+      <label><input type="radio" name="theme" value="default-dark">
+        <img src="" alt="" checked></label>
 
-</style>
+      <label><input type="radio" name="theme" value="default-light">
+        <img src="" alt=""></label>
+    </section>
 
-<form id="welcome">
-  <label for=""><small>お名前（ペンネームなど）を入力してください</small><input type="text" name="name"></label>
-  <label for=""><small>小説を保存するフォルダを入力してください</small><input type="text" name="bookshalf">
-    <button name="browse" type="button">参照…</button></label>
-  <input type="submit" value="はじめる">
-</form>
+    <section>
+      <p>
+        これが最後です<br>
+        文字と背景の色を選択してください
+      </p>
+    
+      <div>
+        <p>プリセット</p>
+        <button data-color="#111111 #ffffff">ダーク</button>
+        <button data-color="#ffffff #111111">ライト</button>
+      </div>
+      
+      <div>文字色<input type="color" name="letter" value="#000000"></div>
+      <div>背景色<input type="color" name="background" value="#ffffff"></div>
+    </section>
+  </form>
+  <footer>
+    さぁ、始めましょう。
+    <button id="setting">はじめる</button>
+  </footer>
+  <script src="./js/welcome.js"></script>
+</body>
+</html>
