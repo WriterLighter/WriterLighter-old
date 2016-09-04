@@ -14,13 +14,14 @@
       あなた好みの設定にしますので、少しの間お付き合い下さい。
     </p>
     <p>また、この設定は後でいつでも変更できます</p>
-    <button id="start-setting">設定をはじめる</button>
-    <button id="import">前の設定を読み込む</button>
+    <button type="button" id="start-setting">設定をはじめる</button>
+    <button type="button" id="import">前の設定を読み込む</button>
   </header>
   <form action="">
     <div id="move">
-      <button name="back">Back</button>
-      <button name="next">Next</button>
+      <button type="button" name="back">Back</button>
+      <button type="button" name="next">Next</button>
+      <button type="submit" class="hide">確定</button>
     </div>
     <section>
       <p>お名前（ペンネーム）と小説を保存するフォルダを入力してください</p>
@@ -30,8 +31,8 @@
 
     <section>
       <p>テーマを選択してください</p>
-      <label><input type="radio" name="theme" value="default-dark">
-        <img src="" alt="" checked></label>
+      <label><input type="radio" name="theme" value="default-dark" checked>
+        <img src="" alt=""></label>
 
       <label><input type="radio" name="theme" value="default-light">
         <img src="" alt=""></label>
@@ -45,8 +46,8 @@
     
       <div>
         <p>プリセット</p>
-        <button data-color="#111111 #ffffff">ダーク</button>
-        <button data-color="#ffffff #111111">ライト</button>
+        <button type="button" data-color="#111111 #ffffff">ダーク</button>
+        <button type="button" data-color="#ffffff #111111">ライト</button>
       </div>
       
       <div>文字色<input type="color" name="letter" value="#000000"></div>
@@ -55,7 +56,7 @@
   </form>
   <footer>
     さぁ、始めましょう。
-    <button id="setting">はじめる</button>
+    <button type="button" id="setting">はじめる</button>
   </footer>
   <script src="./js/welcome.js"></script>
 </body>
