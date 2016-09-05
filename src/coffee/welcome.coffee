@@ -70,6 +70,19 @@ $ "form section input[type='text']"
 
     $moveButton.prop "disabled", noinput
 
+$ "[data-color]"
+  .on "click", ->
+    colors = this
+      .dataset
+      .color
+      .split " "
+
+    $ "[name='background']"
+      .val colors[0]
+
+    $ "[name='letter']"
+      .val colors[1]
+
 $("form").on "submit", ->
   for config, i in do $ this
   .serializeArray
