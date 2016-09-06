@@ -105,3 +105,7 @@ $("form").on "submit", ->
 
 $ "[name='bookshalf']"
   .val path.join (app.getPath "documents"), "Novels"
+
+$ "#start"
+  .on "click", ->
+    do BrowserWindow.getFocusedWindow().close
