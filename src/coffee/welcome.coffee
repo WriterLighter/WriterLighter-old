@@ -2,7 +2,7 @@ $ = jQuery     = require "./js/jquery.min"
 electron       = require 'electron'
 app            = electron.remote.app
 BrowserWindow  = electron.remote.BrowserWindow
-dialog         = electron.dialog
+dialog         = electron.remote.dialog
 fs             = require 'fs'
 userDataPath   = app.getPath "userData"
 path           = require "path"
@@ -83,6 +83,14 @@ $ "[data-color]"
 
     $ "[name='letter']"
       .val colors[1]
+
+$(".getpath").on "click", ->
+  $text = $ this
+    .siblings "[type='text']"
+
+  $text.val dialog.showOpenDialog
+    properties: ['openDirectory','createDirectory']
+    defaultPath: do $text.val
 
 $("form").on "submit", ->
   for config, i in do $ this
