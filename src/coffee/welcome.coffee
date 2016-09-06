@@ -2,6 +2,7 @@ $ = jQuery     = require "./js/jquery.min"
 electron       = require 'electron'
 app            = electron.remote.app
 BrowserWindow  = electron.remote.BrowserWindow
+dialog         = electron.dialog
 fs             = require 'fs'
 userDataPath   = app.getPath "userData"
 path           = require "path"
@@ -93,3 +94,6 @@ $("form").on "submit", ->
     400,
     "swing"
   false
+
+$ "[name='bookshalf']"
+  .val path.join (app.getPath "documents"), "Novels"
