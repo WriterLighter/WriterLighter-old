@@ -33,7 +33,7 @@
        height="584.00006"
        width="160.00002"
        id="rect4138"
-       style="fill:#323232;fill-opacity:1" />
+       style="fill:#303030;fill-opacity:1" />
     <rect
        y="510.36209"
        x="-1.5258791e-05"
@@ -47,28 +47,36 @@
        height="584.00006"
        width="40.000004"
        id="rect4138-3"
-       style="fill:#191919;fill-opacity:1" />
+       style="fill:#181818;fill-opacity:1" />
     <rect
        y="452.36209"
        x="600"
        height="584.00006"
        width="4"
        id="rect4205"
-       style="fill:#646464;fill-opacity:1" />
+       style="fill:#808080;fill-opacity:1" />
     <rect
        y="452.36209"
        x="604"
        height="584.00006"
        width="156.00002"
        id="rect4209"
-       style="fill:#323232;fill-opacity:1" />
+       style="fill:#303030;fill-opacity:1" />
     <rect
        y="1036.3622"
        x="-3.0517582e-05"
        height="16"
        width="800"
        id="rect4207"
-       style="fill:#505050;fill-opacity:1" />
+       style="fill:#404040;fill-opacity:1" />
+    <rect
+       ry="0"
+       y="452.36209"
+       x="759.99994"
+       height="40"
+       width="40"
+       id="rect4864"
+       style="fill:#303030;fill-opacity:1" />
     <rect
        ry="4.0625"
        y="458.29959"

@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="theme-dark.svg">
+   sodipodi:docname="theme-dark.inkscape.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.4"
-     inkscape:cx="843.79963"
-     inkscape:cy="171.61541"
+     inkscape:zoom="0.52679455"
+     inkscape:cx="353.60144"
+     inkscape:cy="401.60533"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -51,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -61,7 +61,7 @@
      id="layer1"
      transform="translate(0,-452.36209)">
     <rect
-       style="fill:#323232;fill-opacity:1"
+       style="fill:#303030;fill-opacity:1"
        id="rect4138"
        width="160.00002"
        height="584.00006"
@@ -75,33 +75,41 @@
        x="-1.5258791e-05"
        y="510.36209" />
     <rect
-       style="fill:#191919;fill-opacity:1"
+       style="fill:#181818;fill-opacity:1"
        id="rect4138-3"
        width="40.000004"
        height="584.00006"
        x="760"
        y="452.36209" />
     <rect
-       style="fill:#646464;fill-opacity:1"
+       style="fill:#808080;fill-opacity:1"
        id="rect4205"
        width="4"
        height="584.00006"
        x="600"
        y="452.36209" />
     <rect
-       style="fill:#323232;fill-opacity:1"
+       style="fill:#303030;fill-opacity:1"
        id="rect4209"
        width="156.00002"
        height="584.00006"
        x="604"
        y="452.36209" />
     <rect
-       style="fill:#505050;fill-opacity:1"
+       style="fill:#404040;fill-opacity:1"
        id="rect4207"
        width="800"
        height="16"
        x="-3.0517582e-05"
        y="1036.3622" />
+    <rect
+       style="fill:#303030;fill-opacity:1"
+       id="rect4864"
+       width="40"
+       height="40"
+       x="759.99994"
+       y="452.36209"
+       ry="0" />
     <rect
        style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:2.00000024;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4216"
