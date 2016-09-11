@@ -9,32 +9,36 @@ configFile     = path.join userDataPath, "config.json"
 bounds         = {}
 
 try
-    bounds = JSON.parse(fs.readFileSync(boundsInfoFile, 'utf8'))
+  bounds = JSON.parse(fs.readFileSync(boundsInfoFile, 'utf8'))
 catch e
   bounds.maximize = true
 
-main_window = null
+mainWindow = null
   
 createWindow = () ->
-  main_window = new browser_window bounds.bounds
-  bounds.maximize and main_window.maximize()
-  main_window.loadURL('file://' + __dirname + '/../index.html')
-  main_window.on 'closed', ->
-    main_window = null
-  # main_window.webContents.openDevTools()
-  main_window.on 'close', ->
-      fs.writeFileSync(boundsInfoFile, JSON.stringify
-        bounds: do main_window.getBounds
-        maximize: do main_window.isMaximized
-      )
+  try
+    JSON.parse fs.readFileSync(configFile, 'utf8')
+    mainWindow = new browser_window bounds.bounds
+    bounds.maximize and mainWindow.maximize()
+    mainWindow.loadURL('file://' + __dirname + '/../index.html')
+    mainWindow.on 'closed', ->
+      mainWindow = null
+    # mainWindow.webContents.openDevTools()
+    mainWindow.on 'close', ->
+        fs.writeFileSync(boundsInfoFile, JSON.stringify
+          bounds: do mainWindow.getBounds
+          maximize: do mainWindow.isMaximized
+        )
 
-  app.on 'window-all-closed', ->
-    if process.platform is 'darwin'
-      do app.quit
+    app.on 'window-all-closed', ->
+      if process.platform is 'darwin'
+        do app.quit
 
-  app.on 'activate', ->
-    if main_window is null
-      do createWindow
+    app.on 'activate', ->
+      if mainWindow is null
+        do createWindow
+  catch e
+    do initalStartUp
 
 initalStartUp = ->
   setUpWindow = new browser_window width: 800, height: 600
@@ -43,10 +47,4 @@ initalStartUp = ->
     setUpWindow = null
 
 app.on 'ready', ->
-  try
-    configs = JSON.parse fs.readFileSync(configFile, 'utf8')
-    unless Object.keys(configs).length
-      throw 'No Configs.'
-    do createWindow
-  catch e
-    do initalStartUp
+  do createWindow
