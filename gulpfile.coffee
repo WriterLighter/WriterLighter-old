@@ -1,14 +1,16 @@
 module.exports = gulp = require 'gulp'
 
 $           = do require 'gulp-load-plugins'
-config      = require './package.json'
-del         = require 'del'
-#packager    = require 'electron-packager'
-runSequence = require 'run-sequence'
-Path        = require 'path'
-extend      = require 'extend'
-mkdirp      = require 'mkdirp'
-bower       = require 'main-bower-files'
+config      =    require './package.json'
+del         =    require 'del'
+packager    =    require 'electron-packager'
+runSequence =    require 'run-sequence'
+Path        =    require 'path'
+extend      =    require 'extend'
+mkdirp      =    require 'mkdirp'
+bower       =    require 'main-bower-files'
+electron    = do require 'electron-connect'
+  .server.create
 
 packageOpts =
   asar: true
@@ -231,5 +233,11 @@ gulp.task 'archive:linux', (done) ->
 gulp.task 'release', (done) -> runSequence 'build', 'archive', 'clean', done
 
 gulp.task 'run', ['compile', 'bower'], ->
-  gulp.src '.'
-    .pipe $.runElectron ['--development']
+  do electron.start
+
+  $.watch "src/coffee/**/*.coffee", ["compile:coffee"]
+  $.watch "src/less/**/*.less", ["compile:less"]
+  $.watch "./bower.json", ["bower"]
+
+  $.watch ["./css/**/*.css", "./js/**/*.js", "./*.html"], -> do electron.reload
+  $.watch "./main.js", -> do electron.restart
