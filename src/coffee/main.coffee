@@ -14,6 +14,7 @@ catch e
   bounds.maximize = true
 
 mainWindow = null
+setUpWindow = null
   
 createWindow = () ->
   try
@@ -30,13 +31,6 @@ createWindow = () ->
           maximize: do mainWindow.isMaximized
         )
 
-    app.on 'window-all-closed', ->
-      if process.platform is 'darwin'
-        do app.quit
-
-    app.on 'activate', ->
-      if mainWindow is null
-        do createWindow
   catch e
     do initalStartUp
 
@@ -48,3 +42,9 @@ initalStartUp = ->
 
 app.on 'ready', ->
   do createWindow
+app.on 'window-all-closed', ->
+  if process.platform is 'darwin'
+    do app.quit
+app.on 'activate', ->
+  if mainWindow is null or setUpWindow is null
+    do createWindow
