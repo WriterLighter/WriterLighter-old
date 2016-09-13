@@ -4,6 +4,7 @@
   "description": "小説を書くためのテキストエディタ",
   "main": "main.js",
   "scripts": {
+    "start": "gulp run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
