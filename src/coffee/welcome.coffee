@@ -15,6 +15,8 @@ $backButton    = $ "[name='back']"
 $submitButton  = $ "[type='submit']"
 $moveButton    = $ "#move button"
 vw             = window.innerWidth
+ipc            = electron.ipcRenderer
+thisWindow     = do BrowserWindow.getFocusedWindow
 
 configs = [
   {description: "名前（ペンネーム）", type: "text"}
@@ -108,4 +110,6 @@ $ "[name='bookshalf']"
 
 $ "#start"
   .on "click", ->
-    do BrowserWindow.getFocusedWindow().close
+    ipc.send "close-window"
+    ipc.on "close-window", ->
+      do thisWindow.close

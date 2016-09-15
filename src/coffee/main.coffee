@@ -7,6 +7,7 @@ path           = require "path"
 boundsInfoFile = path.join userDataPath, "bounds.json"
 configFile     = path.join userDataPath, "config.json"
 bounds         = {}
+ipc            = electron.ipcMain
 
 try
   bounds = JSON.parse(fs.readFileSync(boundsInfoFile, 'utf8'))
@@ -48,3 +49,7 @@ app.on 'window-all-closed', ->
 app.on 'activate', ->
   if mainWindow is null or setUpWindow is null
     do createWindow
+
+ipc.on "close-window", (event)->
+  do createWindow
+  event.sender.send "close-window"
