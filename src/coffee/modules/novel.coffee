@@ -1,4 +1,5 @@
 path     = require 'path'
+mkdirp   = require 'mkdirp'
 glob     = require 'glob'
 fs       = require 'fs'
 
@@ -181,7 +182,7 @@ module.exports = class novel
         plot: "プロット.txt"
       novelpath = path.join config.get("bookshalf"), name
 
-      fs.mkdirs path.join(novelpath, "本文"), (e)->
+      mkdirp path.join(novelpath, "本文"), (e)->
         unless e?
           fs.writeFile path.join(novelpath, "index.json"), JSON.stringify(index), (e)->
             unless e?
