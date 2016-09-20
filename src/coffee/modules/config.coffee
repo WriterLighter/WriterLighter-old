@@ -48,50 +48,5 @@ module.exports = class config
     merge obj, override
     val
 
-
-  @init= ->
-# TODO: 「はじめる(名称仮)」作る
-    ###
-    # 初回起動時に開く
-    fs.copySync path.join(__dirname, "はじめまして"), bookshalf.path
-    novel.open("はじめまして")
-    ###
-    bspath = path.join app.getPath("documents"), "Novels"
-    modal = new ModalWindow("ようこそ！")
-    modal.content = fs.readFileSync("welcome.html").toString()
-    modal.forcing = true
-    modal.show()
-    $("form#welcome [name='bookshalf']").val bspath
-    $("form#welcome [name='browse']").on "click", ->
-      selectedpath = dialog.showOpenDialog
-        properties: ['oepnDirectory','createDirectory']
-        defaultPath: $("form#welcome [name='bookshalf']").val()
-      if selectedpath?
-        $("form#welcome [name=bookshalf]").val selectedpath
-    $("form#welcome").on "submit", ->
-      bookshalf = do $("form#welcome [name='bookshalf']").val
-      name = do $("form#welcome [name='name']").val
-      try
-        stat = fs.statSync(bookshalf)
-        exists = do stat.isDirectory
-      catch e
-        if e.code is "ENOENT"
-          try
-            mkdirp.sync bookshalf
-            exists = true
-          catch er
-            exists = flase
-
-      unless exists
-        do (new Popup("toast", "ディレクトリ名を入力してください。")).show
-      else
-        configs.name = name
-        configs.bookshalf = bookshalf
-        $("#modal-window").removeClass "show"
-        novel.open "はじめまして"
-        do wl.quiting
-        do wl.startup
-      return false
-
 ModalWindow = require "./modalwindow"
 Popup       = require './popup'
