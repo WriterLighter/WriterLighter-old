@@ -24,7 +24,12 @@ module.exports = class config
     configs[configIndex[name]][key]
   
   @set= (name, value, key = "value") ->
-    configs[configIndex[name]][key] = value
+    if configIndex[name]?
+      configIndex[name] = configs.push {}
+    if Object::toString.call(value) is "[object Object]"
+      configs[configIndex[name]] = value
+    else
+      configs[configIndex[name]][key] = value
 
 ModalWindow = require "./modalwindow"
 Popup       = require './popup'
