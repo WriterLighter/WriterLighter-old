@@ -59,8 +59,8 @@ gulp.task 'clean:dist', -> del ['dist/**/*', 'dist']
 gulp.task 'clean:packages', -> del ['packages/**/*', 'packages']
 gulp.task 'clean:releases', -> del ['releases/**/*', 'releases']
 
-gulp.task 'compile', ['compile:coffee', 'compile:less']
-gulp.task 'compile:production', ['compile:coffee:production', 'compile:less:production']
+gulp.task 'compile', ['compile:coffee', 'compile:scss']
+gulp.task 'compile:production', ['compile:coffee:production', 'compile:scss:production']
 
 gulp.task 'compile:coffee', ->
   gulp.src 'src/coffee/**/*.coffee'
@@ -72,11 +72,11 @@ gulp.task 'compile:coffee', ->
     .pipe $.sourcemaps.write()
     .pipe gulp.dest('js')
 
-gulp.task 'compile:less', ->
-  gulp.src 'src/less/**/*.less'
+gulp.task 'compile:scss', ->
+  gulp.src 'src/scss/**/*.scss'
     .pipe $.plumber()
     .pipe $.sourcemaps.init()
-    .pipe $.less()
+    .pipe $.sass()
     .pipe $.sourcemaps.write()
     .pipe gulp.dest('css')
 
@@ -87,9 +87,9 @@ gulp.task 'compile:coffee:production', ['clean:js'], ->
     .pipe $.uglify()
     .pipe gulp.dest('js')
 
-gulp.task 'compile:less:production', ['clean:css'], ->
-  gulp.src 'src/less/**/*.less'
-    .pipe $.less()
+gulp.task 'compile:scss:production', ['clean:css'], ->
+  gulp.src 'src/scss/**/*.scss'
+    .pipe $.sass()
     .pipe $.cssnano
       zindex: false
     .pipe gulp.dest('css')
@@ -234,7 +234,7 @@ gulp.task 'release', (done) -> runSequence 'build', 'archive', 'clean', done
 
 gulp.task 'run', ['compile', 'bower'], ->
   $.watch "src/coffee/**/*.coffee", ["compile:coffee"]
-  $.watch "src/less/**/*.less", ["compile:less"]
+  $.watch "src/scss/**/*.scss", ["compile:scss"]
   $.watch "./bower.json", ["bower"]
 
   $.watch ["./css/**/*.css", "./js/**/*.js", "./*.html"], -> do electron.reload

@@ -1,6 +1,6 @@
-@color-main: #4a4a4a;
-@color-letter: #e0e0e0;
-@color-highlight-lightblue: #55aaee;
+$color-main: #4a4a4a;
+$color-letter: #e0e0e0;
+$color-highlight-lightblue: #55aaee;
 
 a,
 [data-chapter],
@@ -10,7 +10,7 @@ a,
 
 :focus{
     outline:none;
-    box-shadow: 0 0 7px 3px @color-highlight-lightblue;
+    box-shadow: 0 0 7px 3px $color-highlight-lightblue;
 }
 
 html,body{
@@ -41,14 +41,14 @@ footer{
     top: -100%;
     transition: 1s;
     background: #555;
-    color: @color-letter;
+    color: $color-letter;
     z-index: 4;
     border-radius: 0 0 10px 10px;
     input[type="text"]{
       width: 100%;
     }
     input {
-      color: @color-letter;
+      color: $color-letter;
       margin: 2px;
     }
     &.show, &.toast:hover{
@@ -57,12 +57,12 @@ footer{
 }
 
 #modal-window {
-  color: @color-letter;
+  color: $color-letter;
   padding: 7.5px;
   border-radius: 3px;
   display: none;
   z-index: 4;
-  background: @color-main;
+  background: $color-main;
   position: fixed;
   &.forcing header .close{
     display: none;
@@ -94,7 +94,7 @@ footer{
         height: 2px;
         border: none;
         content: "";
-        background: @color-letter;
+        background: $color-letter;
         display: inline-block;
         position: absolute;
         top: 50%;
@@ -120,7 +120,7 @@ footer{
 }
 
 #search {
-  color: @color-letter;
+  color: $color-letter;
   background: #555;
   top: -100%;
   position: fixed;
@@ -130,7 +130,7 @@ footer{
   padding: 10px;
   right: 10px;
     input {
-      color: @color-letter;
+      color: $color-letter;
       margin: 2px;
     }
     a{
@@ -163,7 +163,7 @@ footer{
           height: 2px;
           border: none;
           content: "";
-          background: @color-letter;
+          background: $color-letter;
           display: inline-block;
           position: absolute;
           top: 50%;
@@ -226,8 +226,8 @@ input[type="reset"] {
 }
 
 #chapter {
-  background: @color-main;
-  color: @color-letter;
+  background: $color-main;
+  color: $color-letter;
   height: 100%;
   padding: .25em;
   box-sizing: border-box;
@@ -237,7 +237,7 @@ input[type="reset"] {
   li {
     &.opened {
     background: rgba(0,0,0,.1);
-    color: @color-highlight-lightblue;
+    color: $color-highlight-lightblue;
     }
   margin: .25em 0;
   list-style-position: inside;
@@ -257,11 +257,11 @@ ol {
 
 .ui-layout-pane {
   padding: 0;
-  border-color: @color-main;
+  border-color: $color-main;
 }
 
 .ui-layout-toggler {
-  border: 1px solid @color-letter;
+  border: 1px solid $color-letter;
   background: none;
 }
 
@@ -274,18 +274,18 @@ ol {
 }
 
 .ui-layout-resizer {
-  background: @color-main;
+  background: $color-main;
 }
 
 #statusbar{
   display: flex;
-  background: @color-main;
-  color: @color-letter;
+  background: $color-main;
+  color: $color-letter;
   font-weight: bold;
   li{
     height: 1em;
     padding: .25em;
-    border-left: solid 1px @color-letter;
+    border-left: solid 1px $color-letter;
     flex-direction: row;
     justify-content: flex-end;
     overflow: hidden;
@@ -305,7 +305,7 @@ ol {
     margin: 0;
     padding: 0;
     width: 40px;
-    background: darken(@color-main, 10%);
+    background: darken($color-main, 10%);
     li{
       margin: 10px 0;
       display: block;
