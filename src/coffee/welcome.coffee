@@ -6,7 +6,7 @@ dialog         = electron.remote.dialog
 fs             = require 'fs'
 userDataPath   = app.getPath "userData"
 path           = require "path"
-configFile     = path.join userDataPath, "config.json"
+configFile     = path.join userDataPath, "config.yml"
 currentPage    = -1
 $scroll        = $ "html, body"
 $sections      = $ "section"
@@ -98,7 +98,7 @@ $("form").on "submit", ->
   for config, i in do $ this
   .serializeArray
     $.extend configs[i], config
-  fs.writeFileSync configFile, JSON.stringify(configs)
+  fs.writeFileSync configFile, YAML.dump(configs)
   $scroll.animate
     scrollLeft: 5 * vw,
     400,

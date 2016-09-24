@@ -2,21 +2,22 @@ path   = require 'path'
 app    = require('electron').remote.app
 dialog = require('electron').dialog
 fs     = require 'fs'
+YAML   = require "js-yaml"
 
 module.exports = class config
   configs = []
   configIndex = {}
-  configFile = path.join app.getPath("userData"), "config.json"
+  configFile = path.join app.getPath("userData"), "config.yml"
 
   @save = ->
     try
-      fs.writeFileSync configFile, JSON.stringify(configs)
+      fs.writeFileSync configFile, YAML.dump(configs)
       return configs
     catch
       return {}
 
   @load = ->
-    configs = JSON.parse fs.readFileSync(configFile, 'utf8')
+    configs = YAML.load fs.readFileSync(configFile, 'utf8')
     for config, index in configs
       configIndex[config.name] = index
 

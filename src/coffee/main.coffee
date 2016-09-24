@@ -4,13 +4,14 @@ browser_window = electron.BrowserWindow
 fs             = require('fs')
 userDataPath   = app.getPath "userData"
 path           = require "path"
-boundsInfoFile = path.join userDataPath, "bounds.json"
-configFile     = path.join userDataPath, "config.json"
+boundsInfoFile = path.join userDataPath, "bounds.yml"
+configFile     = path.join userDataPath, "config.yml"
 bounds         = {}
 ipc            = electron.ipcMain
+YAML           = require "js-yaml"
 
 try
-  bounds = JSON.parse(fs.readFileSync(boundsInfoFile, 'utf8'))
+  bounds = YAML.load(fs.readFileSync(boundsInfoFile, 'utf8'))
 catch e
   bounds.maximize = true
 
@@ -19,7 +20,7 @@ setUpWindow = null
   
 createWindow = () ->
   try
-    JSON.parse fs.readFileSync(configFile, 'utf8')
+    YAML.load fs.readFileSync(configFile, 'utf8')
     mainWindow = new browser_window bounds.bounds
     bounds.maximize and mainWindow.maximize()
     mainWindow.loadURL('file://' + __dirname + '/../index.html')
@@ -27,7 +28,7 @@ createWindow = () ->
       mainWindow = null
     # mainWindow.webContents.openDevTools()
     mainWindow.on 'close', ->
-        fs.writeFileSync(boundsInfoFile, JSON.stringify
+        fs.writeFileSync(boundsInfoFile, YAML.dump
           bounds: do mainWindow.getBounds
           maximize: do mainWindow.isMaximized
         )

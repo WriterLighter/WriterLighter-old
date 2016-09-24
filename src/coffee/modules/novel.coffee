@@ -138,7 +138,7 @@ module.exports = class novel
     _open =  (novelname)->
       novelName = novelname
       novelPath = path.join config.get("bookshalf"), novelname
-      novelIndex = JSON.parse(fs.readFileSync(path.join(novelPath,"index.json"),"utf-8"))
+      novelIndex = YAML.load(fs.readFileSync(path.join(novelPath,"index.yml"),"utf-8"))
       novel.reloadChapterList()
       event.fire "openedNovel"
       if novelIndex.chapter.length is 0 then novel.newChapter() else novel.openChapter 0
@@ -153,7 +153,7 @@ module.exports = class novel
       getNovelName.show()
 
   @getNovelList = ->
-    glob path.join(config.get("bookshalf"),"*","index.json"), (e,d)->
+    glob path.join(config.get("bookshalf"),"*","index.yml"), (e,d)->
       list = []
       d.forEach (item,index)->
         list.push path.basename(path.dirname(item))
@@ -168,7 +168,7 @@ module.exports = class novel
       name : path.parse(chapterPath).name
 
   @saveIndex: ->
-    fs.writeFile path.join(novelPath, "index.json"), JSON.stringify(novelIndex), (e)->
+    fs.writeFile path.join(novelPath, "index.yml"), YAML.dump(novelIndex), (e)->
       if e? then (new Popup "toast", e).show()
 
   @newNovel: (name)->
@@ -184,7 +184,7 @@ module.exports = class novel
 
       mkdirp path.join(novelpath, "本文"), (e)->
         unless e?
-          fs.writeFile path.join(novelpath, "index.json"), JSON.stringify(index), (e)->
+          fs.writeFile path.join(novelpath, "index.yml"), YAML.dump(index), (e)->
             unless e?
               novelPath = novelpath
               novel.openNovel name
