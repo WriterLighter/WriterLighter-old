@@ -11,11 +11,21 @@ module.exports = class novel
   novelIndex = {}
   originalFile = ""
 
+  getChapterPath = (index, type="body") ->
+    if novelIndex[type]?
+      throw new Error "Bad chapter type"
+    if novelIndex[type][index]?
+      throw new Error "This index chapter is not existed."
+    path.join novelPath, type, "#{novelPath[type][index]}.txt"
+
+
   @getIndex = ->
     novelIndex
-  @openChapter = (number) ->
+
+  @openChapter = (number, type="body") ->
     if __menu? and __menu.contextMenuEvent?
-      number = __menu.contextMenuEvent.target.dataset.chapter
+      number = __menu.contextMenuEvent.target.dataset.chapterNumber
+      type   = __menu.contextMenuEvent.target.dataset.chapterType
     if editor.isEdited() then novel.save()
 
     _open = (cpath) ->
