@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AI-create-team/WriterLighter.git"
+    "url": "git+https://github.com/WriterLighter/WriterLighter.git"
   },
   "keywords": [
     "小説",
@@ -18,9 +18,9 @@
   "author": "ygkn",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AI-create-team/WriterLighter/issues"
+    "url": "https://github.com/WriterLighter/WriterLighter/issues"
   },
-  "homepage": "https://github.com/AI-create-team/WriterLighter#readme",
+  "homepage": "https://github.com/WriterLighter/WriterLighter#readme",
   "devDependencies": {
     "bower": "^1.7.9",
     "del": "^2.2.1",
