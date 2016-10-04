@@ -63,9 +63,10 @@ module.exports = class novel
           do counter.count
     else
       getChapter = new Popup("prompt")
-      getChapter.messeage = "章名またはタイプ(afterwordなど)を入力…"
-      getChapter.callback = novel.openChapter
-      getChapter.show()
+      getChapter.messeage = ["章番号を入力…", "タイプを入力…"]
+      getChapter.callback = (value)->
+        novel.openChapter.call novel, value
+      do getChapter.show
 
   @newChapter: (name)->
     if name? and name isnt ""
