@@ -68,20 +68,22 @@ module.exports = class novel
         novel.openChapter.call novel, value
       do getChapter.show
 
-  @newChapter: (name)->
+  @newChapter: (name, type)->
     if name? and name isnt ""
-      newchapter = novelIndex.chapter.push name
+      opened.chapter.type = type
+      index = opened.chapter.index = novelIndex[type].push name
       editor.setHTML ""
       originalFile = ""
-      chapterNumber = newchapter
       do novel.reloadChapterList
-      chapterPath = path.join(novelPath,"本文",name+".txt")
-      novel.saveIndex()
-      lastedit.save()
+      opened.chapter.path = getChapterPath index, type
+      do novel.saveIndex
+      do lastedit.save()
     else
-      getNewChapterName = new Popup("prompt", "追加する章名を入力…")
-      getNewChapterName.callback = novel.newChapter
-      getNewChapterName.show()
+      getNewChapterName = new Popup "prompt",
+        ["追加する章名を入力…", "追加する章のタイプを入力…"]
+      getNewChapterName.callback = (res) ->
+        novel.newChapter.call novel, res
+      do getNewChapterName.show
 
   @renameChapter: (number) ->
     if __menu? and __menu.contextMenuEvent?
