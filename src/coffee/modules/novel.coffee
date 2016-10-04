@@ -4,10 +4,15 @@ glob     = require 'glob'
 fs       = require 'fs'
 
 module.exports = class novel
-  novelPath = ""
-  novelName = ""
-  chapterPath = ""
-  chapterNumber = 0
+  opened =
+    novel:
+      path: ""
+      name: ""
+    chapter:
+      index: 0
+      type: ""
+      name: ""
+
   novelIndex = {}
   originalFile = ""
 
@@ -28,34 +33,34 @@ module.exports = class novel
       type   = __menu.contextMenuEvent.target.dataset.chapterType
     if editor.isEdited() then novel.save()
 
-    _open = (cpath) ->
-      fs.readFile cpath, 'utf8', (e, t)->
-        do (new Popup "toast",e).show if e?
-        $("#chapter .opened").removeClass "opened"
-        chapterPath = cpath
-        text = if t? then t else ""
-        editor.setText text
-        chapterNumber = number
-        lastedit.save()
-        $("#chapter [data-chapter='#{(if isNaN number then number else number + 1)}']").addClass "opened"
-        event.fire "openedChapter"
-        do editor.clearWindowName
-        do counter.count
-
-    unless isNaN(number)
-      number = number - 1 % novelIndex.chapter.length
-      _open(path.join(novelPath, "本文", novelIndex.chapter[number] + ".txt"))
-    else if number? and number isnt ""
+    if number?
       switch number
         when "next"
-          unless isNaN chapterNumber
-            novel.openChapter chapterNumber - 0 + 1
+          novel.openChapter opened.chapter.type,
+            opened.chapter + 1 % novelIndex.chapter.length
         when "back"
-          unless isNaN chapterNumber
-            novel.openChapter chapterNumber - 1
+          novel.openChapter opened.chapter.type,
+            opened.chapter - 1 % novelIndex.chapter.length
         else
-          _open(path.join(novelPath, novelIndex[number]))
+          try
+            chapterPath = getChapterPath number, type
+          catch e
+            do (new Popup(e.messeage)).show
 
+          try
+            text = fs.readFileSync chapterPath, 'utf8'
+
+          $("#chapter .opened").removeClass "opened"
+          opened.chapter.path = chapterPath
+          text = text or ""
+          editor.setText text
+          opende.chapter.index = number
+          do lastedit.save
+          $("#chapter [data-chapter-number='#{(number)}'] \
+            [data-chapter-type='#{type}']").addClass "opened"
+          event.fire "openedChapter"
+          do editor.clearWindowName
+          do counter.count
     else
       getChapter = new Popup("prompt")
       getChapter.messeage = "章名またはタイプ(afterwordなど)を入力…"
