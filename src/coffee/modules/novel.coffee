@@ -54,6 +54,7 @@ module.exports = class novel
           opened.chapter.path = chapterPath
           text = text or ""
           editor.setText text
+          originalFile = text
           opende.chapter.index = number
           do lastedit.save
           $("#chapter [data-chapter-number='#{(number)}'] \
