@@ -16,14 +16,18 @@ module.exports = class novel
   novelIndex = {}
   originalFile = ""
 
-  # TODO: index -> name
-  # TODO: index = name or "now"
   getChapterPath = (index, type="body") ->
     if novelIndex[type]?
       throw new Error "Bad chapter type"
-    if novelIndex[type][index]?
-      throw new Error "This index chapter is not existed."
-    path.join novelPath, type, "#{novelPath[type][index]}.txt"
+    if isNaN index
+      if index is "now"
+        {index, type} = opened.chapter
+      else
+        path.join novelPath, type, "#{index}.txt"
+    else
+      if novelIndex[type][index]?
+        throw new Error "This index chapter is not existed."
+      path.join novelPath, type, "#{novelPath[type][index]}.txt"
 
 
   @getIndex = ->
