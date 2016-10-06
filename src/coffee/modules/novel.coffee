@@ -49,10 +49,13 @@ module.exports = class novel
 
           try
             text = fs.readFileSync chapterPath, 'utf8'
-
+          catch e
+            if e.code is 'ENOENT'
+              text = ""
+            else
+              throw e
           $("#chapter .opened").removeClass "opened"
           opened.chapter.path = chapterPath
-          text = text or ""
           editor.setText text
           originalFile = text
           opende.chapter.index = number
