@@ -16,6 +16,8 @@ module.exports = class novel
   novelIndex = {}
   originalFile = ""
 
+  # TODO: index -> name
+  # TODO: index = name or "now"
   getChapterPath = (index, type="body") ->
     if novelIndex[type]?
       throw new Error "Bad chapter type"
@@ -79,31 +81,17 @@ module.exports = class novel
     do novel.saveIndex
     do lastedit.save
 
-  @renameChapter: (number) ->
+  @renameChapter: (number=opened.chapter.number, type=opened.chapter.type, name) ->
     if __menu? and __menu.contextMenuEvent?
-      number = __menu.contextMenuEvent.target.dataset.chapter
-    unless isNaN(number)
-      number--
+      number = __menu.contextMenuEvent.target.dataset.chapterNumber
+    if name
+      fs.renameSync getChapterPath("now"), getChapterPath(name, type)
+      novelIndex[type][number - 1] = name
+    else
       confirm = new Popup "prompt"
       confirm.messeage = "新しい章名を入力してください…"
       confirm.callback = (name) ->
-        oldFile = if number is chapterNumber
-          chapterPath
-        else
-          path.join novelPath, "本文", novelIndex.chapter[number] + ".txt"
-        chapterPath =  path.join novelPath, "本文", name + ".txt"
-        fs.renameSync oldFile, chapterPath
-        novelIndex.chapter[number] = name
-        novel.saveIndex()
-        novel.reloadChapterList()
-        if chapterNumber is number
-          novel.openChapter number + 1
-      confirm.show()
-    else
-      getChapter = new Popup("prompt")
-      getChapter.messeage = "章番号を入力…"
-      getChapter.callback = novel.renameChapter
-      getChapter.show()
+        novel.renameChapter number, type, name
 
   @deleteChapter: (number) ->
     if __menu? and __menu.contextMenuEvent?
