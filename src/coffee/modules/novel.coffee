@@ -70,9 +70,8 @@ module.exports = class novel
       do getChapter.show
 
   @newChapter: (name="名称未設定", type=opened.chapter.type, index=novelIndex[type].length + 1)->
-    index = opened.chapter.index = novelIndex[type].splice index, 0, name
-    editor.setHTML ""
-    originalFile = ""
+    index = novelIndex[type].splice index, 0, name
+    novel.open index
     do novel.reloadChapterList
     do novel.saveIndex
     do lastedit.save
