@@ -9,7 +9,7 @@ module.exports = class novel
       path: ""
       name: ""
     chapter:
-      index: 0
+      number: 0
       type: ""
       name: ""
 
@@ -58,7 +58,7 @@ module.exports = class novel
           opened.chapter.path = chapterPath
           editor.setText text
           originalFile = text
-          opende.chapter.index = number
+          opened.chapter.number = number
           do lastedit.save
           $("#chapter [data-chapter-number='#{(number)}'] \
             [data-chapter-type='#{type}']").addClass "opened"
