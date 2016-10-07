@@ -89,7 +89,7 @@ module.exports = class novel
     if __menu? and __menu.contextMenuEvent?
       number = __menu.contextMenuEvent.target.dataset.chapterNumber
     if name
-      fs.renameSync getChapterPath("now"), getChapterPath(name, type)
+      fs.renameSync getChapterPath("now"), getChapterPath(number, type, name)
       novelIndex[type][number - 1] = name
     else
       confirm = new Popup "prompt"
