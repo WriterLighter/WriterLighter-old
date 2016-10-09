@@ -165,12 +165,7 @@ module.exports = class novel
         path.basename path.dirname index
 
   @getOpened = ->
-    novel:
-      path: novelPath
-      name: novelName
-    chapter:
-      index: chapterNumber
-      name : path.parse(chapterPath).name
+    opened
 
   @saveIndex: ->
     fs.writeFile path.join(novelPath, "index.yml"), YAML.dump(novelIndex), (e)->
