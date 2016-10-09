@@ -168,7 +168,7 @@ module.exports = class novel
     opened
 
   @saveIndex: ->
-    fs.writeFile path.join(novelPath, "index.yml"), YAML.dump(novelIndex), (e)->
+    fs.writeFile path.join(opened.novel.path, "index.yml"), YAML.dump(novelIndex), (e)->
       if e? then (new Popup "toast", e).show()
 
   @newNovel: (name)->
