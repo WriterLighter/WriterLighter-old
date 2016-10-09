@@ -122,7 +122,7 @@ module.exports = class novel
     confirm.show()
 
   @save: ->
-    fs.writeFile chapterPath, editor.getText(), (e)->
+    fs.writeFile getChapterPath("now"), editor.getText(), (e)->
       if e?
         errp = new Popup("toast", e)
         errp.show()
