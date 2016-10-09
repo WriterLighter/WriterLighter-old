@@ -100,29 +100,26 @@ module.exports = class novel
       confirm.callback = (name) ->
         novel.renameChapter number, type, name
 
-  @deleteChapter: (number) ->
+  @deleteChapter: (number=opened.chapter.number, type=opened.chapter.type) ->
     if __menu? and __menu.contextMenuEvent?
-      number = __menu.contextMenuEvent.target.dataset.chapter
-    unless isNaN number
-      number--
-      confirm = new Popup "prompt"
-      confirm.messeage = "確認のため、章名を入力ください…"
-      confirm.callback = (name) ->
-        if name is novelIndex.chapter[number]
-          novelIndex.chapter.splice number, 1
-          fs.unlink path.join novelPath, "本文", name + ".txt"
-          novel.saveIndex()
-          novel.reloadChapterList()
-          if chapterNumber is number
-            novel.openChapter 1
-        else
-          novel.deleteChapter number
-      confirm.show()
-    else
-      getChapter = new Popup("prompt")
-      getChapter.messeage = "章番号を入力…"
-      getChapter.callback = novel.deleteChapter
-      getChapter.show()
+      number = __menu.contextMenuEvent.target.dataset.chapterNumber
+      type   = __menu.contextMenuEvent.target.dataset.chapterType
+    index = number - 1
+    name = novelIndex[type][chapter]
+    confirm = new Popup "prompt"
+    confirm.messeage =
+      "#{name}を削除します。確認のため、章名を入力してください…"
+    confirm.callback = (res) ->
+      if res is name
+        fs.unlinkSync getChapterPath number, type
+        novelIndex.chapter.splice number, 1
+        do novel.saveIndex
+        do novel.reloadChapterList
+        if chapterNumber is number
+          novel.openChapter 1
+      else
+        novel.deleteChapter number, type
+    confirm.show()
 
   @save: ->
     fs.writeFile chapterPath, editor.getText(), (e)->
