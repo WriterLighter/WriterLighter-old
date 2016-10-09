@@ -13,8 +13,15 @@ module.exports = class novel
       type: ""
       name: ""
 
-  novelIndex = {}
+  novelIndex   = {}
   originalFile = ""
+  chapterList  =
+    body: $ "#chapter-list-bosy"
+    metadata: $ "#chapter-list-metadata"
+
+  for type, $el in chapterList
+    $el.on "click", "li", (e)->
+      novel.openChapter @dataset.chapterNumber, @dataset.chapterType
 
   getChapterPath = (number, type="body", name) ->
     if number is "now"
@@ -131,12 +138,11 @@ module.exports = class novel
         editor.clearWindowName()
 
   @reloadChapterList: ->
-    list = ""
-    novelIndex.chapter.forEach (item,index)->
-      list +=  "<li data-chapter='#{(index + 1)}' data-context='chapter_list'>#{item}</li>"
-    $("#chapter-list").html(list)
-    $("[data-chapter]").on "click", (e)->
-      novel.openChapter this.dataset.chapter
+    for type, $el of chapterList
+      list = ""
+      for name, i in novelIndex[type]
+        list +=  "<li data-chapter-number='#{(i + 1)}' data-context='chapter_list'>#{item}</li>"
+      $el.html list
 
   @openNovel: (name) ->
     _open =  (novelname)->
