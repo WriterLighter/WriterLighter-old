@@ -1,7 +1,7 @@
 path     = require 'path'
 mkdirp   = require 'mkdirp'
 glob     = require 'glob'
-fs       = require 'fs'
+fs       = require 'fs-extra'
 
 module.exports = class novel
   opened =
@@ -172,22 +172,19 @@ module.exports = class novel
       if e? then (new Popup "toast", e).show()
 
   @newNovel: (name)->
-    if name? and name isnt ""
+    if name
       index =
         name: name
-        author: config.get "name"
-        description: "説明.txt"
-        afterword: "あとがき.txt"
+        author: config.get "user-name"
+        metadata: ["プロット"]
         chapter: []
-        plot: "プロット.txt"
       novelpath = path.join config.get("bookshalf"), name
 
-      mkdirp path.join(novelpath, "本文"), (e)->
-        unless e?
-          fs.writeFile path.join(novelpath, "index.yml"), YAML.dump(index), (e)->
-            unless e?
-              novelPath = novelpath
-              novel.openNovel name
+      if not mkdirp.sync(path.join(novelpath, "body")) and
+          not mkdirp.sync(path.join(novelpath, "metadata"))
+        fs.writeFileSync path.join(novelpath, "index.yml"), YAML.dump(index)
+        novelPath = novelpath
+        novel.openNovel name
     else
       p = new Popup("prompt", "小説名を入力…")
       p.callback = novel.newNovel
