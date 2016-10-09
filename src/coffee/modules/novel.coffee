@@ -161,11 +161,8 @@ module.exports = class novel
       getNovelName.show()
 
   @getNovelList = ->
-    glob path.join(config.get("bookshalf"),"*","index.yml"), (e,d)->
-      list = []
-      d.forEach (item,index)->
-        list.push path.basename(path.dirname(item))
-      list
+      for index in glob.sync path.join(config.get("bookshalf"),"*","index.yml")
+        path.basename path.dirname index
 
   @getOpened = ->
     novel:
