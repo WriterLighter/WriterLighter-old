@@ -145,16 +145,14 @@ module.exports = class novel
       $el.html list
 
   @openNovel: (name) ->
-    _open =  (novelname)->
-      novelName = novelname
-      novelPath = path.join config.get("bookshalf"), novelname
-      novelIndex = YAML.load(fs.readFileSync(path.join(novelPath,"index.yml"),"utf-8"))
+    if name? and name isnt ""
+      opened.novel =
+        name: name
+        path: path.join config.get("bookshalf"), novelname
+      novelIndex = YAML.load(fs.readFileSync(path.join(opened.novel.path,"index.yml"),"utf-8"))
       novel.reloadChapterList()
       event.fire "openedNovel"
-      if novelIndex.chapter.length is 0 then novel.newChapter() else novel.openChapter 0
-
-    if name? and name isnt ""
-      _open name
+      if novelIndex.body.length then do novel.newChapter else novel.openChapter 0, "body"
     else
       getNovelName = new Popup("prompt")
       getNovelName.messeage = "小説名を入力…"
