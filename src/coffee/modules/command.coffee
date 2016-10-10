@@ -6,17 +6,14 @@ module.exports = class command
 
   parse = (command) ->
     args = command.split " "
-    c = args.pop().split ":"
+    c = args.shift().split ":"
     args: args
-    extension: if c[1]? then c[0] else null
-    command: if c[1]? then c[1] else c[0]
+    extension: if c[1]? then c[0] else "default"
+    command: c.pop()
 
   @execute: (command)->
     c = parse command
-    if c.extension?
-      extensions.commands[c.extension][c.command].apply @, c.args
-    else
-      commands[c.command].apply @, c.args
+    commands[c.extension][c.command].apply @, c.args
 
   @palette: ->
     palette = new Popup("prompt")
