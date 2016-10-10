@@ -2,15 +2,20 @@ Popup = require "./popup"
 
 module.exports = class command
   commands = require "./commands"
+
+  parse = (command) ->
+    args = command.split " "
+    c = args.pop().split ":"
+    args: args
+    extension: if c[1]? then c[0] else null
+    command: if c[1]? then c[1] else c[0]
+
   @execute: (command)->
-    c = command.split(":")
-    switch c.length
-      when 1
-        commands[c[0]]?()
-      when 2
-        extensions.commands[c[0]][c[1]]?()
-      else
-        "Bad Command!"
+    c = parse command
+    if c.extension?
+      extensions.commands[c.extension][c.command].apply @, c.args
+    else
+      commands[c.command].apply @, c.args
 
   @palette: ->
     palette = new Popup("prompt")
@@ -21,3 +26,5 @@ module.exports = class command
 
   @getList = ->
     Object.keys commands
+
+
