@@ -1,7 +1,8 @@
 Popup = require "./popup"
 
 module.exports = class command
-  commands = require "./commands"
+  commands =
+    default: require "./commands"
 
   parse = (command) ->
     args = command.split " "
@@ -27,4 +28,6 @@ module.exports = class command
   @getList = ->
     Object.keys commands
 
-
+  @marge(margeCommands, extname) ->
+  if extname isnt "default"
+    Object.assign commands[extname], margeCommands
