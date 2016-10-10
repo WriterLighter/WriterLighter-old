@@ -1,3 +1,6 @@
 [submodule "extensions/plotview"]
 	path = extensions/plotview
 	url = git@github.com:AI-create-team/plotview.git
+[submodule "はじめよう"]
+	path = はじめよう
+	url = git@github.com:WriterLighter/Welcome.git
