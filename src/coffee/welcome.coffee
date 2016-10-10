@@ -3,7 +3,7 @@ electron       = require 'electron'
 app            = electron.remote.app
 BrowserWindow  = electron.remote.BrowserWindow
 dialog         = electron.remote.dialog
-fs             = require 'fs'
+fs             = require 'fs-extra'
 userDataPath   = app.getPath "userData"
 path           = require "path"
 configFile     = path.join userDataPath, "config.yml"
@@ -99,6 +99,8 @@ $("form").on "submit", ->
   .serializeArray
     $.extend configs[i], config
   fs.writeFileSync configFile, YAML.dump(configs)
+  fs.mkdirsSync configs[1].value
+  fs.copySync "./はじめよう",filter, ((s)-> not ~s.indexOf "git") , path.join(configs[1].value, "はじめよう")
   $scroll.animate
     scrollLeft: 5 * vw,
     400,
