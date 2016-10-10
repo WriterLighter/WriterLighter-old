@@ -183,7 +183,6 @@ module.exports = class novel
       if not mkdirp.sync(path.join(novelpath, "body")) and
           not mkdirp.sync(path.join(novelpath, "metadata"))
         fs.writeFileSync path.join(novelpath, "index.yml"), YAML.dump(index)
-        novelPath = novelpath
         novel.openNovel name
     else
       p = new Popup("prompt", "小説名を入力…")
