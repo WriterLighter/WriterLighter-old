@@ -4,7 +4,7 @@ path = require 'path'
 app  = require("electron").remote.app
 fs   = require 'fs'
 
-module.exports = class extensions
+module.exports = class extension
   extensions = {}
   extensionPaths = {}
   packageJsons = {}
@@ -13,7 +13,7 @@ module.exports = class extensions
     path.join app.getPath("userData"), "extensions"
   ]
 
-  $tabs = $ "#ext-tab"
+  $tabList = $ "#ext-tab"
   $content = $ "#ext-conteni"
 
 
