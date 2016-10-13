@@ -5,21 +5,44 @@ app  = require("electron").remote.app
 fs   = require 'fs'
 
 module.exports = class extension
-  extensions = {}
-  extensionPaths = {}
-  packageJsons = {}
-  extensionDirList = [
+  extensions = []
+  extensionDirList = config.get("extensionDirectory") ? [
     path.join ".", "extensions"
     path.join app.getPath("userData"), "extensions"
   ]
+  extensionIndex = {}
+  extensionFile = path.join app.getPath("userData"), "extensions.yml"
 
   $tabList = $ "#ext-tab"
-  $content = $ "#ext-conteni"
+  $content = $ "#ext-content"
 
 
   viewExtension = ->
     name = $("[name='ext-tabs']:checked").data "name"
     extensions.open name
+
+  @check: ->
+    for extDir in extensionDirList
+      for packageJSON in glob.sync path.join extDir, "*", "package.json"
+        packagePath = path.dirname packageJSON
+        unless path.isAbsolute packagePath
+          packagePath = path.join __dirname, "..", packagePath
+        packageInfo = JSON.parse fs.readFileSync(packageJSON, "utf-8")
+        if ~extensionIndex.indexOf packageInfo then continue
+        imported = switch path.parse(packageInfo.main).ext
+          when "css"
+            fs.readFileSync path.join(packagePath, packageInfo.main)
+          when "coffee"
+            require path.join(packagePath, packageInfo.main)
+          when "js"
+            require path.join(packagePath, packageInfo.main)
+
+        extensionIndex[packageInfo.name] = extensions.push Object.assign({},
+          packageInfo,
+          path: packageInfoPath
+          imported: imported
+          )
+        fs.writeFileSync extensionsFile, JSON.stringify extensions
 
   @load: ->
     tabs = ""
