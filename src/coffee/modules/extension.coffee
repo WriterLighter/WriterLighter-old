@@ -21,6 +21,13 @@ module.exports = class extension
     name = $("[name='ext-tabs']:checked").data "name"
     extensions.open name
 
+
+  extTabTag = (pkgInfo) ->
+    "<li><input type='radio' name='ext-tabs' \
+    style='background-image:url(#{if pkgInfo.icon? then path.join(pkgInfo.path, pkgInfo.icon) else ""})' \
+    value='#{pkgInfo.name}' ></li>"
+
+
   @check: ->
     for extDir in extensionDirList
       for packageJSON in glob.sync path.join extDir, "*", "package.json"
