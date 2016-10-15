@@ -28,7 +28,7 @@ module.exports = class extension
     value='#{pkgInfo.name}' ></li>"
 
 
-  @check: ->
+  @checkInstall: ->
     for extDir in extensionDirList
       for packageJSON in glob.sync path.join extDir, "*", "package.json"
         packagePath = path.dirname packageJSON
