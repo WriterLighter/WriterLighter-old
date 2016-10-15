@@ -56,7 +56,7 @@ module.exports = class extension
     html = ""
     for ext in extensions
       html += extTabTag ext
-    $extTab.html html
+    $tabList.html html
 
   @save = ->
     fs.writeFileSync extensionFile, YAML.safeDump(extensions)
