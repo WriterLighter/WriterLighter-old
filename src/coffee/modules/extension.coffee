@@ -67,6 +67,6 @@ module.exports = class extension
 
   @open: (name)->
     $("[name='ext-tabs'][data-name='#{name}']").prop "checked", true
-    html = fs.readFileSync(path.join(extensionPaths[name], extensions[name].view)).toString()
+    html = do fs.readFileSync(path.join(extensions[name].path, extensions[name].view)).toString
     $("#ext-content").html html
     extensions[name].onview?()
