@@ -49,7 +49,8 @@ module.exports = class extension
             path: packageInfoPath
             imported: imported
             )
-          do extension.save
+    do extension.save
+    do extension.updateExtensionTabs
 
   @updateExtensionTabs= ->
     html = ""
