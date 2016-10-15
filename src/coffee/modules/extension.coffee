@@ -16,11 +16,8 @@ module.exports = class extension
   $tabList = $ "#ext-tab"
   $content = $ "#ext-content"
 
-
-  viewExtension = ->
-    name = $("[name='ext-tabs']:checked").data "name"
-    extensions.open name
-
+  $tabList.on "change", "input", ->
+    extensions.open this.value
 
   extTabTag = (pkgInfo) ->
     "<li><input type='radio' name='ext-tabs' \
