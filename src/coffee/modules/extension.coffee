@@ -51,6 +51,11 @@ module.exports = class extension
             )
           do extension.save
 
+  @updateExtensionTabs= ->
+    html = ""
+    for ext in extensions
+      html += extTabTag ext
+    $extTab.html html
 
   @save = ->
     fs.writeFileSync extensionFile, YAML.safeDump(extensions)
