@@ -61,26 +61,11 @@ module.exports = class extension
     fs.writeFileSync extensionFile, YAML.safeDump(extensions)
 
   @load: ->
-    tabs = ""
-    extensionDirList.forEach (p) ->
-      extpath = glob.sync path.join(p ,"*", "package.json")
-      extpath.forEach (item,index)->
-        extdirpath = path.dirname item
-        unless path.isAbsolute(extdirpath)
-          extdirpath = path.join(__dirname, "..", extdirpath)
-        data = JSON.parse fs.readFileSync(item, 'utf-8')
-        packageJsons[data.name]   = data
-        extensions[data.name]     = require path.join(extdirpath, data.main)
-        extensionPaths[data.name] = extdirpath
-        if extensions[data.name].view?
-          tabs += "<li><input type='radio' name='ext-tabs' \
-          style='background-image:url(#{if data.icon? then path.join(extdirpath, data.icon) else ""})' \
-          data-name='#{data.name}' ></li>"
-    $tabs.html tabs
-    $ "[name='ext-tabs']"
-      .on "change", viewExtension
-      .first().prop "checked", true
-    if $("[name='ext-tabs']").length then do viewExtension
+    extensions = YAML.load fs.readFileSync(extensionFile, 'utf8')
+    for extension, index in extensions
+      extensionIndex[extension.name] = index
+      extension.imported = require path.join(extsnsion.path, extension.main)
+    do extension.updateExtensionTabs
 
   @open: (name)->
     $("[name='ext-tabs'][data-name='#{name}']").prop "checked", true
