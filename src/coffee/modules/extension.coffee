@@ -35,21 +35,21 @@ module.exports = class extension
         unless path.isAbsolute packagePath
           packagePath = path.join __dirname, "..", packagePath
         packageInfo = JSON.parse fs.readFileSync(packageJSON, "utf-8")
-        if ~extensionIndex.indexOf packageInfo then continue
-        imported = switch path.parse(packageInfo.main).ext
-          when "css"
-            fs.readFileSync path.join(packagePath, packageInfo.main)
-          when "coffee"
-            require path.join(packagePath, packageInfo.main)
-          when "js"
-            require path.join(packagePath, packageInfo.main)
+        unless ~extensionIndex.indexOf packageInfo
+          imported = switch path.parse(packageInfo.main).ext
+            when "css"
+              fs.readFileSync path.join(packagePath, packageInfo.main)
+            when "coffee"
+              require path.join(packagePath, packageInfo.main)
+            when "js"
+              require path.join(packagePath, packageInfo.main)
 
-        extensionIndex[packageInfo.name] = extensions.push Object.assign({},
-          packageInfo,
-          path: packageInfoPath
-          imported: imported
-          )
-        do extension.save
+          extensionIndex[packageInfo.name] = extensions.push Object.assign({},
+            packageInfo,
+            path: packageInfoPath
+            imported: imported
+            )
+          do extension.save
 
 
   @save = ->
