@@ -49,7 +49,11 @@ module.exports = class extension
           path: packageInfoPath
           imported: imported
           )
-        fs.writeFileSync extensionsFile, JSON.stringify extensions
+        do extension.save
+
+
+  @save = ->
+    fs.writeFileSync extensionFile, YAML.safeDump(extensions)
 
   @load: ->
     tabs = ""
