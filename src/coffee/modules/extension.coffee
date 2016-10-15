@@ -59,6 +59,7 @@ module.exports = class extension
     fs.writeFileSync extensionFile, YAML.safeDump(extensions)
 
   @load: ->
+    do extension.checkInstall
     extensions = YAML.load fs.readFileSync(extensionFile, 'utf8')
     for extension, index in extensions
       extensionIndex[extension.name] = index
