@@ -1,4 +1,5 @@
 $ = jQuery     = require "./js/jquery.min"
+YAML           = require "js-yaml"
 electron       = require 'electron'
 app            = electron.remote.app
 BrowserWindow  = electron.remote.BrowserWindow
@@ -94,13 +95,14 @@ $(".getpath").on "click", ->
     properties: ['openDirectory','createDirectory']
     defaultPath: do $text.val
 
-$("form").on "submit", ->
+$("form").on "submit", (e)->
+  do e.preventDefault
   for config, i in do $ this
   .serializeArray
     $.extend configs[i], config
   fs.writeFileSync configFile, YAML.dump(configs)
   fs.mkdirsSync configs[1].value
-  fs.copySync "./はじめよう",filter, ((s)-> not ~s.indexOf "git") , path.join(configs[1].value, "はじめよう")
+  fs.copySync "./はじめよう" , path.join(configs[1].value, "はじめよう"), filter: ((s)-> not ~s.indexOf "git")
   $scroll.animate
     scrollLeft: 5 * vw,
     400,
