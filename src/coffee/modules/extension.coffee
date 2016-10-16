@@ -27,7 +27,7 @@ module.exports = class extension
 
 
   @checkInstall: ->
-    for extDir in do getExtensionDirList
+    for extDir in do geExtensionDirList
       for packageJSON in glob.sync path.join extDir, "*", "package.json"
         packagePath = path.dirname packageJSON
         unless path.isAbsolute packagePath
