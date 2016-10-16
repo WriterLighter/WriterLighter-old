@@ -25,6 +25,6 @@ module.exports = class command
   @getList = ->
     Object.keys commands
 
-  @marge(margeCommands, extname) ->
-  if extname isnt "default"
-    Object.assign commands[extname], margeCommands
+  @marge = (margeCommands, extname) ->
+    if extname isnt "default"
+      Object.assign commands[extname], margeCommands

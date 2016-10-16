@@ -6,10 +6,11 @@ fs   = require 'fs'
 
 module.exports = class extension
   extensions = []
-  extensionDirList = config.get("extensionDirectory") ? [
-    path.join ".", "extensions"
-    path.join app.getPath("userData"), "extensions"
-  ]
+  getExtensionDirList = ->
+    config.get("extensionDirectory") ? [
+      path.join ".", "extensions"
+      path.join app.getPath("userData"), "extensions"
+    ]
   extensionIndex = {}
   extensionFile = path.join app.getPath("userData"), "extensions.yml"
 
@@ -26,7 +27,7 @@ module.exports = class extension
 
 
   @checkInstall: ->
-    for extDir in extensionDirList
+    for extDir in do getExtensionDirList
       for packageJSON in glob.sync path.join extDir, "*", "package.json"
         packagePath = path.dirname packageJSON
         unless path.isAbsolute packagePath
@@ -71,3 +72,5 @@ module.exports = class extension
     html = do fs.readFileSync(path.join(extensions[name].path, extensions[name].view)).toString
     $("#ext-content").html html
     extensions[name].onview?()
+
+config = require "./config"

@@ -233,12 +233,12 @@ gulp.task 'archive:linux', (done) ->
 gulp.task 'release', (done) -> runSequence 'build', 'archive', 'clean', done
 
 gulp.task 'run', ['compile', 'bower'], ->
-  $.watch "src/coffee/**/*.coffee", ["compile:coffee"]
-  $.watch "src/scss/**/*.scss", ["compile:scss"]
+  do electron.start
+
+  $.watch "./src/coffee/**/*.coffee", ["compile:coffee"]
+  $.watch "./src/scss/**/*.scss", ["compile:scss"]
   $.watch "./bower.json", ["bower"]
 
   $.watch ["./css/**/*.css", "./js/**/*.js", "./*.html"], -> do electron.reload
   $.watch "./main.js", -> do electron.restart
-
-  do electron.start
-
+  @
