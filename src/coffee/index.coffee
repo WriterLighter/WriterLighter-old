@@ -29,10 +29,10 @@ window.WriterLighter = window.wl = class WriterLighter
   @on = WriterLighter.event.on
 
   @startup = ->
+    do wl.config.load
     do wl.menu.load
     do wl.extension.load
-    if do wl.config.load
-      do wl.lastedit.restore
+    do wl.lastedit.restore
 
   @quiting = ->
     if do wl.editor.isEdited then do wl.novel.save
