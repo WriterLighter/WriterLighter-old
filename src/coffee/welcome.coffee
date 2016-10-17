@@ -116,4 +116,4 @@ $ "#start"
   .on "click", ->
     ipc.send "close-window"
     ipc.on "close-window", ->
-      #do thisWindow.close
+      do thisWindow.close
