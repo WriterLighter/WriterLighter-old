@@ -74,5 +74,8 @@ module.exports = class extension
     $("#ext-content").html html
     extensions[name].onview?()
 
+  @get: (name, prop="imported") ->
+    extensions[extensionIndex[name]][prop]
+
 config = require "./config"
 theme  = require "./theme"
