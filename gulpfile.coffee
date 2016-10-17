@@ -123,14 +123,14 @@ gulp.task 'dist', ['clean:dist'], ->
   gulp.src([
     'js/**/*'
     'css/**/*'
-    'images/**/*'
-    'examples/**/*'
+    'assets/**/*'
+    'はじめよう/**/*'
     'extensions/**/*'
     '*.html'
     '*.js'
     '!gulpfile.js'
-    'package.json'
-    'example.md'
+    'menu.yml'
+    '*.json'
   ], { base: '.' })
     .pipe gulp.dest('dist')
     .pipe $.install
