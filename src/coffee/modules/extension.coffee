@@ -66,6 +66,7 @@ module.exports = class extension
       extensionIndex[extension.name] = index
       extension.imported = require path.join(extsnsion.path, extension.main)
     do extension.updateExtensionTabs
+    do theme.set
 
   @open: (name)->
     $("[name='ext-tabs'][data-name='#{name}']").prop "checked", true
@@ -74,3 +75,4 @@ module.exports = class extension
     extensions[name].onview?()
 
 config = require "./config"
+theme  = require "./theme"

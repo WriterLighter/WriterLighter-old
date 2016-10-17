@@ -20,7 +20,7 @@ window.WriterLighter = window.wl = class WriterLighter
   @Popup       = require './js/modules/popup'
   @search      = require './js/modules/search'
   @statusBar   = require './js/modules/statusbar'
-
+  @theme       = require './js/modules/theme'
 
   @layout      = layout
 
