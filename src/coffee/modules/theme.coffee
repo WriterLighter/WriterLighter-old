@@ -1,9 +1,33 @@
+fs     = require "fs"
+sass   = require "node-sass"
+accord = require "accord"
+less   = accord.load "less"
 $theme = $ "#theme"
 
 module.exports = class theme
   @set= (theme = config.get("theme") or "wl-light") ->
     config.set "theme", theme
-    $theme.html extension.get theme
+    themeFile = path.join extension.get(theme, "path"), extension.get(theme, "main")
+    ext = path.parse(themeFile).ext
+    switch ext
+      when "css"
+        fs.readFile themeFile, (e, r)->
+          if e? then throw e
+          $theme.html r
+
+      when "sass"
+        sass.render file: themeFile, (e, r)->
+          if e? then throw e
+          $theme.html r
+
+      when "scss"
+        sass.render file: themeFile, (e, r)->
+          if e? then throw e
+          $theme.html r
+
+      when "less"
+        less.renderFile themeFile, (r)->
+          $theme.html r
 
   @getList = ->
     extension.getList "theme"
