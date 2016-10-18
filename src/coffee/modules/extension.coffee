@@ -12,6 +12,7 @@ module.exports = class extension
       path.join app.getPath("userData"), "extensions"
     ]
   extensionIndex = {}
+  themeIndex     = {}
   extensionFile = path.join app.getPath("userData"), "extensions.yml"
 
   $tabList = $ "#ext-tab"
@@ -33,19 +34,22 @@ module.exports = class extension
         unless path.isAbsolute packagePath
           packagePath = path.join __dirname, "..", packagePath
         packageInfo = JSON.parse fs.readFileSync(packageJSON, "utf-8")
-        unless ~extensionIndex.indexOf packageInfo
-          imported = switch path.parse(packageInfo.main).ext
-            when "css"
-              fs.readFileSync path.join(packagePath, packageInfo.main)
-            when "coffee"
-              require path.join(packagePath, packageInfo.main)
-            when "js"
-              require path.join(packagePath, packageInfo.main)
+        unless ~extensionIndex.indexOf(packageInfo.name) and ~themeIndex.indexOf(packageInfo.name)
+          ext = path.parse(packageInfo.main).ext
+          if ext is "js" or ext is "coffee"
+            imported = require path.join(packagePath, packageInfo.main)
+            index = extensionIndex
+            type = "extension"
+          else
+            imported =  fs.readFileSync path.join(packagePath, packageInfo.main)
+            index = themeIndex
+            type = "theme"
 
-          extensionIndex[packageInfo.name] = extensions.push Object.assign({},
+          index[packageInfo.name] = extensions.push Object.assign({},
             packageInfo,
             path: packageInfoPath
             imported: imported
+            type: type
             )
     do extension.save
     do extension.updateExtensionTabs
