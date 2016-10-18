@@ -81,5 +81,12 @@ module.exports = class extension
   @get: (name, prop="imported") ->
     extensions[extensionIndex[name]][prop]
 
+  @getList (type="extensions") ->
+    switch type
+      when "extensions"
+        Object.keys extensionIndex
+      when "theme"
+        Object.keys themeIndex
+
 config = require "./config"
 theme  = require "./theme"
