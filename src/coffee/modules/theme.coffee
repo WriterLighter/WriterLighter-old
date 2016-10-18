@@ -5,5 +5,8 @@ module.exports = class theme
     config.set "theme", theme
     $theme.html extension.get theme
 
+  @getList = ->
+    extension.getList "theme"
+
 config    = require "./config"
 extension = require "./extension"
