@@ -32,5 +32,7 @@ module.exports = class config
     else
       configs[configIndex[name]][key] = value
 
+    do config.save
+
 ModalWindow = require "./modalwindow"
 Popup       = require './popup'
