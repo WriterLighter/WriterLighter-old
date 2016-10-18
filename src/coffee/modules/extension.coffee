@@ -66,8 +66,13 @@ module.exports = class extension
   @load: ->
     do extension.checkInstall
     extensions = YAML.load fs.readFileSync(extensionFile, 'utf8')
-    for extension, index in extensions
-      extensionIndex[extension.name] = index
+    for extension, i in extensions
+      index = switch extension.type
+        when "extension"
+          extensionIndex
+        when "theme"
+          themeIndex
+      index[extension.name] = i
       extension.imported = require path.join(extsnsion.path, extension.main)
     do extension.updateExtensionTabs
     do theme.set
