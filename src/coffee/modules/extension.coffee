@@ -84,7 +84,7 @@ module.exports = class extension
     extensions[name].onview?()
 
   @get: (name, prop="imported") ->
-    extensions[extensionIndex[name]][prop]
+    extensions[extensionIndex[name] or themeIndex[name]][prop]
 
   @getList (type="extensions") ->
     switch type
