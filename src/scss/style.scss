@@ -225,13 +225,14 @@ input[type="reset"] {
     }
 }
 
-#chapter {
+#pane-right {
   background: $color-main;
   color: $color-letter;
   height: 100%;
   padding: .25em;
   box-sizing: border-box;
-  #chapter-list {
+  #chapter-list-right,
+  #chapter-list-left {
     padding:0;
   }
   li {
