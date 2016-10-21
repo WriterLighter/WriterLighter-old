@@ -240,5 +240,5 @@ gulp.task 'run', ['compile', 'bower'], ->
   $.watch "./bower.json",             -> gulp.start "bower"
 
   $.watch ["./css/**/*.css", "./js/**/*.js", "./*.html"], -> do electron.reload
-  $.watch "./main.js", -> do electron.restart
+  $.watch "./js/main.js", -> do electron.restart
   @
