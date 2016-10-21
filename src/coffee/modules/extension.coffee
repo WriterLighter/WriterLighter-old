@@ -86,7 +86,7 @@ module.exports = class extension
   @get: (name, prop="imported") ->
     extensions[extensionIndex[name] or themeIndex[name]][prop]
 
-  @getList (type="extensions") ->
+  @getList: (type="extensions") ->
     switch type
       when "extensions"
         Object.keys extensionIndex
