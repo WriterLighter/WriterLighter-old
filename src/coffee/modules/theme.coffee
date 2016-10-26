@@ -1,5 +1,5 @@
 fs     = require "fs"
-sass   = require "node-sass"
+sass   = require "sass.js"
 accord = require "accord"
 less   = accord.load "less"
 $theme = $ "#theme"
@@ -16,13 +16,11 @@ module.exports = class theme
           $theme.html r
 
       when "sass"
-        sass.render file: themeFile, (e, r)->
-          if e? then throw e
+        sass.compileFile themeFile, (r)->
           $theme.html r
 
       when "scss"
-        sass.render file: themeFile, (e, r)->
-          if e? then throw e
+        sass.compileFile themeFile, (r)->
           $theme.html r
 
       when "less"
