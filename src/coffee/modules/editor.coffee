@@ -98,11 +98,12 @@ module.exports = class editor
 
   @setText = (text) ->
     $input[0].innerText = text
-    do _onchange
+    _onchange
 
-  @setHTML = (html)->
+  @setHTML = (html, sync=yes)->
     $input[0].innerHTML = html
-    do _onchange
+    if sync
+      editor.setText do editor.getText, no
 
   @getText = ->
     $input[0].innerText
