@@ -96,9 +96,9 @@ module.exports = class editor
     opened = do novel.getOpened
     document.title = "#{opened.chapter.name} - #{opened.novel.name} | WriterLighter"
 
-  @setText = (text) ->
+  @setText = (text, sync=yes) ->
     $input[0].innerText = text
-    _onchange
+    _onchange sync
 
   @setHTML = (html, sync=yes)->
     $input[0].innerHTML = html
