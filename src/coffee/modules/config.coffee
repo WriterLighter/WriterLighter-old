@@ -27,6 +27,7 @@ module.exports = class config
   @set= (name, value, key = "value") ->
     unless configIndex[name]?
       configIndex[name] = configs.push {}
+
     if Object::toString.call(value) is "[object Object]"
       configs[configIndex[name]] = value
     else
