@@ -22,7 +22,7 @@ module.exports = class config
       configIndex[config.name] = index
 
   @get = (name, key = "value")->
-    configs[configIndex[name]][key]
+      configs[configIndex[name]]?[key]
   
   @set= (name, value, key = "value") ->
     if configIndex[name]?
