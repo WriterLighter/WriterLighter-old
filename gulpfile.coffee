@@ -12,6 +12,9 @@ bower       =    require 'main-bower-files'
 electron    = do require 'electron-connect'
   .server.create
 
+isMainJSEdited = yes
+isFirstComplie = yes
+
 packageOpts =
   asar: true
   dir: 'dist'
@@ -63,7 +66,16 @@ gulp.task 'compile', ['compile:coffee', 'compile:scss']
 gulp.task 'compile:production', ['compile:coffee:production', 'compile:scss:production']
 
 gulp.task 'compile:coffee', ->
-  gulp.src 'src/coffee/**/*.coffee'
+  target = if isFirstCompile
+    "src/coffee/**/*.coffee"
+  else if isMainJSEdied
+    "src/coffee/main.coffee"
+  else
+    ["src/coffee/**/*.coffee", "!src/coffee/main.coffee"]
+
+  isFirstCompile = no
+
+  gulp.src target
     .pipe $.plumber()
     .pipe $.coffee
       bare: true
