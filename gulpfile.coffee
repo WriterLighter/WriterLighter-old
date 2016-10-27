@@ -65,11 +65,8 @@ gulp.task 'compile:production', ['compile:coffee:production', 'compile:scss:prod
 gulp.task 'compile:coffee', ->
   gulp.src 'src/coffee/**/*.coffee'
     .pipe $.plumber()
-    .pipe $.sourcemaps.init()
     .pipe $.coffee
       bare: true
-    .pipe $.uglify()
-    .pipe $.sourcemaps.write()
     .pipe gulp.dest('js')
 
 gulp.task 'compile:scss', ->
