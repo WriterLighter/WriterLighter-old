@@ -18,8 +18,8 @@ module.exports = class config
 
   @load = ->
     configs = YAML.load fs.readFileSync(configFile, 'utf8')
-    for config, index in configs
-      configIndex[config.name] = index
+    for cfg, index in configs
+      configIndex[cfg.name] = index
 
   @get = (name, key = "value")->
       configs[configIndex[name]]?[key]
