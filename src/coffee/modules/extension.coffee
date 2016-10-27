@@ -3,6 +3,7 @@ glob = require 'glob'
 path = require 'path'
 app  = require("electron").remote.app
 fs   = require 'fs'
+YAML = require 'js-yaml'
 
 module.exports = class extension
   extensions = []
