@@ -1,5 +1,6 @@
 fs     = require "fs"
 sass   = require "sass.js"
+path   = require "path"
 accord = require "accord"
 less   = accord.load "less"
 $theme = $ "#theme"
