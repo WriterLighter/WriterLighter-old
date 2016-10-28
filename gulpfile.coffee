@@ -13,7 +13,7 @@ electron    = do require 'electron-connect'
   .server.create
 
 isMainJSEdited = yes
-isFirstComplie = yes
+isFirstCompile = yes
 
 packageOpts =
   asar: true
@@ -66,12 +66,16 @@ gulp.task 'compile', ['compile:coffee', 'compile:scss']
 gulp.task 'compile:production', ['compile:coffee:production', 'compile:scss:production']
 
 gulp.task 'compile:coffee', ->
+  console.log isFirstCompile
   target = if isFirstCompile
     "src/coffee/**/*.coffee"
-  else if isMainJSEdied
+  else if isMainJSEdited
     "src/coffee/main.coffee"
   else
     ["src/coffee/**/*.coffee", "!src/coffee/main.coffee"]
+
+  console.log isMainJSEdited
+  console.log target
 
   isFirstCompile = no
 
@@ -244,7 +248,14 @@ gulp.task 'release', (done) -> runSequence 'build', 'archive', 'clean', done
 gulp.task 'run', ['compile', 'bower'], ->
   do electron.start
 
-  $.watch "./src/coffee/**/*.coffee", -> gulp.start "compile:coffee"
+  $.watch "src/coffee/main.coffee", ->
+    isMainJSedited = yes
+    gulp.start "compile:coffee"
+
+  $.watch ["src/coffee/**/*.coffee", "!src/coffee/main.coffee"], ->
+    isMainJSedited = no
+    gulp.start "compile:coffee"
+
   $.watch "./src/scss/**/*.scss",     -> gulp.start "compile:scss"
   $.watch "./bower.json",             -> gulp.start "bower"
 
