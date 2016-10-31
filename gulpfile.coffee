@@ -66,16 +66,12 @@ gulp.task 'compile', ['compile:coffee', 'compile:scss']
 gulp.task 'compile:production', ['compile:coffee:production', 'compile:scss:production']
 
 gulp.task 'compile:coffee', ->
-  console.log isFirstCompile
   target = if isFirstCompile
     "src/coffee/**/*.coffee"
   else if isMainJSEdited
     "src/coffee/main.coffee"
   else
     ["src/coffee/**/*.coffee", "!src/coffee/main.coffee"]
-
-  console.log isMainJSEdited
-  console.log target
 
   isFirstCompile = no
 
@@ -249,11 +245,13 @@ gulp.task 'run', ['compile', 'bower'], ->
   do electron.start
 
   $.watch "src/coffee/main.coffee", ->
-    isMainJSedited = yes
+    isFirstCompile = no
+    isMainJSEdited = yes
     gulp.start "compile:coffee"
 
   $.watch ["src/coffee/**/*.coffee", "!src/coffee/main.coffee"], ->
-    isMainJSedited = no
+    isFirstCompile = no
+    isMainJSEdited = no
     gulp.start "compile:coffee"
 
   $.watch "./src/scss/**/*.scss",     -> gulp.start "compile:scss"
