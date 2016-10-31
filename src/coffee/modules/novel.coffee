@@ -2,6 +2,7 @@ path     = require 'path'
 mkdirp   = require 'mkdirp'
 glob     = require 'glob'
 fs       = require 'fs-extra'
+YAML     = require 'js-yaml'
 
 module.exports = class novel
   opened =
