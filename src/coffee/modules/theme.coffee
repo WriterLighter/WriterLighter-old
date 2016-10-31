@@ -32,5 +32,8 @@ module.exports = class theme
   @getList = ->
     extension.getList "theme"
 
+  @get = ->
+    config.get "theme"
+
 config    = require "./config"
 extension = require "./extension"
