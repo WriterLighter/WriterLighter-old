@@ -1,8 +1,11 @@
 electron      = require "electron"
 remote        = electron.remote
 BrowserWindow = remote.BrowserWindow
+app           = remote.app
 
 module.exports =
+  quit: ->
+    app.quit()
   open_novel: ->
     wl.novel.openNovel()
   open_chapter: ->

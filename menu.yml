@@ -42,6 +42,12 @@ appmenu:
         accelerator: "CmdOrCtrl+S"
         command: "save"
 
+      - type: "separator"
+
+      - label: "終了"
+        accelerator: "CmdOrCtrl+Q"
+        command: "quit"
+
   - label: "編集"
     submenu:
       - label: "コピー"
