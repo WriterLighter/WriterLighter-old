@@ -148,7 +148,7 @@ module.exports = class novel
     if name? and name isnt ""
       opened.novel =
         name: name
-        path: path.join config.get("bookshalf"), novelname
+        path: path.join config.get("bookshalf"), name
       novelIndex = YAML.load(fs.readFileSync(path.join(opened.novel.path,"index.yml"),"utf-8"))
       novel.reloadChapterList()
       event.fire "openedNovel"
