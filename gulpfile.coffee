@@ -15,6 +15,9 @@ electron    = do require 'electron-connect'
 isMainJSEdited = yes
 isFirstCompile = yes
 
+isHTML = (file) ->
+  Path.extname file.path is "html"
+
 packageOpts =
   asar: true
   dir: 'dist'
@@ -141,6 +144,7 @@ gulp.task 'dist', ['clean:dist'], ->
     'menu.yml'
     '*.json'
   ], { base: '.' })
+    .pipe $.if isHTML, do $.useref
     .pipe gulp.dest('dist')
     .pipe $.install
       production: true
