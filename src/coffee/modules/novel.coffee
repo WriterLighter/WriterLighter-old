@@ -142,7 +142,7 @@ module.exports = class novel
     for type, $el of chapterList
       list = ""
       for name, i in novelIndex[type]
-        list +=  "<li data-chapter-number='#{(i + 1)}' data-context='chapter_list'>#{item}</li>"
+        list +=  "<li data-chapter-number='#{(i + 1)}' data-context='chapter_list'>#{name}</li>"
       $el.html list
 
   @openNovel: (name) ->
