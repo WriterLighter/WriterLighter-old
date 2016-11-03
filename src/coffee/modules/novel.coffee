@@ -38,8 +38,10 @@ module.exports = class novel
     
     name = name or novelIndex[type][index]
 
-    path.join novelPath, type, "#{number}_#{name}.txt"
+    path.join opened.novel.path, type, "#{number}_#{name}.txt"
 
+  @getChapterPath = ->
+    getChapterPath.apply @, arguments
 
   @getIndex = ->
     novelIndex
@@ -156,7 +158,7 @@ module.exports = class novel
       unless novelIndex.body.length
         novel.newChapter "名称未設定", "body"
       else
-        novel.openChapter 0, "body"
+        novel.openChapter 1, "body"
     else
       getNovelName = new Popup("prompt")
       getNovelName.messeage = "小説名を入力…"
