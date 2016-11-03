@@ -260,6 +260,7 @@ input[type="reset"] {
 
 ul,
 ol {
+  -webkit-padding-start: 1em;
   &.nonestyle {
     list-style: none;
     padding: 0;
