@@ -1,6 +1,5 @@
 electron      = require "electron"
 remote        = electron.remote
-BrowserWindow = remote.BrowserWindow
 app           = remote.app
 
 module.exports =
@@ -21,9 +20,9 @@ module.exports =
   toggle_editmode: ->
     wl.editor.toggleMode()
   toggle_devtools: ->
-    BrowserWindow.getFocusedWindow().toggleDevTools()
+    remote.getCurrentWindow().toggleDevTools()
   reload_window: ->
-    BrowserWindow.getFocusedWindow().reload()
+    remote.getCurrentWindow().reload()
   toggle_direction: ->
     wl.editor.toggleDirection()
   new_novel: ->
