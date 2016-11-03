@@ -18,7 +18,7 @@ module.exports = class lastEdit
       unless err?
         data = YAML.load text
         novel.openNovel data.opened.novel.name
-        novel.openChapter data.opened.chapter.index + 1
+        novel.openChapter data.opened.chapter.number
         editor.setMode data.status.mode
         editor.setDirection data.status.direction
       else novel.openNovel "はじめよう"
