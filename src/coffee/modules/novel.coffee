@@ -20,7 +20,7 @@ module.exports = class novel
     body: $ "#chapter-list-body"
     metadata: $ "#chapter-list-metadata"
 
-  for type, $el in chapterList
+  for type, $el of chapterList
     $el.on "click", "li", (e)->
       novel.openChapter @dataset.chapterNumber, @dataset.chapterType
 
