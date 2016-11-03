@@ -153,7 +153,10 @@ module.exports = class novel
       novelIndex = YAML.load(fs.readFileSync(path.join(opened.novel.path,"index.yml"),"utf-8"))
       novel.reloadChapterList()
       event.fire "openedNovel"
-      if novelIndex.body.length then do novel.newChapter else novel.openChapter 0, "body"
+      unless novelIndex.body.length
+        novel.newChapter "名称未設定", "body"
+      else
+        novel.openChapter 0, "body"
     else
       getNovelName = new Popup("prompt")
       getNovelName.messeage = "小説名を入力…"
