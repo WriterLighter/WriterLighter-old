@@ -17,7 +17,7 @@ module.exports = class novel
   novelIndex   = {}
   originalFile = ""
   chapterList  =
-    body: $ "#chapter-list-bosy"
+    body: $ "#chapter-list-body"
     metadata: $ "#chapter-list-metadata"
 
   for type, $el in chapterList
@@ -74,10 +74,13 @@ module.exports = class novel
             else
               throw e
           $("#chapter .opened").removeClass "opened"
-          opened.chapter.path = chapterPath
           editor.setText text
           originalFile = text
-          opened.chapter.number = number
+          opened.chapter =
+            number: number
+            type: type
+            name: novelIndex[type][number - 1]
+            path: chapterPath
           do lastedit.save
           $("#chapter [data-chapter-number='#{(number)}'] \
             [data-chapter-type='#{type}']").addClass "opened"
@@ -142,6 +145,7 @@ module.exports = class novel
 
   @reloadChapterList: ->
     for type, $el of chapterList
+      console.log $el
       list = ""
       for name, i in novelIndex[type]
         list +=  "<li data-chapter-number='#{(i + 1)}' data-context='chapter_list'>#{name}</li>"
