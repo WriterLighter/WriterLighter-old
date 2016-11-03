@@ -62,7 +62,7 @@ module.exports = class novel
           try
             chapterPath = getChapterPath number, type
           catch e
-            do (new Popup(e.messeage)).show
+            do (new Popup(e)).show
 
           try
             text = fs.readFileSync chapterPath, 'utf8'
