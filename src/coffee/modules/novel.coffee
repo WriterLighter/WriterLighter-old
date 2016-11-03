@@ -145,7 +145,6 @@ module.exports = class novel
 
   @reloadChapterList: ->
     for type, $el of chapterList
-      console.log $el
       list = ""
       for name, i in novelIndex[type]
         list +=  "<li data-chapter-number='#{(i + 1)}' data-context='chapter_list'>#{name}</li>"
