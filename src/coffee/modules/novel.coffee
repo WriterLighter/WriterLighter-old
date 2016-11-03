@@ -26,9 +26,9 @@ module.exports = class novel
 
   getChapterPath = (number, type="body", name) ->
     if number is "now"
-      {index, type} = opened.chapter
-    else
-      index = number - 1
+      {number, type} = opened.chapter
+
+    index = number - 1
 
     unless novelIndex[type]?
       throw new Error "Bad chapter type"
