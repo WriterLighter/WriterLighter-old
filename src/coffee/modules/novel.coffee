@@ -82,8 +82,8 @@ module.exports = class novel
             name: novelIndex[type][number - 1]
             path: chapterPath
           do lastedit.save
-          $("#chapter [data-chapter-number='#{(number)}'] \
-            [data-chapter-type='#{type}']").addClass "opened"
+          $("#chapter [data-chapter-number='#{(number)}'][data-chapter-type='#{type}']")
+            .addClass "opened"
           event.fire "openedChapter"
           do editor.clearWindowName
           do counter.count
@@ -147,7 +147,8 @@ module.exports = class novel
     for type, $el of chapterList
       list = ""
       for name, i in novelIndex[type]
-        list +=  "<li data-chapter-number='#{(i + 1)}' data-context='chapter_list'>#{name}</li>"
+        list +=  "<li data-chapter-number='#{(i + 1)}'
+        data-chapter-type='#{type}' data-context='chapter_list'>#{name}</li>"
       $el.html list
 
   @openNovel: (name) ->
