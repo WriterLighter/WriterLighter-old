@@ -242,29 +242,28 @@ input[type="reset"] {
   color: $color-letter;
   height: 100%;
   padding: .25em;
-  #chapter-list-right,
-  #chapter-list-left {
-    padding:0;
-  }
-  li {
-    &.opened {
-    background: rgba(0,0,0,.1);
-    color: $color-highlight-lightblue;
-    }
-  margin: .25em 0;
-  list-style-position: inside;
-  width: 100%;
-  white-space: nowrap;
-  }
 }
 
-ul,
-ol {
-  -webkit-padding-start: 1em;
-  &.nonestyle {
-    list-style: none;
+#chapter{
+  ul,
+  ol {
     padding: 0;
-    margin: 0;
+    li{
+      &.opened {
+        background: rgba(0,0,0,.1);
+        color: $color-highlight-lightblue;
+      }
+      cursor: default;
+      margin: 0;
+      list-style-position: inside;
+      min-width: 100%;
+      box-sizing: border-box;
+      white-space: nowrap;
+      padding: .1em .5em;
+    }
+    &.nonestyle {
+      list-style: none;
+    }
   }
 }
 
@@ -288,9 +287,17 @@ ol {
 
 .ui-layout-resizer {
   background: $color-main;
+  .ui-layout-resizer-west, .ui-layout-resizer-east{
+    cursor: ew-resize !important;
+  }
+  .ui-layout-resizer-south, .ui-layout-resizer-north{
+    cursor: ns-resize !important;
+  }
 }
 
 #statusbar{
+  padding: 0;
+  margin: 0;
   display: flex;
   background: $color-main;
   color: $color-letter;
