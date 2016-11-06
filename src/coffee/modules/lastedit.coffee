@@ -17,8 +17,15 @@ module.exports = class lastEdit
     fs.readFile lastEditPath, (err, text) ->
       unless err?
         data = YAML.load text
-        novel.openNovel data.opened.novel.name
-        novel.openChapter data.opened.chapter.number
+        {name, number} = data.opened
+
+        if name?
+          novel.openNovel name
+        else
+          novel.openNovel "はじめよう"
+
+        number? and novel.openChapter number
+
         editor.setMode data.status.mode
         editor.setDirection data.status.direction
       else novel.openNovel "はじめよう"
