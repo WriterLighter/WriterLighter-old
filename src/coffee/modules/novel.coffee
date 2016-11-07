@@ -55,38 +55,39 @@ module.exports = class novel
     if number?
       switch number
         when "next"
-          novel.openChapter opened.chapter.type,
-            opened.chapter + 1 % novelIndex.chapter.length
+          {number, type} = opened.chapter
+          number = number % novelIndex[type].length + 1
         when "back"
-          novel.openChapter opened.chapter.type,
-            opened.chapter - 1 % novelIndex.chapter.length
-        else
-          try
-            chapterPath = getChapterPath number, type
-          catch e
-            do (new Popup(e)).show
+          {number, type} = opened.chapter
+          number = (number - 1) % novelIndex[type].length
+          number = novelIndex[type].length unless number > 0
 
-          try
-            text = fs.readFileSync chapterPath, 'utf8'
-          catch e
-            if e.code is 'ENOENT'
-              text = ""
-            else
-              throw e
-          $("#chapter .opened").removeClass "opened"
-          editor.setText text
-          originalFile = text
-          opened.chapter =
-            number: number
-            type: type
-            name: novelIndex[type][number - 1]
-            path: chapterPath
-          do lastedit.save
-          $("#chapter [data-chapter-number='#{(number)}'][data-chapter-type='#{type}']")
-            .addClass "opened"
-          event.fire "openedChapter"
-          do editor.clearWindowName
-          do counter.count
+      try
+        chapterPath = getChapterPath number, type
+      catch e
+        do (new Popup(e)).show
+
+      try
+        text = fs.readFileSync chapterPath, 'utf8'
+      catch e
+        if e.code is 'ENOENT'
+          text = ""
+        else
+          throw e
+      $("#chapter .opened").removeClass "opened"
+      editor.setText text
+      originalFile = text
+      opened.chapter =
+        number: number
+        type: type
+        name: novelIndex[type][number - 1]
+        path: chapterPath
+      do lastedit.save
+      $("#chapter [data-chapter-number='#{(number)}'][data-chapter-type='#{type}']")
+        .addClass "opened"
+      event.fire "openedChapter"
+      do editor.clearWindowName
+      do counter.count
     else
       getChapter = new Popup("prompt")
       getChapter.messeage = ["章番号を入力…", "タイプを入力…"]
