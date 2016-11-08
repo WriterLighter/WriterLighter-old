@@ -199,15 +199,16 @@ input[type="reset"] {
 }
 
 #editer-wrap{
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 0 0 50% 50%;
+  padding: 0 0 50% 0;
   box-sizing: border-box;
-  height: 100%;
+  min-height: 100%;
   &.vertical{
+    padding: 0 0 0 50%;
     writing-mode: vertical-rl;
-    overflow-y: hidden;
-    overflow-x: auto;
+    > pre{
+      left: auto;
+      right: 0;
+    }
   }
   mark.searched.focused{
     background: red;
@@ -215,7 +216,7 @@ input[type="reset"] {
   > pre{
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
     white-space: pre-wrap;
     resize: none;
     line-height: 2em;
@@ -234,7 +235,7 @@ input[type="reset"] {
 }
 
 #input-text{
-  position: static;
+  position: static !important;
 }
 
 #pane-right {
