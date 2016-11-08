@@ -13,6 +13,15 @@ a,
     box-shadow: 0 0 7px 3px $color-highlight-lightblue;
 }
 
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #aaa;
+}
+
 html,body{
     margin:0;
     padding:0;
