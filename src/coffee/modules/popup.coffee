@@ -18,6 +18,13 @@ module.exports = class Popup extends EventEmitter2
       .addClass "show"
       .addClass type
 
+  _hide = (val) ->
+    do Popup.hide
+    @emit "hide", val
+    setTimeout ->
+      @emit "hidden", val
+    , $("#popup").css "transion"
+
   @isShowing:->
     $("#popup").hasClass "show" or not $("#popup:hover").length
   
@@ -26,41 +33,40 @@ module.exports = class Popup extends EventEmitter2
 
   show: =>
     do Popup.hide
-    switch @type
+    opts = @options
+    switch opts.type
       when "toast"
-        _show.call @, @messeage, @type
+        _show.call @, opts.messeage, opts.type
         setTimeout =>
-          do Popup.hide
-          @callback @messeage
-        , @timeout
+          _hide.call @, opts.messeage
+        , opts.timeout
 
       when "prompt"
-        if typeof @messeage is "string"
-          html = "<input type='text' placeholder='#{@messeage}'>"
+        if typeof opts.messeage is "string"
+          html = "<input type='text' placeholder='#{opts.messeage}'>"
         else
           html = "<form>"
-          @messeage.forEach (item, index)->
+          opts.messeage.forEach (item, index)->
             html += "<div><input type='text' placeholder='#{item}'></div>"
           html += "<input type='reset'><input type='submit' value='完了'><form>"
         
-        _show.call @, html, @type
+        _show.call @, html, opts.type
         
         $("#popup>input[type='text']")
           .autocomplete
-            "source": @complete
+            "source": opts.complete
             
 
         if $("#popup>input[type='text']").length is 1
           $("#popup>input[type='text']")
             .focus()
             .on "blur",=>
-              unless @forcing
+              unless opts.forcing
                 do Popup.hide
             .on "keydown", (e)=>
               if e.keyCode is 13
                 if $("#popup>input").val() is "" then return false
-                do Popup.hide
-                @callback $("#popup>input").val()
+                _hide.call @, $("#popup>input").val()
         else
           $("#popup>form").on "submit", =>
             value = []
@@ -69,6 +75,5 @@ module.exports = class Popup extends EventEmitter2
               if $(@).val() is "" then uninput = true
               value.push $(@).val()
             unless uninput
-              do Popup.hide
-              @callback value
+              _hide.call @, value
             false
