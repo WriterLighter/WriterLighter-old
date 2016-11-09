@@ -25,7 +25,7 @@ module.exports = class Popup extends EventEmitter2
     @options = Object.assign {}, opts, options
 
   show: =>
-    Popup.hide
+    do Popup.hide
     switch @type
       when "toast"
         _show.call @, @messeage, @type
