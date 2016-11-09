@@ -1,3 +1,9 @@
+opts =
+  type: "toast"
+  messeage: ""
+  timeout: 3000
+  complete: []
+
 module.exports = class Popup
   @hide: ->
     $("#popup").removeClass "show"
@@ -13,7 +19,8 @@ module.exports = class Popup
   @isShowing:->
     $("#popup").hasClass "show" or not $("#popup:hover").length
   
-  constructor: (@type = "toast", @messeage = "", @callback = ((m)-> console.log(m)), @timeout = 3000, @complete = [])->
+  constructor: (options = opts)->
+    @options = Object.assign {}, opts, options
 
   show: =>
     Popup.hide
