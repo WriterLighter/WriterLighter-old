@@ -1,6 +1,6 @@
 EventEmitter2 = require "eventemitter2"
 
-opts =
+defaultOptions =
   type: "toast"
   messeage: ""
   timeout: 3000
@@ -21,8 +21,8 @@ module.exports = class Popup extends EventEmitter2
   @isShowing:->
     $("#popup").hasClass "show" or not $("#popup:hover").length
   
-  constructor: (options = opts)->
-    @options = Object.assign {}, opts, options
+  constructor: (options = {})->
+    @options = Object.assign defaultOptions, options
 
   show: =>
     do Popup.hide
