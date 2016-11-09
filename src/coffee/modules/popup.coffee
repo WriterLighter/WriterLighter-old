@@ -1,10 +1,12 @@
+EventEmitter2 = require "eventemitter2"
+
 opts =
   type: "toast"
   messeage: ""
   timeout: 3000
   complete: []
 
-module.exports = class Popup
+module.exports = class Popup extends EventEmitter2
   @hide: ->
     $("#popup").removeClass "show"
     $("#popup.toast").removeClass "toast"
