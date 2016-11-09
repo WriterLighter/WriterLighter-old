@@ -22,7 +22,7 @@ module.exports = class Popup extends EventEmitter2
     $("#popup").hasClass "show" or not $("#popup:hover").length
   
   constructor: (options = {})->
-    @options = Object.assign defaultOptions, options
+    @options = Object.assign {}, defaultOptions, options
 
   show: =>
     do Popup.hide
