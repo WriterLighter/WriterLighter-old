@@ -19,11 +19,11 @@ module.exports = class Popup extends EventEmitter2
       .addClass type
 
   _hide = (val) ->
-    do Popup.hide
-    @emit "hide", val
-    setTimeout ->
-      @emit "hidden", val
-    , $("#popup").css "transion"
+    if @emit "hide", val
+      do Popup.hide
+      setTimeout ->
+        @emit "hidden", val
+      , $("#popup").css "transion"
 
   @isShowing:->
     $("#popup").hasClass "show" or not $("#popup:hover").length
