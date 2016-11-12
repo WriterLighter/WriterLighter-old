@@ -65,7 +65,7 @@ module.exports = class novel
       try
         chapterPath = getChapterPath number, type
       catch e
-        do (new Popup(e)).show
+        new Popup messeage: e
 
       try
         text = fs.readFileSync chapterPath, 'utf8'
@@ -109,9 +109,11 @@ module.exports = class novel
       fs.renameSync getChapterPath("now"), getChapterPath(number, type, name)
       novelIndex[type][number - 1] = name
     else
-      confirm = new Popup "prompt"
-      confirm.messeage = "新しい章名を入力してください…"
-      confirm.callback = (name) ->
+      prompt = new Popup
+        type:"prompt"
+        messeage: "新しい章名を入力してください…"
+
+      prompt.on "hide", (name) ->
         novel.renameChapter number, type, name
 
   @deleteChapter: (number=opened.chapter.number, type=opened.chapter.type) ->
@@ -120,10 +122,10 @@ module.exports = class novel
       type   = __menu.contextMenuEvent.target.dataset.chapterType
     index = number - 1
     name = novelIndex[type][chapter]
-    confirm = new Popup "prompt"
-    confirm.messeage =
-      "#{name}を削除します。確認のため、章名を入力してください…"
-    confirm.callback = (res) ->
+    confirm = new Popup
+      type: "prompt"
+      messeage: "#{name}を削除します。確認のため、章名を入力してください…"
+    confirm.on "hide", (res) ->
       if res is name
         fs.unlinkSync getChapterPath number, type
         novelIndex.chapter.splice number, 1
@@ -133,7 +135,6 @@ module.exports = class novel
           novel.openChapter 1
       else
         novel.deleteChapter number, type
-    confirm.show()
 
   @save: ->
     fs.writeFile getChapterPath("now"), editor.getText(), (e)->
