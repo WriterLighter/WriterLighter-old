@@ -52,7 +52,7 @@ module.exports = class editor
         wl.layout.open("south")
         BrowserWindow.getFocusedWindow().setFullScreen(false)
         editorMode = mode
-        (new Popup 'toast', "モード:標準").show()
+        new Popup messeage: "モード:標準"
   
       when "intensive"
         wl.layout.hide("west")
@@ -60,7 +60,7 @@ module.exports = class editor
         wl.layout.hide("south")
         BrowserWindow.getFocusedWindow().setFullScreen(true)
         editorMode = mode
-        (new Popup 'toast', "モード:超集中モード").show()
+        new Popup messeage: "モード:超集中モード"
   
   @toggleMode = ->
     switch editorMode
