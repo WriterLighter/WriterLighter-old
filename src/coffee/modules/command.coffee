@@ -16,11 +16,12 @@ module.exports = class command
     commands[c.extension][c.command].apply @, c.args
 
   @palette: ->
-    palette = new Popup("prompt")
-    palette.messeage = "コマンドを入力…"
-    palette.complete = do command.getList
-    palette.callback = command.execute
-    palette.show()
+    palette = new Popup
+      type:"prompt"
+      messeage: "コマンドを入力…"
+      complete: do command.getList
+
+    palette.on "hide", command.execute
 
   @getList = ->
     Object.keys commands
