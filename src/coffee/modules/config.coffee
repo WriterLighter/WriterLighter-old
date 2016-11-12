@@ -34,6 +34,3 @@ module.exports = class config
       configs[configIndex[name]][key] = value
 
     do config.save
-
-ModalWindow = require "./modalwindow"
-Popup       = require './popup'
