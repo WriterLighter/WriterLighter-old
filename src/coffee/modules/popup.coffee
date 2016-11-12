@@ -1,6 +1,7 @@
 EventEmitter2 = require "eventemitter2"
 
 defaultOptions =
+  show: true
   type: "toast"
   messeage: ""
   timeout: 3000
@@ -30,6 +31,7 @@ module.exports = class Popup extends EventEmitter2
   
   constructor: (options = {})->
     @options = Object.assign {}, defaultOptions, options
+    @options.show || do @show
 
   show: =>
     do Popup.hide
