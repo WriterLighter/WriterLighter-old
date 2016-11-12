@@ -2,6 +2,8 @@ electron      = require "electron"
 remote        = electron.remote
 app           = remote.app
 
+Popup = require "./popup"
+
 module.exports =
   quit: ->
     app.quit()
@@ -45,4 +47,4 @@ module.exports =
     if __menu? and __menu.contextMenuEvent?
       __menu.browserWindow.inspectElement __menu.contextMenuEvent.x, __menu.contextMenuEvent.y
     else
-      (new wl.Popup("toast", "コンテキストメニューから実行してください。")).show()
+      new Popup messeage: "コンテキストメニューから実行してください。"
