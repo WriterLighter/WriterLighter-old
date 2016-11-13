@@ -2,6 +2,7 @@ BrowserWindow = require("electron").remote.BrowserWindow
 event   = require './event'
 
 $input = $ "#input-text"
+$wrapper = $ "#editer-wrap"
 
 edited = false
 previousInput = ""
@@ -77,9 +78,9 @@ module.exports = class editor
   @setDirection: (direction)->
     switch direction
       when "vertical"
-        $input.addClass("vertical")
+        $wrapper.addClass("vertical")
       when "horizontal"
-        $input.removeClass("vertical")
+        $wrapper.removeClass("vertical")
       else
         editor.setDirection("horizontal")
 
