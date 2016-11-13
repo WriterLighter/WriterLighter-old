@@ -89,9 +89,10 @@ module.exports = class novel
       do editor.clearWindowName
       do counter.count
     else
-      getChapter = new Popup("prompt")
-      getChapter.messeage = ["章番号を入力…", "タイプを入力…"]
-      getChapter.callback = (value)->
+      getChapter = new Popup
+        type: "prompt"
+        messeage: ["章番号を入力…", "タイプを入力…"]
+      getChapter.on "hide", (value)->
         novel.openChapter.call novel, value
       do getChapter.show
 
@@ -139,7 +140,7 @@ module.exports = class novel
   @save: ->
     fs.writeFile getChapterPath("now"), editor.getText(), (e)->
       if e?
-        errp = new Popup("toast", e)
+        errp = new Popup messeage: e
         errp.show()
       else
         event.fire "savedChapter"
@@ -166,11 +167,11 @@ module.exports = class novel
       else
         novel.openChapter 1, "body"
     else
-      getNovelName = new Popup("prompt")
-      getNovelName.messeage = "小説名を入力…"
-      getNovelName.callback = novel.openNovel
-      getNovelName.complete = novel.getNovelList()
-      getNovelName.show()
+      getNovelName = new Popup
+        type: "prompt"
+        messeage: "小説名を入力…"
+        complete: novel.getNovelList()
+      getNovelName.on "hide", novel.openNovel
 
   @getNovelList = ->
       for index in glob.sync path.join(config.get("bookshalf"),"*","index.yml")
@@ -181,7 +182,7 @@ module.exports = class novel
 
   @saveIndex: ->
     fs.writeFile path.join(opened.novel.path, "index.yml"), YAML.dump(novelIndex), (e)->
-      if e? then (new Popup "toast", e).show()
+      if e? then new Popup messeage: e
 
   @newNovel: (name)->
     if name
@@ -197,9 +198,10 @@ module.exports = class novel
         fs.writeFileSync path.join(novelpath, "index.yml"), YAML.dump(index)
         novel.openNovel name
     else
-      p = new Popup("prompt", "小説名を入力…")
-      p.callback = novel.newNovel
-      p.show()
+      p = new Popup
+        type: "prompt"
+        messeage: "小説名を入力…"
+      p.on "hide", novel.newNovel
 
 Popup    = require './popup'
 menu     = require './menu'
