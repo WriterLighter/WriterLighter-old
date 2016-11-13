@@ -15,7 +15,6 @@ window.WriterLighter = window.wl = class WriterLighter
   @event       = require './js/modules/event'
   @lastedit    = require './js/modules/lastedit'
   @menu        = require './js/modules/menu'
-  @ModalWindow = require './js/modules/modalwindow'
   @novel       = require './js/modules/novel'
   @Popup       = require './js/modules/popup'
   @search      = require './js/modules/search'
