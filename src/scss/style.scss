@@ -225,6 +225,7 @@ input[type="reset"] {
   padding: 0 0 50% 0;
   box-sizing: border-box;
   min-height: 100%;
+  min-width: 100%;
   &.vertical{
     padding: 0 0 0 50%;
     writing-mode: vertical-rl;
