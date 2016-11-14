@@ -1,4 +1,4 @@
-BrowserWindow = require("electron").remote.BrowserWindow
+currentWindow = do require("electron").remote.getCurrentWindow
 event   = require './event'
 
 $input = $ "#input-text"
@@ -51,7 +51,7 @@ module.exports = class editor
         wl.layout.open("west")
         wl.layout.open("east")
         wl.layout.open("south")
-        BrowserWindow.getFocusedWindow().setFullScreen(false)
+        currentWindow.setFullScreen(false)
         editorMode = mode
         new Popup messeage: "モード:標準"
   
@@ -59,7 +59,7 @@ module.exports = class editor
         wl.layout.hide("west")
         wl.layout.hide("east")
         wl.layout.hide("south")
-        BrowserWindow.getFocusedWindow().setFullScreen(true)
+        currentWindow.setFullScreen(true)
         editorMode = mode
         new Popup messeage: "モード:超集中モード"
   
