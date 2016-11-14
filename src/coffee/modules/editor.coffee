@@ -30,6 +30,8 @@ updateBeforeCaret = (e)->
     l++
 
 _onchange = ->
+  do updateBeforeCaret
+
   text = do editor.getText
   if text isnt previousInput
     if edited is false
