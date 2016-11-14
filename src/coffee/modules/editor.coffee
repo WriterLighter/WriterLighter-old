@@ -2,7 +2,7 @@ currentWindow = do require("electron").remote.getCurrentWindow
 event   = require './event'
 
 $input = $ "#input-text"
-$wrapper = $ "#editer-wrap"
+$wrapper = $ "#editor-wrap"
 
 edited = false
 previousInput = ""
