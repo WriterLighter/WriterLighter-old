@@ -140,6 +140,8 @@ module.exports = class editor
   @redo = ->
     document.execCommand "redo"
 
+$input.on "keydown keyup click", updateBeforeCaret
+
 $input.on "input", _onchange
 
 $input.on "keydown", (e)->
