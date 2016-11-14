@@ -8,6 +8,8 @@ edited = false
 previousInput = ""
 saveTimeout = null
 pressedKey = 0
+beforeCaret = ""
+
 _onchange = ->
   text = do editor.getText
   if text isnt previousInput
@@ -16,20 +18,8 @@ _onchange = ->
       document.title = "* " + document.title
     saveTimeout? and clearTimeout saveTimeout
 
-    lines = text.split '\n'
-    preLines = previousInput.split "\n"
     if pressedKey is 13 and lines.length > preLines.length
-      range = null
-      range = document.createRange()
-      range.setStart $input[0], 0
-      range.setEnd getSelection().anchorNode, 0
-      beforeCaret = range.toString().length
-      charaNum = 0
-      for line, idx in preLines
-        charaNum += line.length
-        if charaNum >= beforeCaret
-          match = preLines[idx - 1].match /^([\s　]+).+$/
-          break
+      match = beforeCaret.match /^[ 　\t]+/gm
       if match?
         document.execCommand 'insertHTML', false, do match.pop
 
