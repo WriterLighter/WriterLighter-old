@@ -39,7 +39,9 @@ _onchange = ->
       document.title = "* " + document.title
     saveTimeout? and clearTimeout saveTimeout
 
-    if pressedKey is 13 and lines.length > preLines.length
+    if pressedKey is 13 and
+    text.split("\n").length > previousInput.split("\n").length
+
       match = beforeCaret.match /^[ 　\t]+/gm
       if match?
         document.execCommand 'insertHTML', false, do match.pop
