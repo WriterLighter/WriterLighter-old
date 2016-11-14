@@ -128,6 +128,9 @@ module.exports = class editor
 
   @getDOMObject = ->
     $input[0]
+    
+  @getBeforeCaret = ->
+    beforeCaret
 
   @undo = ->
     document.execCommand "undo"
