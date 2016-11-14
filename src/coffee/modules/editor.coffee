@@ -139,10 +139,9 @@ $input.on "input", _onchange
 $input.on "keydown", (e)->
   pressedKey = e.keyCode
 
-event.on "savedChapter openedChapter", ->
+novel.on "savedChapter openedChapter", ->
   edited = false
 
 Popup   = require "./popup"
 novel   = require "./novel"
 counter = require "./counter"
-config  = require "./config"
