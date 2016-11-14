@@ -3,8 +3,9 @@ mkdirp   = require 'mkdirp'
 glob     = require 'glob'
 fs       = require 'fs-extra'
 YAML     = require 'js-yaml'
+EventEmitter2 = require "eventemitter2"
 
-module.exports = class novel
+module.exports = class novel extends new EventEmitter2
   opened =
     novel:
       path: ""
@@ -85,7 +86,7 @@ module.exports = class novel
       do lastedit.save
       $("#chapter [data-chapter-number='#{(number)}'][data-chapter-type='#{type}']")
         .addClass "opened"
-      event.fire "openedChapter"
+      novel.emit "openedChapter"
       do editor.clearWindowName
       do counter.count
     else
@@ -143,7 +144,7 @@ module.exports = class novel
         errp = new Popup messeage: e
         errp.show()
       else
-        event.fire "savedChapter"
+        novel.emit "savedChapter"
         editor.clearWindowName()
 
   @reloadChapterList: ->
@@ -161,7 +162,7 @@ module.exports = class novel
         path: path.join config.get("bookshalf"), name
       novelIndex = YAML.load(fs.readFileSync(path.join(opened.novel.path,"index.yml"),"utf-8"))
       novel.reloadChapterList()
-      event.fire "openedNovel"
+      novel.emit "openedNovel"
       unless novelIndex.body.length
         novel.newChapter "名称未設定", "body"
       else
@@ -209,4 +210,3 @@ editor   = require './editor'
 lastedit = require './lastedit'
 config   = require './config'
 counter  = require './counter'
-event    = require './event'
