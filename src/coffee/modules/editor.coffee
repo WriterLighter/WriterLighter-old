@@ -10,6 +10,25 @@ saveTimeout = null
 pressedKey = 0
 beforeCaret = ""
 
+updateBeforeCaret = (e)->
+  unless $input.is document.activeElement
+    return
+
+  sel = do getSelection
+
+  range = do document.createRange
+  range.setStart $input[0], 0
+  range.setEnd sel.anchorNode, sel.anchorOffset
+
+  beforeCaret = range.toString().replace /\n/g , ""
+
+  l = 0
+  for line in editor.getText().split "\n"
+    l += line.length
+    if l >= beforeCaret.length then break
+    beforeCaret = "#{beforeCaret.slice 0,l}\n#{beforeCaret.slice l}"
+    l++
+
 _onchange = ->
   text = do editor.getText
   if text isnt previousInput
