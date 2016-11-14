@@ -35,7 +35,7 @@ _onchange = ->
 
     do counter.count
     previousInput = text
-    wl.editor.saveTimeout = setTimeout wl.novel.save
+    saveTimeout = setTimeout novel.save
     , unless isNaN config.get("saveTimeout") then config.get "saveTimeout" else 3000
 
 module.exports = class editor
