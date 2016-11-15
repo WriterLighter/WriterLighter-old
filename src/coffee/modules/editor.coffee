@@ -116,7 +116,7 @@ module.exports = class editor
     unless highlights[id]? and highlights[id].element?
       highlights[id] = {}
       el = document.createElement "pre"
-      $wrapper.append el
+      $highlights.append el
     else
       el = highlights[id].element
 
