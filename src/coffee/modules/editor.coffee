@@ -120,7 +120,7 @@ module.exports = class editor
 
     Object.assign highlights[id], changeValue
 
-    el.styles.display =
+    el.style.display =
     unless highlights[id].enabled and highlights[id].rule then "none" else ""
 
     highlights[id].element = el
