@@ -134,7 +134,11 @@ module.exports = class editor
       setting = highlights[id]
       rule = setting.rule
 
-      return if rule
+      unless highlights[id].enabled and highlights[id].rule
+        setting.element.style.display = "none"
+        return
+      else
+        setting.element.style.display = ""
 
       if Object::toString.call(rule) is "[object String]"
         rule = new RegExp rule.replace(/[\\\*\+\.\?\{\}\(\)\[\]\^\$\-\|\/]/g, "\\$&"), "g"
