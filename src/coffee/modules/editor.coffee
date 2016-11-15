@@ -3,6 +3,8 @@ event   = require './event'
 
 $input = $ "#input-text"
 $wrapper = $ "#editor-wrap"
+$highlights = $ "#highlights"
+$highlightBase = $ "#highlight-base"
 
 edited = false
 previousInput = ""
