@@ -127,6 +127,27 @@ module.exports = class editor
 
     editor.highlight id
 
+  @highlight = (id) ->
+    text = do editor.getText
+
+    _highlight = (id) ->
+      setting = highlights[id]
+      rule = setting.rule
+
+      return if rule
+
+      if Object::toString.call(rule) is "[object String]"
+        rule = new RegExp rule.replace(/[\\\*\+\.\?\{\}\(\)\[\]\^\$\-\|\/]/g, "\\$&"), "g"
+
+      setting.element.innerHTML =
+      text.replace rule, setting.replacement ? "<mark class='hl-#{id}'>$&</mark>"
+
+    if id?
+      _highlight id
+    else
+      for k in highlights
+        _highlight k
+
   @clearWindowName = ->
     opened = do novel.getOpened
     document.title = "#{opened.chapter.name} - #{opened.novel.name} | WriterLighter"
