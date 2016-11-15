@@ -170,7 +170,7 @@ input[type="reset"] {
     height: calc(100% -  #{$scrollbar-width});
     padding: 0 0 0 50%;
     writing-mode: vertical-rl;
-    > pre{
+    > pre, #highlights {
       left: auto;
       right: 0;
     }
@@ -178,7 +178,7 @@ input[type="reset"] {
   mark.searched.focused{
     background: red;
   }
-  > pre{
+  > pre, #highlights {
     position: absolute;
     top: 0;
     left: 0;
