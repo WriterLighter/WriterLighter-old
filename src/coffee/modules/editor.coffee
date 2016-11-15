@@ -10,6 +10,8 @@ saveTimeout = null
 pressedKey = 0
 beforeCaret = ""
 
+highlights = {}
+
 updateBeforeCaret = (e)->
   unless $input.is document.activeElement
     return
@@ -105,6 +107,25 @@ module.exports = class editor
       editor.setDirection "horizontal"
     else
       editor.setDirection "vertical"
+
+  @setHighlight = (id, changeValue)->
+    throw new Error "id is a required argument" unless id?
+
+    unless highlights[id]? and highlights[id].element?
+      highlights[id] = {}
+      el = document.createElement "div"
+      $wrapper.append el
+    else
+      el = highlights[id].element
+
+    Object.assign highlights[id], changeValue
+
+    el.styles.display =
+    unless highlights[id].enabled and highlights[id].rule then "none" else ""
+
+    highlights[id].element = el
+
+    editor.highlight id
 
   @clearWindowName = ->
     opened = do novel.getOpened
