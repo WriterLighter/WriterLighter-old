@@ -138,9 +138,10 @@ module.exports = class editor
       setting = highlights[id]
       rule = setting.rule
 
-      unless highlights[id].enabled and highlights[id].rule
+      enabled = setting.enabled ? true
+
+      unless enabled and rule
         setting.element.style.display = "none"
-        return
       else
         setting.element.style.display = ""
 
