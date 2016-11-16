@@ -175,9 +175,6 @@ input[type="reset"] {
       right: 0;
     }
   }
-  mark.searched.focused{
-    background: red;
-  }
   pre{
     color: transparent;
     position: absolute;
@@ -202,6 +199,19 @@ input[type="reset"] {
 
 #highlight-base, #input-text{
   color: black !important;
+}
+
+#highlights mark{
+  background: none;
+  color: transparent;
+  border-bottom: #f00 1px dotted;
+  &.hl-search{
+    border: none;
+    background: yellow;
+    &.focused{
+      background: #f00;  
+    }
+  }
 }
 
 #input-text{
