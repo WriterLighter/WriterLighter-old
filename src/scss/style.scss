@@ -179,6 +179,7 @@ input[type="reset"] {
     background: red;
   }
   pre{
+    color: transparent;
     position: absolute;
     top: 0;
     left: 0;
@@ -197,6 +198,15 @@ input[type="reset"] {
       font-size: inherit;
     }
   }
+}
+
+#highlight-base, #input-text{
+  color: black !important;
+}
+
+#input-text{
+  z-index: 1;
+  -webkit-text-fill-color: transparent;
 }
 
 #pane-right {
