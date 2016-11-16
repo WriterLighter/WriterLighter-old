@@ -37,8 +37,8 @@ _onchange = ->
   do updateBeforeCaret
 
   text = do editor.getText
+  $highlightBase[0].innerHTML = text
   if text isnt previousInput
-    $highlightBase[0].innerHTML = text
     if edited is false
       edited = true
       document.title = "* " + document.title
