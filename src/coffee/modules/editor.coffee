@@ -191,6 +191,7 @@ $input.on "keydown", (e)->
 Popup   = require "./popup"
 novel   = require "./novel"
 counter = require "./counter"
+config  = require "./config"
 
 novel.on "savedChapter", ->
   edited = false
