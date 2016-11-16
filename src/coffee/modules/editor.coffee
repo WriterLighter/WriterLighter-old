@@ -152,7 +152,7 @@ module.exports = class editor
     if id?
       _highlight id
     else
-      for k in highlights
+      for k of highlights
         _highlight k
 
   @clearWindowName = ->
