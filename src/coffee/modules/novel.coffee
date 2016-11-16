@@ -5,7 +5,7 @@ fs       = require 'fs-extra'
 YAML     = require 'js-yaml'
 EventEmitter2 = require "eventemitter2"
 
-module.exports = class novel extends new EventEmitter2
+module.exports = class novel
   opened =
     novel:
       path: ""
@@ -86,7 +86,7 @@ module.exports = class novel extends new EventEmitter2
       do lastedit.save
       $("#chapter [data-chapter-number='#{(number)}'][data-chapter-type='#{type}']")
         .addClass "opened"
-      novel.emit "openedChapter"
+      novel.emitter.emit "openedChapter"
       do editor.clearWindowName
       do counter.count
     else
@@ -144,7 +144,7 @@ module.exports = class novel extends new EventEmitter2
         errp = new Popup messeage: e
         errp.show()
       else
-        novel.emit "savedChapter"
+        novel.emitter.emit "savedChapter"
         editor.clearWindowName()
 
   @reloadChapterList: ->
@@ -162,7 +162,7 @@ module.exports = class novel extends new EventEmitter2
         path: path.join config.get("bookshalf"), name
       novelIndex = YAML.load(fs.readFileSync(path.join(opened.novel.path,"index.yml"),"utf-8"))
       novel.reloadChapterList()
-      novel.emit "openedNovel"
+      novel.emitter.emit "openedNovel"
       unless novelIndex.body.length
         novel.newChapter "名称未設定", "body"
       else
@@ -203,6 +203,11 @@ module.exports = class novel extends new EventEmitter2
         type: "prompt"
         messeage: "小説名を入力…"
       p.on "hide", novel.newNovel
+
+  @emitter = new EventEmitter2
+
+  @on = -> novel.emitter.on.apply novel.emitter, arguments
+
 
 Popup    = require './popup'
 menu     = require './menu'
