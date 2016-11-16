@@ -39,6 +39,7 @@ _onchange = ->
   text = do editor.getText
   if text isnt previousInput
     $highlightBase[0].innerHTML = text
+    do editor.highlight
     if edited is false
       edited = true
       document.title = "* " + document.title
