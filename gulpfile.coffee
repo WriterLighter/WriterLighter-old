@@ -8,7 +8,6 @@ runSequence =    require 'run-sequence'
 Path        =    require 'path'
 extend      =    require 'extend'
 mkdirp      =    require 'mkdirp'
-bower       =    require 'main-bower-files'
 electron    = do require 'electron-connect'
   .server.create
 
@@ -106,31 +105,6 @@ gulp.task 'compile:scss:production', ['clean:css'], ->
       zindex: false
     .pipe gulp.dest('css')
 
-gulp.task 'bower', ['bower:css', 'bower:js']
-
-gulp.task 'bower:css', ->
-  cssFilter = $.filter '**/*.css', restore: true
-  gulp.src bower paths: bowerJson: 'bower.json'
-    .pipe cssFilter
-    .pipe $.concat 'bower_components.css'
-    .pipe gulp.dest 'css'
-    .pipe cssFilter.restore
-
-gulp.task 'bower:js', ->
-  jsFilter     = $.filter ['**/*.js', "!**/jquery.js"], restore: true
-  jQueryFilter = $.filter '**/jquery.js', restore: true
-  gulp.src bower paths: bowerJson: 'bower.json'
-    .pipe jsFilter
-    .pipe $.uglify preserveComments: 'some'
-    .pipe $.concat 'bower_components.js'
-    .pipe gulp.dest 'js'
-    .pipe jsFilter.restore
-    .pipe jQueryFilter
-    #.pipe $.uglify preserveComments: 'some'
-    .pipe $.rename extname: ".min.js"
-    .pipe gulp.dest 'js'
-    .pipe jQueryFilter.restore
-
 gulp.task 'dist', ['clean:dist'], ->
   gulp.src([
     'js/**/*'
@@ -183,10 +157,10 @@ gulp.task 'package:darwin', (done) ->
       .pipe gulp.dest('.')
       .on 'end', done
 
-gulp.task 'build',        (done) -> runSequence 'compile:production', 'bower', 'package', done
-gulp.task 'build:win32',  (done) -> runSequence 'compile:production', 'bower', 'dist', 'package:win32', done
-gulp.task 'build:linux',  (done) -> runSequence 'compile:production', 'bower', 'dist', 'package:linux', done
-gulp.task 'build:darwin', (done) -> runSequence 'compile:production', 'bower' , 'dist', 'package:darwin', done
+gulp.task 'build',        (done) -> runSequence 'compile:production', 'package', done
+gulp.task 'build:win32',  (done) -> runSequence 'compile:production', 'dist', 'package:win32', done
+gulp.task 'build:linux',  (done) -> runSequence 'compile:production', 'dist', 'package:linux', done
+gulp.task 'build:darwin', (done) -> runSequence 'compile:production', 'dist', 'package:darwin', done
 
 gulp.task 'archive', ['archive:win32', 'archive:darwin', 'archive:linux']
 
@@ -245,7 +219,7 @@ gulp.task 'archive:linux', (done) ->
 
 gulp.task 'release', (done) -> runSequence 'build', 'archive', 'clean', done
 
-gulp.task 'run', ['compile', 'bower'], ->
+gulp.task 'run', ['compile'], ->
   do electron.start
 
   $.watch "src/coffee/main.coffee", ->
@@ -259,7 +233,6 @@ gulp.task 'run', ['compile', 'bower'], ->
     gulp.start "compile:coffee"
 
   $.watch "./src/scss/**/*.scss",     -> gulp.start "compile:scss"
-  $.watch "./bower.json",             -> gulp.start "bower"
 
   $.watch ["./css/**/*.css", "./js/**/*.js", "./*.html"], -> do electron.reload
   $.watch "./js/main.js", -> do electron.restart
