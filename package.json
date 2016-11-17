@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/WriterLighter/WriterLighter#readme",
   "devDependencies": {
-    "bower": "^1.8.0",
     "del": "^2.2.2",
     "electron": "^1.4.6",
     "electron-connect": "^0.6.0",
@@ -49,7 +48,6 @@
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.10",
     "gulp-zip": "^3.2.0",
-    "main-bower-files": "^2.13.1",
     "mkdirp": "^0.5.1",
     "run-sequence": "^1.2.2"
   },
