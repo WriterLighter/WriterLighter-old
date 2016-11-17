@@ -28,38 +28,40 @@
     <div id="popup"></div>
 
     <div id="container">
-      <div class="ui-layout-center">
-        <div id="editor-wrap">
-          <pre id="highlight-base"></pre>
-          <div id="highlights"></div>
-          <pre id="input-text" contenteditable></pre>
-        </div>
-      </div>
-      
 
       <!-- Chapter List Pane -->
-      <div class="ui-layout-west" id="pane-right">
+      <div id="pane-east" class="pane">
         <div id="chapter">
           <ol id="chapter-list-body"></ol>
           <ul class="nonestyle" id="chapter-list-metadata"></ul>
         </div>
       </div>
 
+      <main>
+        <div id="editor-wrap">
+          <pre id="highlight-base"></pre>
+          <div id="highlights"></div>
+          <pre id="input-text" contenteditable></pre>
+        </div>
+      </main>
+
       <!-- Extensions Views -->
-      <div class="ui-layout-east" id="pane-left">
+      <div id="pane-west" class="pane">
         <div id="extensions">
           <ul id="ext-tab"></ul>
           <div id="ext-content"></div>
         </div>
       </div>
 
-      <!--Status bar-->
-      <footer class="ui-layout-south">
-        <ul id="statusbar" class="nonestyle">
-          <li class="offset"></li>
-        </ul>
-      </footer>
     </div>
+
+    <!--Status bar-->
+    <footer>
+      <ul id="statusbar" class="nonestyle">
+        <li class="offset"></li>
+      </ul>
+    </footer>
+
     <script src="js/index.js" charset="UTF-8"></script>
 </body>
 
