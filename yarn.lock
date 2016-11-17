@@ -1975,6 +1975,10 @@ html-comment-regex@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.1.tgz#668b93776eaae55ebde8f3ad464b307a4963625e"
 
+html5sortable:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/html5sortable/-/html5sortable-0.4.2.tgz#dc241ce129670da39d23cc8aa61e14a60d6e6ec7"
+
 htmlparser2@~3.8.1:
   version "3.8.3"
   resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-3.8.3.tgz#996c28b191516a8be86501a7d79757e5c70c1068"
