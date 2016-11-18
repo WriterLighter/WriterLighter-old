@@ -279,34 +279,6 @@ main{
   }
 }
 
-.ui-layout-pane {
-  padding: 0;
-  border-color: $color-main;
-}
-
-.ui-layout-toggler {
-  border: 1px solid $color-letter;
-  background: none;
-}
-
-.ui-layout-toggler-west, .ui-layout-toggler-east {
-  border-width: 0 1px;
-}
-
-.ui-layout-toggler-north, .ui-layout-toggler-south {
-  border-width: 1px 0;
-}
-
-.ui-layout-resizer {
-  background: $color-main;
-  .ui-layout-resizer-west, .ui-layout-resizer-east{
-    cursor: ew-resize !important;
-  }
-  .ui-layout-resizer-south, .ui-layout-resizer-north{
-    cursor: ns-resize !important;
-  }
-}
-
 #statusbar{
   padding: 0;
   margin: 0;
