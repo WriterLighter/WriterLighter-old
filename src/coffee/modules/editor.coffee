@@ -58,42 +58,6 @@ _onchange = ->
     , unless isNaN config.get("saveTimeout") then config.get "saveTimeout" else 3000
 
 module.exports = class editor
-  
-  #editorMode
-  #0:標準モード
-  #1:超集中モード
-  editorMode = ""
-
-  @setMode = (mode) ->
-    switch mode
-      when "default"
-        wl.layout.open("west")
-        wl.layout.open("east")
-        wl.layout.open("south")
-        currentWindow.setFullScreen(false)
-        editorMode = mode
-        new Popup messeage: "モード:標準"
-  
-      when "intensive"
-        wl.layout.hide("west")
-        wl.layout.hide("east")
-        wl.layout.hide("south")
-        currentWindow.setFullScreen(true)
-        editorMode = mode
-        new Popup messeage: "モード:超集中モード"
-  
-  @toggleMode = ->
-    switch editorMode
-      when "default"
-          editor.setMode "intensive"
-      when "intensive"
-          editor.setMode "default"
-      else
-          editor.setMode "default"
-
-  @getMode = ->
-    editorMode
-
   @setDirection: (direction)->
     switch direction
       when "vertical"
