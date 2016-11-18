@@ -227,11 +227,33 @@ input[type="reset"] {
   -webkit-text-fill-color: transparent;
 }
 
-#pane-right {
+.pane{
   background: $color-main;
   color: $color-letter;
+  width: 150px;
+  overflow: auto;
+  position: relative;
+  padding: $pane-resizer-width;
+}
+
+main{
+  flex-grow: 1;
+}
+
+.pane .pane-resizer{
+  position: absolute;
   height: 100%;
-  padding: .25em;
+  top: 0;
+  width: $pane-resizer-width;
+  cursor: ew-resize;
+}
+
+#pane-west .pane-resizer{
+  right: 0;
+}
+
+#pane-east .pane-resizer{
+  left: 0;
 }
 
 #chapter{
