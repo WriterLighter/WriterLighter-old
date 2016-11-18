@@ -1,9 +1,3 @@
-layout = $('#container').layout
-  south__resizable:      false
-  south__spacing_open:   0
-  south__spacing_closed: 20
-  enableCursorHotkey:   false
-
 window.WriterLighter = window.wl = class WriterLighter
 
   # WriterLighter modules (alphabetical order).
@@ -14,15 +8,13 @@ window.WriterLighter = window.wl = class WriterLighter
   @extension   = require './js/modules/extension'
   @event       = require './js/modules/event'
   @lastedit    = require './js/modules/lastedit'
+  @layout      = require './js/modules/layout'
   @menu        = require './js/modules/menu'
   @novel       = require './js/modules/novel'
   @Popup       = require './js/modules/popup'
   @search      = require './js/modules/search'
   @statusBar   = require './js/modules/statusbar'
   @theme       = require './js/modules/theme'
-
-  @layout      = layout
-
 
   # alias
   @on = WriterLighter.event.on
