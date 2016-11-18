@@ -4,6 +4,8 @@ $color-highlight-lightblue: #55aaee;
 
 $scrollbar-width: 6px;
 
+$pane-resizer-width: 3px;
+
 a,
 [data-chapter],
 [onclick] {
@@ -45,9 +47,15 @@ html,body{
     width:100%;
 }
 
+body{
+  display: flex;
+  flex-direction: column;
+}
+
 #container{
-    height: 100%;
-    width: 100%;
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
 }
 
 footer{
