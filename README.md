@@ -7,7 +7,7 @@ Facebook Page: [@writerlighter](//www.facebook.com/writerlighter)
 
 ## Run
 1. Clone this.
-2. Install dependent package. `$ npm install`
+2. Install dependent package. `$ yarn`
 3. Run gulp tasks. `$ gulp run`
 
 ## Contoributers
