@@ -26,7 +26,6 @@ module.exports = class lastEdit
 
         number? and novel.openChapter number
 
-        editor.setMode data.status.mode
         editor.setDirection data.status.direction
       else novel.openNovel "はじめよう"
 
