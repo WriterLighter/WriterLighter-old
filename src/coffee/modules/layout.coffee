@@ -50,3 +50,5 @@ getTargetPane = (pane="all") ->
   if pane is "all"
     $panes
   else panes[pane]
+
+module.exports = class layout
