@@ -45,3 +45,8 @@ $ "body"
 
 resizing = null
 beforeX = 0
+
+getTargetPane = (pane="all") ->
+  if pane is "all"
+    $panes
+  else panes[pane]
