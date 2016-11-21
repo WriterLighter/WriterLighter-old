@@ -41,6 +41,12 @@ $ "body"
 resizing = null
 beforeX = 0
 
+getWidth = ($el) ->
+  if $el.css("box-sizing") is "border-box"
+    do $el.innerWidth
+  else
+    do $el.width
+
 state =
   west:
     beforeWidth: getWidth panes.west
@@ -48,12 +54,6 @@ state =
   east:
     beforeWidth: getWidth panes.east
     open: yes
-
-getWidth = ($el) ->
-  if $el.css("box-sizing") is "border-box"
-    do $el.innerWidth
-  else
-    do $el.width
 
 getTargetPane = (pane="all") ->
   if pane is "all"
