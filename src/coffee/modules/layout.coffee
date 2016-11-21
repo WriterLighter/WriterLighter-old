@@ -5,7 +5,7 @@ panes =
 $panes = $ ".pane"
 
 $handles = $ "<div class='pane-resizer'>"
-.appnedTo ".pane"
+.appendTo ".pane"
 .on "mousedown", (e)->
   beforeX = e.pageX
   resizing = $ @
