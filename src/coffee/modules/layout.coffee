@@ -22,23 +22,18 @@ $ "body"
 
   $resizing = panes[resizing]
 
-  width = if $resizing.css "box-sizing" is "border-box"
-    do $resizing.innerWidth
-  else
-    do $resizing.width
-
   resize = e.pageX - beforeX
   beforeX = e.pageX
 
   if resizing is "east"
     resize = -resize
 
-  w += resize
+  width = getWidth(panes[resizing]) + resize
   
-  if w < 0
-    w = 0
+  if width < 0
+    width = 0
   
-  $resizing.css "width", w
+  $resizing.css "width", width
 
 .on "mouseup mouseleave", ->
 	resizing = null
