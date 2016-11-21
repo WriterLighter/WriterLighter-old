@@ -41,9 +41,38 @@ $ "body"
 resizing = null
 beforeX = 0
 
+state =
+  west:
+    beforeWidth: getWidth panes.west
+    open: yes
+  east:
+    beforeWidth: getWidth panes.east
+    open: yes
+
+getWidth = ($el) ->
+  if $el.css("box-sizing") is "border-box"
+    do $el.innerWidth
+  else
+    do $el.width
+
 getTargetPane = (pane="all") ->
   if pane is "all"
     $panes
   else panes[pane]
 
 module.exports = class layout
+  @hidePane: (pane="all") ->
+    _hide = (pane) ->
+      if state[pane].open
+        state[pane].open = no
+        state[pane].width = getWidth panes[pane]
+        panes[pane].animate width: 0, 50, -> do panes[pane].hide
+
+    if pane is "west" or pane is "east"
+      _hide pane
+    else if pane is "all"
+      _hide "west"
+      _hide "east"
+    else
+      throw new Error "invalid value"
+
