@@ -22,7 +22,15 @@ startResize = (e)->
   beforeX = e.pageX
   resizing = $(@).data "direction"
 
-$ "body"
+for dir, $pane of panes
+  resizers[dir] = $ "<div class='pane-resizer'></div>"
+  .appendTo $body
+  .on "mousedown", startResize
+  .data "direction", dir
+
+  setResizerPosition dir
+
+$body
 .on "mousemove", (e) ->
   unless resizing?
     return
