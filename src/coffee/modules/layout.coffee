@@ -57,10 +57,10 @@ getWidth = ($el) ->
 state =
   west:
     beforeWidth: getWidth panes.west
-    open: yes
+    show: yes
   east:
     beforeWidth: getWidth panes.east
-    open: yes
+    show: yes
 
 getTargetPane = (pane="all") ->
   if pane is "all"
