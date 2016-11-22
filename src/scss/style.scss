@@ -241,20 +241,12 @@ main{
   flex-grow: 1;
 }
 
-.pane .pane-resizer{
-  position: absolute;
+.pane-resizer{
+  position: fixed;
   height: 100%;
   top: 0;
   width: $pane-resizer-width;
   cursor: ew-resize;
-}
-
-#pane-west .pane-resizer{
-  right: 0;
-}
-
-#pane-east .pane-resizer{
-  left: 0;
 }
 
 #chapter{
