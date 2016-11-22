@@ -1,3 +1,5 @@
+$body = $ "body"
+
 panes =
   east: $ "#pane-east"
   west: $ "#pane-west"
