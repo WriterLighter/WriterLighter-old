@@ -100,10 +100,28 @@ module.exports = class layout
 
   @hidePane: (pane="all") ->
     _hide = (pane) ->
-      if state[pane].open
-        state[pane].open = no
+      if state[pane].show
+        state[pane].show = no
         state[pane].width = getWidth panes[pane]
-        panes[pane].animate width: 0, 50, -> do panes[pane].hide
+        layout.resizePane pane, 0, complete: ->
+          do panes[pane].hide
+          do resizers[pane].hide
+
+    if pane is "west" or pane is "east"
+      _hide pane
+    else if pane is "all"
+      _hide "west"
+      _hide "east"
+    else
+      throw new Error "invalid value"
+
+  @showPane: (pane="all") ->
+    _show = (pane) ->
+      unless state[pane].show
+        state[pane].show = yes
+        layout.resizePane pane, state[pane].width, complete: ->
+          do panes[pane].show
+          do resizers[pane].show
 
     if pane is "west" or pane is "east"
       _hide pane
