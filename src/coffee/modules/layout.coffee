@@ -6,14 +6,21 @@ panes =
 
 $panes = $ ".pane"
 
-$handles = $ "<div class='pane-resizer'>"
-.appendTo ".pane"
-.on "mousedown", (e)->
+resizers = {}
+
+resizing = null
+beforeX = 0
+
+setResizerPosition = (pane) ->
+  w = do panes[pane].innerWidth
+  resizers[pane].css if pane is "east"
+    left: w
+  else
+    right: w
+
+startResize = (e)->
   beforeX = e.pageX
-  resizing = $ @
-  .closest ".pane"
-  .attr "id"
-  .slice 5
+  resizing = $(@).data "direction"
 
 $ "body"
 .on "mousemove", (e) ->
