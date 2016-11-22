@@ -68,6 +68,36 @@ getTargetPane = (pane="all") ->
   else panes[pane]
 
 module.exports = class layout
+  @resizePane: (pane="all", size=0, option={})->
+    fitResizer = ->
+      if pane isnt "west"
+        setResizerPosition "east"
+      if pane isnt "east"
+        setResizerPosition "west"
+
+    option = Object.assign
+      relative: false
+      animate: true
+      duration: 50
+    ,option
+
+    if option.relative
+      size = "+=" + size
+
+    getTargetPane pane
+    .animate {width: size},
+    duration:
+      if option.animate
+        option.duration
+      else
+        0
+    , step: if option.animate
+      fitResizer
+    , complete: option.complete
+
+    unless option.animate
+      do fitResizer
+
   @hidePane: (pane="all") ->
     _hide = (pane) ->
       if state[pane].open
