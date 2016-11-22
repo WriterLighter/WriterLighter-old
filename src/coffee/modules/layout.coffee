@@ -47,11 +47,8 @@ $body
 
 .on "mouseup mouseleave", ->
 	resizing = null
-
-resizing = null
-beforeX = 0
-
 getWidth = ($el) ->
+
   if $el.css("box-sizing") is "border-box"
     do $el.innerWidth
   else
