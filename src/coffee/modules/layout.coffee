@@ -37,20 +37,13 @@ $body
 
   do e.preventDefault
 
-  $resizing = panes[resizing]
-
   resize = e.pageX - beforeX
   beforeX = e.pageX
 
-  if resizing is "east"
+  if resizing is "west"
     resize = -resize
 
-  width = getWidth(panes[resizing]) + resize
-  
-  if width < 0
-    width = 0
-  
-  $resizing.css "width", width
+  layout.resizePane resizing, "+=" + resize, animate: false
 
 .on "mouseup mouseleave", ->
 	resizing = null
