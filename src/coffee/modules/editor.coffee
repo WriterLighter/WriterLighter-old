@@ -154,6 +154,12 @@ $input.on "input", _onchange
 $input.on "keydown", (e)->
   pressedKey = e.keyCode
 
+$input.on "paste", (e)->
+  do e.preventDefault
+
+  document.execCommand "insertHTML", no,
+    e.originalEvent.clipboardData.getData "text/plain"
+
 Popup   = require "./popup"
 novel   = require "./novel"
 counter = require "./counter"
