@@ -124,10 +124,10 @@ module.exports = class layout
           do resizers[pane].show
 
     if pane is "west" or pane is "east"
-      _hide pane
+      _show pane
     else if pane is "all"
-      _hide "west"
-      _hide "east"
+      _show "west"
+      _show "east"
     else
       throw new Error "invalid value"
 
