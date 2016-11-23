@@ -232,6 +232,7 @@ input[type="reset"] {
 
 main{
   flex-grow: 1;
+  overflow: auto;
 }
 
 .pane-resizer{
