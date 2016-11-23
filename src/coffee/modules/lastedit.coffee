@@ -9,7 +9,6 @@ module.exports = class lastEdit
     savedata =
       opened: do novel.getOpened
       status:
-        mode: do editor.getMode
         direction: do editor.getDirection
     fs.writeFileSync lastEditPath, YAML.dump(savedata)
 
