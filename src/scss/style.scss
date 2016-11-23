@@ -163,14 +163,12 @@ input[type="reset"] {
 
 #editor-wrap{
   position: relative;
-  padding: 0 0 50% 0;
   box-sizing: border-box;
   min-height: 100%;
   min-width: 100%;
   &.vertical{
     min-height: auto;
     height: calc(100% -  #{$scrollbar-width});
-    padding: 0 0 0 50%;
     writing-mode: vertical-rl;
     pre{
       left: auto;
