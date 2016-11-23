@@ -60,7 +60,7 @@ appmenu:
 
       - label: "貼り付け"
         accelerator: "CmdOrCtrl+V"
-        role: "pasteandmatchstyle"
+        role: "paste"
 
       - label: "全て選択"
         accelerator: "CmdOrCtrl+A"
