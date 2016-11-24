@@ -1,4 +1,4 @@
-$body = $ "body"
+$container = $ "#container"
 
 panes =
   east: $ "#pane-east"
@@ -24,13 +24,13 @@ startResize = (e)->
 
 for dir, $pane of panes
   resizers[dir] = $ "<div class='pane-resizer'></div>"
-  .appendTo $body
+  .appendTo $container
   .on "mousedown", startResize
   .data "direction", dir
 
   setResizerPosition dir
 
-$body
+$container
 .on "mousemove", (e) ->
   unless resizing?
     return
