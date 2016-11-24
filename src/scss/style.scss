@@ -177,7 +177,7 @@ main{
 }
 
 .pane-resizer{
-  position: fixed;
+  position: absolute;
   height: 100%;
   top: 0;
   width: $pane-resizer-width;
