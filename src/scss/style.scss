@@ -82,68 +82,6 @@ body{
     }
 }
 
-#search {
-  color: $color-letter;
-  background: #555;
-  top: -100%;
-  position: fixed;
-  transition: 1s;
-  z-index: 3;
-  border-radius: 0 0 10px 10px;
-  padding: 10px;
-  right: 10px;
-    input {
-      color: $color-letter;
-      margin: 2px;
-    }
-    a{
-      margin: .2em;
-      display: inline-block;
-      width: 1em;
-      height:1em;
-      position: relative;
-      &:before{
-        content: "";
-        position: relative;
-        width: 50%;
-        display: inline-block;
-        border-bottom: solid 2px;
-        border-right: solid 2px;
-        height: 50%;
-      }
-      &.next:before{
-        transform: rotate(45deg);
-      }
-      &.back:before{
-        transform: rotate(-135deg) ;
-      }
-      &.close{
-        float: right;
-
-        &:before,
-        &:after{
-          width: 100%;
-          height: 2px;
-          border: none;
-          content: "";
-          background: $color-letter;
-          display: inline-block;
-          position: absolute;
-          top: 50%;
-        }
-        &:before{
-          transform: rotate(45deg);
-        }
-        &:after{
-          transform: rotate(135deg)
-        }
-      }
-    }
-    &.show{
-      top: 0;
-    }
-}
-
 input[type="text"],
 input[type="search"]{
     background: rgba(256, 256, 256, .1);
