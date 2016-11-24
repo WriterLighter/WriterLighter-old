@@ -12,19 +12,6 @@
     <style id="theme"></style>
 </head>
 <body>
-    <div id="search">
-      <div>
-        <input type="search" oninput="wl.search.search(this.value)" onkeyup="event.keyCode===13&&wl.search.search(this.value)">
-      </div>
-      <div>
-        <span id="search-reslut"></span>
-          <span id="search-focusing">0</span>/<span id="search-reslut-all">0</span>
-        <a onclick="wl.search.focus('next')" class="next"></a>
-        <a onclick="wl.search.focus('back')" class="back"></a>
-        <a class="close" onclick="wl.search.nohighlight()"></a>
-      </div>
-    </div>
-
     <div id="popup"></div>
 
     <div id="container">
@@ -38,6 +25,23 @@
       </div>
 
       <main>
+        <div id="search">
+          <section id="search-filed">
+            <input type="search" id="search-input" class="input-group-begin"><div id="search-result"></div>
+            <input type="checkbox" id="search-in-regexp"  class="btn input-group-while"></button>
+            <input type="checkbox" id="search-match-case" class="btn input-group-end"></button>
+
+            <button id="search-focus-next" class="input-group-while"></button>
+            <button id="search-focus-back" class="input-group-end"></button>
+          </section>
+          <section id="replace-filed">
+            <input id="replace-input" type="text" placeholder="…に置換">
+            
+            <button id="replace"></button>
+            <button id="replace-all"></button>
+          </section>
+        </div>
+
         <div id="editor-wrap">
           <pre id="highlight-base"></pre>
           <div id="highlights"></div>
