@@ -100,6 +100,7 @@ input[type="reset"] {
 }
 
 #editor-wrap{
+  flex-grow: 1;
   position: relative;
   box-sizing: border-box;
   min-height: 100%;
@@ -171,6 +172,8 @@ input[type="reset"] {
 main{
   flex-grow: 1;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .pane-resizer{
