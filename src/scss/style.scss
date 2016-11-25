@@ -106,10 +106,25 @@ textarea
 
 input[type="button"],
 input[type="submit"],
-input[type="reset"] {
-  background: transparent;
-  border-radius: 2px;
-  border: solid 1px #000;
+input[type="reset"],
+input[type="file"]::-webkit-file-upload-button,
+button,
+.btn {
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  height: 2em;
+  cursor: pointer;
+  background: linear-gradient(rgba(255,255,255,0.3), rgba(255, 255, 255, 0));
+  border: solid 1px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  color: #fff;
+  padding: 0 .65em;
+  text-align: center;
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
+  box-shadow: 0 1px 1px #fff, inset 0 1px 1px rgba(255,255,255,0.4);
+  &:hover{
+    background: linear-gradient(rgba(0,0,0,.2), rgba(255,255,255,0.3));
+  }
 }
 
 #editor-wrap{
