@@ -94,14 +94,15 @@ input[type="text"],
 textarea
 .textarea {
   -webkit-appearance: none;
-  border: solid 1px #ccc;
+  border: solid 1px rgba(0,0,0,.2);
   border-radius: 4px;
-  box-shadow: inset 0 1px 1px #e1e1e1;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.12);
   box-sizing: border-box;
   height: 2em;
   padding: 5px;
   overflow: visible;
   vertical-align: middle;
+  background: transparent;
 }
 
 input[type="button"],
@@ -138,6 +139,11 @@ button{
 
 #search{
   background: $color-main;
+}
+
+#search-result{
+  display: inline-block;
+  transform: translateX(-100%);
 }
 
 #editor-wrap{
