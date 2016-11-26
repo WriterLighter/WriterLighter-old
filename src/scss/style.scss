@@ -127,12 +127,14 @@ button,
   }
 }
 
+#search{
+  background: $color-main;
+}
+
 #editor-wrap{
   flex-grow: 1;
   position: relative;
   box-sizing: border-box;
-  min-height: 100%;
-  min-width: 100%;
   &.vertical{
     min-height: auto;
     height: calc(100% -  #{$scrollbar-width});
