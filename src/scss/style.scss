@@ -127,6 +127,15 @@ button,
   }
 }
 
+input,
+textarea,
+keygen,
+select,
+button{
+  margin: .5em;
+  vertical-align: middle;
+}
+
 #search{
   background: $color-main;
 }
