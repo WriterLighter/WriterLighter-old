@@ -85,6 +85,17 @@ body{
 }
 
 input,
+textarea,
+keygen,
+select,
+button{
+  background: inherit;
+  color: inherit;
+  margin: .5em;
+  vertical-align: middle;
+}
+
+input,
 input:not([type]),
 input[type="email"],
 input[type="number"],
@@ -128,15 +139,6 @@ button,
   &:hover{
     background: linear-gradient(rgba(0,0,0,.2), rgba(255,255,255,0.3));
   }
-}
-
-input,
-textarea,
-keygen,
-select,
-button{
-  margin: .5em;
-  vertical-align: middle;
 }
 
 #search{
