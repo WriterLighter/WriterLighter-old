@@ -95,6 +95,21 @@ button,
   color: inherit;
   margin: .5em;
   vertical-align: middle;
+  &.input-group-begin{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-right: 0;
+  }
+  &.input-group-while{
+    border-radius: 0;
+    margin-right: 0;
+    margin-left: 0;
+  }
+  &.input-group-end{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: 0;
+  }
 }
 
 input,
@@ -118,6 +133,21 @@ textarea
   overflow: visible;
   vertical-align: middle;
   background: transparent;
+  &.input-group-begin{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-right: 0;
+  }
+  &.input-group-while{
+    border-radius: 0;
+    margin-right: 0;
+    margin-left: 0;
+  }
+  &.input-group-end{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: 0;
+  }
 }
 
 input[type="button"],
