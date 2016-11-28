@@ -17,6 +17,8 @@ module.exports = class search
     if isHidden
       $sections.replace.css display: "none"
       $sections.search.css display: "auto"
+      $search.css height: $sections.search.position().top +
+        do $sections.search.innerHeight
     isHidden = false
 
     if keyword?
