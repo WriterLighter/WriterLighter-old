@@ -115,6 +115,9 @@ module.exports = class editor
       setting.element.innerHTML =
       text.replace rule, setting.replacement ? "<mark class='hl-#{id}'>$&</mark>"
 
+      $ setting.element
+      .children ".hl-#{id}"
+
     if id?
       _highlight id
     else
