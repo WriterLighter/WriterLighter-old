@@ -19,6 +19,9 @@ module.exports = class search
       $sections.search.css display: "auto"
       $search.css height: $sections.search.position().top +
         do $sections.search.innerHeight
+      setTimeout ->
+        $search.css height: "auto"
+      , parseFloat($search.css "transition-duration") * 1000
     isHidden = false
 
     if keyword?
