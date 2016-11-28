@@ -40,5 +40,5 @@ module.exports = class search
     unless option.inRegExp
       keyword = keyword.replace /[\\\*\+\.\?\{\}\(\)\[\]\^\$\-\|\/]/g, "\\$&"
 
-    editor.setHighlight "search" ,rule:new RegExp(keyword, flg), enable: true
+    editor.setHighlight "search" ,rule:new RegExp(keyword, flg), enabled: true
 editor = require './editor'
