@@ -1,4 +1,7 @@
 # WriterLighter
+
+[![dependencies Status](https://david-dm.org/writerlighter/writerlighter/status.svg)](https://david-dm.org/writerlighter/writerlighter) [![devDependencies Status](https://david-dm.org/writerlighter/writerlighter/dev-status.svg)](https://david-dm.org/writerlighter/writerlighter?type=dev)
+
 最高の、執筆環境を。  
 小説のためのテキストエディタ。  
 
