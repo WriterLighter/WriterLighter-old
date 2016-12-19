@@ -27,6 +27,25 @@ accord@^0.26.3:
     uglify-js "^2.7.0"
     when "^3.7.7"
 
+accord@^0.26.4:
+  version "0.26.4"
+  resolved "https://registry.yarnpkg.com/accord/-/accord-0.26.4.tgz#fc4c8d3ebab406a07cb28819b859651c44a92e80"
+  dependencies:
+    convert-source-map "^1.2.0"
+    glob "^7.0.5"
+    indx "^0.2.3"
+    lodash.clone "^4.3.2"
+    lodash.defaults "^4.0.1"
+    lodash.flatten "^4.2.0"
+    lodash.merge "^4.4.0"
+    lodash.partialright "^4.1.4"
+    lodash.pick "^4.2.1"
+    lodash.uniq "^4.3.0"
+    resolve "^1.1.7"
+    semver "^5.3.0"
+    uglify-js "^2.7.0"
+    when "^3.7.7"
+
 acorn-globals@^1.0.4:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/acorn-globals/-/acorn-globals-1.0.9.tgz#55bb5e98691507b74579d0513413217c380c54cf"
@@ -572,9 +591,13 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-coffee-script@^1.10.0, coffee-script@^1.11.1:
+coffee-script@^1.10.0:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.11.1.tgz#bf1c47ad64443a0d95d12df2b147cc0a4daad6e9"
+
+coffee-script@^1.12.2:
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.12.2.tgz#0d4cbdee183f650da95419570c4929d08ef91376"
 
 color-convert@^1.3.0:
   version "1.8.2"
@@ -979,7 +1002,7 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
 
-electron-connect@^0.6.0:
+electron-connect@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/electron-connect/-/electron-connect-0.6.1.tgz#6dce9093cdfe7b06941dfcc487efa4a1b6df0b4e"
   dependencies:
@@ -1014,9 +1037,9 @@ electron-osx-sign@^0.4.1:
     plist "^1.2.0"
     tempfile "^1.1.1"
 
-electron-packager@^8.2.0:
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/electron-packager/-/electron-packager-8.3.0.tgz#687e5d300ca0d2c5bfe311a8fed0e8172e83572d"
+electron-packager@^8.4.0:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/electron-packager/-/electron-packager-8.4.0.tgz#aad862797ced23cf3c6d25533f452ffe3765f355"
   dependencies:
     asar "^0.12.3"
     debug "^2.2.0"
@@ -1033,9 +1056,9 @@ electron-packager@^8.2.0:
     sanitize-filename "^1.6.0"
     semver "^5.3.0"
 
-electron@^1.4.6:
-  version "1.4.10"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-1.4.10.tgz#11492d82eb1d92fa36006c2376404d13a790f393"
+electron@^1.4.12:
+  version "1.4.12"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-1.4.12.tgz#ae6641aa1db01dd04e41c56639ca7b84b888767a"
   dependencies:
     electron-download "^3.0.1"
     extract-zip "^1.0.3"
@@ -1143,7 +1166,7 @@ event-stream@^3.3.1:
     stream-combiner "~0.0.4"
     through "~2.3.1"
 
-eventemitter2@^2.1.3:
+eventemitter2@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/eventemitter2/-/eventemitter2-2.2.1.tgz#bb4f09ff9bdae5920a8f42bef0d296f81b80d034"
 
@@ -1631,7 +1654,7 @@ graceful-fs@~1.2.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
 
-gulp-coffee@^2.3.2:
+gulp-coffee@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/gulp-coffee/-/gulp-coffee-2.3.3.tgz#af389bc89ea04ed81294976efbf9d7a7248b9ea7"
   dependencies:
@@ -1641,7 +1664,7 @@ gulp-coffee@^2.3.2:
     through2 "^2.0.1"
     vinyl-sourcemaps-apply "^0.2.1"
 
-gulp-concat@^2.5.2, gulp-concat@^2.6.0:
+gulp-concat@^2.5.2, gulp-concat@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/gulp-concat/-/gulp-concat-2.6.1.tgz#633d16c95d88504628ad02665663cee5a4793353"
   dependencies:
@@ -1691,7 +1714,7 @@ gulp-install@^0.6.0:
     through2 "^2.0.0"
     which "^1.0.9"
 
-gulp-less@^3.2.0:
+gulp-less@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/gulp-less/-/gulp-less-3.3.0.tgz#d085565da3c810307fde7c7874e86520dc503234"
   dependencies:
@@ -1849,7 +1872,7 @@ gulp-util@^2.2.14:
     through2 "^0.5.0"
     vinyl "^0.2.1"
 
-gulp-watch@^4.3.10:
+gulp-watch@^4.3.11:
   version "4.3.11"
   resolved "https://registry.yarnpkg.com/gulp-watch/-/gulp-watch-4.3.11.tgz#162fc563de9fc770e91f9a7ce3955513a9a118c0"
   dependencies:
@@ -1990,9 +2013,9 @@ html-comment-regex@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.1.tgz#668b93776eaae55ebde8f3ad464b307a4963625e"
 
-html5sortable@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/html5sortable/-/html5sortable-0.4.2.tgz#dc241ce129670da39d23cc8aa61e14a60d6e6ec7"
+html5sortable@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/html5sortable/-/html5sortable-0.4.3.tgz#ca7b94ffbdd77e7c32f9a83d8f16b546b9a10b9d"
 
 htmlparser2@~3.8.1:
   version "3.8.3"
@@ -2285,7 +2308,7 @@ js-base64@^2.1.9:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.1.9.tgz#f0e80ae039a4bd654b5f281fc93f04a914a7fcce"
 
-js-yaml@^3.6.1:
+js-yaml@^3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.7.0.tgz#5c967ddd837a9bfdca5f2de84253abe8a1c03b80"
   dependencies:
