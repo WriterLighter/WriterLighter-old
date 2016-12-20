@@ -76,7 +76,7 @@ module.exports = class editor
     else
       editor.setDirection "vertical"
 
-  @setAutoHighlight = (id, changeValue)->
+  @setAutoHighlighter = (id, changeValue)->
     throw new Error "id is a required argument" unless id?
 
     unless highlights[id]? and highlights[id].element?
