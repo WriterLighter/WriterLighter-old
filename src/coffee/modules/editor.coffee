@@ -12,7 +12,8 @@ saveTimeout = null
 pressedKey = 0
 beforeCaret = ""
 
-highlights = {}
+autoHighlights = {}
+highlightElements = {}
 
 updateBeforeCaret = (e)->
   unless $input.is document.activeElement
@@ -78,22 +79,10 @@ module.exports = class editor
 
   @setAutoHighlighter = (id, changeValue)->
     throw new Error "id is a required argument" unless id?
+    if autoHighlights[id]?
+      autoHighlights[id] = {}
 
-    unless highlights[id]? and highlights[id].element?
-      highlights[id] = {}
-      el = document.createElement "pre"
-      $highlights.append el
-    else
-      el = highlights[id].element
-
-    Object.assign highlights[id], changeValue
-
-    el.style.display =
-    unless highlights[id].enabled and highlights[id].rule then "none" else ""
-
-    highlights[id].element = el
-
-    editor.highlight id
+    Object.assign autoHighlights[id], changeValue
 
   @highlight = (id) ->
     text = do editor.getText
