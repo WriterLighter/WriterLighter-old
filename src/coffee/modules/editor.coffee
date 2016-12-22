@@ -77,6 +77,31 @@ module.exports = class editor
     else
       editor.setDirection "vertical"
 
+  @markAutoHighlights = (id="all")->
+    _mark = (id) ->
+      highlight = autoHighlights[id]
+      indices = []
+      if Object::toString.call(rule = highlight.rule) is "[object String]"
+        length = rule.length
+        startIndex = 0
+        while (index = src.indexOf rule, startIndex) > -1
+          match = [rule]
+          match.index = index
+          match.input = src
+          indices.push createHighlight match, highlight.message
+          startIndex = index + length
+      else
+        while (match = rule.exec src)? and (rule.global or indices.length is 0)
+          indices.push createHighlight match, highlight.message
+
+      editor.highlight id indices
+
+    if id is "all"
+      for id of autoHighlights
+        _mark id
+    else
+      _markd id
+
   @setAutoHighlighter = (id, changeValue)->
     throw new Error "id is a required argument" unless id?
     if autoHighlights[id]?
