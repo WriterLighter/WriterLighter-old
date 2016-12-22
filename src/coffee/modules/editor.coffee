@@ -77,6 +77,39 @@ module.exports = class editor
     else
       editor.setDirection "vertical"
 
+  createHighlight = (match, message) ->
+    lines = match
+    .input
+    .slice 0,  match.index
+    .split "\n"
+
+    typeOfMessage = Object::toString.call message
+
+    message = if typeOfMessage is "[object String]"
+      message.replace /\$([$&`']|[0-9]+)/, (m, $0) ->
+        if isNaN $0
+          switch $0
+            when "$"
+              "$"
+            when "&"
+              match[0]
+            when "`"
+              match.input.slice 0, match.index
+            when "'"
+              match.input.slice match.index + match[0].length
+        else
+          match[$0]
+    else if typeOfMessage is "[object Function]"
+      match.push match.index, match.input
+      message.apply editor, match
+    else
+      undefined
+
+    line: lines.length
+    column: lines.pop().length
+    index: match.index
+    message: message
+
   @markAutoHighlights = (id="all")->
     _mark = (id) ->
       highlight = autoHighlights[id]
