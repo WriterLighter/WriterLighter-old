@@ -98,7 +98,7 @@ module.exports = class editor
             when "'"
               match.input.slice match.index + match[0].length
         else
-          match[$0]
+          match[$0] ? ""
     else if typeOfMessage is "[object Function]"
       match.push match.index, match.input
       message.apply editor, match
