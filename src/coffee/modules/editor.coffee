@@ -16,6 +16,7 @@ autoHighlights = {}
 highlightElements = {}
 
 addedsByEscape = []
+src = ""
 escapedInput = ""
 
 updateBeforeCaret = (e)->
@@ -60,10 +61,10 @@ htmlEscape = (src) ->
 _onchange = ->
   do updateBeforeCaret
 
-  text = do editor.getText
-  if text isnt previousInput
-    $highlightBase[0].innerHTML = text
-    {addeds, escaped} = htmlEscape text
+  src = do editor.getText
+  if src isnt previousInput
+    $highlightBase[0].innerHTML = src
+    {addeds, escaped} = htmlEscape src
     addedsByEscape = addeds
     escapedInput = escaped
 
@@ -75,14 +76,14 @@ _onchange = ->
     saveTimeout? and clearTimeout saveTimeout
 
     if pressedKey is 13 and
-    text.split("\n").length > previousInput.split("\n").length
+    src.split("\n").length > previousInput.split("\n").length
 
       match = beforeCaret.match /^[ 　\t]+/gm
       if match?
         document.execCommand 'insertHTML', false, do match.pop
 
     do counter.count
-    previousInput = text
+    previousInput = src
     saveTimeout = setTimeout novel.save
     , unless isNaN config.get("saveTimeout") then config.get "saveTimeout" else 3000
 
@@ -137,6 +138,7 @@ module.exports = class editor
     column: lines.pop().length
     index: match.index
     message: message
+    length: match[0].length
 
   @markAutoHighlights = (id="all")->
     _mark = (id) ->
@@ -172,34 +174,42 @@ module.exports = class editor
 
     markAutoHighlights id
 
-  @highlight = (id) ->
-    text = do editor.getText
+  getAddedIndex = (index) ->
+    --index
 
-    _highlight = (id) ->
-      setting = highlights[id]
-      rule = setting.rule
+    index +
+    addedsByEscape
+    .slice 0, index
+    .reduce (p,c) -> p + c
 
-      enabled = setting.enabled ? true
-
-      unless enabled and rule
-        setting.element.style.display = "none"
-      else
-        setting.element.style.display = ""
-
-      if Object::toString.call(rule) is "[object String]"
-        rule = new RegExp rule.replace(/[\\\*\+\.\?\{\}\(\)\[\]\^\$\-\|\/]/g, "\\$&"), "g"
-
-      setting.element.innerHTML =
-      text.replace rule, setting.replacement ? "<mark class='hl-#{id}'>$&</mark>"
-
-      $ setting.element
-      .children ".hl-#{id}"
-
-    if id?
-      _highlight id
+  @highlight = (id, posArray) ->
+    src = do editor.getText
+    if highlightElements[id]?
+      el = highlightElements[id]
     else
-      for k of highlights
-        _highlight k
+      el = highlightElements[id] =
+        document.createElement "pre"
+      $highlights.append el
+
+    for pos in do posArray.reverse
+      start = pos.index or
+        src.split "\n"
+        .slice 0 ,pos.line - 1
+        .join "\n"
+        .length + pos.column + 1
+
+      end = start + (pos.length or 1)
+
+      addedStart = getAddedIndex start
+      addedEnd = getAddedIndex end
+
+      src = """#{
+          src.slice 0, addedStart
+        }<mark class="hl-#{id}">#{
+          src.slice addedStart, addedEnd
+        }</mark>#{
+          src.slice addedEnd
+        }"""
 
   @clearWindowName = ->
     opened = do novel.getOpened
