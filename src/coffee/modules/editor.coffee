@@ -34,6 +34,26 @@ updateBeforeCaret = (e)->
     beforeCaret = "#{beforeCaret.slice 0,l}\n#{beforeCaret.slice l}"
     l++
 
+htmlEscape = (src) ->
+  addeds = []
+  escape =
+    '&': '&amp;'
+    "'": '&#x27;'
+    '`': '&#x60;'
+    '"': '&quot;'
+    '<': '&lt;'
+    '>': '&gt;'
+
+  escapeRegExp = new RegExp "[#{Object.keys(escape).join }]", "g"
+
+  escaped = src.replace escapeRegExp, (m,i) ->
+    r = escape[m]
+    addeds[i] = r.length - m.length
+    r
+
+  escaped: escaped
+  addeds: addeds
+
 _onchange = ->
   do updateBeforeCaret
 
