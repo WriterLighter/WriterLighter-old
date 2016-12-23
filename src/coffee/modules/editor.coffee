@@ -142,6 +142,8 @@ module.exports = class editor
 
     Object.assign autoHighlights[id], changeValue
 
+    markAutoHighlights id
+
   @highlight = (id) ->
     text = do editor.getText
 
