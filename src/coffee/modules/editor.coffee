@@ -15,6 +15,9 @@ beforeCaret = ""
 autoHighlights = {}
 highlightElements = {}
 
+addedsByEscape = []
+escapedInput = ""
+
 updateBeforeCaret = (e)->
   unless $input.is document.activeElement
     return
@@ -60,7 +63,12 @@ _onchange = ->
   text = do editor.getText
   if text isnt previousInput
     $highlightBase[0].innerHTML = text
-    do editor.highlight
+    {addeds, escaped} = htmlEscape text
+    addedsByEscape = addeds
+    escapedInput = escaped
+
+    do editor.markAutoHighlights
+
     if edited is false
       edited = true
       document.title = "* " + document.title
