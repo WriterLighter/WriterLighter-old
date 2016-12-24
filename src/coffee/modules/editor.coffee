@@ -107,9 +107,10 @@ module.exports = class editor
       editor.setDirection "vertical"
 
   createHighlight = (match, message) ->
+
     lines = match
     .input
-    .slice 0,  match.index
+    .slice 0,  match.index + 1
     .split "\n"
 
     typeOfMessage = Object::toString.call message
@@ -136,7 +137,7 @@ module.exports = class editor
 
     line: lines.length
     column: lines.pop().length
-    index: match.index
+    index: match.index + 1
     message: message
     length: match[0].length
 
@@ -157,30 +158,31 @@ module.exports = class editor
         while (match = rule.exec src)? and (rule.global or indices.length is 0)
           indices.push createHighlight match, highlight.message
 
-      editor.highlight id indices
+      editor.highlight id, indices
 
     if id is "all"
       for id of autoHighlights
         _mark id
     else
-      _markd id
+      _mark id
 
   @setAutoHighlighter = (id, changeValue)->
     throw new Error "id is a required argument" unless id?
-    if autoHighlights[id]?
+    unless autoHighlights[id]?
       autoHighlights[id] = {}
 
     Object.assign autoHighlights[id], changeValue
 
-    markAutoHighlights id
+    editor.markAutoHighlights id
 
   getAddedIndex = (index) ->
+
     --index
 
     index +
     addedsByEscape
     .slice 0, index
-    .reduce (p,c) -> p + c
+    .reduce ((p,c) -> p + c), 0
 
   @highlight = (id, posArray) ->
     src = do editor.getText
@@ -191,7 +193,9 @@ module.exports = class editor
         document.createElement "pre"
       $highlights.append el
 
-    for pos in do posArray.reverse
+    do posArray.reverse
+
+    for pos in posArray
       start = pos.index or
         src.split "\n"
         .slice 0 ,pos.line - 1
@@ -210,6 +214,8 @@ module.exports = class editor
         }</mark>#{
           src.slice addedEnd
         }"""
+
+    el.innerHTML = src
 
   @clearWindowName = ->
     opened = do novel.getOpened
