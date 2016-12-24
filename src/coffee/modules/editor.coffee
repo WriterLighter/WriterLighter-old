@@ -177,7 +177,6 @@ module.exports = class editor
     editor.markAutoHighlights id
 
   getAddedIndex = (index) ->
-
     --index
 
     index +
@@ -186,7 +185,7 @@ module.exports = class editor
     .reduce ((p,c) -> p + c), 0
 
   @highlight = (id, posArray) ->
-    src = do editor.getText
+    src = escapedInput
     if highlightElements[id]?
       el = highlightElements[id]
     else
