@@ -63,7 +63,7 @@ _onchange = ->
 
   src = do editor.getText
   if src isnt previousInput
-    $highlightBase[0].innerHTML = src
+    $highlightBase[0].innerText = src
     {addeds, escaped} = htmlEscape src
     addedsByEscape = addeds
     escapedInput = escaped
@@ -131,7 +131,7 @@ module.exports = class editor
           match[$0] ? ""
     else if typeOfMessage is "[object Function]"
       match.push match.index, match.input
-      message.apply editor, match
+      message.apply undefined, match
     else
       undefined
 
@@ -152,6 +152,7 @@ module.exports = class editor
           match = [rule]
           match.index = index
           match.input = src
+
           indices.push createHighlight match, highlight.message
           startIndex = index + length
       else
