@@ -48,7 +48,7 @@ htmlEscape = (src) ->
     '<': '&lt;'
     '>': '&gt;'
 
-  escapeRegExp = new RegExp "[#{Object.keys(escape).join }]", "g"
+  escapeRegExp = new RegExp "[#{Object.keys(escape).join ""}]", "g"
 
   escaped = src.replace escapeRegExp, (m,i) ->
     r = escape[m]
