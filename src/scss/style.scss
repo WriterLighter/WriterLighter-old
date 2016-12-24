@@ -267,6 +267,7 @@ main{
   top: 0;
   width: $pane-resizer-width;
   cursor: ew-resize;
+  z-index: 2;
 }
 
 #chapter{
