@@ -1,4 +1,7 @@
+currentWindow = do require("electron").remote.getCurrentWindow
+
 $container = $ "#container"
+$footer = $ "footer"
 
 panes =
   east: $ "#pane-east"
@@ -131,3 +134,37 @@ module.exports = class layout
     else
       throw new Error "invalid value"
 
+  #layoutMode
+  #0:標準モード
+  #1:超集中モード
+  layoutMode = ""
+
+  @setMode = (mode) ->
+    switch mode
+      when "default"
+        layout.showPane "all"
+        do $footer.show
+        currentWindow.setFullScreen no
+        layoutMode = mode
+        new Popup messeage: "モード:標準"
+  
+      when "intensive"
+        layout.hidePane "all"
+        do $footer.hide
+        currentWindow.setFullScreen yes
+        layoutMode = mode
+        new Popup messeage: "モード:超集中モード"
+  
+  @toggleMode = ->
+    switch layoutMode
+      when "default"
+          layout.setMode "intensive"
+      when "intensive"
+          layout.setMode "default"
+      else
+          layout.setMode "default"
+
+  @getMode = ->
+    layoutMode
+
+Popup = require "./popup"
