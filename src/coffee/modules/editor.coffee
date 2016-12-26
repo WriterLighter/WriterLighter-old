@@ -221,6 +221,12 @@ module.exports = class editor
 
     highlights[id]
 
+  @getHighlights = (id)->
+    if id is "all"
+      highlights
+    else
+      highlights[id]
+
   @clearWindowName = ->
     opened = do novel.getOpened
     document.title = "#{opened.chapter.name} - #{opened.novel.name} | WriterLighter"
