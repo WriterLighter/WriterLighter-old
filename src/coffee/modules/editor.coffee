@@ -185,7 +185,7 @@ module.exports = class editor
     .reduce ((p,c) -> p + c), 0
 
   @highlight = (id, posArray) ->
-    src = escapedInput
+    highlightedHTML = escapedInput
     if highlightElements[id]?
       el = highlightElements[id]
     else
@@ -195,9 +195,9 @@ module.exports = class editor
 
     do posArray.reverse
 
-    for pos in posArray
-      start = pos.index or
-        src.split "\n"
+    highlights[id] = for pos in posArray
+      start = pos.index = pos.index or
+        highlightedHTML.split "\n"
         .slice 0 ,pos.line - 1
         .join "\n"
         .length + pos.column + 1
@@ -207,15 +207,19 @@ module.exports = class editor
       addedStart = getAddedIndex start
       addedEnd = getAddedIndex end
 
-      src = """#{
-          src.slice 0, addedStart
+      highlightedHTML = """#{
+          highlightedHTML.slice 0, addedStart
         }<mark class="hl-#{id}">#{
-          src.slice addedStart, addedEnd
+          highlightedHTML.slice addedStart, addedEnd
         }</mark>#{
-          src.slice addedEnd
+          highlightedHTML.slice addedEnd
         }"""
 
-    el.innerHTML = src
+      pos
+
+    el.innerHTML = highlightedHTML
+
+    highlights[id]
 
   @clearWindowName = ->
     opened = do novel.getOpened
