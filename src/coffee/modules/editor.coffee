@@ -184,6 +184,12 @@ module.exports = class editor
     .slice 0, index
     .reduce ((p,c) -> p + c), 0
 
+  @getAutoHighlighter = (id="all") ->
+    if id is "all"
+      autoHighlights
+    else
+      autoHighlights[id]
+
   @highlight = (id, posArray) ->
     highlightedHTML = escapedInput
     if highlightElements[id]?
