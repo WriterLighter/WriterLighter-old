@@ -46,4 +46,18 @@ module.exports = class search
       keyword = keyword.replace /[\\\*\+\.\?\{\}\(\)\[\]\^\$\-\|\/]/g, "\\$&"
 
     editor.setHighlight "search" ,rule:new RegExp(keyword, flg), enabled: true
+
+  @getSearchRegExp = (keyword, options={})->
+    options = Object.assign (Object.keys $options
+      .reduce (previous, current) ->
+        previous[current] = $options[current].prop "checked"
+      , {})
+    , options
+
+    flg = "mg"
+    unless option.match
+      flg += "i"
+    unless option.inRegExp
+      keyword = keyword.replace /[\\\*\+\.\?\{\}\(\)\[\]\^\$\-\|\/]/g, "\\$&"
+
 editor = require './editor'
