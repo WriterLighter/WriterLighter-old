@@ -54,10 +54,12 @@ module.exports = class search
       , {})
     , options
 
-    flg = "mg"
+    flag = "mg"
     unless option.match
-      flg += "i"
+      flag += "i"
     unless option.inRegExp
       keyword = keyword.replace /[\\\*\+\.\?\{\}\(\)\[\]\^\$\-\|\/]/g, "\\$&"
+
+    new RegExp keyword, flag
 
 editor = require './editor'
