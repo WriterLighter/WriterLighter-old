@@ -24,28 +24,7 @@ module.exports = class search
       , parseFloat($search.css "transition-duration") * 1000
     isHidden = false
 
-    if keyword?
-      $searchInput.val if ({}).toString.call(keyword) is "[object RegExp]"
-        keyword.source
-      else
-        keyword
-
-
-    if option?
-      for key, check of $options
-        check.prop "checked", option[key] ? false
-    else
-      option = {}
-      for key, check of $options
-        option[key] = check.prop "checked"
-
-    flg = "mg"
-    unless option.match
-      flg += "i"
-    unless option.inRegExp
-      keyword = keyword.replace /[\\\*\+\.\?\{\}\(\)\[\]\^\$\-\|\/]/g, "\\$&"
-
-    editor.setHighlight "search" ,rule:new RegExp(keyword, flg), enabled: true
+    editor.setHighlight "search" ,rule: do search.getSearchRegExp
 
   @getSearchRegExp = (keyword=$searchInput.val(), options={}, setForm=true)->
     options = Object.assign (Object.keys $options
