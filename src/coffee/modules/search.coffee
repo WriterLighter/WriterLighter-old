@@ -62,4 +62,11 @@ module.exports = class search
 
     new RegExp keyword, flag
 
+  @setSearchForm = (keyword, options={})->
+    if keyword?
+      $searchInput.val keyword
+
+    for name, $checkBox of $options
+      $checkBox.prop "checked", options[name]
+
 editor = require './editor'
