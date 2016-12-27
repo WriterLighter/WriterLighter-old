@@ -37,9 +37,9 @@ module.exports = class search
       search.setSearchForm keyword, options
 
     flag = "mg"
-    unless option.match
+    unless options.match
       flag += "i"
-    unless option.inRegExp
+    unless options.inRegExp
       keyword = keyword.replace /[\\\*\+\.\?\{\}\(\)\[\]\^\$\-\|\/]/g, "\\$&"
 
     if keyword then new RegExp keyword, flag else null
