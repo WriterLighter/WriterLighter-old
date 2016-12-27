@@ -63,7 +63,7 @@ module.exports = class search
     unless option.inRegExp
       keyword = keyword.replace /[\\\*\+\.\?\{\}\(\)\[\]\^\$\-\|\/]/g, "\\$&"
 
-    new RegExp keyword, flag
+    if keyword then new RegExp keyword, flag else null
 
   @setSearchForm = (keyword=$searchInput.val(), options={})->
     if keyword isnt do $searchInput.val
