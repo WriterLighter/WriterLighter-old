@@ -145,7 +145,9 @@ module.exports = class editor
     _mark = (id) ->
       highlight = autoHighlights[id]
       indices = []
-      if Object::toString.call(rule = highlight.rule) is "[object String]"
+      rule = highlight.rule
+      typeOfRule = ({}).toString.call rule
+      if typeOfRule is "[object String]"
         length = rule.length
         startIndex = 0
         while (index = src.indexOf rule, startIndex) > -1
@@ -155,9 +157,11 @@ module.exports = class editor
 
           indices.push createHighlight match, highlight.message
           startIndex = index + length
-      else
+      else if typeOfRule is "[object RegExp]"
         while (match = rule.exec src)? and (rule.global or indices.length is 0)
           indices.push createHighlight match, highlight.message
+      else
+        return
 
       editor.highlight id, indices
 
