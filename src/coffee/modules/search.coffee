@@ -47,12 +47,15 @@ module.exports = class search
 
     editor.setHighlight "search" ,rule:new RegExp(keyword, flg), enabled: true
 
-  @getSearchRegExp = (keyword=$searchInput.val(), options={})->
+  @getSearchRegExp = (keyword=$searchInput.val(), options={}, setForm=true)->
     options = Object.assign (Object.keys $options
       .reduce (previous, current) ->
         previous[current] = $options[current].prop "checked"
       , {})
     , options
+
+    if setForm
+      search.setSearchForm keyword, options
 
     flag = "mg"
     unless option.match
