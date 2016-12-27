@@ -13,7 +13,7 @@ $options  =
   matchCase: $ "#search-match-case"
 
 module.exports = class search
-  @search = (keyword, option) ->
+  @search = (keyword, options) ->
     if isHidden
       $sections.replace.css display: "none"
       $sections.search.css display: "auto"
@@ -24,7 +24,7 @@ module.exports = class search
       , parseFloat($search.css "transition-duration") * 1000
     isHidden = false
 
-    editor.setHighlight "search" ,rule: do search.getSearchRegExp
+    editor.setAutoHighlighter "search" ,rule: search.getSearchRegExp keyword, options
 
   @getSearchRegExp = (keyword=$searchInput.val(), options={}, setForm=true)->
     options = Object.assign (Object.keys $options
@@ -32,6 +32,8 @@ module.exports = class search
         previous[current] = $options[current].prop "checked"
       , {})
     , options
+
+    console.log options
 
     if setForm
       search.setSearchForm keyword, options
