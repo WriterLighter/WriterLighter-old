@@ -63,7 +63,7 @@ module.exports = class search
     new RegExp keyword, flag
 
   @setSearchForm = (keyword, options={})->
-    if keyword?
+    if keyword isnt do $searchInput.val
       $searchInput.val keyword
 
     for name, $checkBox of $options
