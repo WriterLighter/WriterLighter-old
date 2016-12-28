@@ -25,3 +25,5 @@ css/
 dist/
 packages/
 releases/
+
+!src/js
