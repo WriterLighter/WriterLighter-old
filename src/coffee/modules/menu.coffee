@@ -11,7 +11,7 @@ module.exports = class menu
   appmenu  = {}
   
   @buildTemplate: (data, type="app")->
-    data.forEach (item, index)->
+    for item, index in data
       if item.submenu?
         data[index].submenu = menu.buildTemplate(item.submenu)
       else if item.command?
