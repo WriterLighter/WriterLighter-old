@@ -12,6 +12,7 @@ const YAML           = require("js-yaml");
 
 try {
   bounds = YAML.load(fs.readFileSync(boundsInfoFile, 'utf8'));
+  if(bounds == null) throw bounds
 } catch (e) {
   bounds.maximize = true;
 }
