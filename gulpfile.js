@@ -12,9 +12,6 @@ const mkdirp      =    require('mkdirp');
 const electron    = require('electron-connect')
   .server.create();
 
-let isMainJSEdited = true;
-let isFirstCompile = true;
-
 const isHTML = file => Path.extname(file.path === "html");
 
 const packageOpts = {
@@ -69,33 +66,14 @@ const globFolders = function(pattern, func, callback) {
   });
 };
 
-gulp.task('clean', ['clean:js', 'clean:css', 'clean:dist', 'clean:packages']);
-gulp.task('clean:js', () => del(['js/**/*', 'js']));
+gulp.task('clean', ['clean:css', 'clean:dist', 'clean:packages']);
 gulp.task('clean:css', () => del(['css/**/*', 'css']));
 gulp.task('clean:dist', () => del(['dist/**/*', 'dist']));
 gulp.task('clean:packages', () => del(['packages/**/*', 'packages']));
 gulp.task('clean:releases', () => del(['releases/**/*', 'releases']));
 
-gulp.task('compile', ['compile:coffee', 'compile:scss']);
-gulp.task('compile:production', ['compile:coffee:production', 'compile:scss:production']);
-
-gulp.task('compile:coffee', function() {
-  const target = isFirstCompile ?
-    "src/coffee/**/*.coffee"
-  : isMainJSEdited ?
-    "src/coffee/main.coffee"
-  :
-    ["src/coffee/**/*.coffee", "!src/coffee/main.coffee"];
-
-  isFirstCompile = false;
-
-  return gulp.src(target)
-    .pipe($.plumber())
-    .pipe($.coffee({
-      bare: true})
-  )
-    .pipe(gulp.dest('js'));
-});
+gulp.task('compile', ['compile:scss']);
+gulp.task('compile:production', ['compile:scss:production']);
 
 gulp.task('compile:scss', () =>
   gulp.src('src/scss/**/*.scss')
@@ -104,15 +82,6 @@ gulp.task('compile:scss', () =>
     .pipe($.sass())
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('css'))
-);
-
-gulp.task('compile:coffee:production', ['clean:js'], () =>
-  gulp.src('src/coffee/**/*.coffee')
-    .pipe($.coffee({
-      bare: true})
-  )
-    .pipe($.uglify())
-    .pipe(gulp.dest('js'))
 );
 
 gulp.task('compile:scss:production', ['clean:css'], () =>
@@ -126,7 +95,7 @@ gulp.task('compile:scss:production', ['clean:css'], () =>
 
 gulp.task('dist', ['clean:dist'], () =>
   gulp.src([
-    'js/**/*',
+    'src',
     'css/**/*',
     'assets/**/*',
     'はじめよう/**/*',
@@ -257,21 +226,9 @@ gulp.task('release', done => runSequence('build', 'archive', 'clean', done));
 gulp.task('run', ['compile'], function() {
   electron.start();
 
-  $.watch("src/coffee/main.coffee", function() {
-    isFirstCompile = false;
-    isMainJSEdited = true;
-    return gulp.start("compile:coffee");
-  });
-
-  $.watch(["src/coffee/**/*.coffee", "!src/coffee/main.coffee"], function() {
-    isFirstCompile = false;
-    isMainJSEdited = false;
-    return gulp.start("compile:coffee");
-  });
-
   $.watch("./src/scss/**/*.scss",     () => gulp.start("compile:scss"));
 
-  $.watch(["./css/**/*.css", "./js/**/*.js", "./*.html"], () => electron.reload());
-  $.watch("./js/main.js", () => electron.restart());
+  $.watch(["./css/**/*.css", "./src/js/**/*.js", "./*.html"], () => electron.reload());
+  $.watch("./src/js/main.js", () => electron.restart());
   return this;
 });
