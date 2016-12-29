@@ -2,20 +2,20 @@ window.WriterLighter = window.wl = class WriterLighter {
   static initClass() {
   
     // WriterLighter modules (alphabetical order).
-    this.command     = require('./js/modules/command');
-    this.config      = require('./js/modules/config');
-    this.counter     = require('./js/modules/counter');
-    this.editor      = require('./js/modules/editor');
-    this.extension   = require('./js/modules/extension');
-    this.event       = require('./js/modules/event');
-    this.lastedit    = require('./js/modules/lastedit');
-    this.layout      = require('./js/modules/layout');
-    this.menu        = require('./js/modules/menu');
-    this.novel       = require('./js/modules/novel');
-    this.Popup       = require('./js/modules/popup');
-    this.search      = require('./js/modules/search');
-    this.statusBar   = require('./js/modules/statusbar');
-    this.theme       = require('./js/modules/theme');
+    this.command     = require('./modules/command');
+    this.config      = require('./modules/config');
+    this.counter     = require('./modules/counter');
+    this.editor      = require('./modules/editor');
+    this.extension   = require('./modules/extension');
+    this.event       = require('./modules/event');
+    this.lastedit    = require('./modules/lastedit');
+    this.layout      = require('./modules/layout');
+    this.menu        = require('./modules/menu');
+    this.novel       = require('./modules/novel');
+    this.Popup       = require('./modules/popup');
+    this.search      = require('./modules/search');
+    this.statusBar   = require('./modules/statusbar');
+    this.theme       = require('./modules/theme');
   
     // alias
     this.on = WriterLighter.event.on;
