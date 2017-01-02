@@ -20,8 +20,8 @@ module.exports = class config {
 
   static load() {
     configs = YAML.load(fs.readFileSync(configFile, 'utf8'));
-    return Array.from(configs).map((cfg, index) =>
-      configIndex[cfg.name] = index);
+    configs.forEach((config, index) => configIndex[config.name] = index);
+    return configs;
   }
 
   static get(name, key){
