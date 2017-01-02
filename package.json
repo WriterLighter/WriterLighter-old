@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "accord": "^0.26.4",
-    "cheerio-httpcli": "^0.6.9",
+    "cheerio-httpcli": "^0.6.10",
     "coffee-script": "^1.12.2",
     "eventemitter2": "^2.2.1",
     "fs-extra": "^1.0.0",
