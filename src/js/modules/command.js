@@ -1,27 +1,20 @@
-let commands;
 const Popup = require("./popup");
 
-module.exports = commands = undefined;
-let parse = undefined;
-class command {
-  static initClass() {
-    commands =
-      {default: require("./commands")};
-  
-    parse = function(command) {
-      const args = command.split(" ");
-      const c = args.shift().split(":");
-      return {
-        args,
-        extension: (c[1] != null) ? c[0] : "default",
-        command: c.pop()
-      };
-    };
-  }
+let commands = {"default": require("./commands")};
+const parse = function(command) {
+  const args = command.split(" ");
+  const c = args.shift().split(":");
+  return {
+    args,
+    extension: (c[1] != null) ? c[0] : "default",
+    command: c.pop()
+  };
+};
 
+module.exports = class command {
   static execute(command){
     const c = parse(command);
-    return commands[c.extension][c.command].apply(this, c.args);
+    return commands[c.extension][c.command](c.args);
   }
 
   static palette() {
@@ -31,7 +24,7 @@ class command {
       complete: command.getList()
     });
 
-    return palette.on("hide", command.execute);
+    palette.on("hide", command.execute);
   }
 
   static getList() {
@@ -39,9 +32,9 @@ class command {
   }
 
   static marge(margeCommands, extname) {
-    if (extname !== "default") {
-      return Object.assign(commands[extname], margeCommands);
+    if(extname == null){
+      throw new TypeError("extname is required argument.");
     }
+    Object.assign(commands[extname], margeCommands);
   }
 }
-command.initClass();
