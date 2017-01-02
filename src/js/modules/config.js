@@ -1,20 +1,14 @@
-let configs;
 const path   = require('path');
 const { app }    = require('electron').remote;
 const { dialog } = require('electron');
 const fs     = require('fs');
 const YAML   = require("js-yaml");
 
-module.exports = configs = undefined;
-let configIndex = undefined;
-let configFile = undefined;
-class config {
-  static initClass() {
-    configs = [];
-    configIndex = {};
-    configFile = path.join(app.getPath("userData"), "config.yml");
-  }
+let configs = [];
+let configIndex = {};
+let configFile = path.join(app.getPath("userData"), "config.yml");
 
+module.exports = class config {
   static save() {
     try {
       fs.writeFileSync(configFile, YAML.dump(configs));
