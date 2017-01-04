@@ -6,40 +6,32 @@ const { app }  = require("electron").remote;
 const fs   = require('fs');
 const YAML = require('js-yaml');
 
-module.exports = extensions = undefined;
-let getExtensionDirList = undefined;
-let extensionIndex = undefined;
-let themeIndex = undefined;
-let extensionFile = undefined;
-let $tabList = undefined;
-let $content = undefined;
-let extTabTag = undefined;
-class extension {
-  static initClass() {
-    extensions = [];
-    getExtensionDirList = function() {
-      let left;
-      return (left = config.get("extensionDirectory")) != null ? left : [
-        path.join(".", "extensions"),
-        path.join(app.getPath("userData"), "extensions")
-      ];
-    };
-    extensionIndex = {};
-    themeIndex     = {};
-    extensionFile = path.join(app.getPath("userData"), "extensions.yml");
-  
-    $tabList = $("#ext-tab");
-    $content = $("#ext-content");
-  
-    $tabList.on("change", "input", function() {
-      return extensions.open(this.value);
-    });
-  
-    extTabTag = pkgInfo =>
-      `<li><input type='radio' name='ext-tabs' \
+const extensions = [];
+const getExtensionDirList = function() {
+    let dir;
+  return (dir = config.get("extensionDirectory")) != null ? dir : [
+    path.join(".", "extensions"),
+    path.join(app.getPath("userData"), "extensions")
+  ];
+};
+const extensionIndex = {};
+const themeIndex     = {};
+const extensionFile = path.join(app.getPath("userData"), "extensions.yml");
+
+const $tabList = $("#ext-tab");
+const $content = $("#ext-content");
+
+const extTabTag = pkgInfo =>
+  `<li><input type='radio' name='ext-tabs' \
 style='background-image:url(${(pkgInfo.icon != null) ? path.join(pkgInfo.path, pkgInfo.icon) : ""})' \
-value='${pkgInfo.name}' ></li>`
-    ;
+value='${pkgInfo.name}' ></li>`;
+
+$tabList.on("change", "input", function() {
+  return extensions.open(this.value);
+});
+
+module.exports = class extension {
+  static initClass() {
   }
 
 
