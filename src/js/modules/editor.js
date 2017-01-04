@@ -103,59 +103,57 @@ const _onchange = function() {
   }
 };
 
-module.exports = class editor {
-  static initClass() {
-  
-    const createHighlight = function(match, message) {
-  
-      const lines = match
-      .input
-      .slice(0,  match.index + 1)
-      .split("\n");
-  
-      const typeOfMessage = Object.prototype.toString.call(message);
-  
-      message = typeOfMessage === "[object String]" ?
-        message.replace(/\$([$&`']|[0-9]+)/, function(m, $0) {
-          if (isNaN($0)) {
-            switch ($0) {
-              case "$":
-                return "$";
-              case "&":
-                return match[0];
-              case "`":
-                return match.input.slice(0, match.index);
-              case "'":
-                return match.input.slice(match.index + match[0].length);
-            }
-          } else {
-            return match[$0] != null ? match[$0] : "";
-          }
-        })
-      : typeOfMessage === "[object Function]" ?
-        (match.push(match.index, match.input),
-        message.apply(undefined, match))
-      :
-        undefined;
-  
-      return {
-        line: lines.length,
-        column: lines.pop().length,
-        index: match.index + 1,
-        message,
-        length: match[0].length
-      };
-    };
-  
-    const getAddedIndex = function(index) {
-      --index;
-  
-      return index +
-      addedsByEscape
-      .slice(0, index)
-      .reduce(((p,c) => p + c), 0);
-    };
+const createHighlight = function(match, message) {
+  const lines = match
+  .input
+  .slice(0,  match.index + 1)
+  .split("\n");
+
+  const typeOfMessage = Object.prototype.toString.call(message);
+
+  message = typeOfMessage === "[object String]" ?
+    message.replace(/\$([$&`']|[0-9]+)/, function(m, $0) {
+      if (isNaN($0)) {
+        switch ($0) {
+          case "$":
+            return "$";
+          case "&":
+            return match[0];
+          case "`":
+            return match.input.slice(0, match.index);
+          case "'":
+            return match.input.slice(match.index + match[0].length);
+        }
+      } else {
+        return match[$0] != null ? match[$0] : "";
+      }
+    })
+  : typeOfMessage === "[object Function]" ?
+    (match.push(match.index, match.input),
+    message.apply(undefined, match))
+  :
+    undefined;
+
+  return {
+    line: lines.length,
+    column: lines.pop().length,
+    index: match.index + 1,
+    message,
+    length: match[0].length
+  };
+};
+
+const getAddedIndex = function(index) {
+  --index;
+
+  return index +
+  addedsByEscape
+  .slice(0, index)
+  .reduce(((p,c) => p + c), 0);
+};
   }
+
+module.exports = class editor {
   static setDirection(direction){
     switch (direction) {
       case "vertical":
@@ -326,7 +324,6 @@ module.exports = class editor {
     return document.execCommand("redo");
   }
 }
-editor.initClass();
 
 $input.on("keydown keyup click", updateBeforeCaret);
 

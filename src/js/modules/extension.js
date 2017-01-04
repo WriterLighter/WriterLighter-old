@@ -119,10 +119,9 @@ module.exports = class extension {
     }
   }
 }
-extension.initClass();
 
-var config = require("./config");
-var theme  = require("./theme");
+const config = require("./config");
+const theme  = require("./theme");
 
 function __guardMethod__(obj, methodName, transform) {
   if (typeof obj !== 'undefined' && obj !== null && typeof obj[methodName] === 'function') {
