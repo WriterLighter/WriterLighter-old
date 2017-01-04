@@ -1,4 +1,3 @@
-let layoutMode;
 const currentWindow = require("electron").remote.getCurrentWindow();
 
 const $container = $("#container");
@@ -15,6 +14,11 @@ const resizers = {};
 
 let resizing = null;
 let beforeX = 0;
+
+//layoutMode
+//0:標準モード
+//1:超集中モード
+let layoutMode = 0;
 
 const setResizerPosition = function(pane) {
   const w = panes[pane].innerWidth();
@@ -88,13 +92,6 @@ const getTargetPane = function(pane) {
 
 module.exports = layoutMode = undefined;
 class layout {
-  static initClass() {
-  
-    //layoutMode
-    //0:標準モード
-    //1:超集中モード
-    layoutMode = "";
-  }
   static resizePane(pane, size, option){
     if (pane == null) { pane = "all"; }
     if (size == null) { size = 0; }
@@ -219,6 +216,5 @@ class layout {
     return layoutMode;
   }
 }
-layout.initClass();
 
 var Popup = require("./popup");
