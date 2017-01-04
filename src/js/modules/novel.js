@@ -6,62 +6,56 @@ const fs       = require('fs-extra');
 const YAML     = require('js-yaml');
 const EventEmitter2 = require("eventemitter2");
 
-module.exports = opened = undefined;
-let novelIndex = undefined;
-let originalFile = undefined;
-let chapterList = undefined;
-let getChapterPath = undefined;
-class novel {
-  static initClass() {
-    opened = {
-      novel: {
-        path: "",
-        name: ""
-      },
-      chapter: {
-        number: 0,
-        type: "",
-        name: ""
-      }
-    };
-  
-    novelIndex   = {};
-    originalFile = "";
-    chapterList  = {
-      body: $("#chapter-list-body"),
-      metadata: $("#chapter-list-metadata")
-    };
-  
-    for (let type in chapterList) {
-      const $el = chapterList[type];
-      $el.on("click", "li", function(e){
-        return novel.openChapter(this.dataset.chapterNumber, this.dataset.chapterType);
-      });
-    }
-  
-    getChapterPath = function(number, type, name) {
-      if (type == null) { type = "body"; }
-      if (number === "now") {
-        ({number, type} = opened.chapter);
-      }
-  
-      const index = number - 1;
-  
-      if (novelIndex[type] == null) {
-        throw new Error("Bad chapter type");
-      }
-  
-      if (novelIndex[type][index] == null) {
-        throw new Error("This index chapter is not existed.");
-      }
-      
-      name = name || novelIndex[type][index];
-  
-      return path.join(opened.novel.path, type, `${number}_${name}.txt`);
-    };
-  
-    this.emitter = new EventEmitter2;
+let opened = {
+  novel: {
+    path: "",
+    name: ""
+  },
+  chapter: {
+    number: 0,
+    type: "",
+    name: ""
   }
+};
+
+let novelIndex   = {};
+let originalFile = "";
+let chapterList  = {
+  body: $("#chapter-list-body"),
+  metadata: $("#chapter-list-metadata")
+};
+
+for (let type in chapterList) {
+  const $el = chapterList[type];
+  $el.on("click", "li", function(e){
+    return novel.openChapter(this.dataset.chapterNumber, this.dataset.chapterType);
+  });
+}
+
+const getChapterPath = function(number, type, name) {
+  if (type == null) { type = "body"; }
+  if (number === "now") {
+    ({number, type} = opened.chapter);
+  }
+
+  const index = number - 1;
+
+  if (novelIndex[type] == null) {
+    throw new Error("Bad chapter type");
+  }
+
+  if (novelIndex[type][index] == null) {
+    throw new Error("This index chapter is not existed.");
+  }
+  
+  name = name || novelIndex[type][index];
+
+  return path.join(opened.novel.path, type, `${number}_${name}.txt`);
+};
+
+
+module.exports = class novel {
+  this.emitter = new EventEmitter2;
 
   static getChapterPath() {
     return getChapterPath.apply(this, arguments);
