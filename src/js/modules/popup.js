@@ -8,29 +8,25 @@ const defaultOptions = {
   timeout: 3000,
   complete: []
 };
-
-module.exports = _show = undefined;
-let _hide = undefined;
-class Popup extends EventEmitter2 {
-  static initClass() {
     
-    _show= (html, type)=>
-      $("#popup")
-        .html(html)
-        .addClass("show")
-        .addClass(type)
-    ;
-  
-    _hide = function(val) {
-      if (this.emit("hide", val)) {
-        Popup.hide();
-        return setTimeout(function() {
-          return this.emit("hidden", val);
-        }
-        , $("#popup").css("transion"));
-      }
-    };
+const _show= (html, type)=>
+  $("#popup")
+    .html(html)
+    .addClass("show")
+    .addClass(type)
+;
+
+const _hide = function(val) {
+  if (this.emit("hide", val)) {
+    Popup.hide();
+    return setTimeout(function() {
+      return this.emit("hidden", val);
+    }
+    , $("#popup").css("transion"));
   }
+};
+
+module.exports = class Popup extends EventEmitter2 {
   static hide() {
     $("#popup").removeClass("show");
     $("#popup.toast").removeClass("toast");
@@ -109,4 +105,3 @@ class Popup extends EventEmitter2 {
     }
   }
 }
-Popup.initClass();
