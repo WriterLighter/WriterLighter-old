@@ -1,4 +1,3 @@
-let createHighlight;
 const currentWindow = require("electron").remote.getCurrentWindow();
 
 const $input = $("#input-text");
@@ -104,12 +103,10 @@ const _onchange = function() {
   }
 };
 
-module.exports = createHighlight = undefined;
-let getAddedIndex = undefined;
-class editor {
+module.exports = class editor {
   static initClass() {
   
-    createHighlight = function(match, message) {
+    const createHighlight = function(match, message) {
   
       const lines = match
       .input
@@ -150,7 +147,7 @@ class editor {
       };
     };
   
-    getAddedIndex = function(index) {
+    const getAddedIndex = function(index) {
       --index;
   
       return index +
