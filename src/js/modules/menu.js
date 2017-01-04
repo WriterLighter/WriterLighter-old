@@ -1,4 +1,4 @@
-let _TMP_CONTEXT_MENU_EVENT;
+"use strict"
 const YAML     = require("js-yaml");
 const electron = require("electron");
 const { Menu }     = electron.remote;

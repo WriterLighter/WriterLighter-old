@@ -1,3 +1,4 @@
+"use strict"
 const { app }    = require("electron").remote;
 const YAML   = require("js-yaml");
 const fs     = require("fs");

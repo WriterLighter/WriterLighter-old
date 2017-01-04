@@ -1,3 +1,4 @@
+"use strict"
 window.WriterLighter = window.wl = class WriterLighter {
   static initClass() {
   

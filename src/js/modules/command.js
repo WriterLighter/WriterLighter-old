@@ -1,3 +1,4 @@
+"use strict"
 const Popup = require("./popup");
 
 let commands = {"default": require("./commands")};

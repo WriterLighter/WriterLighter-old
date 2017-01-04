@@ -1,3 +1,4 @@
+"use strict"
 const currentWindow = require("electron").remote.getCurrentWindow();
 
 const $container = $("#container");

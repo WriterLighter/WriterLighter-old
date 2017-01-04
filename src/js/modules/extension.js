@@ -1,4 +1,4 @@
-let extensions;
+"use strict"
 require('coffee-script').register();
 const glob = require('glob');
 const path = require('path');

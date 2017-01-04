@@ -1,3 +1,4 @@
+"use strict"
 let jQuery;
 const $ = jQuery     = require("./js/jquery.min");
 const YAML           = require("js-yaml");

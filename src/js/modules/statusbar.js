@@ -1,3 +1,4 @@
+"use strict"
 let statusList = {};
 module.exports = class statusBar {
   static register(name, val) {

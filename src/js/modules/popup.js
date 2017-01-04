@@ -1,4 +1,4 @@
-let _show;
+"use strict"
 const EventEmitter2 = require("eventemitter2");
 
 const defaultOptions = {

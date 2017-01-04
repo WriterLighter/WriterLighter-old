@@ -1,3 +1,4 @@
+"use strict"
 const electron      = require("electron");
 const { remote }        = electron;
 const { app }           = remote;

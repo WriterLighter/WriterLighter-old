@@ -1,4 +1,4 @@
-let opened;
+"use strict"
 const path     = require('path');
 const mkdirp   = require('mkdirp');
 const glob     = require('glob');

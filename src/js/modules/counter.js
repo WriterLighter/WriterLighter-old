@@ -1,3 +1,4 @@
+"use strict"
 module.exports = class counter {
   static get(type){
     const val = editor.getText();

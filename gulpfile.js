@@ -1,3 +1,4 @@
+"use strict"
 let gulp;
 module.exports = gulp = require('gulp');
 

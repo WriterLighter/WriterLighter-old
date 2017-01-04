@@ -1,3 +1,4 @@
+"use strict"
 const focusing      = 0;
 const $searchInput  = $("#search-input");
 const $searchResult = $("#search-result");

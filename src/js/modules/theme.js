@@ -1,3 +1,4 @@
+"use strict"
 const fs     = require("fs");
 const sass   = require("sass.js");
 const path   = require("path");
