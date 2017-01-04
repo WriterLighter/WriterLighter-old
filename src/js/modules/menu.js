@@ -4,20 +4,14 @@ const electron = require("electron");
 const { Menu }     = electron.remote;
 const fs       = require('fs');
 
-module.exports = _TMP_CONTEXT_MENU_EVENT = undefined;
-let appmenu = undefined;
-let context = undefined;
-let template = undefined;
-appmenu = undefined;
-class menu {
-  static initClass() {
-    _TMP_CONTEXT_MENU_EVENT = null;
-    appmenu  = {};
-    context  = {};
-    template = {};
-    appmenu  = {};
-  }
-  
+const appmenu  = {};
+const context  = {};
+const template = {};
+const appmenu  = {};
+
+let _TMP_CONTEXT_MENU_EVENT = null;
+
+module.exports = class menu {
   static buildTemplate(data, type){
     if (type == null) { type = "app"; }
     for (var index = 0; index < data.length; index++) {
@@ -61,7 +55,6 @@ class menu {
     return Menu.buildFromTemplate(menu.buildTemplate(cmenu)).popup();
   }
 }
-menu.initClass();
 
 window.addEventListener("contextmenu", menu.showContextMenu);
 
