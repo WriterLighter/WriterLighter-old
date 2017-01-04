@@ -1,14 +1,11 @@
-let lastEditPath;
 const { app }    = require("electron").remote;
 const YAML   = require("js-yaml");
 const fs     = require("fs");
 const path   = require('path');
 
-module.exports = lastEditPath = undefined;
-class lastEdit {
-  static initClass() {
-    lastEditPath= path.join(app.getPath("userData"), "lastedit.yml");
-  }
+const lastEditPath= path.join(app.getPath("userData"), "lastedit.yml");
+
+module.exports = class lastEdit {
   static save() {
     const savedata = {
       opened: novel.getOpened(),
@@ -25,11 +22,7 @@ class lastEdit {
         const data = YAML.load(text);
         const {name, number} = data.opened;
 
-        if (name != null) {
-          novel.openNovel(name);
-        } else {
-          novel.openNovel("はじめよう");
-        }
+        novel.openNovel(name || "はじめよう");
 
         (number != null) && novel.openChapter(number);
 
@@ -38,7 +31,6 @@ class lastEdit {
     });
   }
 }
-lastEdit.initClass();
 
 var novel  = require("./novel");
 var editor = require("./editor");
