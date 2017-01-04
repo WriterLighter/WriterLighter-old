@@ -1,10 +1,5 @@
-let statusList;
-module.exports = statusList = undefined;
-class statusBar {
-  static initClass() {
-    statusList = {};
-  }
-  
+let statusList = {};
+module.exports = class statusBar {
   static register(name, val) {
     let $status;
     if (!document.getElementById(`statusbar-${name}`)) {
@@ -20,4 +15,3 @@ class statusBar {
     return statusList[name];
   }
 }
-statusBar.initClass();
