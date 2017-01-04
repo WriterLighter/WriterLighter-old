@@ -41,7 +41,7 @@ const createWindow = function() {
   }
 };
 
-var initalStartUp = function() {
+const initalStartUp = function() {
   setUpWindow = new browser_window({width: 800, height: 600});
   setUpWindow.loadURL(`file://${path.join(__dirname, "..", "..", "welcome.html")}`);
   return setUpWindow.on("closed" , () => setUpWindow = null);

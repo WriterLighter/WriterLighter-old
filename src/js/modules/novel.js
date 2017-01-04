@@ -53,9 +53,12 @@ const getChapterPath = function(number, type, name) {
   return path.join(opened.novel.path, type, `${number}_${name}.txt`);
 };
 
+let novel;
 
-module.exports = class novel {
-  this.emitter = new EventEmitter2;
+module.exports = novel = class novel {
+  static initClass() {
+    this.emitter = new EventEmitter2;
+  }
 
   static getChapterPath() {
     return getChapterPath.apply(this, arguments);
@@ -279,6 +282,7 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
   static on() { return novel.emitter.on.apply(novel.emitter, arguments); }
 }
 
+novel.initClass();
 
 const Popup    = require('./popup');
 const menu     = require('./menu');

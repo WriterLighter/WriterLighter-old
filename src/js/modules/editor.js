@@ -152,9 +152,8 @@ const getAddedIndex = function(index) {
   .slice(0, index)
   .reduce(((p,c) => p + c), 0);
 };
-  }
 
-module.exports = class editor {
+const editor = module.exports = class {
   static setDirection(direction){
     switch (direction) {
       case "vertical":

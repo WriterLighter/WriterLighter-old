@@ -6,7 +6,8 @@ const { app }  = require("electron").remote;
 const fs   = require('fs');
 const YAML = require('js-yaml');
 
-const extensions = [];
+let extensions = [];
+
 const getExtensionDirList = function() {
     let dir;
   return (dir = config.get("extensionDirectory")) != null ? dir : [
