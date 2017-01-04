@@ -41,10 +41,11 @@ module.exports = class config {
       configs[configIndex[name]][key] = value;
     }
 
-    return config.save();
+    config.save();
+
+    return configs[configIndex[name]];
   }
 }
-config.initClass();
 
 function __guard__(value, transform) {
   return (typeof value !== 'undefined' && value !== null) ? transform(value) : undefined;
