@@ -31,10 +31,6 @@ $tabList.on("change", "input", function() {
 });
 
 module.exports = class extension {
-  static initClass() {
-  }
-
-
   static checkInstall() {
     for (let extDir of Array.from(getExtensionDirList())) {
       for (let packageJSON of Array.from(glob.sync(path.join(extDir, "*", "package.json")))) {
