@@ -35,9 +35,12 @@ module.exports = class search {
     if (keyword == null) { keyword = $searchInput.val(); }
     if (options == null) { options = {}; }
     if (setForm == null) { setForm = true; }
-    options = Object.assign((Object.keys($options)
-      .reduce((previous, current) => previous[current] = $options[current].prop("checked")
-      , {}))
+    options = Object.assign(
+      Object.keys($options)
+      .reduce((previous, current) => {
+        previous[current] = $options[current].prop("checked");
+        return previous;
+      } , {})
     , options);
 
     console.log(options);
