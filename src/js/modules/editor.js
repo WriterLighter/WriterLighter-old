@@ -1,6 +1,5 @@
 let createHighlight;
 const currentWindow = require("electron").remote.getCurrentWindow();
-const event   = require('./event');
 
 const $input = $("#input-text");
 const $wrapper = $("#editor-wrap");
@@ -346,9 +345,9 @@ $input.on("paste", function(e){
 });
 
 const Popup   = require("./popup");
-var novel   = require("./novel");
-var counter = require("./counter");
-var config  = require("./config");
+const novel   = require("./novel");
+const counter = require("./counter");
+const config  = require("./config");
 
 novel.on("savedChapter", () => edited = false);
 
