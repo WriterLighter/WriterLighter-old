@@ -33,5 +33,5 @@ module.exports = class lastEdit {
   }
 }
 
-var novel  = require("./novel");
-var editor = require("./editor");
+const novel  = require("./novel");
+const editor = require("./editor");

@@ -218,4 +218,4 @@ class layout {
   }
 }
 
-var Popup = require("./popup");
+const Popup = require("./popup");

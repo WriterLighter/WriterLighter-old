@@ -75,4 +75,4 @@ module.exports = class search {
   }
 };
 
-var editor = require('./editor');
+const editor = require('./editor');

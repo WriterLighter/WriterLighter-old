@@ -41,5 +41,5 @@ module.exports = class theme {
   }
 };
 
-var config    = require("./config");
-var extension = require("./extension");
+const config    = require("./config");
+const extension = require("./extension");

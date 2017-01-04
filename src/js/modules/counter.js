@@ -43,5 +43,5 @@ module.exports = class counter {
   }
 };
 
-var editor    = require("./editor");
-var statusBar = require("./statusbar");
+const editor    = require("./editor");
+const statusBar = require("./statusbar");

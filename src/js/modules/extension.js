@@ -41,7 +41,7 @@ module.exports = class extension {
         }
         const packageInfo = JSON.parse(fs.readFileSync(packageJSON, "utf-8"));
         if (!~extensionIndex.indexOf(packageInfo.name) || !~themeIndex.indexOf(packageInfo.name)) {
-          var imported, index, type;
+          let imported, index, type;
           const { ext } = path.parse(packageInfo.main);
           if (ext === "js" || ext === "coffee") {
             imported = require(path.join(packagePath, packageInfo.main));

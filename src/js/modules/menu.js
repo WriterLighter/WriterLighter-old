@@ -4,17 +4,17 @@ const electron = require("electron");
 const { Menu }     = electron.remote;
 const fs       = require('fs');
 
-const appmenu  = {};
-const context  = {};
-const template = {};
-const appmenu  = {};
+let appmenu  = {};
+let template = {};
 
 let _TMP_CONTEXT_MENU_EVENT = null;
 
-module.exports = class menu {
+let menu;
+
+module.exports = menu = class menu {
   static buildTemplate(data, type){
     if (type == null) { type = "app"; }
-    for (var index = 0; index < data.length; index++) {
+    for (let index = 0; index < data.length; index++) {
       const item = data[index];
       if (item.submenu != null) {
         data[index].submenu = menu.buildTemplate(item.submenu);
@@ -58,4 +58,4 @@ module.exports = class menu {
 
 window.addEventListener("contextmenu", menu.showContextMenu);
 
-var command  = require("./command");
+const command  = require("./command");
