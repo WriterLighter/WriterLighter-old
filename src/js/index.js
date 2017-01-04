@@ -7,7 +7,6 @@ window.WriterLighter = window.wl = class WriterLighter {
     this.counter     = require('./modules/counter');
     this.editor      = require('./modules/editor');
     this.extension   = require('./modules/extension');
-    this.event       = require('./modules/event');
     this.lastedit    = require('./modules/lastedit');
     this.layout      = require('./modules/layout');
     this.menu        = require('./modules/menu');
@@ -16,9 +15,6 @@ window.WriterLighter = window.wl = class WriterLighter {
     this.search      = require('./modules/search');
     this.statusBar   = require('./modules/statusbar');
     this.theme       = require('./modules/theme');
-  
-    // alias
-    this.on = WriterLighter.event.on;
   }
 
   static startup() {
