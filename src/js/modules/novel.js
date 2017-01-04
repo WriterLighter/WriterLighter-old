@@ -278,12 +278,11 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
 
   static on() { return novel.emitter.on.apply(novel.emitter, arguments); }
 }
-novel.initClass();
 
 
-var Popup    = require('./popup');
+const Popup    = require('./popup');
 const menu     = require('./menu');
-var editor   = require('./editor');
-var lastedit = require('./lastedit');
-var config   = require('./config');
-var counter  = require('./counter');
+const editor   = require('./editor');
+const lastedit = require('./lastedit');
+const config   = require('./config');
+const counter  = require('./counter');
