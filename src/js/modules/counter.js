@@ -1,7 +1,7 @@
 module.exports = class counter {
   static get(type){
     const val = editor.getText();
-    let res = 0;
+    let res = null;
 
     switch (type) {
       case "letter":
@@ -35,8 +35,10 @@ module.exports = class counter {
         .replace(/%../g, "x")
         .length;
 
-    return statusBar.register("byte",
+    statusBar.register("byte",
       (byte >= 1024 ? (Math.floor( (byte / 1024) * 100 )/100) + "キロ" : byte) + "バイト");
+
+    return;
   }
 };
 
