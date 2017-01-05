@@ -65,6 +65,8 @@ const search = module.exports = class {
       $searchInput.val(keyword);
     }
 
+    $searchInput.focus();
+
     return (() => {
       const result = [];
       for (let name in $options) {
