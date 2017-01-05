@@ -15,7 +15,7 @@ const $options  = {
   matchCase: $("#search-match-case")
 };
 
-module.exports = class search {
+const search = module.exports = class {
   static search(keyword, options) {
     if (isHidden) {
       $sections.replace.css({display: "none"});
@@ -42,8 +42,6 @@ module.exports = class search {
         return previous;
       } , {})
     , options);
-
-    console.log(options);
 
     if (setForm) {
       search.setSearchForm(keyword, options);
