@@ -48,7 +48,7 @@ const search = module.exports = class {
     }
 
     let flag = "mg";
-    if (!options.match) {
+    if (!options.matchCase) {
       flag += "i";
     }
     if (!options.inRegExp) {
