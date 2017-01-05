@@ -167,10 +167,14 @@ button,
   padding: 0 .65em;
   text-align: center;
   text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
-  box-shadow: 0 1px 1px #fff, inset 0 1px 1px rgba(255,255,255,0.4);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.4);
   &:hover{
     background: linear-gradient(rgba(0,0,0,.2), rgba(255,255,255,0.3));
   }
+}
+
+.btn:checked{
+  box-shadow: 0 0 .2em .2em rgba(101, 255, 0, .5) inset;
 }
 
 #search{
