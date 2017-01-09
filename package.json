@@ -40,7 +40,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.0.0",
-    "gulp-sourcemaps": "^2.2.0",
+    "gulp-sourcemaps": "^2.3.0",
     "gulp-tar": "^1.9.0",
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.1.2",
