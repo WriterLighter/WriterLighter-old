@@ -1,37 +1,33 @@
 "use strict"
-window.WriterLighter = window.wl = class WriterLighter {
-  static initClass() {
-  
-    // WriterLighter modules (alphabetical order).
-    this.command     = require('./modules/command');
-    this.config      = require('./modules/config');
-    this.counter     = require('./modules/counter');
-    this.editor      = require('./modules/editor');
-    this.extension   = require('./modules/extension');
-    this.lastedit    = require('./modules/lastedit');
-    this.layout      = require('./modules/layout');
-    this.menu        = require('./modules/menu');
-    this.novel       = require('./modules/novel');
-    this.Popup       = require('./modules/popup');
-    this.search      = require('./modules/search');
-    this.statusBar   = require('./modules/statusbar');
-    this.theme       = require('./modules/theme');
-  }
+window.WriterLighter = window.wl = {
+  // WriterLighter modules (alphabetical order).
+  command:   require('./modules/command'),
+  config:    require('./modules/config'),
+  counter:   require('./modules/counter'),
+  editor:    require('./modules/editor'),
+  extension: require('./modules/extension'),
+  lastedit:  require('./modules/lastedit'),
+  layout:    require('./modules/layout'),
+  menu:      require('./modules/menu'),
+  novel:     require('./modules/novel'),
+  Popup:     require('./modules/popup'),
+  search:    require('./modules/search'),
+  statusBar: require('./modules/statusbar'),
+  theme:     require('./modules/theme'),
 
-  static startup() {
+  startup() {
     wl.config.load();
     wl.menu.load();
     wl.extension.load();
     return wl.lastedit.restore();
-  }
+  },
 
-  static quiting() {
+  quiting() {
     if (wl.editor.isEdited()) { wl.novel.save(); }
     wl.lastedit.save();
     wl.config.save();
   }
 };
-WriterLighter.initClass();
 
 wl.startup();
 
