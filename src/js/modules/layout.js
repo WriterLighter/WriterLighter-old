@@ -191,14 +191,14 @@ class layout {
         $footer.show();
         currentWindow.setFullScreen(false);
         layoutMode = mode;
-        return new Popup({messeage: "モード:標準"});
+        return new wl.Popup({messeage: "モード:標準"});
   
       case "intensive":
         layout.hidePane("all");
         $footer.hide();
         currentWindow.setFullScreen(true);
         layoutMode = mode;
-        return new Popup({messeage: "モード:超集中モード"});
+        return new wl.Popup({messeage: "モード:超集中モード"});
     }
   }
   
@@ -218,4 +218,3 @@ class layout {
   }
 }
 
-const Popup = require("./popup");

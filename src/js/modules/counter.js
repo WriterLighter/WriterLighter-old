@@ -1,7 +1,7 @@
 "use strict"
 module.exports = class counter {
   static get(type){
-    const val = editor.getText();
+    const val = wl.editor.getText();
     let res = null;
 
     switch (type) {
@@ -24,24 +24,22 @@ module.exports = class counter {
   }
 
   static count() {
-    const val = editor.getText();
+    const val = wl.editor.getText();
     const res = 0;
 
-    statusBar.register("letter", val.length + "文字");
+    wl.statusBar.register("letter", val.length + "文字");
 
-    statusBar.register("line", val.split("\n").length + "行");
+    wl.statusBar.register("line", val.split("\n").length + "行");
 
     const byte =
       encodeURIComponent(val)
         .replace(/%../g, "x")
         .length;
 
-    statusBar.register("byte",
+    wl.statusBar.register("byte",
       (byte >= 1024 ? (Math.floor( (byte / 1024) * 100 )/100) + "キロ" : byte) + "バイト");
 
     return;
   }
 };
 
-const editor    = require("./editor");
-const statusBar = require("./statusbar");

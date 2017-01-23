@@ -8,10 +8,10 @@ const $theme = $("#theme");
 
 module.exports = class theme {
   static set(theme) {
-    if (theme == null) { theme = config.get("theme") || "wl-light"; }
-    config.set("theme", theme);
-    if (extension.get(theme, "path") != null) {
-      const themeFile = path.join(extension.get(theme, "path"), extension.get(theme, "main"));
+    if (theme == null) { theme = wl.config.get("theme") || "wl-light"; }
+    wl.config.set("theme", theme);
+    if (wl.extension.get(theme, "path") != null) {
+      const themeFile = path.join(wl.extension.get(theme, "path"), wl.extension.get(theme, "main"));
       const { ext } = path.parse(themeFile);
       switch (ext) {
         case "css":
@@ -33,13 +33,11 @@ module.exports = class theme {
   }
 
   static getList() {
-    return extension.getList("theme");
+    return wl.extension.getList("theme");
   }
 
   static get() {
-    return config.get("theme");
+    return wl.config.get("theme");
   }
 };
 
-const config    = require("./config");
-const extension = require("./extension");

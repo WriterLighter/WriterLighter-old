@@ -1,6 +1,4 @@
 "use strict"
-const Popup = require("./popup");
-
 let commands = {"default": require("./commands")};
 const parse = function(command) {
   const args = command.split(" ");
@@ -19,7 +17,7 @@ module.exports = class command {
   }
 
   static palette() {
-    const palette = new Popup({
+    const palette = new wl.Popup({
       type:"prompt",
       messeage: "コマンドを入力…",
       complete: command.getList()

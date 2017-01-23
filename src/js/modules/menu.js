@@ -27,7 +27,7 @@ module.exports = menu = class menu {
             contextMenuEvent: _TMP_CONTEXT_MENU_EVENT || undefined
           };
 
-          command.execute(data[index].command);
+          wl.command.execute(data[index].command);
 
           return window.__menu = undefined;
         };
@@ -57,5 +57,3 @@ module.exports = menu = class menu {
 }
 
 window.addEventListener("contextmenu", menu.showContextMenu);
-
-const command  = require("./command");

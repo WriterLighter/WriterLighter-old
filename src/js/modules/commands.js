@@ -3,8 +3,6 @@ const electron      = require("electron");
 const { remote }        = electron;
 const { app }           = remote;
 
-const Popup = require("./popup");
-
 module.exports = {
   quit() {
     return app.quit();
@@ -67,7 +65,7 @@ module.exports = {
     if ((typeof __menu !== 'undefined' && __menu !== null) && (__menu.contextMenuEvent != null)) {
       return __menu.browserWindow.inspectElement(__menu.contextMenuEvent.x, __menu.contextMenuEvent.y);
     } else {
-      return new Popup({messeage: "コンテキストメニューから実行してください。"});
+      return new wl.Popup({messeage: "コンテキストメニューから実行してください。"});
     }
   }
 };

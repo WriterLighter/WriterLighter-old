@@ -9,9 +9,9 @@ const lastEditPath= path.join(app.getPath("userData"), "lastedit.yml");
 module.exports = class lastEdit {
   static save() {
     const savedata = {
-      opened: novel.getOpened(),
+      opened: wl.novel.getOpened(),
       status: {
-        direction: editor.getDirection()
+        direction: wl.editor.getDirection()
       }
     };
     return fs.writeFileSync(lastEditPath, YAML.dump(savedata));
@@ -23,15 +23,12 @@ module.exports = class lastEdit {
         const data = YAML.load(text);
         const {name, number} = data.opened;
 
-        novel.openNovel(name || "はじめよう");
+        wl.novel.openNovel(name || "はじめよう");
 
-        (number != null) && novel.openChapter(number);
+        (number != null) && wl.novel.openChapter(number);
 
-        return editor.setDirection(data.status.direction);
-      } else { return novel.openNovel("はじめよう"); }
+        return wl.editor.setDirection(data.status.direction);
+      } else { return wl.novel.openNovel("はじめよう"); }
     });
   }
 }
-
-const novel  = require("./novel");
-const editor = require("./editor");

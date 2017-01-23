@@ -10,7 +10,7 @@ let extensions = [];
 
 const getExtensionDirList = function() {
     let dir;
-  return (dir = config.get("extensionDirectory")) != null ? dir : [
+  return (dir = wl.config.get("extensionDirectory")) != null ? dir : [
     path.join(".", "extensions"),
     path.join(app.getPath("userData"), "extensions")
   ];
@@ -95,7 +95,7 @@ module.exports = class extension {
       extension.imported = require(path.join(extsnsion.path, extension.main));
     }
     extension.updateExtensionTabs();
-    return theme.set();
+    return wl.theme.set();
   }
 
   static open(name){

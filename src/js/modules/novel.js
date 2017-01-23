@@ -74,7 +74,7 @@ module.exports = novel = class novel {
       number = __menu.contextMenuEvent.target.dataset.chapterNumber;
       type   = __menu.contextMenuEvent.target.dataset.chapterType;
     }
-    if (editor.isEdited()) { novel.save(); }
+    if (wl.editor.isEdited()) { novel.save(); }
 
     if (number != null) {
       let chapterPath, text;
@@ -93,7 +93,7 @@ module.exports = novel = class novel {
       try {
         chapterPath = getChapterPath(number, type);
       } catch (e) {
-        new Popup({messeage: e});
+        new wl.Popup({messeage: e});
       }
 
       try {
@@ -106,7 +106,7 @@ module.exports = novel = class novel {
         }
       }
       $("#chapter .opened").removeClass("opened");
-      editor.setText(text);
+      wl.editor.setText(text);
       originalFile = text;
       opened.chapter = {
         number,
@@ -114,14 +114,14 @@ module.exports = novel = class novel {
         name: novelIndex[type][number - 1],
         path: chapterPath
       };
-      lastedit.save();
+      wl.lastedit.save();
       $(`#chapter [data-chapter-number='${(number)}'][data-chapter-type='${type}']`)
         .addClass("opened");
       novel.emitter.emit("openedChapter");
-      editor.clearWindowName();
-      return counter.count();
+      wl.editor.clearWindowName();
+      return wl.counter.count();
     } else {
-      const getChapter = new Popup({
+      const getChapter = new wl.Popup({
         type: "prompt",
         messeage: ["章番号を入力…", "タイプを入力…"]});
       getChapter.on("hide", value=> novel.openChapter.call(novel, value));
@@ -137,7 +137,7 @@ module.exports = novel = class novel {
     novel.open(index);
     novel.reloadChapterList();
     novel.saveIndex();
-    return lastedit.save();
+    return wl.lastedit.save();
   }
 
   static renameChapter(number, type, name) {
@@ -150,7 +150,7 @@ module.exports = novel = class novel {
       fs.renameSync(getChapterPath("now"), getChapterPath(number, type, name));
       return novelIndex[type][number - 1] = name;
     } else {
-      const prompt = new Popup({
+      const prompt = new wl.Popup({
         type:"prompt",
         messeage: "新しい章名を入力してください…"
       });
@@ -168,7 +168,7 @@ module.exports = novel = class novel {
     }
     const index = number - 1;
     const name = novelIndex[type][chapter];
-    const confirm = new Popup({
+    const confirm = new wl.Popup({
       type: "prompt",
       messeage: `${name}を削除します。確認のため、章名を入力してください…`
     });
@@ -188,13 +188,13 @@ module.exports = novel = class novel {
   }
 
   static save() {
-    return fs.writeFile(getChapterPath("now"), editor.getText(), function(e){
+    return fs.writeFile(getChapterPath("now"), wl.editor.getText(), function(e){
       if (e != null) {
-        const errp = new Popup({messeage: e});
+        const errp = new wl.Popup({messeage: e});
         return errp.show();
       } else {
         novel.emitter.emit("savedChapter");
-        return editor.clearWindowName();
+        return wl.editor.clearWindowName();
       }
     });
   }
@@ -220,7 +220,7 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
     if ((name != null) && name !== "") {
       opened.novel = {
         name,
-        path: path.join(config.get("bookshalf"), name)
+        path: path.join(wl.config.get("bookshalf"), name)
       };
       novelIndex = YAML.load(fs.readFileSync(path.join(opened.novel.path,"index.yml"),"utf-8"));
       novel.reloadChapterList();
@@ -231,7 +231,7 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
         return novel.openChapter(1, "body");
       }
     } else {
-      const getNovelName = new Popup({
+      const getNovelName = new wl.Popup({
         type: "prompt",
         messeage: "小説名を入力…",
         complete: novel.getNovelList()
@@ -241,7 +241,7 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
   }
 
   static getNovelList() {
-      return Array.from(glob.sync(path.join(config.get("bookshalf"),"*","index.yml"))).map((index) =>
+      return Array.from(glob.sync(path.join(wl.config.get("bookshalf"),"*","index.yml"))).map((index) =>
         path.basename(path.dirname(index)));
     }
 
@@ -251,7 +251,7 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
 
   static saveIndex() {
     return fs.writeFile(path.join(opened.novel.path, "index.yml"), YAML.dump(novelIndex), function(e){
-      if (e != null) { return new Popup({messeage: e}); }
+      if (e != null) { return new wl.Popup({messeage: e}); }
     });
   }
 
@@ -259,11 +259,11 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
     if (name) {
       const index = {
         name,
-        author: config.get("user-name"),
+        author: wl.config.get("user-name"),
         metadata: ["プロット"],
         chapter: []
       };
-      const novelpath = path.join(config.get("bookshalf"), name);
+      const novelpath = path.join(wl.config.get("bookshalf"), name);
 
       if (!mkdirp.sync(path.join(novelpath, "body")) &&
           !mkdirp.sync(path.join(novelpath, "metadata"))) {
@@ -271,7 +271,7 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
         return novel.openNovel(name);
       }
     } else {
-      const p = new Popup({
+      const p = new wl.Popup({
         type: "prompt",
         messeage: "小説名を入力…"
       });
@@ -283,10 +283,3 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
 }
 
 novel.initClass();
-
-const Popup    = require('./popup');
-const menu     = require('./menu');
-const editor   = require('./editor');
-const lastedit = require('./lastedit');
-const config   = require('./config');
-const counter  = require('./counter');

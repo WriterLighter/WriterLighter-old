@@ -28,7 +28,7 @@ const search = module.exports = class {
     }
     isHidden = false;
 
-    return editor.setAutoHighlighter("search" ,{rule: search.getSearchRegExp(keyword, options)});
+    return wl.editor.setAutoHighlighter("search" ,{rule: search.getSearchRegExp(keyword, options)});
   }
 
   static getSearchRegExp(keyword, options, setForm){
@@ -87,4 +87,3 @@ for (let name in $options) {
   $checkBox.on("change", handleSearchFormChange);
 }
 
-const editor = require('./editor');

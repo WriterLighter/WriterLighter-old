@@ -97,10 +97,10 @@ const _onchange = function() {
       }
     }
 
-    counter.count();
+    wl.counter.count();
     previousInput = src;
-    return saveTimeout = setTimeout(novel.save
-    , !isNaN(config.get("saveTimeout")) ? config.get("saveTimeout") : 3000);
+    return saveTimeout = setTimeout(wl.novel.save
+    , !isNaN(wl.config.get("saveTimeout")) ? wl.config.get("saveTimeout") : 3000);
   }
 };
 
@@ -291,7 +291,7 @@ const editor = module.exports = class {
   }
 
   static clearWindowName() {
-    const opened = novel.getOpened();
+    const opened = wl.novel.getOpened();
     return document.title = `${opened.chapter.name} - ${opened.novel.name} | WriterLighter`;
   }
 
@@ -338,11 +338,6 @@ $input.on("paste", function(e){
     e.originalEvent.clipboardData.getData("text/plain"));
 });
 
-const Popup   = require("./popup");
-const novel   = require("./novel");
-const counter = require("./counter");
-const config  = require("./config");
-
-novel.on("savedChapter", () => edited = false);
-
-novel.on("openedChapter", () => edited = false);
+// FIXME
+//wl.novel.on("savedChapter", () => edited = false);
+//wl.novel.on("openedChapter", () => edited = false);
