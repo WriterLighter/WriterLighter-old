@@ -76,6 +76,31 @@ const search = module.exports = class {
       return result;
     })();
   }
+
+  static focus(index){
+    const $wrapper = $(wl.editor.getWrapper());
+    focusing = index;
+    let properties;
+    const $highlight = $(wl.editor.getHighlightElement("search"))
+      .children("mark")
+      .removeClass("focused")
+      .eq(index)
+      .addClass("focused")
+
+    const highlightPosition = $highlight.position();
+
+    for(let direction in highlightPosition){
+      const size = direction === "top" ? "height" : "width";
+      const scrollDirection = `scroll${direction[0].toUpperCase()}${direction.slice(1)}`;
+      const scroll = $wrapper[scrollDirection]();
+      if(
+        scroll > highlightPosition[direction]
+        || scroll + $wrapper[size]() < highlightPosition[direction] + $highlight[size]()
+      ) {
+        $wrapper[scrollDirection](highlightPosition[direction] - $wrapper[size]() / 2);
+      }
+    }
+  }
 };
 
 const handleSearchFormChange = e => search.search();
