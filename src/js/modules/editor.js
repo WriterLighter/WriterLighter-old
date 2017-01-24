@@ -319,6 +319,10 @@ const editor = module.exports = class {
   static getInputElement() {
     return $input[0];
   }
+
+  static getWrapper() {
+    return $wrapper[0];
+  }
     
   static getBeforeCaret() {
     return beforeCaret;
