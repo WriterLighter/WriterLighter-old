@@ -316,7 +316,7 @@ const editor = module.exports = class {
     return edited;
   }
 
-  static getDOMObject() {
+  static getInputElement() {
     return $input[0];
   }
     
