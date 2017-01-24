@@ -193,6 +193,7 @@ button,
   flex-grow: 1;
   position: relative;
   box-sizing: border-box;
+  overflow: auto;
   &.vertical{
     min-height: auto;
     height: calc(100% -  #{$scrollbar-width});
