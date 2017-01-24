@@ -290,6 +290,14 @@ const editor = module.exports = class {
     }
   }
 
+  static getHighlightElement(id){
+    if(id == null || id === "all"){
+      return  highlightElements;
+    } else{
+      return highlightElements[id];
+    }
+  }
+
   static clearWindowName() {
     const opened = wl.novel.getOpened();
     return document.title = `${opened.chapter.name} - ${opened.novel.name} | WriterLighter`;
