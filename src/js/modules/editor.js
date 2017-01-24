@@ -346,7 +346,7 @@ $input.on("keydown", e=> pressedKey = e.keyCode);
 $input.on("paste", function(e){
   e.preventDefault();
 
-  return document.execCommand("insertHTML", false,
+  return document.execCommand("insertText", false,
     e.originalEvent.clipboardData.getData("text/plain"));
 });
 
