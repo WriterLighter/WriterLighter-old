@@ -131,7 +131,7 @@ textarea
   padding: 5px;
   overflow: visible;
   vertical-align: middle;
-  background: transparent;
+  background: rgba(0,0,0,.1);
   &.input-group-begin{
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
