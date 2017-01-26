@@ -1,5 +1,5 @@
 "use strict"
-const focusing      = 0;
+let focusing      = 0;
 const $searchInput  = $("#search-input");
 const $searchResult = $("#search-result");
 
@@ -76,11 +76,48 @@ const search = module.exports = class {
       return result;
     })();
   }
+
+  static focus(index){
+    const $highlights = $(wl.editor.getHighlightElement("search"))
+      .children("mark");
+    if(index === "next"){
+      this.focus((focusing + 1) % $highlights.length);
+      return;
+    } else if(index === "back"){
+      this.focus((focusing - 1 < 0 ? $highlights.length: focusing) - 1)
+      return;
+    }
+
+    const $wrapper = $(wl.editor.getWrapper());
+    focusing = index;
+    let properties;
+    const $highlight = $highlights
+      .removeClass("focused")
+      .eq(index)
+      .addClass("focused")
+
+    const highlightPosition = $highlight.position();
+
+    for(let direction in highlightPosition){
+      const size = direction === "top" ? "height" : "width";
+      const scrollDirection = `scroll${direction[0].toUpperCase()}${direction.slice(1)}`;
+      const scroll = $wrapper[scrollDirection]();
+      if(
+        scroll > highlightPosition[direction]
+        || scroll + $wrapper[size]() < highlightPosition[direction] + $highlight[size]()
+      ) {
+        $wrapper[scrollDirection](highlightPosition[direction] - $wrapper[size]() / 2);
+      }
+    }
+  }
 };
 
 const handleSearchFormChange = e => search.search();
 
 $searchInput.on("input", handleSearchFormChange);
+
+$("#search-focus-next").on("click", () => wl.search.focus("next"));
+$("#search-focus-back").on("click", () => wl.search.focus("back"));
 
 for (let name in $options) {
   const $checkBox = $options[name];

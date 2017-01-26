@@ -26,19 +26,21 @@
 
       <main>
         <div id="search">
-          <section id="search-field">
+          <section id="search-field" class="flex-container">
             <input type="search" id="search-input"
-            class="input-group-begin"
+            class="input-group-begin stretch"
             placeholder="…を検索"><span
             id="search-result"></span><input
             type="checkbox" id="search-in-regexp"
+            data-button-value=". *"
             class="btn input-group-while"></button><input
             type="checkbox" id="search-match-case"
+            data-button-value="aA"
             class="btn input-group-end"></button>
 
-            <button id="search-focus-next"
-            class="input-group-while"></button><button
-            id="search-focus-back" class="input-group-end"></button>
+            <button id="search-focus-back"
+            class="input-group-begin">←</button><button
+            id="search-focus-next" class="input-group-end">→</button>
           </section>
           <section id="replace-field">
             <input id="replace-input" type="text" placeholder="…に置換">

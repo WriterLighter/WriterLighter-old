@@ -290,6 +290,14 @@ const editor = module.exports = class {
     }
   }
 
+  static getHighlightElement(id){
+    if(id == null || id === "all"){
+      return  highlightElements;
+    } else{
+      return highlightElements[id];
+    }
+  }
+
   static clearWindowName() {
     const opened = wl.novel.getOpened();
     return document.title = `${opened.chapter.name} - ${opened.novel.name} | WriterLighter`;
@@ -308,8 +316,12 @@ const editor = module.exports = class {
     return edited;
   }
 
-  static getDOMObject() {
+  static getInputElement() {
     return $input[0];
+  }
+
+  static getWrapper() {
+    return $wrapper[0];
   }
     
   static getBeforeCaret() {
@@ -334,7 +346,7 @@ $input.on("keydown", e=> pressedKey = e.keyCode);
 $input.on("paste", function(e){
   e.preventDefault();
 
-  return document.execCommand("insertHTML", false,
+  return document.execCommand("insertText", false,
     e.originalEvent.clipboardData.getData("text/plain"));
 });
 
