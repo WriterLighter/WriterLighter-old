@@ -13,8 +13,7 @@ a,
 }
 
 :focus{
-    outline:none;
-    box-shadow: 0 0 7px 3px $color-highlight-lightblue;
+  outline: #44f solid 1px;
 }
 
 ::-webkit-scrollbar {
