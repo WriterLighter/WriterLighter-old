@@ -181,6 +181,15 @@ button,
   box-shadow: 0 0 .2em .2em rgba(101, 255, 0, .5) inset;
 }
 
+.flex-container{
+  display: flex;
+}
+
+.stretch{
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
 #search{
   height: 0;
   transition: .2s;
