@@ -78,11 +78,20 @@ const search = module.exports = class {
   }
 
   static focus(index){
+    const $highlights = $(wl.editor.getHighlightElement("search"))
+      .children("mark");
+    if(index === "next"){
+      this.focus((focusing + 1) % $highlights.length);
+      return;
+    } else if(index === "back"){
+      this.focus((focusing - 1 < 0 ? $highlights.length: focusing) - 1)
+      return;
+    }
+
     const $wrapper = $(wl.editor.getWrapper());
     focusing = index;
     let properties;
-    const $highlight = $(wl.editor.getHighlightElement("search"))
-      .children("mark")
+    const $highlight = $highlights
       .removeClass("focused")
       .eq(index)
       .addClass("focused")
