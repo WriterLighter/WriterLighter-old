@@ -116,6 +116,9 @@ const handleSearchFormChange = e => search.search();
 
 $searchInput.on("input", handleSearchFormChange);
 
+$("#search-focus-next").on("click", () => wl.search.focus("next"));
+$("#search-focus-back").on("click", () => wl.search.focus("back"));
+
 for (let name in $options) {
   const $checkBox = $options[name];
   $checkBox.on("change", handleSearchFormChange);
