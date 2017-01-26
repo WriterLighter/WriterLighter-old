@@ -173,6 +173,10 @@ button,
   }
 }
 
+.btn[data-button-value]:before{
+  content: attr(data-button-value);
+}
+
 .btn:checked{
   box-shadow: 0 0 .2em .2em rgba(101, 255, 0, .5) inset;
 }
