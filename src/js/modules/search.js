@@ -3,6 +3,8 @@ let focusing      = 0;
 const $searchInput  = $("#search-input");
 const $searchResult = $("#search-result");
 
+const $replaceInput = $("#replace-input")
+
 let isHidden = true;
 
 const $search   = $("#search");
@@ -109,6 +111,56 @@ const search = module.exports = class {
         $wrapper[scrollDirection](highlightPosition[direction] - $wrapper[size]() / 2);
       }
     }
+  }
+
+  static replace(replacement, all=false){
+    isHidden = false;
+    $sections.replace.css({display: ""});
+    $sections.search.css({display: ""});
+    $search.animate({height: $sections.replace.position().top +
+      $sections.replace.innerHeight()
+    });
+    setTimeout(() => $search.css({height: "auto"})
+    , parseFloat($search.css("transition-duration")) * 1000);
+
+    const query = this.getSearchRegExp();
+    if(!query) return; 
+    const src = wl.editor.getText();
+    const typeOfReplacement = ({}).toString.call(replacement);
+    let times = -1;
+
+    wl.editor.setText(wl.editor.getText().replace(query, (...args) => {
+      if(++times === focusing || all){
+        switch(typeOfReplacement){
+          case "[object String]":
+            return replacement.replace(/\$([$&`']|[0-9]+)/, (m, $0) => {
+              if (isNaN($0)) {
+                switch ($0) {
+                  case "$":
+                    return "$";
+                  case "&":
+                    return args[0];
+                  case "`":
+                    return src.slice(0, args[args.length - 2]);
+                  case "'":
+                    return src.slice(args[args.length - 2] + args[0].length);
+                }
+              } else {
+                return args[$0] != null ? args[$0] : "";
+              }
+            })
+
+          case "[object Function]":
+            return replacement(...args);
+
+          default:
+            return args[0];
+        }
+      } else {
+        return args[0];
+      }
+    }))
+    wl.search.focus(focusing);
   }
 };
 
