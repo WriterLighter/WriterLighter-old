@@ -92,6 +92,9 @@ appmenu:
       - label: "検索"
         accelerator: "CmdOrCtrl+F"
         command: "search"
+      - label: "置換"
+        accelerator: "CmdOrCtrl+H"
+        command: "replace"
 
   - label: "コマンド"
     submenu:
