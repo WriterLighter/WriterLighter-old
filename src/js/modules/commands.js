@@ -55,6 +55,9 @@ module.exports = {
   search() {
     return wl.search.search();
   },
+  replace(){
+    return wl.search.replace();
+  },
   next_chapter() {
     return wl.novel.openChapter("next");
   },
