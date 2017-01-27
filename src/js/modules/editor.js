@@ -201,10 +201,7 @@ const editor = module.exports = class {
         while (((match = rule.exec(src)) != null) && (rule.global || indices.length === 0)) {
           indices.push(createHighlight(match, highlight.message));
         }
-      } else {
-        return;
       }
-
       return editor.highlight(id, indices);
     };
 
