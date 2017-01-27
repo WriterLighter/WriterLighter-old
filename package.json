@@ -30,7 +30,7 @@
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.2",
-    "gulp-filter": "^4.0.0",
+    "gulp-filter": "^5.0.0",
     "gulp-gzip": "^1.4.0",
     "gulp-if": "^2.0.2",
     "gulp-install": "^0.6.0",
@@ -39,8 +39,8 @@
     "gulp-plist": "^0.1.0",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.0.0",
-    "gulp-sourcemaps": "^2.2.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.0",
     "gulp-tar": "^1.9.0",
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.1.2",
@@ -55,12 +55,12 @@
     "cheerio-httpcli": "^0.6.10",
     "coffee-script": "^1.12.2",
     "eventemitter2": "^2.2.1",
-    "fs-extra": "^1.0.0",
+    "fs-extra": "^2.0.0",
     "glob": "^7.1.1",
     "html5sortable": "^0.4.3",
     "jquery": "^3.1.1",
     "js-yaml": "^3.7.0",
     "mkdirp": "^0.5.1",
-    "sass.js": "^0.10.0"
+    "sass.js": "^0.10.3"
   }
 }
