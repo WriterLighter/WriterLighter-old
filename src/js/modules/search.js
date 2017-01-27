@@ -30,7 +30,8 @@ const search = module.exports = class {
     }
     isHidden = false;
 
-    return wl.editor.setAutoHighlighter("search" ,{rule: search.getSearchRegExp(keyword, options)});
+    wl.editor.setAutoHighlighter("search" ,{rule: search.getSearchRegExp(keyword, options)});
+    this.focus(0);
   }
 
   static getSearchRegExp(keyword, options, setForm){
