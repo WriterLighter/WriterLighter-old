@@ -1,5 +1,7 @@
 # WriterLighter
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/WriterLighter/WriterLighter.svg)](https://greenkeeper.io/)
+
 [![dependencies Status](https://david-dm.org/writerlighter/writerlighter/status.svg)](https://david-dm.org/writerlighter/writerlighter) [![devDependencies Status](https://david-dm.org/writerlighter/writerlighter/dev-status.svg)](https://david-dm.org/writerlighter/writerlighter?type=dev)
 
 最高の、執筆環境を。  
