@@ -85,6 +85,23 @@ const search = module.exports = class {
   static focus(index){
     const $highlights = $(wl.editor.getHighlightElement("search"))
       .children("mark");
+
+    if(!$highlights.length){
+      $searchResult.text(0);
+      $searchResult.css({color: "red"});
+      return;
+    } else {
+      $searchResult.css({color: ""});
+    }
+
+    if(index == null){
+      focusing = -1;
+      $searchResult.text($highlights.length);
+      return;
+    }
+
+    $searchResult.text(`${index + 1}/${$highlights.length}`);
+
     if(index === "next"){
       this.focus((focusing + 1) % $highlights.length);
       return;
