@@ -89,8 +89,10 @@ const _onchange = function() {
     }
     (saveTimeout != null) && clearTimeout(saveTimeout);
 
+    const doSmartIndent = wl.config.get("smartindent");
     if (pressedKey === 13 &&
-    src.split("\n").length > previousInput.split("\n").length) {
+    src.split("\n").length > previousInput.split("\n").length &&
+    (doSmartIndent != null ? doSmartIndent : true)) {
 
       const match = beforeCaret.match(/^[ 　\t]+/gm);
       if (match != null) {
