@@ -74,8 +74,6 @@ const htmlEscape = function(src) {
 };
 
 const _onchange = function() {
-  updateBeforeCaret();
-
   src = editor.getText();
   if (src !== previousInput) {
     $highlightBase[0].innerText = src;
