@@ -1,4 +1,6 @@
 "use strict"
+const wlApp = require("./app");
+
 let focusing      = 0;
 const $searchInput  = $("#search-input");
 const $searchResult = $("#search-result");
@@ -183,3 +185,5 @@ for (let name in $options) {
   $checkBox.on("change", handleSearchFormChange);
 }
 
+wlApp.on("ready", () =>
+  wl.editor.on("change", () => search.focus()));
