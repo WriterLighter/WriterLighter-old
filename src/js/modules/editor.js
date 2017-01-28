@@ -102,8 +102,10 @@ const _onchange = function() {
 
     wl.counter.count();
     previousInput = src;
-    return saveTimeout = setTimeout(wl.novel.save
+    saveTimeout = setTimeout(wl.novel.save
     , !isNaN(wl.config.get("saveTimeout")) ? wl.config.get("saveTimeout") : 3000);
+
+    editor.emitter.emit("change");
   }
 };
 
