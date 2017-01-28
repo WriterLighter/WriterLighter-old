@@ -25,6 +25,7 @@ window.WriterLighter = window.wl = {
   },
 
   quiting() {
+    wl.app.emit("quit");
     if (wl.editor.isEdited()) { wl.novel.save(); }
     wl.lastedit.save();
     wl.config.save();
