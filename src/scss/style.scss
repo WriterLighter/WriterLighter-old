@@ -197,8 +197,9 @@ button,
 }
 
 #search-result{
-  display: inline-block;
-  transform: translateX(-100%);
+  font-family: monospace;
+  align-self: center;
+  font-weight: bold;
 }
 
 #editor-wrap{
