@@ -1,6 +1,7 @@
 "use strict"
 window.WriterLighter = window.wl = {
   // WriterLighter modules (alphabetical order).
+  app:       require('./modules/app'),
   command:   require('./modules/command'),
   config:    require('./modules/config'),
   counter:   require('./modules/counter'),
