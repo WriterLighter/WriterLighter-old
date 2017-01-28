@@ -1,5 +1,8 @@
 "use strict"
 const currentWindow = require("electron").remote.getCurrentWindow();
+const EventEmitter2 = require("eventemitter2");
+
+const wlApp = require("./app");
 
 const $input = $("#input-text");
 const $wrapper = $("#editor-wrap");
@@ -334,7 +337,15 @@ const editor = module.exports = class {
   }
 }
 
-$input.on("keydown keyup click", updateBeforeCaret);
+editor.emitter = new EventEmitter2;
+editor.on = (...args) => editor.emitter.on(...args);
+
+$input.on("selectionchange", e => {
+  if($input.is(document.activeElement)){
+    updateBeforeCaret();
+    editor.emitter.emit("selectionchange");
+  }
+});
 
 $input.on("input", _onchange);
 
