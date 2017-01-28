@@ -355,11 +355,21 @@ $input.on("keydown", e=> pressedKey = e.keyCode);
 
 $input.on("paste", function(e){
   e.preventDefault();
+  const text = e.originalEvent.clipboardData.getData("text/plain");
+  editor.emitter.emit("paste", text);
 
-  return document.execCommand("insertText", false,
-    e.originalEvent.clipboardData.getData("text/plain"));
+  return document.execCommand("insertText", false, text);
 });
 
-// FIXME
-//wl.novel.on("savedChapter", () => edited = false);
-//wl.novel.on("openedChapter", () => edited = false);
+$input.on("copy", e =>{
+  e.preventDefault();
+  const text = document.getSelection().toString();
+  editor.emitter.emit("copy", text);
+
+  e.originalEvent.clipboardData.setData("text/plain", text);
+})
+
+wlApp.on("ready", ()=>{
+  wl.novel.on("savedChapter", () => edited = false);
+  wl.novel.on("openedChapter", () => edited = false);
+});
