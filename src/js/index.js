@@ -20,7 +20,8 @@ window.WriterLighter = window.wl = {
     wl.config.load();
     wl.menu.load();
     wl.extension.load();
-    return wl.lastedit.restore();
+    wl.lastedit.restore();
+    wl.app.emit("ready");
   },
 
   quiting() {
