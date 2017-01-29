@@ -313,6 +313,27 @@ main{
   }
 }
 
+#novel{
+  background: $theme-color;
+  margin: .5em 0;
+  color: #fff;
+}
+
+#novelname{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.5em;
+  margin: .5em;
+  font-weight: normal;
+}
+
+#open-novel{
+  align-self: flex-end;
+	font-size: .7em;
+	flex-shrink: 0;
+}
+
 #statusbar{
   padding: 0;
   margin: 0;
