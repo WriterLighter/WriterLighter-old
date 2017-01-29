@@ -297,7 +297,7 @@ main{
     li{
       &.opened {
         background: rgba(0,0,0,.1);
-        color: $color-highlight-lightblue;
+        color: lighten($theme-color, 20%);
       }
       cursor: default;
       margin: 0;
