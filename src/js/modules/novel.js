@@ -24,6 +24,8 @@ let chapterList  = {
   body: $("#chapter-list-body"),
   metadata: $("#chapter-list-metadata")
 };
+const $novelName = $("#novelname");
+
 
 for (let type in chapterList) {
   const $el = chapterList[type];
@@ -223,6 +225,7 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
         path: path.join(wl.config.get("bookshalf"), name)
       };
       novelIndex = YAML.load(fs.readFileSync(path.join(opened.novel.path,"index.yml"),"utf-8"));
+      $novelName.text(name);
       novel.reloadChapterList();
       novel.emitter.emit("openedNovel");
       if (!novelIndex.body.length) {
