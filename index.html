@@ -18,9 +18,16 @@
 
       <!-- Chapter List Pane -->
       <div id="pane-east" class="pane">
-        <div id="novel" class="flex-container">
-          <h1 id="novelname" class="stretch"></h1>
-          <button id="open-novel">開く</button>
+        <div id="novel">
+          <div id="openednovel" class="flex-container">
+            <h1 id="novelname" class="stretch novelnames"></h1>
+            <button id="open-novel">開く</button>
+          </div>
+          <div id="selectnovel">
+            <input type="seaech" placeholder="小説名を入力…"
+              id="inputNovelName">
+            <ul id="novelList"></ul>
+          </div>
         </div>
         <div id="chapter">
           <ol id="chapter-list-body"></ol>
