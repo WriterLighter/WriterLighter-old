@@ -337,6 +337,18 @@ const editor = module.exports = class {
   static redo() {
     return document.execCommand("redo");
   }
+
+  static select(selections) {
+    if(!selections.length) return;
+    editor.setText(editor.getText());
+    getSelection().removeAllRanges();
+    const textNode = $input[0].childNodes[0];
+    const range = document.createRange();
+    range.setStart(textNode, selections[0].start);
+    range.setEnd(textNode, selections[0].end);
+    getSelection().addRange(range);
+    editor.emitter.emit("selectionchange");
+  }
 }
 
 editor.emitter = new EventEmitter2;
