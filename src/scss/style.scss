@@ -317,15 +317,15 @@ main{
   background: $theme-color;
   margin: .5em 0;
   color: #fff;
-}
-
-#novelname{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 1.5em;
-  margin: .5em;
-  font-weight: normal;
+  .novelnames{
+    line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.5em;
+    margin: .5em;
+    font-weight: normal;
+  }
 }
 
 #open-novel{
