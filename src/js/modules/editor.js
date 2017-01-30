@@ -354,7 +354,7 @@ const editor = module.exports = class {
 editor.emitter = new EventEmitter2;
 editor.on = (...args) => editor.emitter.on(...args);
 
-$input.on("selectionchange", e => {
+$(document).on("selectionchange", e => {
   if($input.is(document.activeElement)){
     updateBeforeCaret();
     editor.emitter.emit("selectionchange");
