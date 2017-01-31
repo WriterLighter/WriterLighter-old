@@ -183,6 +183,10 @@ module.exports = class layout {
     }
   }
 
+  static getPaneElement(pane){
+    return panes[pane][0];
+  }
+
   static setMode(mode) {
     switch (mode) {
       case "default":
