@@ -321,6 +321,7 @@ main{
   background: $theme-color;
   margin: .5em 0;
   color: #fff;
+  transition: .2s;
   .novelnames{
     line-height: 1;
     white-space: nowrap;
@@ -332,10 +333,52 @@ main{
   }
 }
 
+#openednovel {
+  transition: inherit;
+	height: 3em;
+	transition: .2s;
+	overflow: hidden;
+	align-items: flex-end;
+}
+
 #open-novel{
-  align-self: flex-end;
 	font-size: .7em;
 	flex-shrink: 0;
+}
+
+#selectnovel{
+  transition: inherit;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#pane-east.selectingnovel{
+  overflow: hidden;
+  #novel{
+    margin: 0;
+    height: 100%;
+  }
+  #openednovel{
+    height: 0;
+    opacity: 0;
+  }
+  #selectnovel{
+    height: 100%;
+    opacity: 100;
+  }
+}
+
+#closeselectnovel{
+  align-self: flex-end;
+}
+
+#novelList{
+  flex-grow: 1;
+  list-style: none;
+  padding: 0;
 }
 
 #statusbar{
