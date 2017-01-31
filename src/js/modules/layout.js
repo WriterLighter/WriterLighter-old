@@ -91,8 +91,7 @@ const getTargetPane = function(pane) {
   } else { return panes[pane]; }
 };
 
-module.exports = layoutMode = undefined;
-class layout {
+module.exports = class layout {
   static resizePane(pane, size, option){
     if (pane == null) { pane = "all"; }
     if (size == null) { size = 0; }
