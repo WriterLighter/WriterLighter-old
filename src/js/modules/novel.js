@@ -224,6 +224,7 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
 
   static openNovel(name) {
     if ((name != null) && name !== "") {
+      novel.closeSelectNovel();
       opened.novel = {
         name,
         path: path.join(wl.config.get("bookshalf"), name)
@@ -245,6 +246,10 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
           .text(n)));
       $novelList.empty().append($f);
     }
+  }
+
+  static closeSelectNovel(){
+    $(wl.layout.getPaneElement("east")).removeClass("selectingnovel");
   }
 
   static getNovelList() {
