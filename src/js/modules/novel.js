@@ -295,3 +295,9 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
 }
 
 novel.initClass();
+
+$openNovel.on("click", e => novel.openNovel())
+$closeSelectNovel.on("click", e => novel.closeSelectNovel());
+
+$novelList.on("click", ".novelnames", e=>
+  novel.openNovel(e.target.dataset.novelname));
