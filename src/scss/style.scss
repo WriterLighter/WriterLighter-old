@@ -372,6 +372,10 @@ main{
     height: 100%;
     opacity: 100;
   }
+  .novelnames:hover{
+    cursor: pointer;
+    background: rgba(255, 255, 255, .4);
+  }
 }
 
 #closeselectnovel{
