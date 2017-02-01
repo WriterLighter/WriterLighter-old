@@ -26,6 +26,10 @@ let chapterList  = {
 };
 const $novelName = $("#novelname");
 
+const $openNovel = $("#open-novel");
+const $closeSelectNovel = $("#closeselectnovel");
+const $novelList = $("#novelList");
+
 
 for (let type in chapterList) {
   const $el = chapterList[type];
@@ -234,12 +238,12 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
         return novel.openChapter(1, "body");
       }
     } else {
-      const getNovelName = new wl.Popup({
-        type: "prompt",
-        messeage: "小説名を入力…",
-        complete: novel.getNovelList()
-      });
-      return getNovelName.on("hide", novel.openNovel);
+      $(wl.layout.getPaneElement("east")).addClass("selectingnovel");
+      const $f = $(document.createDocumentFragment());
+      novel.getNovelList().forEach(n =>
+        $f.append($(`<li class='novelnames' data-novelname="${n}">`)
+          .text(n)));
+      $novelList.empty().append($f);
     }
   }
 
