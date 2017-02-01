@@ -328,8 +328,11 @@ main{
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 1.5em;
-    margin: .5em;
+    padding: .5em;
+    margin: 0;
     font-weight: normal;
+    border-radius: .2em;
+    transition: .2s;
   }
 }
 
