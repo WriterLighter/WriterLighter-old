@@ -249,6 +249,23 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
     }
   }
 
+  static searchNovel(name){
+    if (name != null) {
+      $inputNovelName.val(name);
+    } else {
+      name = $inputNovelName.val();
+    }
+
+    const $f = $(document.createDocumentFragment());
+    novel.getNovelList()
+      .filter(n => n.includes(name))
+      .forEach(n =>
+        $(`<li class='novelnames' data-novelname="${n}">`)
+          .text(n)
+          .appendTo($f));
+    $novelList.empty().append($f);
+  }
+
   static closeSelectNovel(){
     $(wl.layout.getPaneElement("east")).removeClass("selectingnovel");
   }
