@@ -29,6 +29,7 @@ const $novelName = $("#novelname");
 const $openNovel = $("#open-novel");
 const $closeSelectNovel = $("#closeselectnovel");
 const $novelList = $("#novelList");
+const $inputNovelName = $("#inputNovelName");
 
 
 for (let type in chapterList) {
