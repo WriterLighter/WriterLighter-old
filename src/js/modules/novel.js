@@ -316,3 +316,5 @@ $closeSelectNovel.on("click", e => novel.closeSelectNovel());
 
 $novelList.on("click", ".novelnames", e=>
   novel.openNovel(e.target.dataset.novelname));
+
+$inputNovelName.on("input", e => novel.searchNovel())
