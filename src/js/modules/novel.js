@@ -241,11 +241,8 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
       }
     } else {
       $(wl.layout.getPaneElement("east")).addClass("selectingnovel");
-      const $f = $(document.createDocumentFragment());
-      novel.getNovelList().forEach(n =>
-        $f.append($(`<li class='novelnames' data-novelname="${n}">`)
-          .text(n)));
-      $novelList.empty().append($f);
+      novel.searchNovel();
+      $inputNovelName[0].focus();
     }
   }
 
