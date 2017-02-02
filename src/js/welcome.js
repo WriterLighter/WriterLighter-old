@@ -1,6 +1,6 @@
 "use strict"
 let jQuery;
-const $ = jQuery     = require("./js/jquery.min");
+const $ = jQuery     = require("jquery");
 const YAML           = require("js-yaml");
 const electron       = require('electron');
 const { app }            = electron.remote;
