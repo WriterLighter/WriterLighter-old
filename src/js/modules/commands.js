@@ -26,7 +26,7 @@ module.exports = {
     return wl.editor.setMode("intensive");
   },
   ["toggle-editmode"]() {
-    return wl.editor.toggleMode();
+    return wl.layout.toggleMode();
   },
   ["toggle-devtools"]() {
     return remote.getCurrentWindow().toggleDevTools();
@@ -40,7 +40,7 @@ module.exports = {
   ["new-novel"]() {
     return wl.novel.newNovel();
   },
-  ["new-chapter"]) {
+  ["new-chapter"]() {
     return wl.novel.newChapter();
   },
   ["rename-chapter"]() {

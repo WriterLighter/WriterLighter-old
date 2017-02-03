@@ -4,37 +4,37 @@ appmenu:
 
       - label: "小説を開く"
         accelerator: "CmdOrCtrl+Shift+O"
-        command: "open_novel"
+        command: "open-novel"
 
       - label: "章を開く"
         accelerator: "CmdOrCtrl+O"
-        command: "open_chapter"
+        command: "open-chapter"
 
       - label: "次の章を開く"
         accelerator: "CmdOrCtrl+J"
-        command: "next_chapter"
+        command: "next-chapter"
 
       - label: "前の章を開く"
         accelerator: "CmdOrCtrl+K"
-        command: "back_chapter"
+        command: "back-chapter"
 
       - label: "章名の変更"
-        command: "rename_chapter"
+        command: "rename-chapter"
         accelerator: "CmdOrCtrl+Shift+R"
 
       - label: "章を削除"
-        command: "delete_chapter"
+        command: "delete-chapter"
         accelerator: "CmdOrCtrl+Shift+D"
 
       - type: "separator"
 
       - label: "新規小説作成"
         accelerator: "CmdOrCtrl+Shift+N"
-        command: "new_novel"
+        command: "new-novel"
 
       - label: "新規章作成"
         accelerator: "CmdOrCtrl+N"
-        command: "new_chapter"
+        command: "new-chapter"
 
       - type: "separator"
 
@@ -80,11 +80,11 @@ appmenu:
     submenu:
       - label: "超集中モード切り替え"
         accelerator: "F11"
-        command: "toggle_editmode"
+        command: "toggle-editmode"
           
       - label: "文字の方向切り替え"
         accelerator: "CmdOrCtrl+Shift+D"
-        command: "toggle_direction"
+        command: "toggle-direction"
 
 
   - label: "検索"
@@ -100,17 +100,17 @@ appmenu:
     submenu:
       - label: "コマンドパレット"
         accelerator: "CmdOrCtrl+Shift+P"
-        command: "command_palette"
+        command: "command-palette"
 
   - label: "開発者メニュー"
     submenu:
       - label: "開発者ツール"
-        command: "toggle_devtools"
+        command: "toggle-devtools"
         accelerator: "F12"
 
       - label: "リロード"
         accelerator: "CmdOrCtrl+R"
-        command: "reload_window"
+        command: "reload-window"
 
 context:
   main:
@@ -143,17 +143,17 @@ context:
     - type: "separator"
 
     - label: "要素の検証"
-      command: "inspect_element"
+      command: "inspect-element"
 
   chapter_list:
     - label: "開く"
-      command: "open_chapter"
+      command: "open-chapter"
 
     - label: "名前の変更"
-      command: "rename_chapter"
+      command: "rename-chapter"
 
     - label: "削除"
-      command: "delete_chapter"
+      command: "delete-chapter"
 
     - label: "新規章作成"
-      command: "new_chapter"
+      command: "new-chapter"
