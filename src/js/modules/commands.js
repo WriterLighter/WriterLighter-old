@@ -7,46 +7,46 @@ module.exports = {
   quit() {
     return app.quit();
   },
-  open_novel() {
+  ["open-novel"]() {
     return wl.novel.openNovel();
   },
-  open_chapter() {
+  ["open-chapter"]() {
     return wl.novel.openChapter();
   },
-  command_palette() {
+  ["command-palette"]() {
     return wl.command.palette();
   },
-  add_chapter() {
+  ["add-chapter"]() {
     return wl.novel.addChapter();
   },
-  editmode_def() {
+  ["editmode-default"]() {
     return wl.editor.setMode("default");
   },
-  editmode_int() {
+  ["editmode-intensive"]() {
     return wl.editor.setMode("intensive");
   },
-  toggle_editmode() {
+  ["toggle-editmode"]() {
     return wl.editor.toggleMode();
   },
-  toggle_devtools() {
+  ["toggle-devtools"]() {
     return remote.getCurrentWindow().toggleDevTools();
   },
-  reload_window() {
+  ["reload-window"]() {
     return remote.getCurrentWindow().reload();
   },
-  toggle_direction() {
+  ["toggle-direction"]() {
     return wl.editor.toggleDirection();
   },
-  new_novel() {
+  ["new-novel"]() {
     return wl.novel.newNovel();
   },
-  new_chapter() {
+  ["new-chapter"]) {
     return wl.novel.newChapter();
   },
-  rename_chapter() {
+  ["rename-chapter"]() {
     return wl.novel.renameChapter();
   },
-  delete_chapter() {
+  ["delete-chapter"]() {
     return wl.deleteChapter();
   },
   save() {
@@ -58,13 +58,13 @@ module.exports = {
   replace(){
     return wl.search.replace();
   },
-  next_chapter() {
+  ["next-chapter"]() {
     return wl.novel.openChapter("next");
   },
-  back_chapter() {
+  ["back-chapter"]() {
     return wl.novel.openChapter("back");
   },
-  inspect_element() {
+  ["inspect-element"]() {
     if ((typeof __menu !== 'undefined' && __menu !== null) && (__menu.contextMenuEvent != null)) {
       return __menu.browserWindow.inspectElement(__menu.contextMenuEvent.x, __menu.contextMenuEvent.y);
     } else {
