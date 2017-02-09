@@ -54,6 +54,32 @@ module.exports = menu = class menu {
     _TMP_CONTEXT_MENU_EVENT = event;
     return Menu.buildFromTemplate(menu.buildTemplate(cmenu)).popup();
   }
+
+  static marge(baseMenu, margeMenu) {
+    baseMenu = [...baseMenu];
+    margeMenu = [...margeMenu];
+
+    margeMenu.forEach(menuItem => {
+      const index = baseMenu.findIndex(
+        ({label}) => label === menuItem.label);
+
+      if(index !== -1) {
+        if(Array.isArray(baseMenu[index].submenu)
+        && Array.isArray(menuItem.submenu)) {
+          baseMenu[index].submenu =
+            menu.marge(baseMenu[index].submenu, menuItem.submenu);
+        }
+
+        delete menuItem.submenu;
+
+        baseMenu[index] = Object.assign({}, baseMenu[index], menuItem);
+      } else {
+        baseMenu.push(menuItem);
+      }
+    });
+
+    return baseMenu;
+  }
 }
 
 window.addEventListener("contextmenu", menu.showContextMenu);
