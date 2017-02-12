@@ -60,7 +60,7 @@ body{
   display: flex;
 }
 
-#popup{
+#prompt{
     margin: auto;
     left: 40px;
     right: 40px;
@@ -79,7 +79,7 @@ body{
       color: $color-letter;
       margin: 2px;
     }
-    &.show, &.toast:hover{
+    &.show{
         top: 0;
     }
 }
