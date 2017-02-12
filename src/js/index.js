@@ -11,7 +11,7 @@ window.WriterLighter = window.wl = {
   layout:    require('./modules/layout'),
   menu:      require('./modules/menu'),
   novel:     require('./modules/novel'),
-  Popup:     require('./modules/popup'),
+  Prompt:     require('./modules/prompt'),
   search:    require('./modules/search'),
   statusBar: require('./modules/statusbar'),
   theme:     require('./modules/theme'),
