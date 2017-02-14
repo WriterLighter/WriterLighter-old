@@ -50,6 +50,16 @@ module.exports = class Prompt extends EventEmitter2 {
   isOpened(){
     return opened === this;
   }
+
+  setComplete(completes) {
+    $f = $(document.createDocumentFragment());
+    complete.forEach(({text}) =>
+      $("<li>")
+        .text(text)
+        .appendTo($f));
+    $completeList.empty().append($f);
+    this.completes = completes;
+  }
 }
 
 $input.on("input", e => open && open.emit("update"));
