@@ -194,14 +194,14 @@ module.exports = class layout {
         $footer.show();
         currentWindow.setFullScreen(false);
         layoutMode = mode;
-        return new wl.Popup({messeage: "モード:標準"});
+        return new Notification("モード:標準");
   
       case "intensive":
         layout.hidePane("all");
         $footer.hide();
         currentWindow.setFullScreen(true);
         layoutMode = mode;
-        return new wl.Popup({messeage: "モード:超集中モード"});
+        return new Notification("モード:超集中モード");
     }
   }
   

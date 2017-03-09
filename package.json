@@ -23,9 +23,9 @@
   "homepage": "https://github.com/WriterLighter/WriterLighter#readme",
   "devDependencies": {
     "del": "^2.2.2",
-    "electron": "^1.4.15",
+    "electron": "^1.6.2",
     "electron-connect": "^0.6.1",
-    "electron-packager": "^8.5.1",
+    "electron-packager": "^8.5.2",
     "extend": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
@@ -42,7 +42,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.4.1",
     "gulp-tar": "^1.9.0",
-    "gulp-uglify": "^2.0.1",
+    "gulp-uglify": "^2.1.0",
     "gulp-useref": "^3.1.2",
     "gulp-util": "^3.0.8",
     "gulp-watch": "^4.3.11",
@@ -53,13 +53,13 @@
   "dependencies": {
     "accord": "^0.26.4",
     "cheerio-httpcli": "^0.6.11",
-    "coffee-script": "^1.12.3",
-    "eventemitter2": "^3.0.0",
+    "coffee-script": "^1.12.4",
+    "eventemitter2": "^3.0.2",
     "fs-extra": "^2.0.0",
     "glob": "^7.1.1",
-    "html5sortable": "^0.4.3",
+    "html5sortable": "^0.4.4",
     "jquery": "^3.1.1",
-    "js-yaml": "^3.8.1",
+    "js-yaml": "^3.8.2",
     "mkdirp": "^0.5.1",
     "sass.js": "^0.10.3"
   }
