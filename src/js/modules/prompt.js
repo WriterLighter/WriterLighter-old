@@ -59,6 +59,28 @@ module.exports = class Prompt extends EventEmitter2 {
         .appendTo($f));
     $completeList.empty().append($f);
     this.completes = completes;
+    this._focusedComplete = undefined;
+  }
+
+  getComplete () {
+    return this.completes;
+  }
+
+  focusComplete(index) {
+    $completeList.children(".opened").removeClass("opened");
+    const completes = this.getComplete();
+    const length = completes.length;
+    index = index % length;
+    if (index < 0)
+      index = length + index;
+    $completeList.children("li").eq(index).addClass("opened");
+    this._focusedComplete = index;
+    const value = completes[index]
+    this.setValue(typeof value === "string" ? value : value.value)
+  }
+
+  getFocusedComplete(){
+    return this._focusedComplete;
   }
 }
 
