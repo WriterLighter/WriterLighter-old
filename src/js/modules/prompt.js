@@ -24,7 +24,7 @@ module.exports = class Prompt extends EventEmitter2 {
 
   open(){
     if(open != null) throw new Error("Another prompt already opened.");
-    $messeage.html(this.message);
+    $message.html(this.message);
     this.emit("update", "");
     $prompt.addClass("open");
     open = this;
