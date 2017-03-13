@@ -52,10 +52,10 @@ module.exports = class Prompt extends EventEmitter2 {
   }
 
   setComplete(completes) {
-    $f = $(document.createDocumentFragment());
-    complete.forEach(({text}) =>
+    const $f = $(document.createDocumentFragment());
+    completes.forEach(v =>
       $("<li>")
-        .text(text)
+        .text(typeof v === "string" ? v : v.text)
         .appendTo($f));
     $completeList.empty().append($f);
     this.completes = completes;
