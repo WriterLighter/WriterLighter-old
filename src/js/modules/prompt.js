@@ -32,12 +32,11 @@ module.exports = class Prompt extends EventEmitter2 {
 
   close(){
     if(this !== open) throw new Error("The prompt is not opened");
-    if(this.emit("will-close")){
-      $input.off();
-      $prompt.removeClass("open");
-      $prompt.one("transitionend", () => this.emit("hide"));
-      open = null;
-    }
+    const value = this.getValue();
+    this.emit("will-close", value);
+    $prompt.removeClass("open");
+    $prompt.one("transitionend", () => this.emit("close", value));
+    open = null;
   }
 
   getValue(){
