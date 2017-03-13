@@ -87,10 +87,17 @@ module.exports = class Prompt extends EventEmitter2 {
 $input.on("input", e => open && open.emit("update"));
 
 $input.on("keydown", e => {
+  const focused = open.getFocusedComplete();
   if(open){
     switch(e.keyCode){
       case 13:
         open.close();
+        break;
+      case 38:
+        open.focusComplete(isNaN(focused) ? -1 : focused - 1);
+        break;
+      case 40:
+        open.focusComplete(isNaN(focused) ? 0 : focused + 1);
         break;
     }
   }
