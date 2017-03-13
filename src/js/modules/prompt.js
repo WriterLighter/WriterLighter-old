@@ -14,7 +14,8 @@ const defaultOptions = {
 let open;
 
 module.exports = class Prompt extends EventEmitter2 {
-  constructor(message, options) {
+  constructor(message, options={}) {
+    super();
     this.message = message;
     if(options.open !== false) {
       this.open();
