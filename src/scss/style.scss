@@ -79,9 +79,36 @@ body{
       color: $color-letter;
       margin: 2px;
     }
+    p {
+      margin: 0;
+    }
     &.open{
         top: 0;
     }
+}
+
+#prompt-complete-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  > li {
+    border: solid 1px #000;
+    background: rgba(255, 255, 255, .2);
+    padding: .5em;
+    &:not(first-child) {
+      border-top: none;
+    }
+    &:first-child {
+      border-radius: 3px 3px 0 0;
+    }
+    &:last-child {
+      border-radius: 0 0 3px 3px;
+    }
+    &.opened {
+      color: $color-highlight-lightblue;
+      background: rgba(255, 255, 255, .5);
+    }
+  }
 }
 
 input,
