@@ -8,7 +8,12 @@ const $error = $("#prompt-error");
 const $completeList = $("#prompt-complete-list");
 
 const defaultOptions = {
-  open: true
+  open: true,
+  completes: [],
+  filter: (complete, value) =>
+    typeof complete === "string" ? complete.includes(value) :
+      complete.text.includes(value) || complete.value.includes(value),
+  validate: /(?:)/
 }
 
 let open;
