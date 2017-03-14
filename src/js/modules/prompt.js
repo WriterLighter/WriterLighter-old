@@ -93,7 +93,13 @@ module.exports = class Prompt extends EventEmitter2 {
   }
 }
 
-$input.on("input", e => open && open.emit("update"));
+$input.on("input", e => {
+  if(!open) return;
+  const value = open.getValue();
+  open.emit("update", value);
+  open.setComplete(open.options.complete.filter(complete =>
+    open.options.filter(complete, value)));
+});
 
 $input.on("keydown", e => {
   const focused = open.getFocusedComplete();
