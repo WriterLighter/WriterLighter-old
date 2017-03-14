@@ -42,6 +42,7 @@ module.exports = class Prompt extends EventEmitter2 {
     const value = this.getValue();
     this.emit("will-close", value);
     $prompt.removeClass("open");
+    this.setValue("");
     $prompt.one("transitionend", () => this.emit("close", value));
     open = null;
   }
