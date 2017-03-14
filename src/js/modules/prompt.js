@@ -33,6 +33,7 @@ module.exports = class Prompt extends EventEmitter2 {
     $message.html(this.message);
     this.emit("update", "");
     $prompt.addClass("open");
+    this.setComplete(this.options.complete);
     open = this;
   }
 
