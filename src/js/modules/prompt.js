@@ -22,6 +22,7 @@ module.exports = class Prompt extends EventEmitter2 {
   constructor(message, options={}) {
     super();
     this.message = message;
+    this.options = Object.assign({}, defaultOptions, options);
     if(options.open !== false) {
       this.open();
     }
