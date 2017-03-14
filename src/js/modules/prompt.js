@@ -50,7 +50,10 @@ module.exports = class Prompt extends EventEmitter2 {
   }
 
   setValue(value){
-    this === open && $input.val(value);
+    if(this === open){
+      $input.val(value);
+      this.emit("update", value);
+    }
   }
 
   isOpened(){
