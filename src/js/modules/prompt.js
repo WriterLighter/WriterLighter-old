@@ -81,6 +81,7 @@ module.exports = class Prompt extends EventEmitter2 {
     $completeList.children(".opened").removeClass("opened");
     const completes = this.getComplete();
     const length = completes.length;
+    if(!length) return;
     index = index % length;
     if (index < 0)
       index = length + index;
