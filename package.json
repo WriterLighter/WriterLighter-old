@@ -55,7 +55,7 @@
     "cheerio-httpcli": "^0.6.11",
     "coffee-script": "^1.12.4",
     "eventemitter2": "^3.0.2",
-    "fs-extra": "^2.0.0",
+    "fs-extra": "^2.1.1",
     "glob": "^7.1.1",
     "html5sortable": "^0.4.4",
     "jquery": "^3.1.1",
