@@ -988,9 +988,9 @@ electron-osx-sign@^0.4.1:
     plist "^2.0.1"
     tempfile "^1.1.1"
 
-electron-packager@^8.5.2:
-  version "8.5.2"
-  resolved "https://registry.yarnpkg.com/electron-packager/-/electron-packager-8.5.2.tgz#b3e84fec8256c2158440564f1056e5206d11afc7"
+electron-packager@^8.6.0:
+  version "8.6.0"
+  resolved "https://registry.yarnpkg.com/electron-packager/-/electron-packager-8.6.0.tgz#23a4233cb573389c0f728b4e87ef74416d9933e9"
   dependencies:
     asar "^0.13.0"
     debug "^2.2.0"
@@ -1001,7 +1001,7 @@ electron-packager@^8.5.2:
     get-package-info "^1.0.0"
     minimist "^1.1.1"
     plist "^2.0.0"
-    rcedit "^0.7.0"
+    rcedit "^0.8.0"
     resolve "^1.1.6"
     run-series "^1.1.1"
     sanitize-filename "^1.6.0"
@@ -1269,9 +1269,9 @@ fs-extra@^2.0.0:
     graceful-fs "^4.1.2"
     jsonfile "^2.1.0"
 
-fs-extra@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-2.1.1.tgz#f8a34cc890522fc233896f34944ff2e35948959f"
+fs-extra@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-2.1.2.tgz#046c70163cef9aad46b0e4a7fa467fb22d71de35"
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^2.1.0"
@@ -2142,9 +2142,9 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
-jquery@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.1.1.tgz#347c1c21c7e004115e0a4da32cece041fad3c8a3"
+jquery@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.0.tgz#3bdbba66e1eee0785532dddadb0e0d2521ca584b"
 
 js-base64@^2.1.9:
   version "2.1.9"
@@ -3420,9 +3420,9 @@ rc@^1.1.2, rc@~1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-rcedit@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/rcedit/-/rcedit-0.7.0.tgz#560b2920165034a135316e6a111f8274b9cec521"
+rcedit@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/rcedit/-/rcedit-0.8.0.tgz#dc3130aeb028f4a658ac2e3c8e6d047222dac948"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
