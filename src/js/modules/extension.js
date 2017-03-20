@@ -37,10 +37,10 @@ module.exports = class extension {
       for (let packageJSON of Array.from(glob.sync(path.join(extDir, "*", "package.json")))) {
         let packagePath = path.dirname(packageJSON);
         if (!path.isAbsolute(packagePath)) {
-          packagePath = path.join(__dirname, "..", packagePath);
+          packagePath = path.join(__dirname, "..", "..", "..", packagePath);
         }
         const packageInfo = JSON.parse(fs.readFileSync(packageJSON, "utf-8"));
-        if (!~extensionIndex.indexOf(packageInfo.name) || !~themeIndex.indexOf(packageInfo.name)) {
+        if (!extensionIndex[packageInfo.name] && !themeIndex[packageInfo.name]) {
           let imported, index, type;
           const { ext } = path.parse(packageInfo.main);
           if (ext === "js" || ext === "coffee") {
@@ -55,7 +55,7 @@ module.exports = class extension {
 
           index[packageInfo.name] = extensions.push(Object.assign({},
             packageInfo, {
-            path: packageInfoPath,
+            path: packagePath,
             imported,
             type
           }
@@ -84,15 +84,15 @@ module.exports = class extension {
     extension.checkInstall();
     extensions = YAML.load(fs.readFileSync(extensionFile, 'utf8'));
     for (let i = 0; i < extensions.length; i++) {
-      extension = extensions[i];
-      const index = (() => { switch (extension.type) {
+      const extensionInfo = extensions[i];
+      const index = (() => { switch (extensionInfo.type) {
         case "extension":
           return extensionIndex;
         case "theme":
           return themeIndex;
       } })();
-      index[extension.name] = i;
-      extension.imported = require(path.join(extsnsion.path, extension.main));
+      index[extensionInfo.name] = i;
+      extensionInfo.imported = require(path.join(extensionInfo.path, extensionInfo.main));
     }
     extension.updateExtensionTabs();
     return wl.theme.set();
