@@ -33,7 +33,7 @@ module.exports = class Prompt extends EventEmitter2 {
     $message.html(this.message);
     this.emit("update", "");
     $prompt.addClass("open");
-    this.setComplete(this.options.complete);
+    this.setComplete(this.options.completes);
     open = this;
   }
 
@@ -100,7 +100,7 @@ $input.on("input", e => {
   if(!open) return;
   const value = open.getValue();
   open.emit("update", value);
-  open.setComplete(open.options.complete.filter(complete =>
+  open.setComplete(open.options.completes.filter(complete =>
     open.options.filter(complete, value)));
 });
 
