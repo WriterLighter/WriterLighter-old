@@ -61,12 +61,13 @@ body{
 }
 
 #prompt{
+    top: 0;
+    transform: translateY(-100%);
     margin: auto;
     left: 40px;
     right: 40px;
     position: fixed;
     padding: 10px;
-    top: -100%;
     transition: 1s;
     background: #555;
     color: $color-letter;
@@ -83,7 +84,7 @@ body{
       margin: 0;
     }
     &.open{
-        top: 0;
+      transform: translateY(0);
     }
 }
 
@@ -91,6 +92,8 @@ body{
   list-style: none;
   padding: 0;
   margin: 0;
+  max-height: 10em;
+  overflow: auto;
   > li {
     border: solid 1px #000;
     background: rgba(255, 255, 255, .2);
