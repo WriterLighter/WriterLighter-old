@@ -1,4 +1,5 @@
 "use strict"
+let layout;
 const currentWindow = require("electron").remote.getCurrentWindow();
 
 const $container = $("#container");
@@ -91,7 +92,7 @@ const getTargetPane = function(pane) {
   } else { return panes[pane]; }
 };
 
-module.exports = class layout {
+module.exports = layout = class {
   static resizePane(pane, size, option){
     if (pane == null) { pane = "all"; }
     if (size == null) { size = 0; }
