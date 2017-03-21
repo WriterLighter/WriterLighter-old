@@ -139,9 +139,9 @@ module.exports = novel = class novel {
   static newChapter(name, type, index){
     if (name == null) { name = "名称未設定"; }
     if (type == null) { ({ type } = opened.chapter); }
-    if (index == null) { index = novelIndex[type].length + 1; }
+    if (index == null) { index = novelIndex[type].length; }
     index = novelIndex[type].splice(index, 0, name);
-    novel.open(index);
+    novel.openChapter(index, type);
     novel.reloadChapterList();
     novel.saveIndex();
     return wl.lastedit.save();
@@ -288,21 +288,18 @@ data-chapter-type='${type}' data-context='chapter_list'>${name}</li>`;
         name,
         author: wl.config.get("user-name"),
         metadata: ["プロット"],
-        chapter: []
+        body: []
       };
       const novelpath = path.join(wl.config.get("bookshalf"), name);
+      console.log(novelpath)
 
-      if (!mkdirp.sync(path.join(novelpath, "body")) &&
-          !mkdirp.sync(path.join(novelpath, "metadata"))) {
-        fs.writeFileSync(path.join(novelpath, "index.yml"), YAML.dump(index));
-        return novel.openNovel(name);
-      }
+      mkdirp.sync(path.join(novelpath, "body"));
+      mkdirp.sync(path.join(novelpath, "metadata")); 
+      fs.writeFileSync(path.join(novelpath, "index.yml"), YAML.dump(index));
+      novel.openNovel(name);
     } else {
-      const p = new wl.Popup({
-        type: "prompt",
-        messeage: "小説名を入力…"
-      });
-      return p.on("hide", novel.newNovel);
+      new wl.Prompt("小説名を入力…")
+        .on("close", value => novel.newNovel(value));
     }
   }
 
