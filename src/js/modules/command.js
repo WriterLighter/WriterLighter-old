@@ -10,24 +10,29 @@ const parse = function(command) {
   };
 };
 
-module.exports = class command {
+let command;
+
+module.exports = command = class {
   static execute(command){
     const c = parse(command);
     return commands[c.extension][c.command](c.args);
   }
 
   static palette() {
-    const palette = new wl.Popup({
-      type:"prompt",
-      messeage: "コマンドを入力…",
-      complete: command.getList()
-    });
-
-    palette.on("hide", command.execute);
+    new wl.Prompt("input command",
+    { completes:wl.command.getList() })
+    .on("close", value => command.execute(value));
   }
 
   static getList() {
-    return Object.keys(commands);
+    const res = [];
+    Object.entries(commands).forEach(([extension, commands]) =>{
+      if(extension === "default")
+        res.push(...Object.keys(commands));
+      res.push(...Object.keys(commands).map(
+        command => extension + ":" + command))
+    });
+    return res;
   }
 
   static marge(margeCommands, extname) {
