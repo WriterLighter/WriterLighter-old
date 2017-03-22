@@ -47,6 +47,7 @@ html,body{
   width:100%;
   color: $color-letter;
   background: $color-main;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
 }
 
 body{
@@ -238,6 +239,7 @@ button,
 }
 
 #editor-wrap{
+  font-family: "TakaoExMincho", Georgia, 'Hiragino Mincho ProN', 'Yu Mincho', serif;
   background: #fff;
   flex-grow: 1;
   position: relative;
@@ -253,6 +255,7 @@ button,
     }
   }
   pre{
+    font-family: inherit;
     color: transparent;
     position: absolute;
     top: 0;
