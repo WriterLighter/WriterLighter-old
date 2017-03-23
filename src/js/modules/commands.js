@@ -47,7 +47,7 @@ module.exports = {
     return wl.novel.renameChapter();
   },
   ["delete-chapter"]() {
-    return wl.deleteChapter();
+    return wl.novel.deleteChapter();
   },
   save() {
     return wl.novel.save();
