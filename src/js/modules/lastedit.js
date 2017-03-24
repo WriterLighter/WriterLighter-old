@@ -21,7 +21,7 @@ module.exports = class lastEdit {
     return fs.readFile(lastEditPath, function(err, text) {
       if (err == null) {
         const data = YAML.load(text);
-        const {name, number} = data.opened;
+        const {novel:{name}, chapter: {number}} = data.opened;
 
         wl.novel.openNovel(name || "はじめよう");
 
