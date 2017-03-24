@@ -166,19 +166,19 @@ const editor = module.exports = class {
       case "horizontal":
         return $wrapper.removeClass("vertical");
       default:
-        return editor.setDirection("horizontal");
+        throw new Error(`${direction} is invalid direction.`);
     }
   }
 
   static getDirection() {
-    if ($input.hasClass("vertical")) { return "vertical"; } else { return "horizontal"; }
+    return $wrapper.hasClass("vertical") ? "vertical" : "horizontal";
   }
 
   static toggleDirection() {
     if (editor.getDirection() === "vertical") {
-      return editor.setDirection("horizontal");
+      editor.setDirection("horizontal");
     } else {
-      return editor.setDirection("vertical");
+      editor.setDirection("vertical");
     }
   }
 
